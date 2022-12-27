@@ -1,0 +1,39 @@
+.MenuTab {
+  width: 160px;
+  height: 100%;
+  padding-top: 65px;
+  padding-left: 11px;
+  background-color: #4669f5;
+  border-radius: 0 30px 0 0;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    li {
+      width: 100%;
+      height: 60px;
+      line-height: 60px;
+      text-align: center;
+      margin-bottom: 7px;
+      list-style: none;
+      background: #fff;
+      border-radius: 5px 0px 0px 5px;
+
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        color: #4669f5;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    }
+  }
+}
