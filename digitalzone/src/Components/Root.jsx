@@ -5,9 +5,9 @@ import MenuTab from "./MenuTab/MenuTab";
 
 const Root = () => {
   return (
-    <div>
+    <div className="Root">
       <Header />
-      <div className="RootContainer">
+      <div className="Root_layoutWrap">
         <MenuTab />
         <Outlet />
       </div>

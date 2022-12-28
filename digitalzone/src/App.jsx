@@ -10,7 +10,6 @@ import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 
 function App() {
-  // 테스트
   const router = createBrowserRouter([
     {
       path: "/",
