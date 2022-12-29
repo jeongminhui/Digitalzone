@@ -8,6 +8,7 @@ import Transaction from "./Components/Transaction/Transaction";
 import Node from "./Components/Node/Node";
 import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
+import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
         {
           path: "/block",
           element: <Block />,
+        },
+        {
+          path: "/block/:blocknum",
+          element: <BlockInfo />,
         },
         {
           path: "/transaction",

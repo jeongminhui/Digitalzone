@@ -6,7 +6,7 @@ import { collection, getDocs } from 'firebase/firestore';
 
 const Node = () => {
 
-  const nodeCollection = collection(db, "node");
+  const nodeCollection = collection(db, "node1");
 
   const [nodeInfo, setNodeInfo] = useState([]);
 
