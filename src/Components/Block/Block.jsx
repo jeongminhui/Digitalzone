@@ -16,7 +16,7 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 
 const Block = () => {
-  const blockCollection = collection(db, "block1");
+  const blockCollection = collection(db, "block");
   const [rows, setRows] = useState([]);
 
   const columns = [
