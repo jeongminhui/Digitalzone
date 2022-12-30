@@ -119,7 +119,7 @@ const Block = () => {
   return (
     <div className="Block">
       <h1>블록 페이지 입니다</h1>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <Paper sx={{ width: "100%", overflow: "hidden"}}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
