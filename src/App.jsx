@@ -9,6 +9,7 @@ import Node from "./Components/Node/Node";
 import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
+import NodeDetail from './Components/Node/NodeDetail';
 
 function App() {
   const router = createBrowserRouter([
@@ -35,6 +36,10 @@ function App() {
         {
           path: "/node",
           element: <Node />,
+        },
+        {
+          path: '/node/:nodename',
+          element: <NodeDetail/>
         },
         {
           path: "/service",
