@@ -1,15 +1,15 @@
 import React from 'react';
-import {db} from "../../firebase"
+import {db} from "../../../firebase"
 import {collection, getDocs, setDoc} from 'firebase/firestore';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import UserListPage from './UserListPage';
 import { UserContext } from './UserContext';
-import UserAddPage from './UserAddPage';
+import UserAddPage from '../UserAddPage';
+import UserListPage from './UserListPage';
 
 const UserDataCenter = () => {
-    const userCollection = collection(db,"users")
-    const [userList, setUserList] = useState([]);
+  const userCollection = collection(db, "users");
+  const [userList, setUserList] = useState([]);
 
     useEffect(() => {
         async function getUsers() {
@@ -24,10 +24,10 @@ const UserDataCenter = () => {
         }
         getUsers();
       }, []);
-    console.log(userList.id);
+
     // useEffect(() => {
     //   async function clickHandler() {
-    //     await setDoc(doc(userCollection, ), {
+    //     await setDoc(doc(userCollection, 'randomID), {
     //       randomID: insertList.randomID,
     //       name: insertList.name,
     //       season: insertList.season,

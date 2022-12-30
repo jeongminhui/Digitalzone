@@ -6,28 +6,28 @@ import { UserContext } from "./UserContext";
 const UserListPage = () => {
   const { userList } = useContext(UserContext);
 
-  // 블트노 권한에 따른 OX 표시 함수 
+  // 블트노 권한에 따른 OX 표시 함수
   const userAdmin = (data) => {
     if (data === true) {
       return "O";
     } else {
       return "X";
     }
-  }
+  };
   // 서비스 이용 개수 계산 함수
-//   const userService = (obj) => {
-//     const serviceArr = [obj]
-//     console.log(serviceArr);
-//   }
+  //   const userService = (obj) => {
+  //     const serviceArr = [obj]
+  //     console.log(serviceArr);
+  //   }
 
   const userStatus = (data) => {
     if (data === true) {
-        return "정상"
+      return "정상";
     } else {
-        return "비정상"
+      return "비정상";
     }
-  }
-    
+  };
+
   return (
     <div>
       <table>
@@ -66,7 +66,9 @@ const UserListPage = () => {
               <td>2</td>
               <td>{user.userdate}</td>
               <td>{userStatus(user.userstatus)}</td>
-              <td><button>삭제</button></td>
+              <td>
+                <button>삭제</button>
+              </td>
             </tr>
           ))}
         </tbody>
