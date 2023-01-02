@@ -1,5 +1,5 @@
 import React from "react";
-import "./Dashboard.scss";
+import "./DashBoard.scss";
 import DashboardInfo from "./DashboardInfo";
 import DashboardChart from "./DashboardChart";
 import Footer from "../Footer/Footer";
