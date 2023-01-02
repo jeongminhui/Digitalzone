@@ -19,7 +19,14 @@
 .Header_logo {
   width: 160px;
   height: 100%;
-  background-color: rgba(21, 0, 253, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 138px;
+    height: 64px;
+  }
 }
 
 .Header_rightWrap {
