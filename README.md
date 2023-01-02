@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# 💻 DigitalZone 팀 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DigitalZone의 블록체인 기반 사이트
 
-## Available Scripts
+<br/>
+<br/>
 
-In the project directory, you can run:
+## 작업기간
 
-### `npm start`
+2022.12.19 ~ 2023.01.26
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br/>
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 팀원
 
-### `npm test`
+| 이름 | 김규리 | 김태원 | 유승현 | 윤예지 | 임유빈 | 정민희 | 정재은 |
+| :--: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
+| 역할 |  팀원  |  팀원  |  팀원  |  팀원  |  팀원  |  팀장  |  팀원  |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
+<br/>
 
-### `npm run build`
+## 기술스택
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br/>
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 사용방법 및 규칙
 
-### `npm run eject`
+### 터미널
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+$ git clone https://github.com/jeongminhui/Digitalzone.git
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+$ cd Digitalzone/
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+$ npm install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+$ npm start
+```
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 커밋메시지 규칙
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+`< type > : 무엇을, 왜에 대하여 설명`
 
-### Code Splitting
+- initial : 초기 세팅 추가
+- feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
+- fix : 기능에 대한 버그 수정
+- build : 빌드 관련 파일 수정
+- chore : 패키지 매니저 수정, 기타 자잘한 수정
+- ci : CI 관련 설정 수정
+- docs : 문서(주석) 수정
+- style : 코드 스타일, 포맷 등 수정
+- refactor : 기능 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
+- test : 테스트 코드 추가 및 수정
+- release : 버전 릴리즈
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br/>

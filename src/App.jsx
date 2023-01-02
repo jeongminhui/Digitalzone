@@ -8,6 +8,8 @@ import Transaction from "./Components/Transaction/Transaction";
 import Node from "./Components/Node/Node";
 import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
+import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
+import NodeDetail from './Components/Node/NodeDetail';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,12 +26,20 @@ function App() {
           element: <Block />,
         },
         {
+          path: "/block/:blocknum",
+          element: <BlockInfo />,
+        },
+        {
           path: "/transaction",
           element: <Transaction />,
         },
         {
           path: "/node",
           element: <Node />,
+        },
+        {
+          path: '/node/:nodename',
+          element: <NodeDetail/>
         },
         {
           path: "/service",
