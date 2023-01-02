@@ -58,6 +58,9 @@ const SignUp = () => {
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
+                // timestamp yyyy-MM-dd
+                const time = new Date(user.metadata.creationTime);
+                const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
                 // db에 데이터 추가
                 setDoc(doc(db, 'users', user.uid), {
                     username: name,
@@ -70,7 +73,7 @@ const SignUp = () => {
                         ...userservice,
                     },
                     userclass: userclass,
-                    // userdate: null,
+                    userdate: date,
                     userstatus: '정상',
                 });
             })
