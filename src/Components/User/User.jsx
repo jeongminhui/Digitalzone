@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./User.scss";
 import Footer from "../Footer/Footer";
 import UserDataCenter from "./UserDataCenter";
+import UserInsertModal from "./UserInsertComponents/UserInsertModal";
 
 const User = () => {
+
   return (
     <div className="User">
       <div className="UserTopContainer">
@@ -17,7 +19,9 @@ const User = () => {
           </h3>
         </div>
         <div className="UserTopContainer_right">
-          <button>사용자 추가</button>
+          <button className="btn" onClick={showModalHandler}>
+            사용자 추가
+          </button>
         </div>
       </div>
       <UserDataCenter />
