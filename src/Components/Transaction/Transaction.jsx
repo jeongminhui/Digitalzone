@@ -2,16 +2,7 @@ import "./Transaction.scss";
 import Footer from "../Footer/Footer";
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  doc,
-  query,
-  where,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import { collection, getDoc, doc } from "firebase/firestore";
 
 const Transaction = () => {
   const [transactionInfo, setTransactionInfo] = useState([]);
@@ -77,6 +68,7 @@ const Transaction = () => {
       <div className="txdataContainer">
         {JSON.stringify(transactionInfo.txdata, null, 10)}
       </div>
+      <Footer />
     </div>
   );
 };
