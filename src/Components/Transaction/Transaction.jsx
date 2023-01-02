@@ -1,4 +1,3 @@
-import React from "react";
 import "./Transaction.scss";
 import Footer from "../Footer/Footer";
 import React, { useEffect, useState } from "react";
