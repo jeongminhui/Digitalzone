@@ -22,6 +22,7 @@ const UserAddPage = () => {
     console.log(userClass);
     return (
         <div>
+            추가추가
             <p>사용자 추가</p>
 
             <p>유형</p>
