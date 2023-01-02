@@ -4,10 +4,10 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
 const UserListPage = () => {
-  const { userList } = useContext(UserContext);
+  const { userList,userAdmin } = useContext(UserContext);
 
   // 블트노 권한에 따른 OX 표시 함수
-  const userAdmin = (data) => {
+  const adminList = (data) => {
     if (data === true) {
       return "O";
     } else {
@@ -27,7 +27,7 @@ const UserListPage = () => {
       return "비정상";
     }
   };
-
+console.log(userAdmin);
   return (
     <div>
       <table>
@@ -57,11 +57,11 @@ const UserListPage = () => {
               <td>{user.username}</td>
               <td>{user.userteam}</td>
               <td>{user.userid}</td>
-              <td>{userAdmin(user.useradmin.dashboard)}</td>
-              <td>{userAdmin(user.useradmin.block)}</td>
-              <td>{userAdmin(user.useradmin.transaction)}</td>
-              <td>{userAdmin(user.useradmin.node)}</td>
-              <td>{userAdmin(user.useradmin.service)}</td>
+              <td>{adminList(user.useradmin.dashboard)}</td>
+              <td>{adminList(user.useradmin.block)}</td>
+              <td>{adminList(user.useradmin.transaction)}</td>
+              <td>{adminList(user.useradmin.node)}</td>
+              <td>{adminList(user.useradmin.service)}</td>
               {/* <td>{userService(user.userservice.service)}</td> */}
               <td>2</td>
               <td>{user.userdate}</td>
