@@ -26,13 +26,12 @@ const UserAddPage = () => {
 
             <p>유형</p>
             <input type="radio" name='name' value="manager" onClick={classHandler} checked/>
-            <label for="manager">Manager</label>    
+            <label for="manager">Manager</label> 
             <input type="radio"  name='name' value="user" onClick={classHandler}/>
             <label for="user">User</label>
             
             <p>이름</p>
             <input type="text" />
-            
             <p>소속</p>
             <input type="text" />
             
