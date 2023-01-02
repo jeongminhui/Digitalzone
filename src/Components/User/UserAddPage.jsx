@@ -31,6 +31,7 @@ const UserAddPage = () => {
         onClick={classHandler}
         checked
       />
+      {/* label for, id 안주고 그냥 감싸만 줘도 되는데, 이렇게 한 이유가 있는거겠죠? 😯*/}
       <label for="manager">Manager</label>
       <input
         type="radio"
