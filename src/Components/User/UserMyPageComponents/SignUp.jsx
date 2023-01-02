@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db } from '../firebase';
+import { db } from '../../../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
@@ -51,7 +51,6 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential.user.metadata.creationTime);
-                setErrorMsg(' ');
                 setEmail('');
                 setTeam('');
                 setPassword('');
