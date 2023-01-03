@@ -9,7 +9,7 @@ import UserListPage from './UserListPage';
 import { useNavigate, useParams } from "react-router-dom";
 
 const UserDataCenter = () => {
-  const userCollection = collection(db, "users");
+  const userCollection = collection(db, "userData");
   const [userList, setUserList] = useState([]);
   const [userAdmin, setUserAdmin] = useState({})
 

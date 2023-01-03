@@ -1,39 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../../../firebase';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 
-const SignUpInput = ({adminChangeHandler},{serviceChangeHandler},{checkedItemHandler},{clickHandler}) => {
-     // userid
-     const [email, setEmail] = useState('');
-     // userteam
-     const [team, setTeam] = useState('');
-     // userpw
-     const [password, setPassword] = useState('');
-     // username
-     const [name, setName] = useState('');
+const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler,clickHandler}) => {
+  
+    // userdata
+    const [userdata, setUserdata] = useState({})
+
+    // class 함수
+    const classHandler = (e) => {
+      checkedItemHandler(e)}
+
+    //userdata 함수
+    const changeHandler = (e) => {
+      e.preventDefault();
+        const nextUserdata = {
+          ...userdata,
+          [e.target.name]: e.target.value
+        };
+        setUserdata(nextUserdata);
+      };
      
-     // useradmin
-     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
-     // userservice
-     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
-     // test
-     const [user, setUser] = useState('');
+    const clickeventHandler = (e) => {
+      e.preventDefault();
+        clickHandler(userdata)
+    }
+    console.log(clickHandler);
 
-    // userclass
-    const [userclass, setUserclass] = useState('');
+    const adminHandler = (e) => {
+      adminChangeHandler(e)}
 
-     const classHandler = (e) => {
-        setUserclass(e.target.value)}
-      
+    const serviceHandler = (e) => {
+      serviceChangeHandler(e)}
 
-   useEffect(()=>{
-    checkedItemHandler(userclass)
-},[userclass])
-    
-console.log(userclass);
-
-
+console.log(userdata);
 
     return (
         <div>
@@ -65,40 +63,32 @@ console.log(userclass);
             이름:{" "}
             <input
               type="text"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              name='name'
+              onChange={changeHandler}
             />
           </div>
           <div>
             소속:{" "}
             <input
               type="text"
-              value={team}
-              onChange={(e) => {
-                setTeam(e.target.value);
-              }}
+              name='team'
+              onChange={changeHandler}
             />
           </div>
           <div>
             아이디:{" "}
             <input
               type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
+              name='email'
+              onChange={changeHandler}
             />
           </div>
           <div>
             비밀번호:{" "}
             <input
               type="password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              name='password'
+              onChange={changeHandler}
             />
           </div>
           <div>
@@ -116,7 +106,7 @@ console.log(userclass);
                 type="checkbox"
                 id="transaction"
                 name="checkbox"
-                onChange={adminChangeHandler}
+                onChange={adminHandler}
               />
               트랜젝션
             </label>
@@ -125,7 +115,7 @@ console.log(userclass);
                 type="checkbox"
                 id="node"
                 name="checkbox"
-                onChange={adminChangeHandler}
+                onChange={adminHandler}
               />
               노드
             </label>
@@ -134,7 +124,7 @@ console.log(userclass);
                 type="checkbox"
                 id="service"
                 name="checkbox"
-                onChange={adminChangeHandler}
+                onChange={adminHandler}
               />
               서비스
             </label>
@@ -146,7 +136,7 @@ console.log(userclass);
                 type="checkbox"
                 id="service_a"
                 name="checkbox"
-                onChange={serviceChangeHandler}
+                onChange={serviceHandler}
               />
               A서비스
             </label>
@@ -155,7 +145,7 @@ console.log(userclass);
                 type="checkbox"
                 id="service_b"
                 name="checkbox"
-                onChange={serviceChangeHandler}
+                onChange={serviceHandler}
               />
               B서비스
             </label>
@@ -164,7 +154,7 @@ console.log(userclass);
                 type="checkbox"
                 id="service_c"
                 name="checkbox"
-                onChange={serviceChangeHandler}
+                onChange={serviceHandler}
               />
               C서비스
             </label>
@@ -173,7 +163,7 @@ console.log(userclass);
                 type="checkbox"
                 id="service_d"
                 name="checkbox"
-                onChange={serviceChangeHandler}
+                onChange={serviceHandler}
               />
               D서비스
             </label>
@@ -182,12 +172,12 @@ console.log(userclass);
                 type="checkbox"
                 id="service_e"
                 name="checkbox"
-                onChange={serviceChangeHandler}
+                onChange={serviceHandler}
               />
               E서비스
             </label>
           </div>
-          <button type="submit" className="SignUpButton" onClick={clickHandler}>
+          <button type="submit" className="SignUpButton" onClick={clickeventHandler}>
             추가
           </button>
         </form>

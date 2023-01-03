@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../../../firebase';
 import { collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import SignInIput from './SignInInput';
+import SignInInput from './SignInInput';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const userCollection = collection(db, 'users');
+    const userCollection = collection(db, 'userTest');
     const auth = getAuth();
 
-    const clickHandler = async (e) => {
+    const loginClickHandler = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -41,37 +43,7 @@ const SignIn = () => {
 
     return (
         <div>
-            <form>
-                <h1>로그인</h1>
-                <div>
-                    아이디:
-                    <input
-                        type='email'
-                        className='signInEmail'
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-                </div>
-                <div>
-                    비밀번호:
-                    <input
-                        type='password'
-                        className='signInPassword'
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                    />
-                </div>
-                <button type='submit' className='SignInButton' onClick={clickHandler}>
-                    로그인
-                </button>
-            </form>
-            <button type='submit' className='deleteUser' onClick={deleteUser}>
-                사용자 삭제
-            </button>
+       <SignInInput loginClickHandler={loginClickHandler}  />
         </div>
     );
 };

@@ -5,24 +5,12 @@ import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc } from 'firebase/
 import SignUpInput from './SignUpInput';
 
 const SignUp = () => {
-    // userid
-    const [email, setEmail] = useState('');
-    // userteam
-    const [team, setTeam] = useState('');
-    // userpw
-    const [password, setPassword] = useState('');
-    // username
-    const [name, setName] = useState('');
-    // userclass
+    // useclass
     const [userclass, setUserclass] = useState('manager');
     // useradmin
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     // userservice
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
-    // test
-    const [user, setUser] = useState('');
-
-    const [userdata, setUserData] = useState({})
 
     const auth = getAuth();
 
@@ -48,23 +36,23 @@ const SignUp = () => {
     const checkedItemHandler = (e) => {
         setUserclass(e.target.value);
     };
-
-    const clickHandler = async (e) => {
-        e.preventDefault();
-        await createUserWithEmailAndPassword(auth, email, password)
+    
+    // firebase 데이터 추가
+    const clickHandler = async (userdata) => {
+        console.log(userdata);
+        console.log(userdata.name);
+        // e.preventDefault();
+        await createUserWithEmailAndPassword(auth, userdata.email, userdata.password)
             .then((userCredential) => {
-                setEmail('');
-                setTeam('');
-                setPassword('');
-                setName('');
+    
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
                 // db에 데이터 추가
-                setDoc(doc(db, 'users', user.uid), {
-                    username: name,
-                    userteam: team,
-                    userid: user.email,
+                setDoc(doc(db, 'userTest', user.uid), {
+                    username: userdata.name,
+                    userteam: userdata.team,
+                    userid: userdata.email,
                     useradmin: {
                         ...admin,
                     },
@@ -82,11 +70,6 @@ const SignUp = () => {
                 console.log(errorMessage);
             });
     };
-
-    const userdataHandler = (e) => {
-        setUserData(e)
-    }
-
     
 
     return (
@@ -95,8 +78,7 @@ const SignUp = () => {
          adminChangeHandler={adminChangeHandler}
          serviceChangeHandler={serviceChangeHandler} 
          checkedItemHandler={checkedItemHandler}
-         clickHandler={clickHandler}
-         userdataHandler={userdataHandler} />
+         clickHandler={clickHandler} />
         </div>
     );
 };
