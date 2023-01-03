@@ -10,6 +10,8 @@ const SignUp = () => {
     const [team, setTeam] = useState('');
     // userpw
     const [password, setPassword] = useState('');
+    // pwcheck
+    const [pwcheck, setPwcheck] = useState('');
     // username
     const [name, setName] = useState('');
     // userclass
@@ -18,8 +20,6 @@ const SignUp = () => {
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     // userservice
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
-    // test
-    const [user, setUser] = useState('');
 
     const auth = getAuth();
 
@@ -46,18 +46,49 @@ const SignUp = () => {
         setUserclass(e.target.value);
     };
 
+    // useEffect로 동기화
+    // 비밀번호 조건 검사
+    // 8자 이상, 하나의 문자 및 하나의 숫자 및 하나의 특수 문자 포함
+    // 대소문자 구분없이 문자를 전부 하나로 침
+    useEffect(() => {
+        if (password.length > 0) {
+            setPassword((prev) => prev);
+            const regexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
+
+            const div = document.getElementsByClassName('natvaildpw')[0];
+            if (regexp.test(password)) {
+                div.style.display = 'none';
+            }
+        }
+    }, [password]);
+
+    // useEffect로 동기화
+    // 비밀번호 확인
+    useEffect(() => {
+        if (pwcheck.length > 0) {
+            setPwcheck((prev) => prev);
+
+            // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
+            const span = document.getElementsByClassName('notsamepw')[0];
+            if (password === pwcheck) {
+                span.style.display = 'none';
+            }
+        }
+    }, [password, pwcheck]);
+
     const clickHandler = async (e) => {
         e.preventDefault();
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                console.log(userCredential.user.metadata.creationTime);
+                setName('');
                 setEmail('');
                 setTeam('');
                 setPassword('');
-                setName('');
+                setPwcheck('');
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
+
                 // timestamp yyyy-MM-dd
                 const time = new Date(user.metadata.creationTime);
                 const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
@@ -130,15 +161,13 @@ const SignUp = () => {
                     />
                 </div>
                 <div>
-                    비밀번호:{' '}
-                    <input
-                        type='password'
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                    />
+                    비밀번호: <input type='password' className='userpw' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
+                <div>
+                    비밀번호 재확인: <input type='password' className='userpwcheck' value={pwcheck} onChange={(e) => setPwcheck(e.target.value)} />
+                    <span className='notsamepw'> 비밀번호가 일치하지 않습니다</span>
+                </div>
+                <div className='natvaildpw'>※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요</div>
                 <div>
                     권한:{' '}
                     <label>
