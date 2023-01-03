@@ -2,14 +2,21 @@ import React, { useEffect, useState } from 'react';
 
 const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler,clickHandler}) => {
   
-    // userdata
+    // 유저 데이터 스테이트
     const [userdata, setUserdata] = useState({})
-
-    // class 함수
+    
+    // 유저 등급 전달
     const classHandler = (e) => {
       checkedItemHandler(e)}
+    // 블트노 권한 전달
+    const adminHandler = (e) => {
+      adminChangeHandler(e)}
+    
+    // 서비스 권한 전달
+    const serviceHandler = (e) => {
+      serviceChangeHandler(e)}
 
-    //userdata 함수
+    // 클릭 + 유저 데이터 전달
     const changeHandler = (e) => {
       e.preventDefault();
         const nextUserdata = {
@@ -18,20 +25,10 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
         };
         setUserdata(nextUserdata);
       };
-     
     const clickeventHandler = (e) => {
       e.preventDefault();
         clickHandler(userdata)
     }
-    console.log(clickHandler);
-
-    const adminHandler = (e) => {
-      adminChangeHandler(e)}
-
-    const serviceHandler = (e) => {
-      serviceChangeHandler(e)}
-
-console.log(userdata);
 
     return (
         <div>

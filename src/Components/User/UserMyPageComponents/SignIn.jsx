@@ -6,15 +6,12 @@ import SignInIput from './SignInInput';
 import SignInInput from './SignInInput';
 
 const SignIn = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    
     const userCollection = collection(db, 'userTest');
     const auth = getAuth();
 
     const loginClickHandler = async (e) => {
-        e.preventDefault();
-        await signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, e.email, e.password)
             .then((userCredential) => {
                 // 비동기로 데이터 가져오기
                 const dataPrint = async () => {
@@ -33,13 +30,8 @@ const SignIn = () => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
-        setEmail('');
-        setPassword('');
     };
 
-    const deleteUser = async (e) => {
-        e.preventDefault();
-    };
 
     return (
         <div>

@@ -1,6 +1,21 @@
 import React from 'react';
+import { useState } from 'react';
 
-const SignInInput = () => {
+const SignInInput = ({loginClickHandler}) => {
+    const [logindata,setLogindata] = useState({})
+    const changeHandler = (e) => {
+        e.preventDefault();
+          const nextUserdata = {
+            ...logindata,
+            [e.target.name]: e.target.value
+          };
+          setLogindata(nextUserdata);
+        };
+    const clickHandler = (e) => {
+        e.preventDefault();
+            loginClickHandler(logindata)
+        }
+
     return (
         <div>
             <form>
@@ -10,30 +25,19 @@ const SignInInput = () => {
                     <input
                         type='email'
                         className='signInEmail'
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
+                        onChange={changeHandler}/>
                 </div>
                 <div>
                     비밀번호:
                     <input
                         type='password'
                         className='signInPassword'
-                        value={password}
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                    />
+                        onChange={changeHandler}/>
                 </div>
                 <button type='submit' className='SignInButton' onClick={clickHandler}>
                     로그인
                 </button>
             </form>
-            <button type='submit' className='deleteUser' onClick={deleteUser}>
-                사용자 삭제
-            </button>
         </div>
     );
 };
