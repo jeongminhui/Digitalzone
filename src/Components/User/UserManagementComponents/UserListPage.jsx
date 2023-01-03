@@ -41,6 +41,7 @@ const UserListPage = () => {
           </h3>
         </div>
         <div className="UserTopContainer_right">
+          {/* 여기 추후 modal 컴포넌트로 모달오픈 props 보낼 것임. 안되면 어쩔 수 없이 이 컴포넌트가 지저분... 그 전까지 난 props 공부..*/}
           <button>사용자 추가</button>
         </div>
       </div>
