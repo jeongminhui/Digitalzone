@@ -8,7 +8,6 @@ const AllServiceData = () => {
 
   useEffect(() => {
     async function getService() {
-      // getDocs로 정보를 가져옴
       const serviceData = await getDocs(dashboard_serviceCollection);
       return setServiceDataSize(serviceData.docs.length);
     }
