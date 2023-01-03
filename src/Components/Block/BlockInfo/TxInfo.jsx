@@ -1,45 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { HiOutlineDocumentText } from "react-icons/hi";
 
 const TxInfo = ({ txInfo }) => {
-  const [rows, setRows] = useState([]);
-
   const columns = [
     { id: "txnum", label: "트랜잭션번호", minWidth: 100 },
     {
       id: "createdt",
       label: "타임스탬프",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 100,
     },
     {
       id: "txhash",
       label: "트랜잭션해시",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 130,
     },
     {
       id: "txsize",
       label: "트랜잭션크기",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 70,
     },
     {
       id: "txdata",
       label: "데이터",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 70,
     },
   ];
-
-  // row 구조
-  useEffect(() => {
-    setRows({
-      txnum: item.txnum,
-      createdt: item.createdt,
-      txhash: item.txhash,
-      txsize: item.txsize,
-    });
-  }, []);
 
   return (
     <div>
@@ -60,15 +52,17 @@ const TxInfo = ({ txInfo }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              return (
-              <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                <TableCell>{rows.txnum}</TableCell>
-                <TableCell>{rows.createdt}</TableCell>
-                <TableCell>{rows.txhash}</TableCell>
-                <TableCell>{rows.txsize}</TableCell>
-                <TableCell>{rows.blksize}</TableCell>
+              <TableRow hover role="checkbox" tabIndex={-1} key={txInfo.code}>
+                <TableCell>{txInfo.txnum}</TableCell>
+                <TableCell>{txInfo.createdt}</TableCell>
+                <TableCell>{txInfo.txhash}</TableCell>
+                <TableCell>{txInfo.txsize}</TableCell>
+                <TableCell>
+                  <button type="button">
+                    <HiOutlineDocumentText />
+                  </button>
+                </TableCell>
               </TableRow>
-              );
             </TableBody>
           </Table>
         </TableContainer>

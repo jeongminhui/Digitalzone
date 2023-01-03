@@ -10,10 +10,11 @@ import TxInfo from "./TxInfo";
 
 const BlockInfo = () => {
   const { blocknum } = useParams();
-  const blockCollection = collection(db, "block1");
-  const txCollection = collection(db, "transaction1");
+  const blockCollection = collection(db, "block");
+  const txCollection = collection(db, "transaction");
   const [blockInfo, setBlockInfo] = useState({});
   const [txInfo, setTxInfo] = useState({});
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     async function getBlockInfo() {
@@ -24,17 +25,15 @@ const BlockInfo = () => {
     getBlockInfo();
   }, []);
 
-  useEffect(() => {
+  const txInfoHandler = () => {
+    setVisible(!visible);
+
     async function getTxInfo() {
       const docRef = doc(txCollection, String(blockInfo.txnum));
       const data = await getDoc(docRef);
       setTxInfo(data.data());
     }
     getTxInfo();
-  }, [blockInfo]);
-
-  const txInfoHandler = () => {
-    console.log(txInfo);
   };
 
   return (
@@ -73,8 +72,7 @@ const BlockInfo = () => {
           </tr>
         </tbody>
       </table>
-
-      {/* <TxInfo txInfo={txInfo} /> */}
+      {visible ? <TxInfo txInfo={txInfo} /> : ""}
 
       <Footer />
     </div>

@@ -16,35 +16,31 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 
 const Block = () => {
-  const blockCollection = collection(db, "block1");
+  const blockCollection = collection(db, "block");
   const [rows, setRows] = useState([]);
 
   const columns = [
-    { id: "service", label: "서비스명", minWidth: 170 },
-    { id: "blocknum", label: "블록번호", minWidth: 100 },
+    { id: "service", label: "서비스명", minWidth: 80 },
+    { id: "blocknum", label: "블록번호", minWidth: 80 },
     {
       id: "createdt",
       label: "타임스탬프",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 100,
     },
     {
       id: "blockhash",
       label: "블록해시",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 130,
     },
     {
       id: "blksize",
       label: "블록크기",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 70,
     },
     {
       id: "txcount",
       label: "트랜잭션 수",
-      minWidth: 170,
-      // align: "right",
+      minWidth: 70,
     },
   ];
 
@@ -117,48 +113,58 @@ const Block = () => {
 
   return (
     <div className="Block">
-      <h1>블록 페이지 입니다</h1>
-      <Paper sx={{ width: "100%", overflow: "hidden"}}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader aria-label="sticky table">
-            <TableHead>
-              <TableRow>
-                {columns.map((column) => (
-                  <TableCell
-                    key={column.id}
-                    align={column.align}
-                    style={{ minWidth: column.minWidth }}
-                  >
-                    {column.label}
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.code}
-                    >
-                      <TableCell key={row.service}>{row.service}</TableCell>
-                      <TableCell
-                        key={row.blocknum}
-                        onClick={clickHandler}
-                        value={row.blocknum}
-                      >
-                        {row.blocknum}
-                      </TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                      <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
-                      <TableCell key={row.blksize}>{row.blksize}</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
+      <div className="wrapper">
+        <h1 className="mainTitle">블록</h1>
+        <h3 className="subTitle">
+          <span className="subBar">|</span> 전체 블록 {rows.length}개
+        </h3>
 
-                      {/* {columns.map((column) => {
+        <Paper sx={{ width: "1000px", overflow: "hidden", boxShadow: "none" }}>
+          <TableContainer sx={{ bgcolor: "#fff" }}>
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  {columns.map((column) => (
+                    <TableCell
+                      key={column.id}
+                      align={column.align}
+                      style={{ minWidth: column.minWidth }}
+                      sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                    >
+                      {column.label}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.code}
+                      >
+                        <TableCell key={row.service}>{row.service}</TableCell>
+                        <TableCell
+                          key={row.blocknum}
+                          onClick={clickHandler}
+                          value={row.blocknum}
+                        >
+                          {row.blocknum}
+                        </TableCell>
+                        <TableCell key={row.createdt}>{row.createdt}</TableCell>
+                        <TableCell key={row.blockhash}>
+                          {row.blockhash}
+                        </TableCell>
+                        <TableCell key={row.blksize}>{row.blksize}</TableCell>
+                        <TableCell key={row.txnum}>
+                          {row.txnum.length}
+                        </TableCell>
+
+                        {/* {columns.map((column) => {
                         const value = row[column.id];
                         // console.log(value);
                         return (
@@ -167,33 +173,41 @@ const Block = () => {
                           </TableCell>
                         );
                       })} */}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
+            </Table>
+            <div className="pagenationDIV">
+              <div className="pagenation">
+                <Stack spacing={2}>
+                  <Pagination
+                    // count 부분 수정 필요!
+                    count={parseInt(rows.length / rowsPerPage)}
+                    page={pagenation}
+                    onChange={handleChange}
+                    showFirstButton
+                    showLastButton
+                  />
+                </Stack>
+              </div>
 
-      <Stack spacing={2}>
-        <Pagination
-          // count 부분 수정 필요!
-          count={parseInt(rows.length / rowsPerPage)}
-          page={pagenation}
-          onChange={handleChange}
-          showFirstButton
-          showLastButton
-        />
-      </Stack>
+              <div className="tablePagenation">
+                <TablePagination
+                  rowsPerPageOptions={[10, 25, 100]}
+                  component="div"
+                  count={rows.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+              </div>
+            </div>
+          </TableContainer>
+        </Paper>
+      </div>
+
       <Footer />
     </div>
   );
