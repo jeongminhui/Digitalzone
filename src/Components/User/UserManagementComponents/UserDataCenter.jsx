@@ -4,7 +4,7 @@ import {collection, deleteDoc, doc, getDocs, setDoc} from 'firebase/firestore';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { UserContext } from './UserContext';
-import UserAddPage from '../UserAddPage';
+import UserAddPage from './UserAddPage';
 import UserListPage from './UserListPage';
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const UserDataCenter = () => {
               id: item.id,
             }))
           );
-          console.log(data);
+          // console.log(data);
         }
         getUsers();
       }, []);
@@ -42,16 +42,17 @@ const UserDataCenter = () => {
         }
       }
       
+      //유저 리스트 "추가"
       const addHandler = (value) => {
         setUserAdmin(value)
       }
-      console.log(userAdmin);
+      // console.log(userAdmin);
     return (
         <div>
             <UserContext.Provider value={{ userList: userList, userAdmin: userAdmin }}>
         <UserListPage />
       </UserContext.Provider>
-      <UserAddPage addHandler={addHandler} />
+      {/* <UserAddPage addHandler={addHandler} /> */}
         </div>
     );
 };

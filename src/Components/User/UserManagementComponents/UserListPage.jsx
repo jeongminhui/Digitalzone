@@ -27,7 +27,7 @@ const UserListPage = () => {
       return "비정상";
     }
   };
-console.log(userAdmin);
+// console.log(userAdmin);
   return (
     <div>
       <table>
