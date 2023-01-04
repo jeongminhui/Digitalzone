@@ -12,7 +12,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="Header_rightWrap">
-        <div className="Header_searchBar">Search</div>
+        <div className="Header_searchBar"></div>
         <Header_userIcon />
       </div>
     </div>
