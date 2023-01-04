@@ -3,13 +3,17 @@ import { db } from '../../../firebase';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import SignUpInput from './SignUpInput';
+import SignInInput from './SignInInput';
 
-const SignUp = () => {
+const UserDataCenterV2 = () => {
     // 스테이트 저장소
     const [userclass, setUserclass] = useState('manager');
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     
+    // firebase 연결
+    const userCollection = collection(db, 'userTest');
+
     // 어스
     const auth = getAuth();
 
@@ -35,7 +39,7 @@ const SignUp = () => {
         setUserclass(e.target.value);
     };
     
-    // 클릭 시 firebase에 전체 데이터 추가
+    // 회원가입 기능 : firebase에 전체 데이터 추가
     const clickHandler = async (userdata) => {
         console.log(userdata);
         console.log(userdata.name);
@@ -69,6 +73,28 @@ const SignUp = () => {
             });
     };
     
+    // 로그인 기능 : firebase로부터 로그인 정보 확인
+    const loginClickHandler = async (e) => {
+        await signInWithEmailAndPassword(auth, e.email, e.password)
+            .then((userCredential) => {
+                // 비동기로 데이터 가져오기
+                const dataPrint = async () => {
+                    const user = userCredential.user;
+                    const docRef = doc(userCollection, user.uid);
+                    const data = await getDoc(docRef);
+                    const userInfo = data.data();
+
+                    console.log(userInfo);
+                    alert(`${userInfo.username}님, 로그인되었습니다`);
+                };
+                dataPrint();
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+    };
 
     return (
         <div>
@@ -77,8 +103,9 @@ const SignUp = () => {
          serviceChangeHandler={serviceChangeHandler} 
          checkedItemHandler={checkedItemHandler}
          clickHandler={clickHandler} />
+         <SignInInput loginClickHandler={loginClickHandler}  />
         </div>
     );
 };
 
-export default SignUp;
+export default  UserDataCenterV2;

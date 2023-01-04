@@ -1,12 +1,10 @@
 import React from 'react';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import UserDataCenterV2 from './UserDataCneterV2';
 
 const UserMyPage = () => {
     return (
         <div>
-            <SignIn />
-            <SignUp />
+            < UserDataCenterV2 />
         </div>
     );
 };
