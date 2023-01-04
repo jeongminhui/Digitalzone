@@ -29,7 +29,6 @@ const UserDataCenter = () => {
       <UserContext.Provider value={{ userList: userList }}>
         <UserListPage />
       </UserContext.Provider>
-      {/* <UserAddPage  /> */}
     </div>
   );
 };
