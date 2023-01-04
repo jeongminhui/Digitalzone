@@ -6,4 +6,49 @@
   background-color: var(--footer-color);
   position: absolute;
   bottom: 0;
+  display: flex;
+  justify-content: space-between;
+
+  > div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .Footer_logo {
+    width: 165px;
+    align-items: center;
+
+    img {
+      width: 101px;
+    }
+  }
+
+  .Footer_infoText {
+    flex-direction: column;
+    align-items: flex-start;
+
+    div {
+      color: var(--light-grey-color);
+      font-size: 13px;
+
+      a {
+        color: inherit;
+        font-size: inherit;
+        text-decoration-color: inherit;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .Footer_markWrap {
+    width: 185px;
+    align-items: center;
+
+    img {
+      width: 35px;
+      height: 35px;
+      margin: 0 2.5px;
+    }
+  }
 }

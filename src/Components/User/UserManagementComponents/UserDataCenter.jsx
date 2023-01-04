@@ -4,7 +4,6 @@ import { collection, getDocs, setDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
 import { UserContext } from "./UserContext";
-import UserAddPage from "../UserAddPage";
 import UserListPage from "./UserListPage";
 
 const UserDataCenter = () => {

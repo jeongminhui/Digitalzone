@@ -13,6 +13,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "../Header.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import { Link } from "react-router-dom";
 
 export default function Header_userIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -89,9 +90,11 @@ export default function Header_userIcon() {
         >
           {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
           <MenuItem>
-            <p>Profile@gmail.com</p>
+            <p>Profissssssssssle@gmail.com</p>
           </MenuItem>
-
+          {/* <Link to="/">
+          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="logo" />
+        </Link> */}
           <Divider />
           <MenuItem>
             <ListItemIcon>
