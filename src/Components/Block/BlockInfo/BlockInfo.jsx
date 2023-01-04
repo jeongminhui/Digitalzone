@@ -50,7 +50,7 @@ const BlockInfo = () => {
             <td>{blockInfo.blocknum}</td>
           </tr>
           <tr>
-            <td>타임스탬프</td>
+            <td>타임스탬프22</td>
             <td>{blockInfo.createdt}</td>
           </tr>
           <tr>
