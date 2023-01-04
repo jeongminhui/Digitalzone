@@ -89,6 +89,7 @@ const UserDataCenterV2 = () => {
                 };
                 dataPrint();
             })
+            // 에러 확인
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

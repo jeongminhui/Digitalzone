@@ -2,7 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 
 const SignInInput = ({loginClickHandler}) => {
+    // 스테이트 저장소
     const [logindata,setLogindata] = useState({})
+
+    // 클릭 + 로그인 데이터 전달
     const changeHandler = (e) => {
         e.preventDefault();
           const nextUserdata = {
