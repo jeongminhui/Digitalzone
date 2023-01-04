@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Avatar from "@mui/material/Avatar";
+// import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -14,6 +14,8 @@ import Logout from "@mui/icons-material/Logout";
 import "../Header.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { Link } from "react-router-dom";
+// import { blue } from "@mui/material/colors";
+import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 
 export default function Header_userIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,16 +28,6 @@ export default function Header_userIcon() {
   };
   return (
     <>
-      {/* <div className="Header_userIcon">
-        <PersonRoundedIcon
-          className="PersonRoundedIcon"
-          // 색상이 안먹힙니다요 ㅜㅜ 추후 추가 수정 하겠읍니다,,
-          color="#4669f5"
-          background="#4669f5"
-          fontSize="large"
-        />
-      </div> */}
-      {/* 여기가 가져온 것 */}
       <React.Fragment>
         <Box
           sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
@@ -53,12 +45,13 @@ export default function Header_userIcon() {
               <PersonRoundedIcon
                 className="PersonRoundedIcon"
                 // 색상이 안먹힙니다요 ㅜㅜ 추후 추가 수정 하겠읍니다,,
+                // color="#4669f5"
                 fontSize="large"
               />
             </div>
           </Tooltip>
         </Box>
-        {/* 여기서 삼항 조건자, 로그인 상태 따라 어떤 것을 띄울지 정함. */}
+        {/* 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함. */}
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -90,7 +83,7 @@ export default function Header_userIcon() {
         >
           {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
           <MenuItem>
-            <p>Profissssssssssle@gmail.com</p>
+            <p>Profisle@gmail.com</p>
           </MenuItem>
           {/* <Link to="/">
           <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="logo" />

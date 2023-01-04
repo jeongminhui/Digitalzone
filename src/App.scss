@@ -36,3 +36,17 @@ h3 {
 b {
   color: var(--point-color);
 }
+button {
+  color: white;
+  background-color: var(--point-color);
+  border: 0;
+  border-radius: 5px;
+  height: 35px;
+  margin: 9px;
+  padding: 9px;
+  padding-left: 25px;
+  padding-right: 25px;
+  line-height: 0px;
+  font-size: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+}
