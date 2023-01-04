@@ -22,7 +22,7 @@ const User = () => {
                     <button>사용자 추가</button>
                 </div>
             </div>
-            <UserDataCenter />
+            {/* <UserDataCenter /> */}
             <Footer />
             <UserMyPage />
         </div>

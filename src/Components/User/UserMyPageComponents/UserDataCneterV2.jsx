@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc, getDocs } from 'firebase/firestore';
 import SignUpInput from './SignUpInput';
 import SignInInput from './SignInInput';
+import { UserContext } from './UserContext';
+import UserListPage from './UserListPage';
 
 const UserDataCenterV2 = () => {
     // 스테이트 저장소
     const [userclass, setUserclass] = useState('manager');
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
-    
+    const [userlist, setUserlist] = useState({})
+
     // firebase 연결
     const userCollection = collection(db, 'userTest');
 
@@ -83,8 +86,9 @@ const UserDataCenterV2 = () => {
                     const docRef = doc(userCollection, user.uid);
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
-
-                    console.log(userInfo);
+                    
+                    setUserlist(userInfo)
+                               
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };
                 dataPrint();
@@ -97,7 +101,10 @@ const UserDataCenterV2 = () => {
             });
     };
 
-    return (
+    // 데이터 불러오기 : firebase로부터 유저 정보 불러오기
+    
+    console.log(userlist);
+        return (
         <div>
          <SignUpInput 
          adminChangeHandler={adminChangeHandler}
@@ -105,6 +112,9 @@ const UserDataCenterV2 = () => {
          checkedItemHandler={checkedItemHandler}
          clickHandler={clickHandler} />
          <SignInInput loginClickHandler={loginClickHandler}  />
+         <UserContext.Provider value={{ userlist: userlist }}>
+        <UserListPage />
+      </UserContext.Provider>
         </div>
     );
 };

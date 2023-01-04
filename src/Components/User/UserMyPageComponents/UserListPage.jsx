@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
 const UserListPage = () => {
-  const { userList,userAdmin } = useContext(UserContext);
+  const { userlist } = useContext(UserContext);
 
   // 블트노 권한에 따른 OX 표시 함수
   const adminList = (data) => {
@@ -14,11 +13,6 @@ const UserListPage = () => {
       return "X";
     }
   };
-  // 서비스 이용 개수 계산 함수
-  //   const userService = (obj) => {
-  //     const serviceArr = [obj]
-  //     console.log(serviceArr);
-  //   }
 
   const userStatus = (data) => {
     if (data === true) {
@@ -27,10 +21,11 @@ const UserListPage = () => {
       return "비정상";
     }
   };
-// console.log(userAdmin);
+
+  console.log(userlist);
   return (
     <div>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th>번호</th>
@@ -50,7 +45,7 @@ const UserListPage = () => {
           </tr>
         </thead>
         <tbody>
-          {userList.map((user, idx) => (
+        {userlist.map((user, idx) => (
             <tr key={idx}>
               <td>{user.id}</td>
               <td>{user.userclass}</td>
@@ -62,7 +57,7 @@ const UserListPage = () => {
               <td>{adminList(user.useradmin.transaction)}</td>
               <td>{adminList(user.useradmin.node)}</td>
               <td>{adminList(user.useradmin.service)}</td>
-              {/* <td>{userService(user.userservice.service)}</td> */}
+              <td>서비스개수</td>
               <td>2</td>
               <td>{user.userdate}</td>
               <td>{userStatus(user.userstatus)}</td>
@@ -72,7 +67,7 @@ const UserListPage = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };

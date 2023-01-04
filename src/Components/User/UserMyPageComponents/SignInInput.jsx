@@ -27,6 +27,7 @@ const SignInInput = ({loginClickHandler}) => {
                     아이디:
                     <input
                         type='email'
+                        name='email'
                         className='signInEmail'
                         onChange={changeHandler}/>
                 </div>
@@ -34,6 +35,7 @@ const SignInInput = ({loginClickHandler}) => {
                     비밀번호:
                     <input
                         type='password'
+                        name='password'
                         className='signInPassword'
                         onChange={changeHandler}/>
                 </div>

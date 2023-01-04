@@ -12,7 +12,7 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
     const adminHandler = (e) => {
       adminChangeHandler(e)}
     
-    // 서비스 권한 전달
+    // 서비스 권한 전달np
     const serviceHandler = (e) => {
       serviceChangeHandler(e)}
 
