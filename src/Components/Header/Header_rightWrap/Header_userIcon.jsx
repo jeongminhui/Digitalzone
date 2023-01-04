@@ -16,6 +16,9 @@ import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { Link } from "react-router-dom";
 // import { blue } from "@mui/material/colors";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
+import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
 
 export default function Header_userIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -82,12 +85,13 @@ export default function Header_userIcon() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
-          <MenuItem>
-            <p>Profisle@gmail.com</p>
-          </MenuItem>
-          {/* <Link to="/">
-          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="logo" />
-        </Link> */}
+          <ListItem>
+            <ListItemText
+              // primary="Profsssle@gmail.com"
+              secondary="Profsssle@gmail.com"
+            />
+          </ListItem>
+
           <Divider />
           <MenuItem>
             <ListItemIcon>
