@@ -15,7 +15,7 @@ const SignUp = () => {
     // username
     const [name, setName] = useState('');
     // userclass
-    const [userclass, setUserclass] = useState('manager');
+    const [userclass, setUserclass] = useState('관리자');
     // useradmin
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     // userservice
@@ -118,15 +118,15 @@ const SignUp = () => {
     return (
         <div>
             <form>
-                <h1>회원가입</h1>
+                <h1>사용자 추가</h1>
                 <div>
                     유형:
                     <label>
-                        <input type='radio' name='type' value='manager' onClick={checkedItemHandler} defaultChecked />
+                        <input type='radio' name='type' value='관리자' onClick={checkedItemHandler} defaultChecked />
                         관리자
                     </label>
                     <label>
-                        <input type='radio' name='type' value='user' onClick={checkedItemHandler} />
+                        <input type='radio' name='type' value='사용자' onClick={checkedItemHandler} />
                         사용자
                     </label>
                 </div>
@@ -167,7 +167,9 @@ const SignUp = () => {
                     비밀번호 재확인: <input type='password' className='userpwcheck' value={pwcheck} onChange={(e) => setPwcheck(e.target.value)} />
                     <span className='notsamepw'> 비밀번호가 일치하지 않습니다</span>
                 </div>
-                <div className='natvaildpw'>※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요</div>
+                <div className='natvaildpw' style={{ color: '#4665F9' }}>
+                    ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
+                </div>
                 <div>
                     권한:{' '}
                     <label>
