@@ -12,7 +12,9 @@ const UserDataCenterV2 = () => {
     const [userclass, setUserclass] = useState('manager');
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
-    const [userlist, setUserlist] = useState({})
+    const [serviceCnt, setServiceCnt] = useState(0)
+    const [loginUser, setLoginUser] = useState({})
+    const [userlist,setUserlist] = useState([])
 
     // firebase 연결
     const userCollection = collection(db, 'userTest');
@@ -36,7 +38,11 @@ const UserDataCenterV2 = () => {
             ...userservice,
             [e.target.id]: e.target.checked,
         });
+        if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
+        else setServiceCnt((prev) => prev - 1);
     };
+
+    console.log(serviceCnt);
     // 유저 등급 저장
     const checkedItemHandler = (e) => {
         setUserclass(e.target.value);
@@ -48,7 +54,7 @@ const UserDataCenterV2 = () => {
         console.log(userdata.name);
         await createUserWithEmailAndPassword(auth, userdata.email, userdata.password)
             .then((userCredential) => {
-    
+                
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
@@ -63,10 +69,11 @@ const UserDataCenterV2 = () => {
                     userservice: {
                         ...userservice,
                     },
-                    userclass: userclass,
-                  
+                    serviceCnt: serviceCnt,
+                    userclass: userclass,                  
                     userstatus: '정상',
                 });
+                setServiceCnt(0)
             })
              // 에러 확인
             .catch((error) => {
@@ -80,14 +87,15 @@ const UserDataCenterV2 = () => {
     const loginClickHandler = async (e) => {
         await signInWithEmailAndPassword(auth, e.email, e.password)
             .then((userCredential) => {
-                // 비동기로 데이터 가져오기
+                // 비동기로 로그인 데이터 가져오기
                 const dataPrint = async () => {
                     const user = userCredential.user;
                     const docRef = doc(userCollection, user.uid);
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
                     
-                    setUserlist(userInfo)
+                    // 로그인 유저 정보 저장
+                    setLoginUser(userInfo)
                                
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };
@@ -101,8 +109,21 @@ const UserDataCenterV2 = () => {
             });
     };
 
-    // 데이터 불러오기 : firebase로부터 유저 정보 불러오기
-    
+    // 유저 리스트 불러오기 : firebase로부터 유저 전체 리스트 불러오기
+    useEffect(() => {
+        console.log('확인');
+                async function getUsers() {
+                  const data = await getDocs(userCollection);
+                  setUserlist(
+                    data.docs.map((item) => ({
+                      ...item.data(),                                     
+                    }))
+                  );
+                }
+                getUsers();
+              },[]);
+console.log('에러확인중');
+    console.log(loginUser);          
     console.log(userlist);
         return (
         <div>
@@ -112,7 +133,7 @@ const UserDataCenterV2 = () => {
          checkedItemHandler={checkedItemHandler}
          clickHandler={clickHandler} />
          <SignInInput loginClickHandler={loginClickHandler}  />
-         <UserContext.Provider value={{ userlist: userlist }}>
+         <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }}>
         <UserListPage />
       </UserContext.Provider>
         </div>
