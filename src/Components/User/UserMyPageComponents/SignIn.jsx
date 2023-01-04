@@ -1,25 +1,90 @@
-import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState, useEffect } from 'react';
+import { getAuth, signInWithEmailAndPassword, signOut, updatePassword } from 'firebase/auth';
 import { db } from '../../../firebase';
 import { collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // 로그인 true, 로그아웃 false
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    // userpw
+    const [userpw, setUserpw] = useState('');
+    // pwcheck
+    const [pwcheck, setPwcheck] = useState('');
 
     const userCollection = collection(db, 'users');
     const auth = getAuth();
+    const currentUser = auth.currentUser;
 
-    const clickHandler = async (e) => {
+    // 비밀번호 변경
+    const pwChangeHandler = (e) => {
+        e.preventDefault();
+        updatePassword(currentUser, userpw)
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '비밀번호가 변경되었습니다',
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+        setUserpw('');
+        setPwcheck('');
+    };
+
+    // 비밀번호 조건 검사
+    useEffect(() => {
+        if (userpw.length > 0) {
+            setUserpw((prev) => prev);
+            const regexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
+
+            const div = document.getElementsByClassName('natvaildpw')[0];
+            if (regexp.test(userpw)) {
+                div.style.display = 'none';
+            }
+        }
+    }, [userpw]);
+
+    // 비밀번호 확인
+    useEffect(() => {
+        if (pwcheck.length > 0) {
+            setPwcheck((prev) => prev);
+
+            // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
+            const span = document.getElementsByClassName('notsamepw')[0];
+            if (userpw === pwcheck) {
+                span.style.display = 'none';
+            }
+        }
+    }, [userpw, pwcheck]);
+
+    const signOutHandler = (e) => {
+        e.preventDefault();
+        setIsLoggedIn(false);
+        signOut(auth)
+            .then(() => {})
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+    };
+
+    const signInHandler = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const dataPrint = async () => {
+                    setIsLoggedIn(true);
                     const user = userCredential.user;
                     const docRef = doc(userCollection, user.uid);
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
-                    // console.log(userInfo);
+                    console.log(userInfo);
 
                     // 로그인시 로그인창 없애기
                     const login1 = document.getElementsByClassName('signIn')[0];
@@ -152,12 +217,21 @@ const SignIn = () => {
                     <div className='signin name'></div>
                     <div className='signin team'></div>
                     <div className='signin email'></div>
-                    <div className='signin pw'>
-                        비밀번호 <input type='password' />
-                    </div>
-                    <div className='signin pwcheck'>
-                        비밀번호 재확인 <input type='password' />
-                    </div>
+                    <form>
+                        <div className='signin pw'>
+                            비밀번호: <input type='password' className='userpw' value={userpw} onChange={(e) => setUserpw(e.target.value)} />
+                        </div>
+                        <div className='signin pwcheck'>
+                            비밀번호 재확인: <input type='password' className='userpwcheck' value={pwcheck} onChange={(e) => setPwcheck(e.target.value)} />
+                            <button type='submit' onClick={pwChangeHandler}>
+                                변경
+                            </button>
+                            <span className='notsamepw'> 비밀번호가 일치하지 않습니다</span>
+                        </div>
+                        <div className='natvaildpw' style={{ color: '#4665F9' }}>
+                            ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
+                        </div>
+                    </form>
                     <div className='signin admin'>
                         <span className='menu admin'></span>
                         <span className='dash'></span>
@@ -178,9 +252,14 @@ const SignIn = () => {
                     <div className='signin date'></div>
                     <div className='signin status'></div>
                 </div>
-                <button type='submit' className='SignInButton' onClick={clickHandler}>
-                    로그인
-                </button>
+
+                {isLoggedIn ? (
+                    <button onClick={signOutHandler}>로그아웃</button>
+                ) : (
+                    <button type='submit' className='SignInButton' onClick={signInHandler}>
+                        로그인
+                    </button>
+                )}
             </form>
         </div>
     );
