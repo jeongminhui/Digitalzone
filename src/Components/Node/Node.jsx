@@ -17,7 +17,7 @@ const Node = () => {
       const data = await getDocs(nodeCollection);
       data.docs.map((items) => {
         return makeNodeData(items.data());
-      });
+      })
     }
     getNodes();
   }, []);
@@ -42,9 +42,8 @@ const Node = () => {
     ]);
   };
 
-
-
   return (
+
     <div className="Node">
       
         <div>

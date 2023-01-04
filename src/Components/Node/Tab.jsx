@@ -13,9 +13,12 @@ import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from '@mui/material';
 import { koKR } from '@mui/material/locale';
 import { useNavigate } from 'react-router-dom';
+import Grafana from './Grafana';
+import './Tab.scss';
 
 export default function Tab({rows}) {
    
+  
 
     const columns = [
       { id: "service", label: "서비스명", minWidth: 70 },
@@ -35,6 +38,8 @@ export default function Tab({rows}) {
   // table
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  console.log(parseInt(rows.length / rowsPerPage));
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -78,12 +83,13 @@ export default function Tab({rows}) {
   const navigate = useNavigate();
   const [nodeName, setNodeName] = useState('');
 
-  const clickHandler = (e) => {
-        setNodeName(e.target.innerHTML);
+  const clickHandler = (nodename) => {
+        setNodeName(nodename);
     }
+
     useEffect(() => {
         navigate(`/node/${nodeName}`)
-    },[nodeName])
+    },[navigate, nodeName])
 
 // Tab
  const [activeIndex, setActiveIndex] = useState(0);
@@ -121,17 +127,13 @@ export default function Tab({rows}) {
                       tabIndex={-1}
                       key={row.code}
                     >
-                      <TableCell key={row.service}>{row.service}</TableCell>
-                      <TableCell
-                        key={row.ndstatus}
-                        value={row.ndstatus}
-                      >
-                        {row.ndstatus}
-                      </TableCell>
-                      <TableCell key={row.nodename} onClick={clickHandler}>{row.nodename}</TableCell>
-                      <TableCell key={row.ndtype}>{row.ndtype}</TableCell>
-                      <TableCell key={row.service_dcc}>{row.service_dcc}</TableCell>
-                      <TableCell key={row.ipaddress}>{row.ipaddress}</TableCell>
+                      
+                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)}>{row.service}</TableCell>
+                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)}>{row.ndstatus}</TableCell>
+                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)}>{row.nodename}</TableCell>
+                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)}>{row.ndtype}</TableCell>
+                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)}>{row.service_dcc}</TableCell>
+                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)}>{row.ipaddress}</TableCell>
                       <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
                       <TableCell key={row.createdt}>{row.createdt}</TableCell>
                       <TableCell key={row.tps}>{row.tps}</TableCell>
@@ -158,19 +160,19 @@ export default function Tab({rows}) {
     </ThemeProvider>
       <Stack spacing={2}>
         <Pagination
-          count={parseInt(rows.length / rowsPerPage)}
+          count={parseInt(rows.length / rowsPerPage) === 0 ? 1 : parseInt(rows.length / rowsPerPage)}
           page={pagenation}
           onChange={handleChange}
           showFirstButton
           showLastButton
-        />
+          />
       </Stack>
                 
                 </div>
         },
         {
             tabTitle:<div className={activeIndex===1 ? "is-active right" : "tab"} onClick={()=>tabClickHandler(1)}> 전체 노드 자원 현황 </div>,
-            tabCont:<div> 탭2 내용 </div>
+            tabCont:<div className='graph'><Grafana/></div>
         }
     ];
     
