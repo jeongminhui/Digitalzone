@@ -1,10 +1,17 @@
 import React from "react";
+import "./DashboardChart.scss";
+import MixedChart from "./DashboardChart/MixedChart";
+import PieChart from "./DashboardChart/PieChart";
+import LineChart from "./DashboardChart/LineChart";
+import FillChart from "./DashboardChart/FillChart";
 
 const DashboardChart = () => {
   return (
     <div className="DashboardChart">
-      <hr />
-      <h3>대시보드 차트영역입니다</h3>
+      <MixedChart />
+      <LineChart />
+      <FillChart />
+      <PieChart />
     </div>
   );
 };
