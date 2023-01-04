@@ -67,7 +67,14 @@ const SignIn = () => {
         e.preventDefault();
         setIsLoggedIn(false);
         signOut(auth)
-            .then(() => {})
+            .then(() => {
+                const div = document.getElementsByClassName('info')[0];
+                div.style.display = 'none';
+                const login1 = document.getElementsByClassName('signIn')[0];
+                const login2 = document.getElementsByClassName('signIn')[1];
+                login1.style.display = 'block';
+                login2.style.display = 'block';
+            })
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
@@ -181,7 +188,6 @@ const SignIn = () => {
                 dataPrint();
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
