@@ -85,13 +85,14 @@ export default function Header_userIcon() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
-          <ListItem>
-            <ListItemText
-              // primary="Profsssle@gmail.com"
-              secondary="Profsssle@gmail.com"
-            />
-          </ListItem>
-
+          <List>
+            <ListItem>
+              <ListItemText
+                primary="Profsssle@gmail.com"
+                // secondary="Profsssle@gmail.com"
+              />
+            </ListItem>
+          </List>
           <Divider />
           <MenuItem>
             <ListItemIcon>
