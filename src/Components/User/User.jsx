@@ -12,9 +12,9 @@ const User = () => {
   return (
     <div className="User">
       {/* <Modal2 /> */}
-      <UserDataCenter />
+      {/* <UserDataCenter /> */}
       {/* 파이어베이스 떄문인지 아직도 화면 안뜸. 그래서 주석처리함. */}
-      <UserInsertModal />
+      {/* <UserInsertModal /> */}
       <Footer />
     </div>
   );
