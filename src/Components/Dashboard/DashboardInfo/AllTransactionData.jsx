@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const AllTransactionData = () => {
   const dashboard_transactionCollection = collection(db, "transaction");
