@@ -1,6 +1,5 @@
 import React from "react";
 import "./Header.scss";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import Header_userIcon from "./Header_rightWrap/Header_userIcon";
 
 const Header = () => {
