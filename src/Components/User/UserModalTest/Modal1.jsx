@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { ConfigProvider, Button, Modal } from "antd";
+import { Button, Modal } from "antd";
 import "./Modal1.scss";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const Modal1 = () => {
   const [loading, setLoading] = useState(false);
@@ -20,13 +21,6 @@ const Modal1 = () => {
   };
   return (
     <>
-      {/* <ConfigProvider
-        // theme={{
-        //   token: {
-        //     colorPrimary: "#4669f5",
-        //   },
-        // }}
-      > */}
       <Button type="primary" onClick={showModal}>
         사용자 추가
       </Button>
@@ -39,20 +33,20 @@ const Modal1 = () => {
           // <Button key="back" onClick={handleCancel}>
           //   취소
           // </Button>,
-          <button
+          <Button
             key="submit"
             type="primary"
             loading={loading}
-            // onclick은 변경해 주어야 함
+            // onclick 이벤트는 변경 해주어야 함
             onClick={handleOk}
           >
+            <AddRoundedIcon />
             추가
-          </button>,
+          </Button>,
         ]}
       >
         <p>내용 넣을 곳</p>
       </Modal>
-      {/* </ConfigProvider> */}
     </>
   );
 };
