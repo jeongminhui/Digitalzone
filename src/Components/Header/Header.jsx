@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
+import Header_userIcon from "./Header_rightWrap/Header_userIcon";
 
 const Header = () => {
   return (
@@ -11,8 +12,8 @@ const Header = () => {
         </Link>
       </div>
       <div className="Header_rightWrap">
-        <div className="Header_searchBar">Search</div>
-        <div className="Header_userIcon">User</div>
+        <div className="Header_searchBar"></div>
+        <Header_userIcon />
       </div>
     </div>
   );
