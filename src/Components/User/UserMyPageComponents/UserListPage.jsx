@@ -2,8 +2,14 @@ import React from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
+<<<<<<< HEAD
 const UserListPage = ({deleteHandler}) => {
   const { loginUser, userlist } = useContext(UserContext);
+=======
+const UserListPage = () => {
+  const { userlist } = useContext(UserContext);
+
+>>>>>>> parent of a777736 (feat : 리스트 테이블 구현)
   // 블트노 권한에 따른 OX 표시 함수
   const adminList = (data) => {
     if (data === true) {
@@ -13,6 +19,7 @@ const UserListPage = ({deleteHandler}) => {
     }
   };
 
+<<<<<<< HEAD
   // 삭제 데이터 전달
   const deleteEventHandler = (e) => {
     e.preventDefault();
@@ -38,6 +45,20 @@ const UserListPage = ({deleteHandler}) => {
         </div>
       </div>
       <table>
+=======
+  const userStatus = (data) => {
+    if (data === true) {
+      return "정상";
+    } else {
+      return "비정상";
+    }
+  };
+
+  console.log(userlist);
+  return (
+    <div>
+      {/* <table>
+>>>>>>> parent of a777736 (feat : 리스트 테이블 구현)
         <thead>
           <tr>
             <th>번호</th>
@@ -69,9 +90,16 @@ const UserListPage = ({deleteHandler}) => {
               <td>{adminList(user.useradmin.transaction)}</td>
               <td>{adminList(user.useradmin.node)}</td>
               <td>{adminList(user.useradmin.service)}</td>
+<<<<<<< HEAD
               <td>{user.serviceCnt}</td>
               <td>{user.userdate}</td>
               <td>{user.userstatus}</td>
+=======
+              <td>서비스개수</td>
+              <td>2</td>
+              <td>{user.userdate}</td>
+              <td>{userStatus(user.userstatus)}</td>
+>>>>>>> parent of a777736 (feat : 리스트 테이블 구현)
               <td>
               <button type="submit" className="DeleteButton" onClick={deleteEventHandler}>
             삭제
