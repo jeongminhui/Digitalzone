@@ -1,6 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
+import UserInsertModal from "../UserInsertComponents/UserInsertModal";
 
 const UserListPage = ({deleteHandler}) => {
   const { loginUser, userlist } = useContext(UserContext);
@@ -34,7 +35,8 @@ const UserListPage = ({deleteHandler}) => {
           </h3>
         </div>
         <div className="UserTopContainer_right">
-          <button>사용자 추가</button>
+          {/* 여기 추후 modal 컴포넌트로 모달오픈 props 보낼 것임. 안되면 어쩔 수 없이 이 컴포넌트가 지저분... 그 전까지 난 props 공부..*/}
+          <UserInsertModal />
         </div>
       </div>
       <table>

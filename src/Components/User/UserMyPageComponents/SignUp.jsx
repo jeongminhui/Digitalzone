@@ -175,16 +175,6 @@ const SignUp = () => {
                         }}
                     />
                 </div>
-                {/* <div>
-                    아이디:{' '}
-                    <input
-                        type='email'
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-                </div> */}
                 <div>
                     아이디: <input type='text' value={emailId} onChange={(e) => setEmailId(e.target.value)} />@<input className='domainTxt' type='text' value={domain} onChange={domainInput} />
                     <select className='domainList' onChange={domainChangeHandler}>
