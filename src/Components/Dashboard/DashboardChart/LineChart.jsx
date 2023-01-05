@@ -5,10 +5,13 @@ const LineChart = () => {
   const container_style = {
     width: "500px",
     height: "250px",
-    backgroundColor: "#d6daff",
+    border: "1px solid #999",
   };
-  const style = { border: "2px solid #000", width: "500px", height: "200px" };
-
+  const style = {
+    backgroundColor: "#ddd",
+    width: "auto",
+    height: "200px",
+  };
   const data = [
     {
       id: "네트워크1",
