@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
-const UserListPage = () => {
+const UserListPage = ({deleteHandler}) => {
   const { loginUser, userlist } = useContext(UserContext);
   // 블트노 권한에 따른 OX 표시 함수
   const adminList = (data) => {
@@ -13,6 +13,12 @@ const UserListPage = () => {
     }
   };
 
+  // 삭제 데이터 전달
+  const deleteEventHandler = (e) => {
+    e.preventDefault();
+    deleteHandler(e)
+  }
+  
   // console.log(loginUser);
   console.log(userlist);
   return (
@@ -64,10 +70,12 @@ const UserListPage = () => {
               <td>{adminList(user.useradmin.node)}</td>
               <td>{adminList(user.useradmin.service)}</td>
               <td>{user.serviceCnt}</td>
-              <td>2</td>
+              <td>{user.userdate}</td>
               <td>{user.userstatus}</td>
               <td>
-                <button>삭제</button>
+              <button type="submit" className="DeleteButton" onClick={deleteEventHandler}>
+            삭제
+          </button>
               </td>
             </tr>
    ))}

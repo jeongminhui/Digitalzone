@@ -27,11 +27,10 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
         }
         setUserdata(nextUserdata);
       };
-    const clickeventHandler = (e) => {
+    const clickEventHandler = (e) => {
       e.preventDefault();
         clickHandler(userdata)
     }
-
 
     return (
         <div>
@@ -177,9 +176,10 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
               E서비스
             </label>
           </div>
-          <button type="submit" className="SignUpButton" onClick={clickeventHandler}>
+          <button type="submit" className="SignUpButton" onClick={clickEventHandler}>
             추가
           </button>
+         
         </form>
       </div>
     );

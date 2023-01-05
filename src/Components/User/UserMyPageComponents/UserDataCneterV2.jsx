@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, deleteUser } from 'firebase/auth';
 import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc, getDocs } from 'firebase/firestore';
 import SignUpInput from './SignUpInput';
 import SignInInput from './SignInInput';
 import { UserContext } from './UserContext';
 import UserListPage from './UserListPage';
+import UserInfo from './UserInfo';
 
 const UserDataCenterV2 = () => {
     // 스테이트 저장소
@@ -14,16 +15,20 @@ const UserDataCenterV2 = () => {
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     const [serviceCnt, setServiceCnt] = useState(0)
     const [loginUser, setLoginUser] = useState({})
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userlist,setUserlist] = useState([])
+   
 
     // firebase 연결
     const userCollection = collection(db, 'userTest');
 
     // 어스
     const auth = getAuth();
+    const user = auth.currentUser
 
     // 체크박스
     const checkboxes = document.getElementsByName('checkbox');
+
     
     // 블트노 권한 저장
     const adminChangeHandler = (e) => {
@@ -58,6 +63,11 @@ const UserDataCenterV2 = () => {
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
+
+                     // timestamp yyyy-MM-dd
+                const time = new Date(user.metadata.creationTime);
+                const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+
                 // db에 데이터 추가
                 setDoc(doc(db, 'userTest', user.uid), {
                     username: userdata.name,
@@ -72,6 +82,7 @@ const UserDataCenterV2 = () => {
                     serviceCnt: serviceCnt,
                     userclass: userclass,                  
                     userstatus: '정상',
+                    userdate: date,
                 });
                 setServiceCnt(0)
             })
@@ -109,9 +120,42 @@ const UserDataCenterV2 = () => {
             });
     };
 
+    // 로그아웃 기능
+    // const signOutHandler = (e) => {
+    //     e.preventDefault();
+    //     setIsLoggedIn(false);
+    //     signOut(auth)
+    //         .then(() => {
+              
+    //         })
+    //         .catch((error) => {
+    //             const errorMessage = error.message;
+    //             console.log(errorMessage);
+    //         });
+    // };
+
+    // 사용자 삭제 기능
+    const deleteHandler = () =>{
+    deleteUser(user)
+    .then((userCredential) => {
+        const user = userCredential.user;
+        if (window.confirm("정말 삭제하시겠습니까?")) {
+            deleteDoc(doc(userCollection, user.uid));
+            alert("삭제되었습니다");
+            // navigate("/RtListFruits");
+          } else {
+            alert("취소되었습니다.");
+          }
+        }
+    )
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)})};
+
     // 유저 리스트 불러오기 : firebase로부터 유저 전체 리스트 불러오기
     useEffect(() => {
-        console.log('확인');
+
                 async function getUsers() {
                   const data = await getDocs(userCollection);
                   setUserlist(
@@ -122,19 +166,19 @@ const UserDataCenterV2 = () => {
                 }
                 getUsers();
               },[]);
-console.log('에러확인중');
-    console.log(loginUser);          
-    console.log(userlist);
+
         return (
         <div>
          <SignUpInput 
          adminChangeHandler={adminChangeHandler}
          serviceChangeHandler={serviceChangeHandler} 
          checkedItemHandler={checkedItemHandler}
-         clickHandler={clickHandler} />
+         clickHandler={clickHandler}
+         deleteHander={deleteHandler} />
          <SignInInput loginClickHandler={loginClickHandler}  />
          <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }}>
-        <UserListPage />
+            {/* <UserInfo /> */}
+        <UserListPage deleteHandler={deleteHandler} />
       </UserContext.Provider>
         </div>
     );
