@@ -102,8 +102,7 @@ const Block = () => {
   const [blocknum, setBlocknum] = useState("");
   const navigate = useNavigate();
 
-  const clickHandler = (e) => {
-    setBlocknum(e.target.textContent);
+  const clickHandler = (blocknum) => {
     navigate(`/block/${blocknum}`);
   };
 
@@ -146,15 +145,10 @@ const Block = () => {
                         role="checkbox"
                         tabIndex={-1}
                         key={row.code}
+                        onClick={() => clickHandler(row.blocknum)}
                       >
                         <TableCell key={row.service}>{row.service}</TableCell>
-                        <TableCell
-                          key={row.blocknum}
-                          onClick={clickHandler}
-                          value={row.blocknum}
-                        >
-                          {row.blocknum}
-                        </TableCell>
+                        <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
                         <TableCell key={row.createdt}>{row.createdt}</TableCell>
                         <TableCell key={row.blockhash}>
                           {row.blockhash}
@@ -183,7 +177,11 @@ const Block = () => {
                 <Stack spacing={2}>
                   <Pagination
                     // count 부분 수정 필요!
-                    count={parseInt(rows.length / rowsPerPage)}
+                    count={
+                      rows.length === rowsPerPage
+                        ? parseInt(rows.length / rowsPerPage)
+                        : parseInt(rows.length / rowsPerPage) + 1
+                    }
                     page={pagenation}
                     onChange={handleChange}
                     showFirstButton
