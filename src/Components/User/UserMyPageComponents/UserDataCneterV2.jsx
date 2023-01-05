@@ -17,6 +17,7 @@ const UserDataCenterV2 = () => {
     const [loginUser, setLoginUser] = useState({})
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userlist,setUserlist] = useState([])
+    const [rendering,setRendering] = useState(2)
    
 
     // firebase 연결
@@ -85,10 +86,12 @@ const UserDataCenterV2 = () => {
                     serviceCnt: serviceCnt,
                     userstatus: '정상',
                     userdate: date,
+                    userkey : user.uid,
                 });
 
                  // 서비스 개수 초기화
                  setServiceCnt(0)
+                 // 랜더링
             })
              // 에러 확인
             .catch((error) => {
@@ -138,18 +141,21 @@ const UserDataCenterV2 = () => {
     // };
 
     // 사용자 삭제 기능
-    const deleteHandler = () =>{
-    deleteUser(user)
-    .then((userCredential) => {
-        const user = userCredential.user;
+    const deleteHandler = async (e) =>{
+    deleteUser(e)
+    .then(() => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
-            deleteDoc(doc(userCollection, user.uid));
+            deleteDoc(doc(userCollection,e));
             alert("삭제되었습니다");
+            window.location.reload();
             // navigate("/RtListFruits");
           } else {
             alert("취소되었습니다.");
           }
+          
+          console.log(e);
         }
+  
     )
     .catch((error) => {
         const errorCode = error.code;
