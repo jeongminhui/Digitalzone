@@ -1,20 +1,15 @@
 import React from "react";
 import "./User.scss";
 import Footer from "../Footer/Footer";
-import UserDataCenter from "./UserDataCenter";
+import UserDataCenter from "./UserManagementComponents/UserDataCenter";
+import UserMyPage from "./UserMyPageComponents/UserMyPage";
+import Modal1 from "./UserModalTest/Modal1";
 
 const User = () => {
   return (
     <div className="User">
-      <h1>사용자 정보</h1>
-      <h3>
-        <span>
-          <b>|</b>
-        </span>
-        전체 사용자
-      </h3>
-
       <UserDataCenter />
+      <Modal1 />
       <Footer />
     </div>
   );

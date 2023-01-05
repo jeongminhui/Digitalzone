@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./SearchBar.scss";
+import "./Header_SearchBar.scss";
 
-const SearchBar = () => {
+const Header_SearchBar = () => {
   const [inputValue, setInputValue] = useState("");
 
   const searchSubmitHandler = () => {};
@@ -17,7 +17,7 @@ const SearchBar = () => {
   console.log(inputValue);
 
   return (
-    <div className="SearchBar">
+    <div className="Header_SearchBar">
       <form onSubmit={searchSubmitHandler}>
         <input
           type="text"
@@ -30,4 +30,4 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+export default Header_SearchBar;

@@ -1,10 +1,10 @@
 import React from "react";
-import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { collection, getDocs, setDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useState } from "react";
-import UserListPage from "./UserManagementComponents/UserListPage";
-import { UserContext } from "./UserManagementComponents/UserContext";
+import { UserContext } from "./UserContext";
+import UserListPage from "./UserListPage";
 
 const UserDataCenter = () => {
   const userCollection = collection(db, "users");
@@ -23,6 +23,7 @@ const UserDataCenter = () => {
     }
     getUsers();
   }, []);
+
   return (
     <div>
       <UserContext.Provider value={{ userList: userList }}>
