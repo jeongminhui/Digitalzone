@@ -1,5 +1,5 @@
 import React from 'react';
-import UserDataCenterV2 from './UserDataCneterV2';
+import UserDataCenterV2 from './UserDataCenterV2';
 
 const UserMyPage = () => {
     return (

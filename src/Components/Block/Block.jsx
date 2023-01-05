@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Block.scss";
 import Footer from "../Footer/Footer";
 import { db } from "../../firebase";
@@ -14,10 +14,12 @@ import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from './UserContext';
 
 const Block = () => {
   const blockCollection = collection(db, "block1");
   const [rows, setRows] = useState([]);
+  const { userlist } = useContext(UserContext)
 
   const columns = [
     { id: "service", label: "서비스명", minWidth: 170 },

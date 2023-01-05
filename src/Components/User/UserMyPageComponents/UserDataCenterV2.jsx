@@ -7,6 +7,7 @@ import SignInInput from './SignInInput';
 import { UserContext } from './UserContext';
 import UserListPage from './UserListPage';
 import UserInfo from './UserInfo';
+import Block from '../../Block/Block';
 
 const UserDataCenterV2 = () => {
     // 스테이트 저장소
@@ -86,7 +87,7 @@ const UserDataCenterV2 = () => {
                     serviceCnt: serviceCnt,
                     userstatus: '정상',
                     userdate: date,
-                    userkey : user.uid,
+                    uid : user.uid,
                 });
 
                  // 서비스 개수 초기화
@@ -142,8 +143,6 @@ const UserDataCenterV2 = () => {
 
     // 사용자 삭제 기능
     const deleteHandler = async (e) =>{
-    deleteUser(e)
-    .then(() => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
             deleteDoc(doc(userCollection,e));
             alert("삭제되었습니다");
@@ -155,12 +154,6 @@ const UserDataCenterV2 = () => {
           
           console.log(e);
         }
-  
-    )
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage)})};
 
     // 유저 리스트 불러오기 : firebase로부터 유저 전체 리스트 불러오기
     useEffect(() => {
@@ -184,9 +177,9 @@ const UserDataCenterV2 = () => {
          clickHandler={clickHandler}
          deleteHander={deleteHandler} />
          <SignInInput loginClickHandler={loginClickHandler}  />
-         <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }}>
-            {/* <UserInfo /> */}
+         <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }} >
         <UserListPage deleteHandler={deleteHandler} />
+        {/* <Block /> */}
       </UserContext.Provider>
         </div>
     );

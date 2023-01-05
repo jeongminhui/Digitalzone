@@ -14,10 +14,11 @@ const UserListPage = ({deleteHandler}) => {
   };
 
   // 삭제 데이터 전달
-  const deleteEventHandler = (e) => {
+  const deleteEventHandler = (value,e) => {
     // e.preventDefault();
+    
     console.log(e);
-    deleteHandler(e)
+    deleteHandler(value,e)
   }
   
   // console.log(loginUser);
@@ -60,7 +61,7 @@ const UserListPage = ({deleteHandler}) => {
               <td>{user.userdate}</td>
               <td>{user.userstatus}</td>
               <td>
-              <button type="submit"  className="DeleteButton" onClick={()=>deleteEventHandler(user.userkey)}>
+              <button type="submit"  className="DeleteButton" onClick={(e)=>deleteEventHandler(user.uid,e)}>
             삭제
           </button>
               </td>
