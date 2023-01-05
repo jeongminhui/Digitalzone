@@ -19,7 +19,7 @@ const UserDataCenterV2 = () => {
     const [userlist, setUserlist] = useState([]);
 
     // firebase 연결
-    const userCollection = collection(db, 'userTest');
+    const userCollection = collection(db, 'users');
 
     // 어스
     const auth = getAuth();
@@ -66,7 +66,7 @@ const UserDataCenterV2 = () => {
                 const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
 
                 // db에 데이터 추가
-                setDoc(doc(db, 'userTest', user.uid), {
+                setDoc(doc(db, 'users', user.uid), {
                     username: userdata.name,
                     userteam: userdata.team,
                     userid: userdata.email,

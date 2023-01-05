@@ -43,10 +43,10 @@ const SignIn = () => {
             setUserpw((prev) => prev);
             const regexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
 
-            const div = document.getElementsByClassName('natvaildpw')[0];
+            const div = document.getElementsByClassName('natvaildpwsignin')[0];
             if (regexp.test(userpw)) {
                 div.style.display = 'none';
-            }
+            } else if (userpw.trim() === '' || !regexp.test(userpw)) div.style.display = 'block';
         }
     }, [userpw]);
 
@@ -56,10 +56,10 @@ const SignIn = () => {
             setPwcheck((prev) => prev);
 
             // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
-            const span = document.getElementsByClassName('notsamepw')[0];
+            const span = document.getElementsByClassName('notsamepwsignin')[0];
             if (userpw === pwcheck) {
                 span.style.display = 'none';
-            }
+            } else span.style.display = 'inline';
         }
     }, [userpw, pwcheck]);
 
@@ -67,7 +67,14 @@ const SignIn = () => {
         e.preventDefault();
         setIsLoggedIn(false);
         signOut(auth)
-            .then(() => {})
+            .then(() => {
+                const div = document.getElementsByClassName('info')[0];
+                div.style.display = 'none';
+                const login1 = document.getElementsByClassName('signIn')[0];
+                const login2 = document.getElementsByClassName('signIn')[1];
+                login1.style.display = 'block';
+                login2.style.display = 'block';
+            })
             .catch((error) => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
@@ -84,7 +91,6 @@ const SignIn = () => {
                     const docRef = doc(userCollection, user.uid);
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
-                    console.log(userInfo);
 
                     // 로그인시 로그인창 없애기
                     const login1 = document.getElementsByClassName('signIn')[0];
@@ -130,8 +136,8 @@ const SignIn = () => {
                         else dash.innerHTML = `<label><input type='checkbox' disabled /> 대시보드</label>`;
                         if (userInfo.useradmin.block) block.innerHTML = `<label><input type='checkbox' disabled checked /> 블록</label>`;
                         else block.innerHTML = `<label><input type='checkbox' disabled /> 블록</label>`;
-                        if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' disabled checked /> 트랜젝션</label>`;
-                        else tran.innerHTML = `<label><input type='checkbox' disabled /> 트랜젝션</label>`;
+                        if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' disabled checked /> 트랜잭션</label>`;
+                        else tran.innerHTML = `<label><input type='checkbox' disabled /> 트랜잭션</label>`;
                         if (userInfo.useradmin.node) node.innerHTML = `<label><input type='checkbox' disabled checked /> 노드</label>`;
                         else node.innerHTML = `<label><input type='checkbox' disabled /> 노드</label>`;
                         if (userInfo.useradmin.service) serv.innerHTML = `<label><input type='checkbox' disabled checked /> 서비스</label>`;
@@ -141,8 +147,8 @@ const SignIn = () => {
                         else dash.innerHTML = `<label><input type='checkbox' disabled /> 대시보드</label>`;
                         if (userInfo.useradmin.block) block.innerHTML = `<label><input type='checkbox' disabled checked /> 블록</label>`;
                         else block.innerHTML = `<label><input type='checkbox' disabled /> 블록</label>`;
-                        if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' checked /> 트랜젝션</label>`;
-                        else tran.innerHTML = `<label><input type='checkbox' /> 트랜젝션</label>`;
+                        if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' checked /> 트랜잭션</label>`;
+                        else tran.innerHTML = `<label><input type='checkbox' /> 트랜잭션</label>`;
                         if (userInfo.useradmin.node) node.innerHTML = `<label><input type='checkbox' checked /> 노드</label>`;
                         else node.innerHTML = `<label><input type='checkbox' /> 노드</label>`;
                         if (userInfo.useradmin.service) serv.innerHTML = `<label><input type='checkbox' checked /> 서비스</label>`;
@@ -181,7 +187,6 @@ const SignIn = () => {
                 dataPrint();
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
@@ -226,9 +231,9 @@ const SignIn = () => {
                             <button type='submit' onClick={pwChangeHandler}>
                                 변경
                             </button>
-                            <span className='notsamepw'> 비밀번호가 일치하지 않습니다</span>
+                            <span className='notsamepwsignin'> 비밀번호가 일치하지 않습니다</span>
                         </div>
-                        <div className='natvaildpw' style={{ color: '#4665F9' }}>
+                        <div className='natvaildpwsignin' style={{ color: '#4665F9' }}>
                             ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
                         </div>
                     </form>
