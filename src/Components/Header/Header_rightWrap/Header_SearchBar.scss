@@ -28,16 +28,21 @@
       }
     }
 
-    button {
+    .searchBtn {
       cursor: pointer;
       position: absolute;
       border-radius: 0;
+      background-color: transparent;
       width: 20px;
       height: 20px;
       margin: 9px 20px;
       padding: 0;
       right: 0;
       top: 0;
+
+      .searchIcon path {
+        color: var(--light-grey-color);
+      }
     }
   }
 }
