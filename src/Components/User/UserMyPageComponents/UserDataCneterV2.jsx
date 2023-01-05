@@ -43,11 +43,7 @@ const UserDataCenterV2 = () => {
             ...userservice,
             [e.target.id]: e.target.checked,
         });
-        if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
-        else setServiceCnt((prev) => prev - 1);
     };
-
-    console.log(serviceCnt);
     // 유저 등급 저장
     const checkedItemHandler = (e) => {
         setUserclass(e.target.value);
@@ -59,7 +55,7 @@ const UserDataCenterV2 = () => {
         console.log(userdata.name);
         await createUserWithEmailAndPassword(auth, userdata.email, userdata.password)
             .then((userCredential) => {
-                
+    
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
@@ -79,12 +75,11 @@ const UserDataCenterV2 = () => {
                     userservice: {
                         ...userservice,
                     },
-                    serviceCnt: serviceCnt,
-                    userclass: userclass,                  
+                    userclass: userclass,
+                  
                     userstatus: '정상',
                     userdate: date,
                 });
-                setServiceCnt(0)
             })
              // 에러 확인
             .catch((error) => {
@@ -98,15 +93,14 @@ const UserDataCenterV2 = () => {
     const loginClickHandler = async (e) => {
         await signInWithEmailAndPassword(auth, e.email, e.password)
             .then((userCredential) => {
-                // 비동기로 로그인 데이터 가져오기
+                // 비동기로 데이터 가져오기
                 const dataPrint = async () => {
                     const user = userCredential.user;
                     const docRef = doc(userCollection, user.uid);
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
                     
-                    // 로그인 유저 정보 저장
-                    setLoginUser(userInfo)
+                    setUserlist(userInfo)
                                
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };

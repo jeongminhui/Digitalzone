@@ -57,14 +57,14 @@ const UserListPage = ({deleteHandler}) => {
           </tr>
         </thead>
         <tbody>
-         {userlist.map((user, idx) => (
+        {userlist.map((user, idx) => (
             <tr key={idx}>
-             <td>{idx+1}</td>
+              <td>{user.id}</td>
               <td>{user.userclass}</td>
               <td>{user.username}</td>
               <td>{user.userteam}</td>
               <td>{user.userid}</td>
-             <td>{adminList(user.useradmin.dashboard)}</td>
+              <td>{adminList(user.useradmin.dashboard)}</td>
               <td>{adminList(user.useradmin.block)}</td>
               <td>{adminList(user.useradmin.transaction)}</td>
               <td>{adminList(user.useradmin.node)}</td>
@@ -78,10 +78,9 @@ const UserListPage = ({deleteHandler}) => {
           </button>
               </td>
             </tr>
-   ))}
-
+          ))}
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 };

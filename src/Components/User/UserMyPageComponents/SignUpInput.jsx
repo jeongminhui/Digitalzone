@@ -14,9 +14,7 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
     
     // 서비스 권한 전달np
     const serviceHandler = (e) => {
-      serviceChangeHandler(e)
-    
-    }
+      serviceChangeHandler(e)}
 
     // 클릭 + 유저 데이터 전달
     const changeHandler = (e) => {
@@ -24,7 +22,7 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
         const nextUserdata = {
           ...userdata,
           [e.target.name]: e.target.value
-        }
+        };
         setUserdata(nextUserdata);
       };
     const clickEventHandler = (e) => {
