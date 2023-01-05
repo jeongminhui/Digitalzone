@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import { ConfigProvider, Button, Modal } from "antd";
 
 const Modal1 = () => {
   const [loading, setLoading] = useState(false);
@@ -19,30 +19,38 @@ const Modal1 = () => {
   };
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        사용자 추가
-      </Button>
-      <Modal
-        open={open}
-        // title="Title"
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={[
-          <Button key="back" onClick={handleCancel}>
-            취소
-          </Button>,
-          <Button
-            key="submit"
-            type="primary"
-            loading={loading}
-            onClick={handleOk}
-          >
-            추가
-          </Button>,
-        ]}
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: "#4669f5",
+          },
+        }}
       >
-        <p>내용 넣을 곳</p>
-      </Modal>
+        <Button type="primary" onClick={showModal}>
+          사용자 추가
+        </Button>
+        <Modal
+          open={open}
+          // title="Title"
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={[
+            <Button key="back" onClick={handleCancel}>
+              취소
+            </Button>,
+            <Button
+              key="submit"
+              type="primary"
+              loading={loading}
+              onClick={handleOk}
+            >
+              추가
+            </Button>,
+          ]}
+        >
+          <p>내용 넣을 곳</p>
+        </Modal>
+      </ConfigProvider>
     </>
   );
 };
