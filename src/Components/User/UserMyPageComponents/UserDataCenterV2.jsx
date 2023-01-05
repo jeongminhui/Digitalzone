@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { db } from '../../../firebase';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, deleteUser } from 'firebase/auth';
 import { collection, deleteDoc, doc, setDoc, getDoc, updateDoc, getDocs } from 'firebase/firestore';
@@ -7,7 +7,6 @@ import SignInInput from './SignInInput';
 import { UserContext } from './UserContext';
 import UserListPage from './UserListPage';
 import UserInfo from './UserInfo';
-import Block from '../../Block/Block';
 
 const UserDataCenterV2 = () => {
     // 스테이트 저장소
@@ -16,9 +15,7 @@ const UserDataCenterV2 = () => {
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     const [serviceCnt, setServiceCnt] = useState(0);
     const [loginUser, setLoginUser] = useState({});
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userlist,setUserlist] = useState([])
-    const [rendering,setRendering] = useState(2)
    
 
     // firebase 연결
@@ -27,6 +24,7 @@ const UserDataCenterV2 = () => {
     // 어스
     const auth = getAuth();
     const user = auth.currentUser;
+
 
     // 체크박스
     const checkboxes = document.getElementsByName('checkbox');
@@ -113,7 +111,7 @@ const UserDataCenterV2 = () => {
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
                     
-                    setLoginUser(userInfo)
+                    setLoginUser(user.uid)
                                
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };
@@ -167,7 +165,11 @@ const UserDataCenterV2 = () => {
                 }
                 getUsers();
               },[]);
+    
+    
+  
 
+    console.log(loginUser);
     return (
         <div>
          <SignUpInput 
@@ -179,7 +181,7 @@ const UserDataCenterV2 = () => {
          <SignInInput loginClickHandler={loginClickHandler}  />
          <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }} >
         <UserListPage deleteHandler={deleteHandler} />
-        {/* <Block /> */}
+        
       </UserContext.Provider>
         </div>
     );
