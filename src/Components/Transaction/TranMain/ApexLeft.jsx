@@ -40,8 +40,8 @@ const ApexLeft = () => {
     ]);
   };
 
-const timeFilter = makeChartDatas.filter(ChartData=> ChartData.createdt.slice(12,14) ==="11")
-console.log (timeFilter);
+// const timeFilter = makeChartDatas.filter(ChartData=> ChartData.createdt.slice(12,14) ==="11")
+// console.log (timeFilter);
 
   return (
     <div>
