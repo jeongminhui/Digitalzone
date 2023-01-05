@@ -1,33 +1,26 @@
 import React from "react";
-import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
-const UserListPage = () => {
-  const { userList } = useContext(UserContext);
-
+const UserListPage = ({deleteHandler}) => {
+  const { loginUser, userlist } = useContext(UserContext);
   // 블트노 권한에 따른 OX 표시 함수
-  const userAdmin = (data) => {
+  const adminList = (data) => {
     if (data === true) {
       return "O";
     } else {
       return "X";
     }
   };
-  // 서비스 이용 개수 계산 함수
-  //   const userService = (obj) => {
-  //     const serviceArr = [obj]
-  //     console.log(serviceArr);
-  //   }
 
-  const userStatus = (data) => {
-    if (data === true) {
-      return "정상";
-    } else {
-      return "비정상";
-    }
-  };
-
+  // 삭제 데이터 전달
+  const deleteEventHandler = (e) => {
+    e.preventDefault();
+    deleteHandler(e)
+  }
+  
+  // console.log(loginUser);
+  console.log(userlist);
   return (
     <div>
       <div className="UserTopContainer">
@@ -64,27 +57,29 @@ const UserListPage = () => {
           </tr>
         </thead>
         <tbody>
-          {userList.map((user, idx) => (
+         {userlist.map((user, idx) => (
             <tr key={idx}>
-              <td>{user.id}</td>
+             <td>{idx+1}</td>
               <td>{user.userclass}</td>
               <td>{user.username}</td>
               <td>{user.userteam}</td>
               <td>{user.userid}</td>
-              <td>{userAdmin(user.useradmin.dashboard)}</td>
-              <td>{userAdmin(user.useradmin.block)}</td>
-              <td>{userAdmin(user.useradmin.transaction)}</td>
-              <td>{userAdmin(user.useradmin.node)}</td>
-              <td>{userAdmin(user.useradmin.service)}</td>
-              {/* <td>{userService(user.userservice.service)}</td> */}
-              <td>2</td>
+             <td>{adminList(user.useradmin.dashboard)}</td>
+              <td>{adminList(user.useradmin.block)}</td>
+              <td>{adminList(user.useradmin.transaction)}</td>
+              <td>{adminList(user.useradmin.node)}</td>
+              <td>{adminList(user.useradmin.service)}</td>
+              <td>{user.serviceCnt}</td>
               <td>{user.userdate}</td>
-              <td>{userStatus(user.userstatus)}</td>
+              <td>{user.userstatus}</td>
               <td>
-                <button>삭제</button>
+              <button type="submit" className="DeleteButton" onClick={deleteEventHandler}>
+            삭제
+          </button>
               </td>
             </tr>
-          ))}
+   ))}
+
         </tbody>
       </table>
     </div>
