@@ -10,7 +10,7 @@ import UserInfo from './UserInfo';
 
 const UserDataCenterV2 = () => {
     // 스테이트 저장소
-    const [userclass, setUserclass] = useState('manager');
+    const [userclass, setUserclass] = useState('관리자');
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     const [serviceCnt, setServiceCnt] = useState(0)

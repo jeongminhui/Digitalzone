@@ -42,7 +42,7 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
               <input
                 type="radio"
                 name="type"
-                value="manager"
+                value="관리자"
                 onClick={classHandler}
                 defaultChecked
               />
@@ -52,7 +52,7 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
               <input
                 type="radio"
                 name="type"
-                value="user"
+                value="사용자"
                 onClick={classHandler}
               />
               사용자
