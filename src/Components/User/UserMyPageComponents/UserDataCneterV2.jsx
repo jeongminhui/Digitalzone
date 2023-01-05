@@ -28,7 +28,6 @@ const UserDataCenterV2 = () => {
 
     // 체크박스
     const checkboxes = document.getElementsByName('checkbox');
-
     
     // 블트노 권한 저장
     const adminChangeHandler = (e) => {
@@ -43,7 +42,14 @@ const UserDataCenterV2 = () => {
             ...userservice,
             [e.target.id]: e.target.checked,
         });
+        // 서비스 개수 카운트
+        if(e.target.checked === true){
+            setServiceCnt(serviceCnt+1)
+        }else{
+            setServiceCnt(serviceCnt-1)
+        }
     };
+    console.log(serviceCnt);
     // 유저 등급 저장
     const checkedItemHandler = (e) => {
         setUserclass(e.target.value);
@@ -59,8 +65,8 @@ const UserDataCenterV2 = () => {
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
-
-                     // timestamp yyyy-MM-dd
+                
+                // timestamp yyyy-MM-dd
                 const time = new Date(user.metadata.creationTime);
                 const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
 
@@ -76,10 +82,13 @@ const UserDataCenterV2 = () => {
                         ...userservice,
                     },
                     userclass: userclass,
-                  
+                    serviceCnt: serviceCnt,
                     userstatus: '정상',
                     userdate: date,
                 });
+
+                 // 서비스 개수 초기화
+                 setServiceCnt(0)
             })
              // 에러 확인
             .catch((error) => {
@@ -100,7 +109,7 @@ const UserDataCenterV2 = () => {
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
                     
-                    setUserlist(userInfo)
+                    setLoginUser(userInfo)
                                
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };
@@ -149,7 +158,6 @@ const UserDataCenterV2 = () => {
 
     // 유저 리스트 불러오기 : firebase로부터 유저 전체 리스트 불러오기
     useEffect(() => {
-
                 async function getUsers() {
                   const data = await getDocs(userCollection);
                   setUserlist(
