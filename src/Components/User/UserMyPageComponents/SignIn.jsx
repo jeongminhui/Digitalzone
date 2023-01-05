@@ -10,7 +10,63 @@ const SignIn = () => {
     const userCollection = collection(db, 'users');
     const auth = getAuth();
 
-    const clickHandler = async (e) => {
+    // 비밀번호 변경
+    const pwChangeHandler = (e) => {
+        e.preventDefault();
+        updatePassword(currentUser, userpw)
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '비밀번호가 변경되었습니다',
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+        setUserpw('');
+        setPwcheck('');
+    };
+
+    // 비밀번호 조건 검사
+    useEffect(() => {
+        if (userpw.length > 0) {
+            setUserpw((prev) => prev);
+            const regexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
+
+            const div = document.getElementsByClassName('natvaildpw')[0];
+            if (regexp.test(userpw)) {
+                div.style.display = 'none';
+            }
+        }
+    }, [userpw]);
+
+    // 비밀번호 확인
+    useEffect(() => {
+        if (pwcheck.length > 0) {
+            setPwcheck((prev) => prev);
+
+            // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
+            const span = document.getElementsByClassName('notsamepw')[0];
+            if (userpw === pwcheck) {
+                span.style.display = 'none';
+            }
+        }
+    }, [userpw, pwcheck]);
+
+    const signOutHandler = (e) => {
+        e.preventDefault();
+        setIsLoggedIn(false);
+        signOut(auth)
+            .then(() => {})
+            .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+    };
+
+    const signInHandler = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
