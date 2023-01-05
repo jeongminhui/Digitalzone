@@ -14,19 +14,19 @@ const UserDataCenterV2 = () => {
     const [userclass, setUserclass] = useState('관리자');
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
-    const [serviceCnt, setServiceCnt] = useState(0)
-    const [loginUser, setLoginUser] = useState({})
+    const [serviceCnt, setServiceCnt] = useState(0);
+    const [loginUser, setLoginUser] = useState({});
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userlist,setUserlist] = useState([])
     const [rendering,setRendering] = useState(2)
    
 
     // firebase 연결
-    const userCollection = collection(db, 'userTest');
+    const userCollection = collection(db, 'users');
 
     // 어스
     const auth = getAuth();
-    const user = auth.currentUser
+    const user = auth.currentUser;
 
     // 체크박스
     const checkboxes = document.getElementsByName('checkbox');
@@ -56,7 +56,7 @@ const UserDataCenterV2 = () => {
     const checkedItemHandler = (e) => {
         setUserclass(e.target.value);
     };
-    
+
     // 회원가입 기능 : firebase에 전체 데이터 추가
     const clickHandler = async (userdata) => {
         console.log(userdata);
@@ -73,7 +73,7 @@ const UserDataCenterV2 = () => {
                 const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
 
                 // db에 데이터 추가
-                setDoc(doc(db, 'userTest', user.uid), {
+                setDoc(doc(db, 'users', user.uid), {
                     username: userdata.name,
                     userteam: userdata.team,
                     userid: userdata.email,
@@ -94,14 +94,14 @@ const UserDataCenterV2 = () => {
                  setServiceCnt(0)
                  // 랜더링
             })
-             // 에러 확인
+            // 에러 확인
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
             });
     };
-    
+
     // 로그인 기능 : firebase로부터 로그인 정보 확인
     const loginClickHandler = async (e) => {
         await signInWithEmailAndPassword(auth, e.email, e.password)
@@ -133,7 +133,7 @@ const UserDataCenterV2 = () => {
     //     setIsLoggedIn(false);
     //     signOut(auth)
     //         .then(() => {
-              
+
     //         })
     //         .catch((error) => {
     //             const errorMessage = error.message;
@@ -168,7 +168,7 @@ const UserDataCenterV2 = () => {
                 getUsers();
               },[]);
 
-        return (
+    return (
         <div>
          <SignUpInput 
          adminChangeHandler={adminChangeHandler}
@@ -185,4 +185,4 @@ const UserDataCenterV2 = () => {
     );
 };
 
-export default  UserDataCenterV2;
+export default UserDataCenterV2;

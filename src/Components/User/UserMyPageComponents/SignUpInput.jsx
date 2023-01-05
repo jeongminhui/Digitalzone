@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
 
-const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler,clickHandler}) => {
-  
+const SignUpInput = ({ adminChangeHandler, serviceChangeHandler, checkedItemHandler, clickHandler }) => {
     // 유저 데이터 스테이트
-    const [userdata, setUserdata] = useState({})
-    
+    const [userdata, setUserdata] = useState({});
+
     // 유저 등급 전달
     const classHandler = (e) => {
-      checkedItemHandler(e)}
+        checkedItemHandler(e);
+    };
     // 블트노 권한 전달
     const adminHandler = (e) => {
-      adminChangeHandler(e)}
-    
+        adminChangeHandler(e);
+    };
+
     // 서비스 권한 전달np
     const serviceHandler = (e) => {
-      serviceChangeHandler(e)
-    
-    }
+        serviceChangeHandler(e);
+    };
 
     // 클릭 + 유저 데이터 전달
     const changeHandler = (e) => {
-      e.preventDefault();
+        e.preventDefault();
         const nextUserdata = {
-          ...userdata,
-          [e.target.name]: e.target.value
-        }
+            ...userdata,
+            [e.target.name]: e.target.value,
+        };
         setUserdata(nextUserdata);
-      };
+    };
     const clickEventHandler = (e) => {
-      e.preventDefault();
-        clickHandler(userdata)
-    }
+        e.preventDefault();
+        clickHandler(userdata);
+    };
 
     return (
         <div>
@@ -183,6 +183,6 @@ const SignUpInput = ({adminChangeHandler,serviceChangeHandler,checkedItemHandler
         </form>
       </div>
     );
-  };
+};
 
 export default SignUpInput;
