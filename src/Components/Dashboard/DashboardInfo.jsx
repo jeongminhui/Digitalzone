@@ -7,10 +7,11 @@ import AllTransactionData from "./DashboardInfo/AllTransactionData";
 const DashboardInfo = () => {
   return (
     <div className="DashboardInfo">
-      <AllBlockData />
-      <AllTransactionData />
-      <ActiveNetworkData />
-      <AllServiceData />
+      대시보드 상단 부분입니다 (firebase 읽기 막아둔 상태)
+      {/* <AllBlockData /> */}
+      {/* <AllTransactionData /> */}
+      {/* <ActiveNetworkData /> */}
+      {/* <AllServiceData /> */}
     </div>
   );
 };

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 const AllBlockData = () => {
-  // Firebase에서 block컬렉션 정보를 가져옴
   const dashboard_blockCollection = collection(db, "block");
   const [blockDataSize, setBlockDataSize] = useState("");
 
   useEffect(() => {
     async function getBlock() {
-      // getDocs로 정보를 가져옴
       const blockData = await getDocs(dashboard_blockCollection);
       return setBlockDataSize(blockData.docs.length);
     }
