@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ConfigProvider, Button, Modal } from "antd";
+import "./Modal1.scss";
 
 const Modal1 = () => {
   const [loading, setLoading] = useState(false);
@@ -35,17 +36,18 @@ const Modal1 = () => {
           onOk={handleOk}
           onCancel={handleCancel}
           footer={[
-            <Button key="back" onClick={handleCancel}>
-              취소
-            </Button>,
-            <Button
+            // <Button key="back" onClick={handleCancel}>
+            //   취소
+            // </Button>,
+            <button
               key="submit"
               type="primary"
               loading={loading}
+              // onclick은 변경해 주어야 함
               onClick={handleOk}
             >
               추가
-            </Button>,
+            </button>,
           ]}
         >
           <p>내용 넣을 곳</p>
