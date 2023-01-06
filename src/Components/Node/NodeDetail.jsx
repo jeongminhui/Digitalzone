@@ -7,7 +7,7 @@ import Grafana from './Grafana';
 import "./NodeDetail.scss"
 
 const NodeDetail = () => {
-    const nodeCollection = collection(db, "node");
+    const nodeCollection = collection(db, "node1");
     const { nodename } = useParams();
     const [ip, setIp] = useState('');
 

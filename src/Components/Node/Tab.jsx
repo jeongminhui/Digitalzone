@@ -39,8 +39,6 @@ export default function Tab({rows}) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  console.log(parseInt(rows.length / rowsPerPage));
-
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -99,7 +97,7 @@ export default function Tab({rows}) {
             tabTitle:<div className={activeIndex===0 ? "is-active left" : "tab"} onClick={()=>tabClickHandler(0)}> 노드 목록 </div>,
             tabCont:<div>
                  <ThemeProvider theme={theme}>
-                        <Paper sx={{ width: "1180px", overflow: "hidden", margin: "15px" }}>
+                 <Paper sx={{ width: "1180px", overflow: "hidden", margin: "15px 0px 15px 0px;" }}>
         <TableContainer sx={{ maxHeight: 440, bgcolor:'background.content' }}>
           <Table stickyHeader aria-label="sticky table"  >
             <TableHead>
@@ -128,12 +126,12 @@ export default function Tab({rows}) {
                       key={row.code}
                     >
                       
-                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)}>{row.service}</TableCell>
-                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)}>{row.ndstatus}</TableCell>
-                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)}>{row.nodename}</TableCell>
-                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)}>{row.ndtype}</TableCell>
-                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)}>{row.service_dcc}</TableCell>
-                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)}>{row.ipaddress}</TableCell>
+                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service}</TableCell>
+                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndstatus}</TableCell>
+                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.nodename}</TableCell>
+                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
+                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
+                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ipaddress}</TableCell>
                       <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
                       <TableCell key={row.createdt}>{row.createdt}</TableCell>
                       <TableCell key={row.tps}>{row.tps}</TableCell>
@@ -159,8 +157,12 @@ export default function Tab({rows}) {
       </Paper>
     </ThemeProvider>
       <Stack spacing={2}>
-        <Pagination
-          count={parseInt(rows.length / rowsPerPage) === 0 ? 1 : parseInt(rows.length / rowsPerPage)}
+        <Pagination className='pagination'
+          count={
+            rows.length === rowsPerPage
+              ? parseInt(rows.length / rowsPerPage)
+              : parseInt(rows.length / rowsPerPage) + 1
+          }
           page={pagenation}
           onChange={handleChange}
           showFirstButton
