@@ -1,6 +1,20 @@
 MenuItem p {
   color: #888888;
 }
-MenuItem {
+.css-10hburv-MuiTypography-root {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  display: block;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.css-h4y409-MuiList-root span {
+  padding-top: 0px;
+  padding-bottom: 0px;
   font-family: "Noto Sans KR", sans-serif;
 }

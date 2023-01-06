@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
-import "./Modal1.scss";
+// import "./Modal.scss";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const Modal1 = () => {
@@ -22,7 +22,7 @@ const Modal1 = () => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
-        사용자 추가
+        첫번째 버튼 이름 넣는 곳
       </Button>
       <Modal
         open={open}
@@ -40,8 +40,7 @@ const Modal1 = () => {
             // onclick 이벤트는 변경 해주어야 함
             onClick={handleOk}
           >
-            <AddRoundedIcon />
-            추가
+            두번째 버튼 이름 넣는 곳
           </Button>,
         ]}
       >

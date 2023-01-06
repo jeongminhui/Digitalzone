@@ -19,6 +19,7 @@ import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
+import "./Header_userIcon.scss";
 
 export default function Header_userIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -47,8 +48,6 @@ export default function Header_userIcon() {
             >
               <PersonRoundedIcon
                 className="PersonRoundedIcon"
-                // 색상이 안먹힙니다요 ㅜㅜ 추후 추가 수정 하겠읍니다,,
-                // color="#4669f5"
                 fontSize="large"
               />
             </div>
