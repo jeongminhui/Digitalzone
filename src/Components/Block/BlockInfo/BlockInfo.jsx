@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import "./BlockInfo.scss";
 import Footer from "../../Footer/Footer";
 import { async } from "@firebase/util";
-import { collection, getDoc, doc } from "firebase/firestore";
+import { collection, getDoc, doc, getDocs } from "firebase/firestore";
 import { useEffect } from "react";
 import { db } from "../../../firebase";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TxInfo from "./TxInfo";
+import Carousel from "./Carousel";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useLocation } from "react-router-dom";
 
 const BlockInfo = () => {
   const { blocknum } = useParams();
@@ -36,9 +41,61 @@ const BlockInfo = () => {
     getTxInfo();
   };
 
+  // ㅋㅐ러셀
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+  };
+
+  const [block, setBlock] = useState([]);
+
+  useEffect(() => {
+    async function getBlocks() {
+      const data = await getDocs(blockCollection);
+      const arr = data.docs.map((items) => {
+        return items.data();
+      });
+      setBlock(arr);
+    }
+    getBlocks();
+  }, []);
+
+  // const location = useLocation();
+  const [blocknumber, setBlocknumber] = useState(blocknum);
+  const navigate = useNavigate();
+
+  const clickHandler = (num) => {
+    setBlocknumber(num);
+    navigate(`/block/${blocknumber}`);
+  };
+
+  useEffect(() => {
+    navigate(`/block/${blocknumber}`);
+  }, [blocknumber]);
+
   return (
     <div className="BlockInfo">
       <h1>블록 상세정보 페이지 입니다</h1>
+
+      {/* 롤링 메뉴 */}
+      <Slider {...settings}>
+        {block.map((item, idx) => (
+          <div
+            key={idx}
+            onClick={() => {
+              clickHandler(item.blocknum);
+            }}
+          >
+            <h3>{item.blocknum}</h3>
+          </div>
+        ))}
+      </Slider>
+      {/*  */}
+
       <table>
         <tbody>
           <tr>

@@ -8,6 +8,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { HiOutlineDocumentText } from "react-icons/hi";
 
+import { Button, Modal } from "antd";
+
 const TxInfo = ({ txInfo }) => {
   const columns = [
     { id: "txnum", label: "트랜잭션번호", minWidth: 100 },
@@ -32,6 +34,21 @@ const TxInfo = ({ txInfo }) => {
       minWidth: 70,
     },
   ];
+
+  const openModal = () => {
+    console.log(txInfo.txdata);
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
@@ -58,7 +75,7 @@ const TxInfo = ({ txInfo }) => {
                 <TableCell>{txInfo.txhash}</TableCell>
                 <TableCell>{txInfo.txsize}</TableCell>
                 <TableCell>
-                  <button type="button">
+                  <button type="button" onClick={showModal}>
                     <HiOutlineDocumentText />
                   </button>
                 </TableCell>
@@ -67,6 +84,33 @@ const TxInfo = ({ txInfo }) => {
           </Table>
         </TableContainer>
       </Paper>
+      <Modal
+        open={isModalOpen}
+        title="트랜잭션 데이터 상세"
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={[
+          <Button
+            key="submit"
+            type="primary"
+            // loading={loading}
+            onClick={handleOk}
+          >
+            Submit
+          </Button>,
+        ]}
+      >
+        <p>{JSON.stringify(txInfo.txdata, null, 2)}</p>
+      </Modal>
+
+      {/* <Modal
+        title="트랜잭션 데이터 상세"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <p>{JSON.stringify(txInfo.txdata, null, 2)}</p>
+      </Modal> */}
     </div>
   );
 };

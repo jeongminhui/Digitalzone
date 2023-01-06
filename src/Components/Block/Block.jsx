@@ -157,16 +157,6 @@ const Block = () => {
                         <TableCell key={row.txnum}>
                           {row.txnum.length}
                         </TableCell>
-
-                        {/* {columns.map((column) => {
-                        const value = row[column.id];
-                        // console.log(value);
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {value}
-                          </TableCell>
-                        );
-                      })} */}
                       </TableRow>
                     );
                   })}

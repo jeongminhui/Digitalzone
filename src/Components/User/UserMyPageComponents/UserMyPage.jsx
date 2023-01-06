@@ -1,7 +1,14 @@
 import React from "react";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 const UserMyPage = () => {
-  return <div>승현님 페이지 입니당~</div>;
+  return (
+    <div>
+      {/* <SignIn /> */}
+      <SignUp />
+    </div>
+  );
 };
 
 export default UserMyPage;
