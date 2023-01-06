@@ -7,17 +7,17 @@ import ServiceTable from "./ServiceTable";
 
 const Service = () => {
   const blockCollection = collection(db, "service");
-  const [rows, setRows] = useState([]);
+  // const [rows, setRows] = useState([]);
 
-  useEffect(() => {
-    async function getService() {
-      const data = await getDocs(blockCollection);
-      data.docs.map((items) => {
-        return makeServiceData(items.data());
-      });
-    }
-    getBlocks();
-  }, []);
+  // useEffect(() => {
+  //   async function getService() {
+  //     const data = await getDocs(blockCollection);
+  //     data.docs.map((items) => {
+  //       return makeServiceData(items.data());
+  //     });
+  //   }
+  //   getBlocks();
+  // }, []);
 
   return (
     <div className="Service">

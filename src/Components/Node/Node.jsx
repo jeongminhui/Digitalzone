@@ -17,7 +17,7 @@ const Node = () => {
       const data = await getDocs(nodeCollection);
       data.docs.map((items) => {
         return makeNodeData(items.data());
-      });
+      })
     }
     getNodes();
   }, []);
@@ -42,14 +42,13 @@ const Node = () => {
     ]);
   };
 
-
-
   return (
+
     <div className="Node">
       
         <div>
-          <h1>노드</h1>
-          <h3><span className='subBar'>|</span> 전체 노드 {rows.length}개</h3>
+          <h1 className='mainTitle'>노드</h1>
+          <h3 className='subTitle'><span className='subBar'>|</span> 전체 노드 {rows.length}개</h3>
 
           <Tab rows={rows}/>
           
