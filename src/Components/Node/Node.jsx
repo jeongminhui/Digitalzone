@@ -8,7 +8,7 @@ import Tab from './Tab';
 
 const Node = () => {
 
-  const nodeCollection = collection(db, "node1");
+  const nodeCollection = collection(db, "node");
   const [rows, setRows] = useState([]);
  
 
