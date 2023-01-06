@@ -1,0 +1,13 @@
+.TranInfo{
+    width: calc(100% - 160px);
+    height: 100vh;
+    position: relative;
+
+    .copyButton{
+        background-color: #eee;
+        color: var(--point-color);
+        border: 0.8px solid var(--point-color);
+        font-size: 9px;
+        padding: 2px;
+    }
+}

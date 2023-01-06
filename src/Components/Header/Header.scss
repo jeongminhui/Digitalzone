@@ -30,7 +30,9 @@
 }
 
 .Header_rightWrap {
-  width: 437px;
+  width: 385px;
   height: 100%;
-  background-color: rgba(21, 0, 253, 0.1);
+  margin-right: 66px;
+  display: flex;
+  justify-content: space-between;
 }
