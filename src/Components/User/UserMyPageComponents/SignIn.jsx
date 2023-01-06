@@ -81,6 +81,12 @@ const SignIn = () => {
             });
     };
 
+    // 데이터 센터와 함께 사용
+    // 버튼 클릭 시 signin 컴포넌트와 datacenter 두곳에서 로그인 함수 실행
+
+
+
+
     const signInHandler = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
@@ -89,7 +95,7 @@ const SignIn = () => {
                     setIsLoggedIn(true);
                     const user = userCredential.user;
                     const docRef = doc(userCollection, user.uid);
-                    const data = await getDoc(docRef);
+                    const data = await getDoc(docRef)
                     const userInfo = data.data();
 
                     // 로그인시 로그인창 없애기

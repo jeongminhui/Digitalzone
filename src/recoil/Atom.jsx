@@ -4,8 +4,14 @@ const {persistAtom} = recoilPersist({
     key: 'session',
     storage: sessionStorage
 });
-export const loginState = atom({
+export const loginAtom = atom({
     key: "loginState",
-    default:"",
+    default:"default",
+    effects_UNSTABLE: [persistAtom],
+});
+
+export const BlockAtom = atom({
+    key: "BlockState",
+    default:"default",
     effects_UNSTABLE: [persistAtom],
 });

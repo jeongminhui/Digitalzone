@@ -9,8 +9,7 @@ import UserListPage from './UserListPage';
 import UserInfo from './UserInfo';
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { atom } from 'recoil';
-import { loginSelector } from '../../../recoil/loginSelector';
-import { loginState } from '../../../recoil/loginState';
+import { BlockAtom, loginAtom, loginState } from '../../../recoil/Atom';
 
 
 const UserDataCenterV2 = () => {
@@ -19,7 +18,12 @@ const UserDataCenterV2 = () => {
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     const [serviceCnt, setServiceCnt] = useState(0);
-    const [loginUser, setLoginUser] = useRecoilState(loginState)
+
+   
+    const [loginUser, setLoginUser] = useRecoilState(loginAtom)
+    
+    
+    
     const [userlist,setUserlist] = useState([])
    
     // firebase 연결
@@ -116,7 +120,7 @@ const UserDataCenterV2 = () => {
                     const userInfo = data.data();
                     
                     setLoginUser(userInfo)
-                               
+
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };
                 dataPrint();
@@ -172,7 +176,9 @@ const UserDataCenterV2 = () => {
     
     
   
-
+    const clearHandler = () => {
+        sessionStorage.clear()
+    }
     console.log(loginUser);
     console.log(userlist);
     return (
@@ -188,6 +194,7 @@ const UserDataCenterV2 = () => {
         <UserListPage deleteHandler={deleteHandler} />
         
       </UserContext.Provider>
+      <button onClick={clearHandler}>삭제</button>
         </div>
     );
 };

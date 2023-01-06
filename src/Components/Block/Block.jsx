@@ -15,12 +15,15 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from 'recoil';
-import { loginSelector } from '../../recoil/loginSelector';
+import { BlockSelector, loginSelector } from '../../recoil/Selector';
 
 const Block = () => {
   const blockCollection = collection(db, "block1");
   const [rows, setRows] = useState([]);
   const loginUser = useRecoilValue(loginSelector)
+  const BlockUser = useRecoilValue(BlockSelector)
+ 
+  console.log(BlockUser);
   console.log(loginUser);
   const columns = [
     { id: "service", label: "서비스명", minWidth: 170 },
