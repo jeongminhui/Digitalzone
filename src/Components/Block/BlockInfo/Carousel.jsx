@@ -1,64 +1,60 @@
 import React, { useState } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-import { async } from "@firebase/util";
-import { collection, getDocs, getDoc, doc } from "firebase/firestore";
 import { useEffect } from "react";
-import { db } from "../../../firebase";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
+import { Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-const Carousel = ({ blocknum, blockInfo, onAddData }) => {
-  const blockCollection = collection(db, "block");
-  const [block, setBlock] = useState([]);
-
-  useEffect(() => {
-    async function getBlocks() {
-      const data = await getDocs(blockCollection);
-      const arr = data.docs.map((items) => {
-        return items.data();
-      });
-      setBlock(arr);
-    }
-    getBlocks();
-  }, []);
-
+const Carousel = ({ blocknum, block }) => {
   // navigation 블록 상세 이동
   const [blocknumber, setBlocknumber] = useState(blocknum);
   const navigate = useNavigate();
 
-  const clickHandler = (blocknum) => {
+  const carouselHandler = (blocknum, idx) => {
     setBlocknumber(blocknum);
-    window.location.replace(`/block/${blocknum}`);
-    onAddData(blocknum);
+    slideTo(idx);
+    // swiper.slideTo(idx, 1000, false);
   };
 
   useEffect(() => {
-    navigate(`/block/${blocknum}`);
-  }, [blocknum]);
+    navigate(`/block/${blocknumber}`);
+  }, [blocknumber]);
 
-  console.log(blocknum);
+  const [swiperRef, setSwiperRef] = useState(null);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: true,
+  const slideTo = (index) => {
+    swiperRef.slideTo(index);
   };
 
   return (
     <div>
-      <Slider {...settings}>
+      <Swiper
+        onSwiper={setSwiperRef}
+        slidesPerView={5}
+        spaceBetween={30}
+        loop={true}
+        pagination={false}
+        navigation={true}
+        modules={[Pagination, Navigation]}
+        className="mySwiper"
+        centeredSlides={true}
+        slidesOffsetBefore={50}
+        // activeindex={0}
+        initialSlide={0}
+      >
         {block.map((item, idx) => (
-          <div key={idx} onClick={() => clickHandler(item.blocknum)}>
+          <SwiperSlide
+            key={idx}
+            onClick={() => {
+              carouselHandler(item.blocknum, idx);
+            }}
+          >
             <h3>{item.blocknum}</h3>
-          </div>
+          </SwiperSlide>
         ))}
-      </Slider>
+      </Swiper>
     </div>
   );
 };

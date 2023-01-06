@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import Header_userIcon from "./Header_rightWrap/Header_userIcon";
+import Header_SearchBar from "./Header_rightWrap/Header_SearchBar";
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="Header_rightWrap">
-        <div className="Header_searchBar"></div>
+        <Header_SearchBar />
         <Header_userIcon />
       </div>
     </div>

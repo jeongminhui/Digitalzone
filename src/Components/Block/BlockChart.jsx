@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-const BlockChart = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+const BlockChart = ({ rows }) => {
+  return <div></div>;
 };
 
 export default BlockChart;

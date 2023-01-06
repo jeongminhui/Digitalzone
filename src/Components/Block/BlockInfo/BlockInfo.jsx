@@ -20,107 +20,69 @@ const BlockInfo = () => {
   const [blockInfo, setBlockInfo] = useState({});
   const [txInfo, setTxInfo] = useState({});
   const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    async function getBlockInfo() {
-      const docRef = doc(blockCollection, blocknum);
-      const data = await getDoc(docRef);
-      setBlockInfo(data.data());
-    }
-    getBlockInfo();
-  }, []);
-
-  const txInfoHandler = () => {
-    setVisible(!visible);
-
-    async function getTxInfo() {
-      const docRef = doc(txCollection, String(blockInfo.txnum));
-      const data = await getDoc(docRef);
-      setTxInfo(data.data());
-    }
-    getTxInfo();
-  };
-
-  // ㅋㅐ러셀
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    arrows: true,
-  };
-
   const [block, setBlock] = useState([]);
 
   useEffect(() => {
-    async function getBlocks() {
-      const data = await getDocs(blockCollection);
-      const arr = data.docs.map((items) => {
+    console.log(blocknum);
+    async function getBlockInfo() {
+      //블록 전체 정보 로드
+      const blkdata = await getDocs(blockCollection);
+      const arr = blkdata.docs.map((items) => {
         return items.data();
       });
       setBlock(arr);
+
+      // 블록 상세 정보 로드
+      const docRef = doc(blockCollection, blocknum);
+      const data = await getDoc(docRef);
+      setBlockInfo(data.data());
+
+      // 트랜잭션 상세 정보 로드
+      const txRef = doc(txCollection, String(blockInfo.txnum));
+      const txdata = await getDoc(txRef);
+      setTxInfo(txdata.data());
     }
-    getBlocks();
-  }, []);
+    getBlockInfo();
+  }, [blocknum]);
 
-  // const location = useLocation();
-  const [blocknumber, setBlocknumber] = useState(blocknum);
-  const navigate = useNavigate();
-
-  const clickHandler = (num) => {
-    setBlocknumber(num);
-    navigate(`/block/${blocknumber}`);
+  const txInfoHandler = () => {
+    setVisible(!visible);
   };
-
-  useEffect(() => {
-    navigate(`/block/${blocknumber}`);
-  }, [blocknumber]);
 
   return (
     <div className="BlockInfo">
-      <h1>블록 상세정보 페이지 입니다</h1>
+      <h1 className="mainTitle">블록</h1>
+      <h3 className="subTitle">
+        <span className="subBar">|</span> 블록 상세
+      </h3>
 
-      {/* 롤링 메뉴 */}
-      <Slider {...settings}>
-        {block.map((item, idx) => (
-          <div
-            key={idx}
-            onClick={() => {
-              clickHandler(item.blocknum);
-            }}
-          >
-            <h3>{item.blocknum}</h3>
-          </div>
-        ))}
-      </Slider>
-      {/*  */}
+      <Carousel blocknum={blocknum} block={block} />
 
       <table>
         <tbody>
           <tr>
-            <td>서비스명</td>
-            <td>{blockInfo.service}</td>
+            <td className="infoTitle">서비스명</td>
+            <td className="infoContent">{blockInfo.service}</td>
           </tr>
           <tr>
-            <td>블록번호</td>
-            <td>{blockInfo.blocknum}</td>
+            <td className="infoTitle">블록번호</td>
+            <td className="infoContent">{blockInfo.blocknum}</td>
           </tr>
           <tr>
-            <td>타임스탬프</td>
-            <td>{blockInfo.createdt}</td>
+            <td className="infoTitle">타임스탬프</td>
+            <td className="infoContent">{blockInfo.createdt}</td>
           </tr>
           <tr>
-            <td>블록해시</td>
-            <td>{blockInfo.blockhash}</td>
+            <td className="infoTitle">블록해시</td>
+            <td className="infoContent">{blockInfo.blockhash}</td>
           </tr>
           <tr>
-            <td>블록크기</td>
-            <td>{blockInfo.blksize}</td>
+            <td className="infoTitle">블록크기</td>
+            <td className="infoContent">{blockInfo.blksize}</td>
           </tr>
           <tr>
-            <td>트랜잭션 수</td>
-            <td>
+            <td className="infoTitle">트랜잭션 수</td>
+            <td className="infoContent">
               1
               <button type="button" onClick={txInfoHandler}>
                 자세히

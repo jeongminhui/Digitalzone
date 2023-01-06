@@ -5,7 +5,14 @@ import Footer from "../Footer/Footer";
 const Service = () => {
   return (
     <div className="Service">
-      <h1>서비스 페이지 입니다</h1>
+      <div className="wrapper">
+        <h1 className="mainTitle">서비스</h1>
+        <h3 className="subTitle">
+          <span className="subBar">|</span> 전체 발급 {}건
+        </h3>
+
+        {/* <ServiceTable /> */}
+      </div>
       <Footer />
     </div>
   );
