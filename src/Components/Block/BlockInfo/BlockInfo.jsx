@@ -15,8 +15,8 @@ import { useLocation } from "react-router-dom";
 
 const BlockInfo = () => {
   const { blocknum } = useParams();
-  const blockCollection = collection(db, "block");
-  const txCollection = collection(db, "transaction");
+  const blockCollection = collection(db, "block1");
+  const txCollection = collection(db, "transaction1");
   const [blockInfo, setBlockInfo] = useState({});
   const [txInfo, setTxInfo] = useState({});
   const [visible, setVisible] = useState(false);

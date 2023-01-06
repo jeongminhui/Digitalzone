@@ -17,7 +17,7 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 const TranInfo = () => {
   const [transactionInfo, setTransactionInfo] = useState([]);
   const [copyBtn, setCopyBtn] = useState("copy");
-  const transactionCollection = collection(db, "transaction");
+  const transactionCollection = collection(db, "transaction1");
 
   useEffect(() => {
     async function getTrans() {
