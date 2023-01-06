@@ -21,8 +21,7 @@ const UserDataCenterV2 = () => {
     const [serviceCnt, setServiceCnt] = useState(0);
     const [loginUser, setLoginUser] = useRecoilState(loginState)
     const [userlist,setUserlist] = useState([])
-   console.log(loginUser);
-  
+   
     // firebase 연결
     const userCollection = collection(db, 'users');
 
@@ -106,6 +105,7 @@ const UserDataCenterV2 = () => {
     };
     // 로그인 기능 : firebase로부터 로그인 정보 확인
     const loginClickHandler = async (e) => {
+        console.log(e);
         await signInWithEmailAndPassword(auth, e.email, e.password)
             .then((userCredential) => {
                 // 비동기로 데이터 가져오기
@@ -115,7 +115,7 @@ const UserDataCenterV2 = () => {
                     const data = await getDoc(docRef);
                     const userInfo = data.data();
                     
-                    setLoginUser(user.uid)
+                    setLoginUser(userInfo)
                                
                     alert(`${userInfo.username}님, 로그인되었습니다`);
                 };
