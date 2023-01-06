@@ -7,6 +7,11 @@ import SignInInput from './SignInInput';
 import { UserContext } from './UserContext';
 import UserListPage from './UserListPage';
 import UserInfo from './UserInfo';
+import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
+import { atom } from 'recoil';
+import { loginSelector } from '../../../recoil/loginSelector';
+import { loginState } from '../../../recoil/loginState';
+
 
 const UserDataCenterV2 = () => {
     // 스테이트 저장소
@@ -14,10 +19,10 @@ const UserDataCenterV2 = () => {
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     const [serviceCnt, setServiceCnt] = useState(0);
-    const [loginUser, setLoginUser] = useState({});
+    const [loginUser, setLoginUser] = useRecoilState(loginState)
     const [userlist,setUserlist] = useState([])
-   
-
+   console.log(loginUser);
+  
     // firebase 연결
     const userCollection = collection(db, 'users');
 
@@ -99,7 +104,6 @@ const UserDataCenterV2 = () => {
                 console.log(errorMessage);
             });
     };
-
     // 로그인 기능 : firebase로부터 로그인 정보 확인
     const loginClickHandler = async (e) => {
         await signInWithEmailAndPassword(auth, e.email, e.password)
@@ -170,6 +174,7 @@ const UserDataCenterV2 = () => {
   
 
     console.log(loginUser);
+    console.log(userlist);
     return (
         <div>
          <SignUpInput 
