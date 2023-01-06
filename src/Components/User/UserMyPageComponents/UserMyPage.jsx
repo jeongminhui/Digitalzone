@@ -8,7 +8,7 @@ const UserMyPage = () => {
         <div>
             {/* < UserDataCenterV2 /> */}
             {/* <SignIn /> */}
-            <SignUp />
+            {/* <SignUp /> */}
         </div>
     );
 };
