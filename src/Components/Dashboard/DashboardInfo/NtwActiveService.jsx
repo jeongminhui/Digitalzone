@@ -1,28 +1,32 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
 
-const PieChart = (props) => {
-  const service = props.serviceData.service;
+// recooil로 불러오기
+import { useRecoilValue } from "recoil";
+import { serviceSelector } from "../../../Recoil/Selector";
 
-  // status가 성공인 것을 추출
-  const successService =
-    service &&
-    service.filter((item) => {
-      return item.status === "성공";
-    });
+const NtwActiveService = () => {
+  const serviceData = useRecoilValue(serviceSelector);
 
-  // 성공인 데이터중 서비스이름을 추출
-  const serviceName =
-    successService &&
-    successService.map((item) => {
-      return item.service;
-    });
+  // // status가 성공인 것을 추출
+  // const successService =
+  //   service &&
+  //   service.filter((item) => {
+  //     return item.status === "성공";
+  //   });
 
-  // 서비스 이름 중 중복이름 제거
-  const set = new Set(serviceName);
-  const uniqueServiceArr = [...set];
+  // // 성공인 데이터중 서비스이름을 추출
+  // const serviceName =
+  //   successService &&
+  //   successService.map((item) => {
+  //     return item.service;
+  //   });
 
-  ////////////////////////////////////////////
+  // // 서비스 이름 중 중복이름 제거
+  // const set = new Set(serviceName);
+  // const uniqueServiceArr = [...set];
+
+  // ////////////////////////////////////////////
 
   const container_style = {
     width: "500px",
@@ -45,7 +49,7 @@ const PieChart = (props) => {
   ];
 
   return (
-    <div className="PieChart" style={container_style}>
+    <div className="NtwActiveService" style={container_style}>
       <h4>서비스별 네트워크 활동비율</h4>
       <div style={style}>
         <ResponsivePie
@@ -77,4 +81,4 @@ const PieChart = (props) => {
   );
 };
 
-export default PieChart;
+export default NtwActiveService;

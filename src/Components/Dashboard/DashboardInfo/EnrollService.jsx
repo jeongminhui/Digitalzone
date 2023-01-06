@@ -1,8 +1,12 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
-const FillChart = (props) => {
-  const service = props.serviceData.service;
+// recoil로 불러오기
+import { useRecoilValue } from "recoil";
+import { networkSelector } from "../../../Recoil/Selector";
+
+const EnrollService = () => {
+  const networkData = useRecoilValue(networkSelector);
 
   const container_style = {
     width: "500px",
@@ -29,7 +33,7 @@ const FillChart = (props) => {
   ];
 
   return (
-    <div className="FillChart" style={container_style}>
+    <div className="EnrollService" style={container_style}>
       <h4>시간당 서비스 등록건수</h4>
 
       <div style={style}>
@@ -72,4 +76,4 @@ const FillChart = (props) => {
   );
 };
 
-export default FillChart;
+export default EnrollService;
