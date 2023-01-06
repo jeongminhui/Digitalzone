@@ -3,7 +3,9 @@ import "./Transaction.scss";
 import Footer from "../Footer/Footer";
 import TranMain from "./TranMain/TranMain";
 
+
 const Transaction = () => {
+
   return (
     <div className="Transaction">
       <TranMain/>

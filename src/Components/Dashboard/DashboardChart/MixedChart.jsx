@@ -6,10 +6,10 @@ const MixedChart = () => {
   const container_style = {
     width: "500px",
     height: "250px",
-    backgroundColor: "#d6daff",
+    border: "1px solid #999",
   };
   const style = {
-    border: "2px solid #000",
+    backgroundColor: "#ddd",
     width: "auto",
     height: "200px",
   };
@@ -18,14 +18,6 @@ const MixedChart = () => {
   const time2 = "11:00";
   const time3 = "12:00";
   const time4 = "13:00";
-
-  // const testData = [
-  //   { service: "A서비스", value: 39 },
-  //   { service: "B서비스", value: 49 },
-  //   { service: "C서비스", value: 30 },
-  //   { service: "D서비스", value: 32 },
-  //   { service: "E서비스", value: 36 },
-  // ];
 
   const data = {
     labels: [time1, time2, time3, time4],
