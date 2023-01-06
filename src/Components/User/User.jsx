@@ -7,7 +7,6 @@ import UserMyPage from "./UserMyPageComponents/UserMyPage";
 const User = () => {
   return (
     <div className="User">
-      <UserDataCenter />
       <Footer />
     </div>
   );

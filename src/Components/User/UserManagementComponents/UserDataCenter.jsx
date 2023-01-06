@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { UserContext } from "./UserContext";
 import UserListPage from "./UserListPage";
+import Footer from "../../Footer/Footer";
 
 const UserDataCenter = () => {
   const userCollection = collection(db, "users");
@@ -29,6 +30,7 @@ const UserDataCenter = () => {
       <UserContext.Provider value={{ userList: userList }}>
         <UserListPage />
       </UserContext.Provider>
+      <Footer />
     </div>
   );
 };

@@ -97,16 +97,20 @@ export default function Header_userIcon() {
             </List>
             <Divider />
             <MenuItem>
-              <ListItemIcon>
-                <PersonRoundedIcon fontSize="small" />
-              </ListItemIcon>
-              나의 정보
+              <Link to="/user">
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                나의 정보
+              </Link>
             </MenuItem>
             <MenuItem>
-              <ListItemIcon>
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              사용자 관리
+              <Link to="/userdata">
+                <ListItemIcon>
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                사용자 관리
+              </Link>
             </MenuItem>
             <MenuItem>
               <ListItemIcon>

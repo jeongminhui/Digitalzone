@@ -9,7 +9,9 @@ import Node from "./Components/Node/Node";
 import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
-import NodeDetail from './Components/Node/NodeDetail';
+import NodeDetail from "./Components/Node/NodeDetail";
+import UserDataCenter from "./Components/User/UserManagementComponents/UserDataCenter";
+import UserListPage from "./Components/User/UserManagementComponents/UserListPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,8 +40,8 @@ function App() {
           element: <Node />,
         },
         {
-          path: '/node/:nodename',
-          element: <NodeDetail/>
+          path: "/node/:nodename",
+          element: <NodeDetail />,
         },
         {
           path: "/service",
@@ -48,6 +50,12 @@ function App() {
         {
           path: "/user",
           element: <User />,
+        },
+        // 여기부턴 사용자 페이지 (권한 따라 삼항 조건 넣어보려 함)
+        // 컴포넌트 만들어지면 링크 바꿀 것임!
+        {
+          path: "/userdata",
+          element: <UserDataCenter />,
         },
       ],
     },
