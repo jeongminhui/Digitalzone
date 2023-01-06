@@ -9,10 +9,10 @@ import SignUp from './UserMyPageComponents/SignUp';
 const User = () => {
     return (
         <div className='User'>
-            <UserDataCenterV2 />
+            {/* <UserDataCenterV2 /> */}
             <Modal1 />
             <Footer />
-            {/* <SignUp /> */}
+            <SignUp />
         </div>
     );
 };

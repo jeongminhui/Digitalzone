@@ -23,7 +23,7 @@ const SignUp = () => {
     // userservice
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
 
-    const [count, setCount] = useState(0);
+    const [serviceCnt, setServiceCnt] = useState(0);
 
     const auth = getAuth();
 
@@ -43,8 +43,8 @@ const SignUp = () => {
             ...userservice,
             [e.target.id]: e.target.checked,
         });
-        if (e.target.checked === true) setCount((prev) => prev + 1);
-        else setCount((prev) => prev - 1);
+        if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
+        else setServiceCnt((prev) => prev - 1);
     };
 
     // userclass 변경
@@ -100,7 +100,7 @@ const SignUp = () => {
     }, [password, pwcheck]);
 
     const clickHandler = async (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 setName('');
@@ -109,7 +109,7 @@ const SignUp = () => {
                 setTeam('');
                 setPassword('');
                 setPwcheck('');
-                setCount(0);
+                setServiceCnt(0);
                 checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
                 const user = userCredential.user;
@@ -131,6 +131,8 @@ const SignUp = () => {
                     userclass: userclass,
                     userdate: date,
                     userstatus: '정상',
+                    uid: user.uid,
+                    serviceCnt: serviceCnt,
                 });
             })
             .catch((error) => {
@@ -175,11 +177,20 @@ const SignUp = () => {
                         }}
                     />
                 </div>
+                {/* <div>
+                    아이디:{' '}
+                    <input
+                        type='email'
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
+                    />
+                </div> */}
                 <div>
                     아이디: <input type='text' value={emailId} onChange={(e) => setEmailId(e.target.value)} />@<input className='domainTxt' type='text' value={domain} onChange={domainInput} />
                     <select className='domainList' onChange={domainChangeHandler}>
                         <option value='type'>직접입력</option>
-                        <option value='test.com'>test.com</option>
                         <option value='gmail.com'>gmail.com</option>
                         <option value='naver.com'>naver.com</option>
                         <option value='nate.com'>nate.com</option>
@@ -244,9 +255,8 @@ const SignUp = () => {
                     </label>
                 </div>
                 <button type='submit' className='SignUpButton' onClick={clickHandler}>
-                    회원가입
+                    사용자 추가
                 </button>
-                <button>로그인</button>
             </form>
         </div>
     );

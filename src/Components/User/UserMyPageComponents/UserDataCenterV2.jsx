@@ -168,10 +168,10 @@ const UserDataCenterV2 = () => {
         <div>
             <SignUpInput adminChangeHandler={adminChangeHandler} serviceChangeHandler={serviceChangeHandler} checkedItemHandler={checkedItemHandler} clickHandler={clickHandler} deleteHander={deleteHandler} />
             <SignInInput loginClickHandler={loginClickHandler} />
-            <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }}>
-                {/* <UserInfo /> */}
-                <UserListPage deleteHandler={deleteHandler} />
-            </UserContext.Provider>
+            {/* <UserContext.Provider value={{ loginUser: loginUser, userlist: userlist }}> */}
+            {/* <UserInfo /> */}
+            {/* <UserListPage deleteHandler={deleteHandler} /> */}
+            {/* </UserContext.Provider> */}
         </div>
     );
 };

@@ -7,7 +7,7 @@ const UserMyPage = () => {
     return (
         <div>
             {/* < UserDataCenterV2 /> */}
-            <SignIn />
+            {/* <SignIn /> */}
             <SignUp />
         </div>
     );
