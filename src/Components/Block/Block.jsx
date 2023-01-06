@@ -18,7 +18,7 @@ import BlockChart from "./BlockChart";
 import BlockTable from "./BlockTable";
 
 const Block = () => {
-  const blockCollection = collection(db, "block1");
+  const blockCollection = collection(db, "block");
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
