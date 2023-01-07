@@ -2,7 +2,13 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
-const MixedChart = () => {
+// recoil로 불러오기
+import { useRecoilValue } from "recoil";
+import { networkSelector } from "../../../Recoil/Selector";
+
+const NtwTPS = () => {
+  const networkData = useRecoilValue(networkSelector);
+
   const container_style = {
     width: "500px",
     height: "250px",
@@ -136,7 +142,7 @@ const MixedChart = () => {
   };
 
   return (
-    <div className="MixedChart" style={container_style}>
+    <div className="NtwTPS" style={container_style}>
       <h4>네트워크별 트랜잭션 처리속도</h4>
       <div style={style}>
         <Line type="line" data={data} options={options} />
@@ -145,4 +151,4 @@ const MixedChart = () => {
   );
 };
 
-export default MixedChart;
+export default NtwTPS;

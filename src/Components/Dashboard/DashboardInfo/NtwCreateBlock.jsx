@@ -1,7 +1,13 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
-const LineChart = () => {
+// recoil로 불러오기
+import { useRecoilValue } from "recoil";
+import { networkSelector } from "../../../Recoil/Selector";
+
+const NtwCreateBlock = () => {
+  const networkData = useRecoilValue(networkSelector);
+
   const container_style = {
     width: "500px",
     height: "250px",
@@ -52,7 +58,7 @@ const LineChart = () => {
   ];
 
   return (
-    <div className="LineChart" style={container_style}>
+    <div className="NtwCreateBlock" style={container_style}>
       <h4>네트워크별 블록 생성시간</h4>
       <div style={style}>
         <ResponsiveLine
@@ -93,4 +99,4 @@ const LineChart = () => {
   );
 };
 
-export default LineChart;
+export default NtwCreateBlock;
