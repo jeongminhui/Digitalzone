@@ -2,9 +2,28 @@
   width: calc(100% - 160px);
   height: 100vh;
   position: relative;
-}
+  
+  .subTitle{
+    display: flex;
+    width: 1024px;
+    justify-content: space-between;
+    
+    .subBar{
+      color: #4669F5;
+      font-weight: bold;
+      font-size: 26px;
+    }
 
-.subBar{
-    color: #4669F5;
-    font-weight: bold;
+    .listBtn{
+      background-color: #4669F5;
+      border: 1px solid #4669F5;
+      border-radius: 5px;
+      padding: 5px;
+      outline: none;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+   } 
   }
+} 
+

@@ -1,13 +1,23 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
-const FillChart = () => {
+// recoil로 불러오기
+import { useRecoilValue } from "recoil";
+import { networkSelector } from "../../../Recoil/Selector";
+
+const EnrollService = () => {
+  const networkData = useRecoilValue(networkSelector);
+
   const container_style = {
     width: "500px",
     height: "250px",
-    backgroundColor: "#d6daff",
+    border: "1px solid #999",
   };
-  const style = { border: "2px solid #000", width: "500px", height: "200px" };
+  const style = {
+    backgroundColor: "#ddd",
+    width: "auto",
+    height: "200px",
+  };
 
   const data = [
     {
@@ -23,8 +33,9 @@ const FillChart = () => {
   ];
 
   return (
-    <div className="FillChart" style={container_style}>
+    <div className="EnrollService" style={container_style}>
       <h4>시간당 서비스 등록건수</h4>
+
       <div style={style}>
         <ResponsiveLine
           data={data}
@@ -65,4 +76,4 @@ const FillChart = () => {
   );
 };
 
-export default FillChart;
+export default EnrollService;

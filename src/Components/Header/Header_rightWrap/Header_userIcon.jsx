@@ -11,7 +11,7 @@ import Tooltip from "@mui/material/Tooltip";
 // import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import "../Header.scss";
+import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { Link } from "react-router-dom";
 // import { blue } from "@mui/material/colors";
