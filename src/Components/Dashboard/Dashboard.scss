@@ -1,4 +1,99 @@
 .Dashboard {
   width: calc(100% - 160px);
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .DashboardInfo {
+    width: 1002px;
+    height: 826px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 200px; //footer랑 간격 조정
+
+    .Dashboard_container1 {
+      width: 1002px;
+      height: 178px;
+      display: flex;
+      justify-content: space-between;
+
+      > div {
+        width: 245px;
+        height: 100%;
+        position: relative;
+
+        a {
+          width: 240px;
+          height: 170px;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          border-radius: 10px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          text-decoration: none;
+
+          .Dashboard_title {
+            font-size: 16px;
+            font-weight: bold;
+          }
+
+          .Dashboard_data {
+            font-size: 36px;
+            font-weight: bold;
+          }
+
+          .Dashboard_time {
+            font-size: 13px;
+            color: #888888;
+          }
+        }
+
+        .Dashboard_icon {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: 5px solid #fff;
+        }
+      }
+    }
+
+    .Dashboard_container2 {
+      width: 1000px;
+      height: 590px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 50px 50px;
+
+      > div {
+        width: 475px;
+        height: 270px;
+        position: relative;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 20px rgba(136, 136, 136, 0.15);
+
+        // 각 차트박스
+        a {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 100%;
+          text-decoration: none;
+
+          .Dashboard_title {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 18px 0;
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { Link } from "react-router-dom";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -7,17 +8,6 @@ import { networkSelector } from "../../../Recoil/Selector";
 
 const EnrollService = () => {
   const networkData = useRecoilValue(networkSelector);
-
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    border: "1px solid #999",
-  };
-  const style = {
-    backgroundColor: "#ddd",
-    width: "auto",
-    height: "200px",
-  };
 
   const data = [
     {
@@ -33,11 +23,11 @@ const EnrollService = () => {
   ];
 
   return (
-    <div className="EnrollService" style={container_style}>
-      <h4>시간당 서비스 등록건수</h4>
-
-      <div style={style}>
+    <div className="EnrollService">
+      <Link to="/service">
+        <div className="Dashboard_title">시간당 서비스 등록건수</div>
         <ResponsiveLine
+          className="Dashboard_chart"
           data={data}
           margin={{ top: 70, right: 70, bottom: 50, left: 50 }}
           colors={{ scheme: "pastel1" }}
@@ -71,7 +61,7 @@ const EnrollService = () => {
           enableArea={true} //fill 효과
           areaOpacity={0.45} //fill 효과 투명도
         />
-      </div>
+      </Link>
     </div>
   );
 };

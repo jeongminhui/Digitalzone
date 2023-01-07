@@ -1,5 +1,6 @@
 import React from "react";
 import { ResponsivePie } from "@nivo/pie";
+import { Link } from "react-router-dom";
 
 // recooil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -28,18 +29,6 @@ const NtwActiveService = () => {
 
   // ////////////////////////////////////////////
 
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    border: "1px solid #999",
-  };
-
-  const style = {
-    backgroundColor: "#ddd",
-    width: "auto",
-    height: "200px",
-  };
-
   const data = [
     { id: "A서비스", value: 11 },
     { id: "B서비스", value: 25 },
@@ -49,10 +38,11 @@ const NtwActiveService = () => {
   ];
 
   return (
-    <div className="NtwActiveService" style={container_style}>
-      <h4>서비스별 네트워크 활동비율</h4>
-      <div style={style}>
+    <div className="NtwActiveService">
+      <Link to="/service">
+        <div className="Dashboard_title">서비스별 네트워크 활동비율</div>
         <ResponsivePie
+          className="Dashboard_chart"
           data={data}
           margin={{ top: 40, right: 40, bottom: 40, left: 40 }} //차트 margin
           innerRadius={0} //차트 중앙 빈공간 반지름
@@ -76,7 +66,7 @@ const NtwActiveService = () => {
             },
           }}
         />
-      </div>
+      </Link>
     </div>
   );
 };

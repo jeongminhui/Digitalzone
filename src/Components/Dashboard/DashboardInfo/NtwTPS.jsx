@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import { Link } from "react-router-dom";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -8,17 +9,6 @@ import { networkSelector } from "../../../Recoil/Selector";
 
 const NtwTPS = () => {
   const networkData = useRecoilValue(networkSelector);
-
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    border: "1px solid #999",
-  };
-  const style = {
-    backgroundColor: "#ddd",
-    width: "auto",
-    height: "200px",
-  };
 
   const time1 = "10:00";
   const time2 = "11:00";
@@ -142,11 +132,16 @@ const NtwTPS = () => {
   };
 
   return (
-    <div className="NtwTPS" style={container_style}>
-      <h4>네트워크별 트랜잭션 처리속도</h4>
-      <div style={style}>
-        <Line type="line" data={data} options={options} />
-      </div>
+    <div className="NtwTPS">
+      <Link to="/transaction">
+        <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
+        <Line
+          className="Dashboard_chart"
+          type="line"
+          data={data}
+          options={options}
+        />
+      </Link>
     </div>
   );
 };

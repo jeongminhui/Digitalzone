@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import "./ActiveNetwork.scss";
+import { FaNetworkWired } from "react-icons/fa";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
-const ActiveNetwork = () => {
+const ActiveNetwork = (props) => {
   const networkData = useRecoilValue(networkSelector);
 
   // const activeNetwork = networkData.filter((item) => {
@@ -13,8 +16,14 @@ const ActiveNetwork = () => {
 
   return (
     <div className="ActiveNetwork">
-      <h3>ActiveNetwork</h3>
-      <div>활성 네트워크 : / 전체 네트워크 : {networkData.length}</div>
+      <Link to="/node">
+        <div className="Dashboard_title">활성 네트워크 수</div>
+        <div className="Dashboard_data">값 </div>
+        <div className="Dashboard_time">{props.DateTime}</div>
+      </Link>
+      <div className="Dashboard_icon">
+        <FaNetworkWired fill="#fff" size="30" />
+      </div>
     </div>
   );
 };

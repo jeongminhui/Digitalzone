@@ -1,5 +1,6 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { Link } from "react-router-dom";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -8,16 +9,6 @@ import { networkSelector } from "../../../Recoil/Selector";
 const NtwCreateBlock = () => {
   const networkData = useRecoilValue(networkSelector);
 
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    border: "1px solid #999",
-  };
-  const style = {
-    backgroundColor: "#ddd",
-    width: "auto",
-    height: "200px",
-  };
   const data = [
     {
       id: "네트워크1",
@@ -58,10 +49,11 @@ const NtwCreateBlock = () => {
   ];
 
   return (
-    <div className="NtwCreateBlock" style={container_style}>
-      <h4>네트워크별 블록 생성시간</h4>
-      <div style={style}>
+    <div className="NtwCreateBlock">
+      <Link to="/block">
+        <div className="Dashboard_title">네트워크별 블록 생성시간</div>
         <ResponsiveLine
+          className="Dashboard_chart"
           data={data}
           colors={{ scheme: "pastel1" }}
           margin={{ top: 70, right: 70, bottom: 50, left: 50 }}
@@ -94,7 +86,7 @@ const NtwCreateBlock = () => {
           enableCrosshair={false}
           useMesh={true}
         />
-      </div>
+      </Link>
     </div>
   );
 };

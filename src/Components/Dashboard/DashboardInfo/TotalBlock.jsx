@@ -1,16 +1,25 @@
 import React from "react";
+import "./TotalBlock.scss";
+import { GiCube } from "react-icons/gi";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { blockSelector } from "../../../Recoil/Selector";
+import { Link } from "react-router-dom";
 
-const TotalBlock = () => {
+const TotalBlock = (props) => {
   const blockData = useRecoilValue(blockSelector);
 
   return (
     <div className="TotalBlock">
-      <h3>TotalBlock</h3>
-      <div>전체 블록 수 : {blockData.length} </div>
+      <Link to="/block">
+        <div className="Dashboard_title">전체 블록 수</div>
+        <div className="Dashboard_data">값</div>
+        <div className="Dashboard_time">{props.DateTime}</div>
+      </Link>
+      <div className="Dashboard_icon">
+        <GiCube size="30" fill="#fff" />
+      </div>
     </div>
   );
 };
