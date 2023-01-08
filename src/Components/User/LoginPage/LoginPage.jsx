@@ -1,11 +1,21 @@
 import React from "react";
 import Avatar from "@mui/material/Avatar";
+import SignIn from "../UserMyPageComponents/SignIn";
+import "./LoginPage.scss";
+import Page1 from "../../CommonComponents/Page/Page1";
 
 const LoginPage = () => {
   return (
-    <div>
-      <Avatar />
-      이름? 로그인페이지 입니다.
+    <div className="LoginPage">
+      <Page1>
+        {/* <Avatar /> */}
+        <img
+          src={`${process.env.PUBLIC_URL}/assets/logo.png`}
+          alt="logo"
+          className="login_logo"
+        />
+        <SignIn />
+      </Page1>
     </div>
   );
 };
