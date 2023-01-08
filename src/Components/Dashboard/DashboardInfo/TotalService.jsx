@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./TotalService.scss";
+import { BsFillCloudCheckFill } from "react-icons/bs";
+import { GrServices } from "react-icons/gr";
+import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -16,7 +19,11 @@ const TotalService = (props) => {
         <div className="Dashboard_data">값 </div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
-      <div className="Dashboard_icon">아이콘</div>
+      <div className="Dashboard_icon">
+        {/* <BsFillCloudCheckFill fill="#fff" size="25" /> */}
+        {/* <GrServices fill="#fff" stroke="#fff" size="25" /> */}
+        <MdOutlineMiscellaneousServices fill="#fff" size="28" />
+      </div>
     </div>
   );
 };

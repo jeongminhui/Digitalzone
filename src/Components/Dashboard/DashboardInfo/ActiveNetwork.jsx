@@ -22,7 +22,7 @@ const ActiveNetwork = (props) => {
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
       <div className="Dashboard_icon">
-        <FaNetworkWired fill="#fff" size="30" />
+        <FaNetworkWired fill="#fff" size="25" />
       </div>
     </div>
   );

@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 65px;
+  padding-bottom: 136px;
 
   .DashboardInfo {
     width: 1002px;
@@ -11,7 +13,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 200px; //footer랑 간격 조정
 
     .Dashboard_container1 {
       width: 1002px;
@@ -27,6 +28,7 @@
         a {
           width: 240px;
           height: 170px;
+          text-decoration: none;
           position: absolute;
           right: 0;
           bottom: 0;
@@ -35,12 +37,6 @@
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
-          text-decoration: none;
-
-          .Dashboard_title {
-            font-size: 16px;
-            font-weight: bold;
-          }
 
           .Dashboard_data {
             font-size: 36px;
@@ -49,7 +45,7 @@
 
           .Dashboard_time {
             font-size: 13px;
-            color: #888888;
+            color: var(--light-grey-color);
           }
         }
 
@@ -58,6 +54,9 @@
           height: 50px;
           border-radius: 50%;
           border: 5px solid #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }
@@ -76,24 +75,43 @@
         position: relative;
         border-radius: 10px;
         background-color: #ffffff;
-        box-shadow: 0px 0px 20px rgba(136, 136, 136, 0.15);
+        box-shadow: var(--box-shadow);
 
         // 각 차트박스
         a {
-          display: flex;
-          flex-direction: column;
           width: 100%;
           height: 100%;
           text-decoration: none;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-between;
 
           .Dashboard_title {
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            padding: 18px 0;
+            padding-top: 18px;
+            color: var(--black-color);
+          }
+
+          .Dashboard_seconds {
+            height: 70px;
+            line-height: 70px;
+          }
+
+          .Dashboard_chart {
+            width: 90%;
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
+    }
+
+    .Dashboard_title {
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: -1.5px;
     }
   }
 }

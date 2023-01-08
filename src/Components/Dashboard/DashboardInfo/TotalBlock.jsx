@@ -1,6 +1,6 @@
 import React from "react";
 import "./TotalBlock.scss";
-import { GiCube } from "react-icons/gi";
+import { IoCube } from "react-icons/io5";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -18,7 +18,7 @@ const TotalBlock = (props) => {
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
       <div className="Dashboard_icon">
-        <GiCube size="30" fill="#fff" />
+        <IoCube fill="#fff" size="25" />
       </div>
     </div>
   );

@@ -127,7 +127,7 @@ const NtwTPS = () => {
     },
 
     layout: {
-      padding: 10,
+      padding: 12,
     },
   };
 
@@ -135,12 +135,9 @@ const NtwTPS = () => {
     <div className="NtwTPS">
       <Link to="/transaction">
         <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
-        <Line
-          className="Dashboard_chart"
-          type="line"
-          data={data}
-          options={options}
-        />
+        <div className="Dashboard_chart">
+          <Line type="line" data={data} options={options} />
+        </div>
       </Link>
     </div>
   );
