@@ -13,29 +13,33 @@ import {
 } from "firebase/firestore";
 import copy from "copy-to-clipboard";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
+import { useParams } from "react-router-dom";
 
 const TranInfo = () => {
+  const { txnum } = useParams();
   const [transactionInfo, setTransactionInfo] = useState([]);
   const [copyBtn, setCopyBtn] = useState("copy");
   const transactionCollection = collection(db, "transaction");
 
+  //트랜잭션 상세 정보 로드
   useEffect(() => {
     async function getTrans() {
-      const docRef = doc(transactionCollection, "326849");
+      const docRef = doc(transactionCollection, txnum);
       const data = await getDoc(docRef);
       setTransactionInfo(data.data());
-      console.log(transactionInfo);
+      // console.log(transactionInfo);
     }
     getTrans();
   }, []);
 
+  // 카피 기능
   function copyButton() {
     copy(transactionInfo.txhash, {
       debug: true,
       message: "Press #{key} to copy",
     });
   }
-
+  //카피버튼 클릭시 색변경 + 글자변경
   const btnRef = useRef();
   function changeBtnText() {
     setCopyBtn("copied");
@@ -61,7 +65,6 @@ const TranInfo = () => {
           <tr>
             <td classs="infoTitle">트랜잭션 해시</td>
             <td className="infoContent">{transactionInfo.txhash}</td>
-
             <td>
               <button
                 className="copyButton"
