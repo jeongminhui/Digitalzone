@@ -9,7 +9,7 @@ import UserListPage from './UserListPage';
 import UserInfo from './UserInfo';
 import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
 import { atom } from 'recoil';
-import { BlockAtom, loginAtom, loginState } from '../../../recoil/Atom';
+import { BlockAtom, loginAtom, loginState } from '../../../../recoil/Atom';
 
 
 const UserDataCenterV2 = () => {
