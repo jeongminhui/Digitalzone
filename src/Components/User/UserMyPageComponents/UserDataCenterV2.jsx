@@ -19,10 +19,7 @@ const UserDataCenterV2 = () => {
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
     const [serviceCnt, setServiceCnt] = useState(0);
 
-   
     const [loginUser, setLoginUser] = useRecoilState(loginAtom)
-    
-    
     
     const [userlist,setUserlist] = useState([])
    
