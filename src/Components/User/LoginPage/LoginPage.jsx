@@ -1,5 +1,4 @@
 import React from "react";
-import Avatar from "@mui/material/Avatar";
 import SignIn from "../UserMyPageComponents/SignIn";
 import "./LoginPage.scss";
 import Page1 from "../../CommonComponents/Page/Page1";
@@ -8,7 +7,6 @@ const LoginPage = () => {
   return (
     <div className="LoginPage">
       <Page1>
-        {/* <Avatar /> */}
         <img
           src={`${process.env.PUBLIC_URL}/assets/logo.png`}
           alt="logo"

@@ -31,8 +31,8 @@ export default function Header_userIcon() {
 
   // 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함.
   const userId = "Profsssle@gmail.com";
-  const isLogin = false;
-  const isManager = false;
+  const isLogin = true;
+  const isManager = true;
   return (
     <>
       <React.Fragment>
@@ -95,7 +95,7 @@ export default function Header_userIcon() {
               </List>
               <Divider />
               <MenuItem>
-                <Link to="/user">
+                <Link to="/myinfo">
                   <ListItemIcon>
                     <PersonRoundedIcon fontSize="small" />
                   </ListItemIcon>
@@ -154,12 +154,14 @@ export default function Header_userIcon() {
                 </ListItem>
               </List>
               <Divider />
-              <MenuItem>
-                <ListItemIcon>
-                  <PersonRoundedIcon fontSize="small" />
-                </ListItemIcon>
-                나의 정보
-              </MenuItem>
+              <Link to="/myinfo">
+                <MenuItem>
+                  <ListItemIcon>
+                    <PersonRoundedIcon fontSize="small" />
+                  </ListItemIcon>
+                  나의 정보
+                </MenuItem>
+              </Link>
               <MenuItem>
                 <ListItemIcon>
                   <Logout fontSize="small" />

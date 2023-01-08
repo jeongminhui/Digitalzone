@@ -10,8 +10,10 @@ import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
+// user 사용자 페이지 목록
 import UserDataCenter from "./Components/User/UserManagementComponents/UserDataCenter";
 import LoginPage from "./Components/User/LoginPage/LoginPage";
+import MyInfoPage from "./Components/User/MyInfoPage/MyInfoPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -60,6 +62,10 @@ function App() {
         {
           path: "/login",
           element: <LoginPage />,
+        },
+        {
+          path: "/myinfo",
+          element: <MyInfoPage />,
         },
       ],
     },
