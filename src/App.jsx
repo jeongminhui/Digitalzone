@@ -11,7 +11,7 @@ import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
 import UserDataCenter from "./Components/User/UserManagementComponents/UserDataCenter";
-import UserListPage from "./Components/User/UserManagementComponents/UserListPage";
+import LoginPage from "./Components/User/LoginPage/LoginPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -56,6 +56,10 @@ function App() {
         {
           path: "/user_management",
           element: <UserDataCenter />,
+        },
+        {
+          path: "/login",
+          element: <LoginPage />,
         },
       ],
     },

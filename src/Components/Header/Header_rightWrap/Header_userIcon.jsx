@@ -28,8 +28,11 @@ export default function Header_userIcon() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   // 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함.
-  let isManager = true;
+  const userId = "Profsssle@gmail.com";
+  const isLogin = true;
+  const isManager = false;
   return (
     <>
       <React.Fragment>
@@ -53,8 +56,119 @@ export default function Header_userIcon() {
             </div>
           </Tooltip>
         </Box>
-        {/* 매니저일 경우 나타낼 메뉴 */}
-        {isManager === true ? (
+        {isLogin ? (
+          isManager ? (
+            // 매니저일 경우 나타낼 메뉴
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={open}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <List>
+                <ListItem>
+                  <ListItemText primary={userId} />
+                </ListItem>
+              </List>
+              <Divider />
+              <MenuItem>
+                <Link to="/user">
+                  <ListItemIcon>
+                    <PersonRoundedIcon fontSize="small" />
+                  </ListItemIcon>
+                  나의 정보
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link to="/user_management">
+                  <ListItemIcon>
+                    <Settings fontSize="small" />
+                  </ListItemIcon>
+                  사용자 관리
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                로그아웃
+              </MenuItem>
+            </Menu>
+          ) : (
+            // 매니저 x 일반사용자 메뉴창
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={open}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <List>
+                <ListItem>
+                  <ListItemText primary={userId} />
+                </ListItem>
+              </List>
+              <Divider />
+              <MenuItem>
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                나의 정보
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                로그아웃
+              </MenuItem>
+            </Menu>
+          )
+        ) : (
           <Menu
             anchorEl={anchorEl}
             id="account-menu"
@@ -84,78 +198,13 @@ export default function Header_userIcon() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
-            <List>
-              <ListItem>
-                <ListItemText primary="Profsssle@gmail.com" />
-              </ListItem>
-            </List>
-            <Divider />
             <MenuItem>
               <Link to="/user">
                 <ListItemIcon>
                   <PersonRoundedIcon fontSize="small" />
                 </ListItemIcon>
-                나의 정보
+                로그인
               </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link to="/user_management">
-                <ListItemIcon>
-                  <Settings fontSize="small" />
-                </ListItemIcon>
-                사용자 관리
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              로그아웃
-            </MenuItem>
-          </Menu>
-        ) : (
-          // 매니저 x 일반사용자 메뉴창
-          <Menu
-            anchorEl={anchorEl}
-            id="account-menu"
-            open={open}
-            onClose={handleClose}
-            onClick={handleClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                "&:before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
-              },
-            }}
-            transformOrigin={{ horizontal: "right", vertical: "top" }}
-            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-          >
-            <MenuItem>
-              <ListItemIcon>
-                <PersonRoundedIcon fontSize="small" />
-              </ListItemIcon>
-              나의 정보
-            </MenuItem>
-            <MenuItem>
-              <ListItemIcon>
-                <Logout fontSize="small" />
-              </ListItemIcon>
-              로그아웃
             </MenuItem>
           </Menu>
         )}

@@ -2,6 +2,8 @@ import "./UserInsertModal.css";
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import SignUp from "../UserMyPageComponents/SignUp";
+import Modal1 from "../../CommonComponents/Modal/Modal1";
 
 const UserInsertModal = () => {
   const [loading, setLoading] = useState(false);
@@ -21,33 +23,9 @@ const UserInsertModal = () => {
   };
   return (
     <div>
-      {" "}
-      <Button type="primary" onClick={showModal}>
-        사용자 추가
-      </Button>
-      <Modal
-        open={open}
-        // title="Title"
-        onOk={handleOk}
-        onCancel={handleCancel}
-        footer={[
-          // <Button key="back" onClick={handleCancel}>
-          //   취소
-          // </Button>,
-          <Button
-            key="submit"
-            type="primary"
-            loading={loading}
-            // onclick 이벤트는 변경 해주어야 함
-            onClick={handleOk}
-          >
-            {/* <AddRoundedIcon /> */}
-            추가
-          </Button>,
-        ]}
-      >
-        <p>내용 넣을 곳</p>
-      </Modal>
+      <Modal1 buttonName="사용자 추가">
+        <SignUp />
+      </Modal1>
     </div>
   );
 };
