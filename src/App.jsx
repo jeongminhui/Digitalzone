@@ -54,7 +54,7 @@ function App() {
         // 여기부턴 사용자 페이지 (권한 따라 삼항 조건 넣어보려 함)
         // 컴포넌트 만들어지면 링크 바꿀 것임!
         {
-          path: "/userdata",
+          path: "/user_management",
           element: <UserDataCenter />,
         },
       ],

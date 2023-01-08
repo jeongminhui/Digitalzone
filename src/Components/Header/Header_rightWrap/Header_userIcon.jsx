@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-// import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -14,7 +13,6 @@ import Logout from "@mui/icons-material/Logout";
 import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { Link } from "react-router-dom";
-// import { blue } from "@mui/material/colors";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
@@ -30,7 +28,8 @@ export default function Header_userIcon() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  let a = 0;
+  // 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함.
+  let isManager = true;
   return (
     <>
       <React.Fragment>
@@ -54,8 +53,8 @@ export default function Header_userIcon() {
             </div>
           </Tooltip>
         </Box>
-        {/* 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함. */}
-        {a === 0 ? (
+        {/* 매니저일 경우 나타낼 메뉴 */}
+        {isManager === true ? (
           <Menu
             anchorEl={anchorEl}
             id="account-menu"
@@ -88,11 +87,7 @@ export default function Header_userIcon() {
             {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
             <List>
               <ListItem>
-                <ListItemText
-                  primary="Profsssle@gmail.com"
-                  // primary="P@g.m"
-                  // secondary="Profsssle@gmail.com"
-                />
+                <ListItemText primary="Profsssle@gmail.com" />
               </ListItem>
             </List>
             <Divider />
@@ -105,7 +100,7 @@ export default function Header_userIcon() {
               </Link>
             </MenuItem>
             <MenuItem>
-              <Link to="/userdata">
+              <Link to="/user_management">
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>
@@ -120,6 +115,7 @@ export default function Header_userIcon() {
             </MenuItem>
           </Menu>
         ) : (
+          // 매니저 x 일반사용자 메뉴창
           <Menu
             anchorEl={anchorEl}
             id="account-menu"
