@@ -14,7 +14,7 @@ const User = () => {
             {/* <UserDataCenterV2 /> */}
             <SignUp />
             <SignIn />
-            {/* <SignInInput /> */}
+            <SignInInput />
             <Modal1 />
             <Footer />
         </div>

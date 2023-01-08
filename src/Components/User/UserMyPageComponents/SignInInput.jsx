@@ -26,7 +26,7 @@ const SignInInput = ({ loginClickHandler }) => {
 
     return (
         <div>
-            <form>
+            {/* <form>
                 <h1>로그인</h1>
                 <div>
                     아이디:
@@ -39,7 +39,7 @@ const SignInInput = ({ loginClickHandler }) => {
                 <button type='submit' className='SignInButton' onClick={clickHandler}>
                     로그인
                 </button>
-            </form>
+            </form> */}
         </div>
     );
 };
