@@ -1,46 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./BlockInfo.scss";
 import Footer from "../../Footer/Footer";
 import { async } from "@firebase/util";
 import { collection, getDoc, doc, getDocs } from "firebase/firestore";
-import { useEffect } from "react";
 import { db } from "../../../firebase";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TxInfo from "./TxInfo";
 import Carousel from "./Carousel";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useLocation } from "react-router-dom";
+import copy from "copy-to-clipboard";
+import { HiOutlineDocumentDuplicate } from "react-icons/hi";
+
+// recoil로 불러오기
+import { useRecoilValue } from "recoil";
+import { currentBlockSelector } from "../../../Recoil/Selector";
+import { blockSelector } from "../../../Recoil/Selector";
 
 const BlockInfo = () => {
   const { blocknum } = useParams();
+
+  const currentBlock = useRecoilValue(currentBlockSelector);
+  const blockData = useRecoilValue(blockSelector);
+
   const blockCollection = collection(db, "block");
-  const txCollection = collection(db, "transaction");
   const [blockInfo, setBlockInfo] = useState({});
-  const [txInfo, setTxInfo] = useState({});
   const [visible, setVisible] = useState(false);
-  const [block, setBlock] = useState([]);
+  const [copyBtn, setCopyBtn] = useState("copy");
 
   useEffect(() => {
-    console.log(blocknum);
     async function getBlockInfo() {
-      //블록 전체 정보 로드
-      const blkdata = await getDocs(blockCollection);
-      const arr = blkdata.docs.map((items) => {
-        return items.data();
-      });
-      setBlock(arr);
-
       // 블록 상세 정보 로드
       const docRef = doc(blockCollection, blocknum);
       const data = await getDoc(docRef);
       setBlockInfo(data.data());
-
-      // 트랜잭션 상세 정보 로드
-      const txRef = doc(txCollection, String(blockInfo.txnum));
-      const txdata = await getDoc(txRef);
-      setTxInfo(txdata.data());
     }
     getBlockInfo();
   }, [blocknum]);
@@ -49,6 +40,22 @@ const BlockInfo = () => {
     setVisible(!visible);
   };
 
+  // 카피 기능
+  function copyButton() {
+    copy(blockInfo.blockhash, {
+      debug: true,
+      message: "Press #{key} to copy",
+    });
+  }
+
+  //카피버튼 클릭시 색변경 + 글자변경
+  const btnRef = useRef();
+  function changeBtnText() {
+    setCopyBtn("copied");
+    btnRef.current.style.color = "#fff";
+    btnRef.current.style.backgroundColor = "#4669F5";
+  }
+
   return (
     <div className="BlockInfo">
       <h1 className="mainTitle">블록</h1>
@@ -56,7 +63,11 @@ const BlockInfo = () => {
         <span className="subBar">|</span> 블록 상세
       </h3>
 
-      <Carousel blocknum={blocknum} block={block} />
+      <Carousel
+        blocknum={blocknum}
+        block={blockData}
+        currentBlock={currentBlock}
+      />
 
       <table>
         <tbody>
@@ -75,6 +86,23 @@ const BlockInfo = () => {
           <tr>
             <td className="infoTitle">블록해시</td>
             <td className="infoContent">{blockInfo.blockhash}</td>
+            <td>
+              <button
+                className="copyButton"
+                ref={btnRef}
+                onClick={() => {
+                  copyButton();
+                  changeBtnText();
+                }}
+              >
+                {copyBtn}
+                {copyBtn === "copied" ? (
+                  <HiOutlineDocumentDuplicate style={{ stroke: "#fff" }} />
+                ) : (
+                  <HiOutlineDocumentDuplicate style={{ stroke: "#4669F5" }} />
+                )}
+              </button>
+            </td>
           </tr>
           <tr>
             <td className="infoTitle">블록크기</td>
@@ -91,7 +119,7 @@ const BlockInfo = () => {
           </tr>
         </tbody>
       </table>
-      {visible ? <TxInfo txInfo={txInfo} /> : ""}
+      {visible ? <TxInfo txnum={String(blockInfo.txnum)} /> : ""}
 
       <Footer />
     </div>

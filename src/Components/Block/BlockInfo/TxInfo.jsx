@@ -7,10 +7,26 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { HiOutlineDocumentText } from "react-icons/hi";
+import { async } from "@firebase/util";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../../firebase";
 
 import { Button, Modal } from "antd";
 
-const TxInfo = ({ txInfo }) => {
+const TxInfo = ({ txnum }) => {
+  const txCollection = collection(db, "transaction");
+  const [txInfo, setTxInfo] = useState({});
+
+  useEffect(() => {
+    async function getBlockInfo() {
+      // 트랜잭션 상세 정보 로드
+      const txRef = doc(txCollection, String(txnum));
+      const txdata = await getDoc(txRef);
+      setTxInfo(txdata.data());
+    }
+    getBlockInfo();
+  }, [txnum]);
+
   const columns = [
     { id: "txnum", label: "트랜잭션번호", minWidth: 100 },
     {
@@ -34,10 +50,6 @@ const TxInfo = ({ txInfo }) => {
       minWidth: 70,
     },
   ];
-
-  const openModal = () => {
-    console.log(txInfo.txdata);
-  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -90,27 +102,13 @@ const TxInfo = ({ txInfo }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button
-            key="submit"
-            type="primary"
-            // loading={loading}
-            onClick={handleOk}
-          >
+          <Button key="submit" type="primary" onClick={handleOk}>
             Submit
           </Button>,
         ]}
       >
         <p>{JSON.stringify(txInfo.txdata, null, 2)}</p>
       </Modal>
-
-      {/* <Modal
-        title="트랜잭션 데이터 상세"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <p>{JSON.stringify(txInfo.txdata, null, 2)}</p>
-      </Modal> */}
     </div>
   );
 };

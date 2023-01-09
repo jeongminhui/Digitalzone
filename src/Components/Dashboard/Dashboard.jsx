@@ -1,61 +1,117 @@
 import React, { useEffect, useState } from "react";
-import "./Dashboard.scss";
-import DashboardInfo from "./DashboardInfo";
-import DashboardChart from "./DashboardChart";
+import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import "./Dashboard.scss";
+
+// Firebase
 import { db } from "./../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+// DashboardInfo
+import TotalBlock from "./DashboardInfo/TotalBlock";
+import TotalTransaction from "./DashboardInfo/TotalTransaction";
+import ActiveNetwork from "./DashboardInfo/ActiveNetwork";
+import TotalService from "./DashboardInfo/TotalService";
+import NtwTPS from "./DashboardInfo/NtwTPS";
+import NtwCreateBlock from "./DashboardInfo/NtwCreateBlock";
+import EnrollService from "./DashboardInfo/EnrollService";
+import NtwActiveService from "./DashboardInfo/NtwActiveService";
+
+// recoil Atom에서 가져오기
+import { useRecoilState } from "recoil";
+import { blockAtom } from "../../Recoil/Atom";
+import { transactionAtom } from "../../Recoil/Atom";
+import { networkAtom } from "../../Recoil/Atom";
+import { serviceAtom } from "../../Recoil/Atom";
+import { ConstructionOutlined } from "@mui/icons-material";
+import { Ticks } from "chart.js";
+
 const Dashboard = () => {
-  ///////////// node정보 ////////////////
-  const dashboard_nodeCollection = collection(db, "node");
-  const [network, setNetwork] = useState({
-    allNetwork: "",
-    activeNetwork: "",
-    // activeNetworkArr: "",
-  });
+  // 날짜 시간 데이터
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = ("0" + now.getMonth() + 1).slice(-2);
+  const date = ("0" + now.getDate()).slice(-2);
+  const hour = ("0" + now.getHours()).slice(-2);
+  const min = ("0" + now.getMinutes()).slice(-2);
+  const sec = ("0" + now.getSeconds()).slice(-2);
+  const DateTime = `${year}-${month}-${date} ${hour}:${min}:${sec}`;
 
+  // // 블록 데이터
+  const [block, setBlock] = useRecoilState(blockAtom);
+  const blockData = collection(db, "block_test");
   useEffect(() => {
-    async function getNode() {
-      const nodeData = await getDocs(dashboard_nodeCollection);
-      const active = nodeData.docs.filter((items) => {
-        return items.data().ndstatus === "활성화";
+    async function getNtw() {
+      const data = await getDocs(blockData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
       });
-
-      // const activeArr = active.map((items) => {
-      //   return items.data();
-      // });
-
-      setNetwork({
-        ...network,
-        allNetwork: nodeData.docs.length,
-        activeNetwork: active.length,
-        // activeNetworkArr: [...activeArr],
-      });
+      setBlock(dataArr);
     }
-    getNode();
+    getNtw();
   }, []);
 
-  ////////// service정보 ///////////
-  const dashboard_serviceCollection = collection(db, "service");
-  const [service, setService] = useState({});
+  // // 트랜잭션 데이터
+  const [transaction, setTransaction] = useRecoilState(transactionAtom);
+  const transactionData = collection(db, "transaction");
 
   useEffect(() => {
-    async function getService() {
-      const serviceData = await getDocs(dashboard_serviceCollection);
-      const serviceAll = serviceData.docs.map((items) => {
-        return [items.data()];
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
       });
-      //////////////////////////////////////////////////////////////////////////////// return 부터 다시
-      setService({ serviceAll });
+      setTransaction(dataArr);
     }
-    getService();
+    getNtw();
+  }, []);
+
+  // // 네트워크 데이터
+  // const [network, setNetwork] = useRecoilState(networkAtom);
+  // const ntwData = collection(db, "ntwdata");
+
+  // useEffect(() => {
+  //   async function getNtw() {
+  //     const data = await getDocs(ntwData);
+  //     const dataArr = data.docs.map((item) => {
+  //       return item.data();
+  //     });
+  //     setNetwork(dataArr);
+  //   }
+  //   getNtw();
+  // }, []);
+
+  // // 서비스 데이터
+  const [service, setService] = useRecoilState(serviceAtom);
+  const serviceData = collection(db, "service");
+
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(serviceData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setService(dataArr);
+    }
+    getNtw();
   }, []);
 
   return (
     <div className="Dashboard">
-      <DashboardInfo networkData={network} serviceData={service} />
-      <DashboardChart networkData={network} serviceData={service} />
+      <div className="DashboardInfo">
+        <div className="Dashboard_container1">
+          <TotalBlock DateTime={DateTime} />
+          <TotalTransaction DateTime={DateTime} />
+          <ActiveNetwork DateTime={DateTime} />
+          <TotalService DateTime={DateTime} />
+        </div>
+        <div className="Dashboard_container2">
+          <NtwTPS />
+          <NtwCreateBlock />
+          <EnrollService />
+          <NtwActiveService />
+        </div>
+      </div>
       <Footer />
     </div>
   );

@@ -1,0 +1,29 @@
+.Block {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+
+.wrapper {
+  padding: 20px 50px;
+  margin-bottom: 100px;
+}
+.wrapper .subTitle {
+  margin-bottom: 30px;
+}
+.wrapper .subTitle .subBar {
+  color: #4669f5;
+  font-weight: bold;
+}
+.wrapper .pagenationDIV {
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper .pagenationDIV .pagenation {
+  align-self: center;
+  justify-self: center;
+  margin-right: 100px;
+}
+.wrapper .pagenationDIV .tablePagenation {
+  justify-self: flex-end;
+}
