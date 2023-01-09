@@ -1,5 +1,36 @@
 .Block {
   width: calc(100% - 160px);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
+}
+.wrapper {
+  padding: 20px 50px;
+  margin-bottom: 100px;
+
+  .subTitle {
+    margin-bottom: 30px;
+
+    .subBar {
+      color: #4669f5;
+      font-weight: bold;
+    }
+  }
+
+  .pagenationDIV {
+    display: flex;
+    justify-content: space-between;
+
+    .pagenation {
+      // display: inline-block;
+      align-self: center;
+      justify-self: center;
+      margin-right: 100px;
+    }
+
+    .tablePagenation {
+      // display: inline-block;
+
+      justify-self: flex-end;
+    }
+  }
 }

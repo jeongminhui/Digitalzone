@@ -17,8 +17,7 @@ import './Tab.scss';
 import Chart from './Chart'
 
 export default function Tab({rows}) {
-   
-  
+
 
     const columns = [
       { id: "service", label: "서비스명", minWidth: 70 },
