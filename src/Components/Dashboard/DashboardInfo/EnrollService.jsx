@@ -1,5 +1,6 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { Link } from "react-router-dom";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -7,17 +8,6 @@ import { networkSelector } from "../../../Recoil/Selector";
 
 const EnrollService = () => {
   const networkData = useRecoilValue(networkSelector);
-
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    border: "1px solid #999",
-  };
-  const style = {
-    backgroundColor: "#ddd",
-    width: "auto",
-    height: "200px",
-  };
 
   const data = [
     {
@@ -33,45 +23,46 @@ const EnrollService = () => {
   ];
 
   return (
-    <div className="EnrollService" style={container_style}>
-      <h4>시간당 서비스 등록건수</h4>
-
-      <div style={style}>
-        <ResponsiveLine
-          data={data}
-          margin={{ top: 70, right: 70, bottom: 50, left: 50 }}
-          colors={{ scheme: "pastel1" }}
-          xScale={{ type: "point" }}
-          yScale={{
-            type: "linear",
-            min: 0,
-            max: 400,
-          }}
-          // 상하좌우 인덱스
-          axisTop={null}
-          axisRight={null}
-          axisBottom={{
-            orient: "bottom",
-            tickSize: 0,
-            tickPadding: 5,
-            tickRotation: 0,
-          }}
-          axisLeft={{
-            orient: "left",
-            tickSize: 0,
-            tickPadding: 20,
-            tickRotation: 0,
-          }}
-          enableGridX={false}
-          // 기타설정
-          lineWidth={4}
-          enablePoints={false}
-          enableCrosshair={false}
-          useMesh={true} // MouseHover시 효과
-          enableArea={true} //fill 효과
-          areaOpacity={0.45} //fill 효과 투명도
-        />
-      </div>
+    <div className="EnrollService">
+      <Link to="/service">
+        <div className="Dashboard_title">시간당 서비스 등록건수</div>
+        <div className="Dashboard_chart">
+          <ResponsiveLine
+            data={data}
+            margin={{ top: 20, right: 15, bottom: 40, left: 45 }}
+            colors={{ scheme: "pastel1" }}
+            xScale={{ type: "point" }}
+            yScale={{
+              type: "linear",
+              min: 0,
+              max: 400,
+            }}
+            // 상하좌우 인덱스
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              orient: "bottom",
+              tickSize: 0,
+              tickPadding: 10,
+              tickRotation: 0,
+            }}
+            axisLeft={{
+              orient: "left",
+              tickSize: 0,
+              tickPadding: 12,
+              tickRotation: 0,
+            }}
+            enableGridX={false}
+            // 기타설정
+            lineWidth={4}
+            enablePoints={false}
+            enableCrosshair={false}
+            useMesh={true} // MouseHover시 효과
+            enableArea={true} //fill 효과
+            areaOpacity={0.45} //fill 효과 투명도
+          />
+        </div>
+      </Link>
     </div>
   );
 };
