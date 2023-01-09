@@ -13,7 +13,6 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-
 const ChartRight = () => {
   const [ten, setTen] = useState({});
   const [rows, setRows] = useState([]);
@@ -24,7 +23,7 @@ const ChartRight = () => {
     width: "400px",
     height: "200px",
     margin: "50px",
-  }
+  };
   useEffect(() => {
     async function getTrans() {
       const data = await getDocs(transaction);
@@ -63,20 +62,22 @@ const ChartRight = () => {
     const timeFilter14 = rows.filter(
       (item) => item.createdt.slice(11, 13) === "14"
     );
+
+    
     setTen({
       ten: timeFilter10.length,
       eleven: timeFilter11.length,
       twelve: timeFilter12.length,
       thirteen: timeFilter13.length,
       fourteen: timeFilter14.length,
+      
     });
   }, [rows]);
 
-//   console.log(ten);
-
+  // console.log(tensize);
 
   return (
-    <div className= "leftChart" style={containerStyle}>
+    <div className="leftChart" style={containerStyle}>
       <ApexCharts
         type="area"
         series={[
@@ -90,7 +91,7 @@ const ChartRight = () => {
             height: 300,
             width: 500,
             toolbar: {
-              show:false,
+              show: false,
             },
           },
           title: {
@@ -105,7 +106,6 @@ const ChartRight = () => {
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
           },
-         
         }}
       ></ApexCharts>
     </div>
