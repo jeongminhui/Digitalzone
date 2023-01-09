@@ -1,0 +1,10 @@
+.TotalService a {
+  background-color: #e4fbf8;
+}
+.TotalService a .Dashboard_title,
+.TotalService a .Dashboard_data {
+  color: #40b4a4;
+}
+.TotalService .Dashboard_icon {
+  background-color: #40b4a4;
+}

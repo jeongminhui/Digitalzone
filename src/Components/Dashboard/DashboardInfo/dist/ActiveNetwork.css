@@ -1,0 +1,10 @@
+.ActiveNetwork a {
+  background-color: #fff7ec;
+}
+.ActiveNetwork a .Dashboard_title,
+.ActiveNetwork a .Dashboard_data {
+  color: #c08728;
+}
+.ActiveNetwork .Dashboard_icon {
+  background-color: #c08728;
+}
