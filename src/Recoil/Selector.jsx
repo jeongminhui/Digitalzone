@@ -40,7 +40,7 @@ export const serviceSelector = selector({
 export const loginSelector = selector({
     key: 'loginSelector',
     get: ({ get }) => {
-        const user = get(loginAtom);
-        return user;
+        const loginUser = get(loginAtom);
+        return loginUser;
     },
 });

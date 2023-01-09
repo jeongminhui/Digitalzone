@@ -1,5 +1,7 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { Link } from "react-router-dom";
+import "./NtwCreateBlock.scss";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -8,16 +10,6 @@ import { networkSelector } from "../../../Recoil/Selector";
 const NtwCreateBlock = () => {
   const networkData = useRecoilValue(networkSelector);
 
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    border: "1px solid #999",
-  };
-  const style = {
-    backgroundColor: "#ddd",
-    width: "auto",
-    height: "200px",
-  };
   const data = [
     {
       id: "네트워크1",
@@ -58,43 +50,47 @@ const NtwCreateBlock = () => {
   ];
 
   return (
-    <div className="NtwCreateBlock" style={container_style}>
-      <h4>네트워크별 블록 생성시간</h4>
-      <div style={style}>
-        <ResponsiveLine
-          data={data}
-          colors={{ scheme: "pastel1" }}
-          margin={{ top: 70, right: 70, bottom: 50, left: 50 }}
-          xScale={{ type: "point" }}
-          yScale={{
-            type: "linear",
-            min: 0,
-            max: 6,
-          }}
-          // 상하좌우 인덱스
-          axisTop={null}
-          axisRight={null}
-          axisBottom={{
-            orient: "bottom",
-            tickSize: 0,
-            tickPadding: 5,
-            tickRotation: 0,
-          }}
-          axisLeft={{
-            orient: "left",
-            tickSize: 0,
-            tickPadding: 20,
-            tickRotation: 0,
-          }}
-          enableGridX={false}
-          enableGridY={false}
-          // 기타설정
-          lineWidth={4}
-          enablePoints={false}
-          enableCrosshair={false}
-          useMesh={true}
-        />
-      </div>
+    <div className="NtwCreateBlock">
+      <Link to="/block">
+        <div className="Dashboard_title">네트워크별 블록 생성시간(초)</div>
+        <div className="Dashboard_seconds">- - 초</div>
+        <div className="Dashboard_chart">
+          <ResponsiveLine
+            data={data}
+            colors={{ scheme: "pastel1" }}
+            style={{ width: 200, height: 100 }}
+            margin={{ top: 20, right: 15, bottom: 50, left: 45 }}
+            xScale={{ type: "point" }}
+            yScale={{
+              type: "linear",
+              min: 0,
+              max: 6,
+            }}
+            // 상하좌우 인덱스
+            axisTop={null}
+            axisRight={null}
+            axisBottom={{
+              orient: "bottom",
+              tickSize: 0,
+              tickPadding: 20,
+              tickRotation: 0,
+            }}
+            axisLeft={{
+              orient: "left",
+              tickSize: 0,
+              tickPadding: 16,
+              tickRotation: 0,
+            }}
+            enableGridX={false}
+            enableGridY={false}
+            // 기타설정
+            lineWidth={4}
+            enablePoints={false}
+            enableCrosshair={false}
+            useMesh={true}
+          />
+        </div>
+      </Link>
     </div>
   );
 };
