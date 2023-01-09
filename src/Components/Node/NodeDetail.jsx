@@ -23,13 +23,15 @@ const NodeDetail = () => {
     
     return (
         <div className="NodeDetail">
+            <div className='DetailWrap'> 
             <h1>노드</h1>
             <div className='subTitle'>
                 <h3> <span className='subBar'>|</span> 상세정보</h3>
                 <Link to="/node"><button className='listBtn'>목록으로</button></Link>
             </div>
             <div> { nodename } <span>({ip})</span></div>
-            <Grafana/>​
+            <Grafana/>
+            </div>​
             <Footer/>
         </div>
 

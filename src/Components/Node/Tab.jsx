@@ -97,7 +97,7 @@ export default function Tab({rows}) {
             tabTitle:<div className={activeIndex===0 ? "is-active left" : "tab"} onClick={()=>tabClickHandler(0)}> 노드 목록 </div>,
             tabCont:<div>
                  <ThemeProvider theme={theme}>
-                 <Paper sx={{ width: "1180px", overflow: "hidden", margin: "15px 0px 15px 0px;" }}>
+                 <Paper sx={{ width: "100%", overflow: "hidden", margin: "15px 0px 15px 0px;" }}>
         <TableContainer sx={{ maxHeight: 440, bgcolor:'background.content' }}>
           <Table stickyHeader aria-label="sticky table"  >
             <TableHead>

@@ -8,7 +8,7 @@ import Tab from './Tab';
 
 const Node = () => {
 
-  const nodeCollection = collection(db, "node1");
+  const nodeCollection = collection(db, "node");
   const [rows, setRows] = useState([]);
  
 
@@ -46,7 +46,7 @@ const Node = () => {
 
     <div className="Node">
       
-        <div>
+        <div className='NodeWrap'>
           <h1 className='mainTitle'>노드</h1>
           <h3 className='subTitle'><span className='subBar'>|</span> 전체 노드 {rows.length}개</h3>
 

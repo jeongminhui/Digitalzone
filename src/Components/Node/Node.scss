@@ -6,6 +6,9 @@
   justify-content: center;
 }
 
+.NodeWrap {
+  width: 90%;
+}
 .subBar{
   color: #4669F5;
   font-weight: bold;
@@ -14,7 +17,7 @@
 .tabs {
   display : flex;
   margin : 15px 0px 15px 0px;
-  width:1180px;
+  width: 100%;
   height: 50px;
   border-radius: 5px;
   z-index: 1;
