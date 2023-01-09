@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import Footer from "../Footer/Footer";
 import "./Dashboard.scss";
 
@@ -23,8 +22,6 @@ import { blockAtom } from "../../Recoil/Atom";
 import { transactionAtom } from "../../Recoil/Atom";
 import { networkAtom } from "../../Recoil/Atom";
 import { serviceAtom } from "../../Recoil/Atom";
-import { ConstructionOutlined } from "@mui/icons-material";
-import { Ticks } from "chart.js";
 
 const Dashboard = () => {
   // 날짜 시간 데이터
