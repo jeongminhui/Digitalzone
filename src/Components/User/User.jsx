@@ -7,15 +7,17 @@ import UserDataCenterV2 from './UserMyPageComponents/UserDataCenterV2';
 import SignUp from './UserMyPageComponents/SignUp';
 import SignIn from './UserMyPageComponents/SignIn';
 import SignInInput from './UserMyPageComponents/SignInInput';
+import UserUpdate from './UserMyPageComponents/UserUpdate';
 
 const User = () => {
     return (
         <div className='User'>
             {/* <UserDataCenterV2 /> */}
-            <SignUp />
+            {/* <SignUp /> */}
             <SignIn />
-            <SignInInput />
-            <Modal1 />
+            <UserUpdate />
+            {/* <SignInInput /> */}
+            {/* <Modal1 /> */}
             <Footer />
         </div>
     );
