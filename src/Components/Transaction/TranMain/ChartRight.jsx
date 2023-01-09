@@ -1,68 +1,114 @@
-import React from "react";
-import { ResponsiveLine } from "@nivo/line";
+import React, { useEffect, useState } from "react";
+import "./ChartRight.scss";
+import ApexCharts from "react-apexcharts";
+import { db } from "../../../firebase";
+import {
+  collection,
+  getDoc,
+  getDocs,
+  doc,
+  query,
+  where,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
-const ChartRight= () => {
-  const container_style = {
-    width: "500px",
-    height: "250px",
-    backgroundColor: "#eee",
+const ChartRight = () => {
+  const [ten, setTen] = useState({});
+  const [rows, setRows] = useState([]);
+
+  const transaction = collection(db, "transaction_test");
+
+  const containerStyle = {
+    width: "400px",
+    height: "200px",
+    margin: "50px",
   };
-  const style = { border: "2px solid #000", width: "500px", height: "200px" };
+  useEffect(() => {
+    async function getTrans() {
+      const data = await getDocs(transaction);
+      data.docs.map((items) => {
+        return makeChartDatas(items.data());
+      });
+      //   console.log(transactionInfo);
+    }
+    getTrans();
+  }, []);
 
-  const data = [
-    {
-      id: "시간당 서비스 등록건수",
-      data: [
-        { x: "10:00", y: 300 },
-        { x: "11:00", y: 240 },
-        { x: "12:00", y: 320 },
-        { x: "13:00", y: 210 },
-        { x: "14:00", y: 345 },
-      ],
-    },
-  ];
+  const makeChartDatas = (item) => {
+    setRows((prev) => [
+      ...prev,
+      {
+        createdt: item.createdt,
+        txsize: item.txsize,
+      },
+    ]);
+  };
+  //  console.log(rows);
+
+  useEffect(() => {
+    const timeFilter10 = rows.filter(
+      (item) => item.createdt.slice(11, 13) === "10"
+    );
+    const timeFilter11 = rows.filter(
+      (item) => item.createdt.slice(11, 13) === "11"
+    );
+    const timeFilter12 = rows.filter(
+      (item) => item.createdt.slice(11, 13) === "12"
+    );
+    const timeFilter13 = rows.filter(
+      (item) => item.createdt.slice(11, 13) === "13"
+    );
+    const timeFilter14 = rows.filter(
+      (item) => item.createdt.slice(11, 13) === "14"
+    );
+
+    
+    setTen({
+      ten: timeFilter10.length,
+      eleven: timeFilter11.length,
+      twelve: timeFilter12.length,
+      thirteen: timeFilter13.length,
+      fourteen: timeFilter14.length,
+      
+    });
+  }, [rows]);
+
+  // console.log(tensize);
 
   return (
-    <div className="FillChart" style={container_style}>
-      <h4>평균 트랜잭션 크기(KB)</h4>
-      <div style={style}>
-        <ResponsiveLine
-          data={data}
-          margin={{ top: 70, right: 70, bottom: 50, left: 50 }}
-          colors={{ scheme: "pastel1" }}
-          xScale={{ type: "point" }}
-          yScale={{
-            type: "linear",
-            min: 0,
-            max: 400,
-          }}
-          // 상하좌우 인덱스
-          axisTop={null}
-          axisRight={null}
-          axisBottom={{
-            orient: "bottom",
-            tickSize: 0,
-            tickPadding: 5,
-            tickRotation: 0,
-          }}
-          axisLeft={{
-            orient: "left",
-            tickSize: 0,
-            tickPadding: 20,
-            tickRotation: 0,
-          }}
-          enableGridX={false}
-          // 기타설정
-          lineWidth={4}
-          enablePoints={false}
-          enableCrosshair={false}
-          useMesh={true} // MouseHover시 효과
-          enableArea={true} //fill 효과
-          areaOpacity={0.45} //fill 효과 투명도
-        />
-      </div>
+    <div className="leftChart" style={containerStyle}>
+      <ApexCharts
+        type="area"
+        series={[
+          {
+            name: "평균 트랜잭션 크기(KB)",
+            data: [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen],
+          },
+        ]}
+        options={{
+          chart: {
+            height: 300,
+            width: 500,
+            toolbar: {
+              show: false,
+            },
+          },
+          title: {
+            text: "시간당 트랜잭션 수(개)",
+            align: "center",
+          },
+          stroke: {
+            //선의 커브를 부드럽게 하고, 두께를 3으로 지정
+            curve: "smooth",
+            width: 3,
+          },
+          xaxis: {
+            categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
+          },
+        }}
+      ></ApexCharts>
     </div>
   );
 };
-
 export default ChartRight;

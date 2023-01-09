@@ -3,55 +3,46 @@ import "./Block.scss";
 import Footer from "../Footer/Footer";
 import { db } from "../../firebase";
 import { collection, getDocs } from "firebase/firestore";
-// import Paper from "@mui/material/Paper";
-// import Table from "@mui/material/Table";
-// import TableBody from "@mui/material/TableBody";
-// import TableCell from "@mui/material/TableCell";
-// import TableContainer from "@mui/material/TableContainer";
-// import TableHead from "@mui/material/TableHead";
-// import TablePagination from "@mui/material/TablePagination";
-// import TableRow from "@mui/material/TableRow";
-// import Pagination from "@mui/material/Pagination";
-// import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-import BlockChart from "./BlockChart";
+import BlockChart from "./BlockChart/BlockChart";
 import BlockTable from "./BlockTable";
 
+// recoil Atom에서 가져오기
+import { useRecoilValue } from "recoil";
+import { blockSelector } from "../../Recoil/Selector";
+import { useRecoilState } from "recoil";
+import { currentBlockAtom } from "../../Recoil/Atom";
+
 const Block = () => {
-  const blockCollection = collection(db, "block");
+  const blockData = useRecoilValue(blockSelector);
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
+
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    async function getBlocks() {
-      const data = await getDocs(blockCollection);
-      data.docs.map((items) => {
-        return makeBlockData(items.data());
-      });
-    }
-    getBlocks();
+    // row 구조
+    blockData.map((item) => {
+      setRows((prev) => [
+        ...prev,
+        {
+          service: item.service,
+          blocknum: item.blocknum,
+          createdt: item.createdt,
+          blockhash: item.blockhash,
+          blksize: item.blksize,
+          txnum: item.txnum,
+        },
+      ]);
+    });
   }, []);
-
-  // row 구조
-  const makeBlockData = (item) => {
-    setRows((prev) => [
-      ...prev,
-      {
-        service: item.service,
-        blocknum: item.blocknum,
-        createdt: item.createdt,
-        blockhash: item.blockhash,
-        blksize: item.blksize,
-        txnum: item.txnum,
-      },
-    ]);
-  };
 
   // navigation 블록 상세 이동
   const [blocknum, setBlocknum] = useState("");
   const navigate = useNavigate();
 
-  const clickHandler = (blocknum) => {
+  const clickHandler = (blocknum, idx) => {
     navigate(`/block/${blocknum}`);
+    setCurrentBlock(idx);
   };
 
   useEffect(() => {

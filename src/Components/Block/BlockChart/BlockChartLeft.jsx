@@ -1,47 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
-import { db } from "../../../firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  doc,
-  query,
-  where,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
 
-const ApexLeft = () => {
+const BlockChartLeft = ({ rows, containerStyle }) => {
   const [ten, setTen] = useState({});
-  const [rows, setRows] = useState([]);
-
-  const transaction = collection(db, "transaction_test");
 
   useEffect(() => {
-    async function getTrans() {
-      const data = await getDocs(transaction);
-      data.docs.map((items) => {
-        return makeChartDatas(items.data());
-      });
-      //   console.log(transactionInfo);
-    }
-    getTrans();
-  }, []);
-
-  const makeChartDatas = (item) => {
-    setRows((prev) => [
-      ...prev,
-      {
-        createdt: item.createdt,
-        txsize: item.txsize,
-      },
-    ]);
-  };
-  //  console.log(rows);
-
-  useEffect(() => {
-    //  console.log(rows[5]);
     const timeFilter10 = rows.filter(
       (item) => item.createdt.slice(11, 13) === "10"
     );
@@ -66,24 +29,26 @@ const ApexLeft = () => {
     });
   }, [rows]);
 
-  console.log(ten);
   return (
-    <div>
+    <div className="leftChart" style={containerStyle}>
       <ApexCharts
         type="area"
         series={[
           {
-            name: "시간당 트랜잭션 수(개)",
+            name: "시간당 블록 수(개)",
             data: [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen],
           },
         ]}
         options={{
           chart: {
-            height: "200px",
-            width: "300px",
+            height: 300,
+            width: 500,
+            toolbar: {
+              show: false,
+            },
           },
           title: {
-            text: "시간당 트랜잭션 수(개)",
+            text: "시간당 블록 수(개)",
             align: "center",
           },
           stroke: {
@@ -91,19 +56,13 @@ const ApexLeft = () => {
             curve: "smooth",
             width: 3,
           },
-          // grid: {
-          //   //격자 없앰
-          //   show: false,
-          // },
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
-            // axisBorder: { show: false },
-            // axisTicks: { show: false },
-            // labels: { show: false },
           },
         }}
       ></ApexCharts>
     </div>
   );
 };
-export default ApexLeft;
+
+export default BlockChartLeft;

@@ -1,0 +1,22 @@
+.TranMain {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+.TranMain .wrapper {
+  padding: 20px 50px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: row wrap;
+}
+.TranMain .wrapper .subTitle {
+  margin-bottom: 30px;
+}
+.TranMain .wrapper .subTitle .subBar {
+  color: #4669f5;
+  font-weight: bold;
+}
+.TranMain .wrapper .chartContainer {
+  display: flex;
+  flex-direction: row wrap;
+}
