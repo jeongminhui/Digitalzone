@@ -99,6 +99,24 @@ const SignIn = () => {
       });
   };
 
+<<<<<<< HEAD
+    // 데이터 센터와 함께 사용
+    // 버튼 클릭 시 signin 컴포넌트와 datacenter 두곳에서 로그인 함수 실행
+
+
+
+
+    const signInHandler = async (e) => {
+        e.preventDefault();
+        await signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const dataPrint = async () => {
+                    setIsLoggedIn(true);
+                    const user = userCredential.user;
+                    const docRef = doc(userCollection, user.uid);
+                    const data = await getDoc(docRef)
+                    const userInfo = data.data();
+=======
   const signInHandler = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
@@ -109,6 +127,7 @@ const SignIn = () => {
           const docRef = doc(userCollection, user.uid);
           const data = await getDoc(docRef);
           const userInfo = data.data();
+>>>>>>> 8f0a82048804dc7c74b09173ede1a88d9037c213
 
           setLoginUser(userInfo);
 

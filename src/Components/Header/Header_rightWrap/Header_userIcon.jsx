@@ -12,7 +12,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
@@ -20,6 +20,7 @@ import List from "@mui/material/List";
 import "./Header_userIcon.scss";
 
 export default function Header_userIcon() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
