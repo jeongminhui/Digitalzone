@@ -3,10 +3,11 @@ import "./Service.scss";
 import "../Block/Block.scss";
 import Footer from "../Footer/Footer";
 import ServiceTable from "./ServiceTable";
+import { useNavigate } from "react-router-dom";
 
+// recoil Atom에서 가져오기
 import { useRecoilValue } from "recoil";
 import { serviceSelector } from "../../Recoil/Selector";
-import { useNavigate } from "react-router-dom";
 
 const Service = () => {
   const serviceData = useRecoilValue(serviceSelector);
