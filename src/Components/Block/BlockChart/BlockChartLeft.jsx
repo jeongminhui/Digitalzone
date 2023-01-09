@@ -1,16 +1,8 @@
-import { Block } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
-const BlockChart = ({ rows }) => {
+
+const BlockChartLeft = ({ rows, containerStyle }) => {
   const [ten, setTen] = useState({});
-
-  const containerStyle = {
-    width: "400px",
-    height: "200px",
-    margin: "50px",
-  };
-
-  //  console.log(rows);
 
   useEffect(() => {
     const timeFilter10 = rows.filter(
@@ -37,8 +29,7 @@ const BlockChart = ({ rows }) => {
     });
   }, [rows]);
 
-  return(
-  <div className="chartWrapper">
+  return (
     <div className="leftChart" style={containerStyle}>
       <ApexCharts
         type="area"
@@ -71,40 +62,7 @@ const BlockChart = ({ rows }) => {
         }}
       ></ApexCharts>
     </div>
-    
-    <div className="rightChart" style={containerStyle}>
-      <ApexCharts
-        type="area"
-        series={[
-          {
-            name: "시간당 블록 수(개)",
-            data: [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen],
-          },
-        ]}
-        options={{
-          chart: {
-            height: 300,
-            width: 500,
-            toolbar: {
-              show: false,
-            },
-          },
-          title: {
-            text: "시간당 블록 수(개)",
-            align: "center",
-          },
-          stroke: {
-            //선의 커브를 부드럽게 하고, 두께를 3으로 지정
-            curve: "smooth",
-            width: 3,
-          },
-          xaxis: {
-            categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
-          },
-        }}
-      ></ApexCharts>
-    </div>
-  </div>
   );
 };
-export default BlockChart;
+
+export default BlockChartLeft;

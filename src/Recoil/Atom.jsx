@@ -29,3 +29,15 @@ export const networkAtom = atom({
   default: "네트워크 기본값",
   effects_UNSTABLE: [persistAtom],
 });
+
+export const currentBlockAtom = atom({
+  key: "currentBlockAtom",
+  default: "현재 블록",
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const currentTxAtom = atom({
+  key: "currentTxAtom",
+  default: "현재 트랜잭션 번호",
+  effects_UNSTABLE: [persistAtom],
+});

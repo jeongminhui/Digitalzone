@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import "../Block/BlockChart/BlockChart.scss";
 
 const BlockTable = ({ rows, clickHandler }) => {
   const columns = [

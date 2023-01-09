@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Carousel = ({ blocknum, block }) => {
+const Carousel = ({ blocknum, block, currentBlock }) => {
   // navigation 블록 상세 이동
   const [blocknumber, setBlocknumber] = useState(blocknum);
   const navigate = useNavigate();
@@ -15,7 +15,6 @@ const Carousel = ({ blocknum, block }) => {
   const carouselHandler = (blocknum, idx) => {
     setBlocknumber(blocknum);
     slideTo(idx);
-    // swiper.slideTo(idx, 1000, false);
   };
 
   useEffect(() => {
@@ -41,8 +40,7 @@ const Carousel = ({ blocknum, block }) => {
         className="mySwiper"
         centeredSlides={true}
         slidesOffsetBefore={50}
-        // activeindex={0}
-        initialSlide={0}
+        initialSlide={currentBlock}
       >
         {block.map((item, idx) => (
           <SwiperSlide
