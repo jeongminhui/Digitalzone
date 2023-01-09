@@ -1,8 +1,13 @@
 .login_logo {
   height: 80px;
-  // margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 .LoginPage {
+  position: absolute;
+  left: 37%;
+  right: 37%;
+  bottom: 30%;
+  top: 20%;
   text-align: center;
   margin: 0 auto;
 }

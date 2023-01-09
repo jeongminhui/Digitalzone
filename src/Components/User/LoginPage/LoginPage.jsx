@@ -1,7 +1,7 @@
 import React from "react";
-import SignIn from "../../UserMyPageComponents/SignIn";
-import "./UserLogin.scss";
-import Page1 from "../../../CommonComponents/Page/Page1";
+import SignIn1 from "../UserMyPageComponents/SignIn/SignIn1";
+import "./LoginPage.scss";
+import Page1 from "../../CommonComponents/Page/Page1";
 
 const LoginPage = () => {
   return (
@@ -12,7 +12,7 @@ const LoginPage = () => {
           alt="logo"
           className="login_logo"
         />
-        <SignIn />
+        <SignIn1 />
       </Page1>
     </div>
   );

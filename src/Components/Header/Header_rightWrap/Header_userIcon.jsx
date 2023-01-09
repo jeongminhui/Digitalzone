@@ -29,9 +29,11 @@ export default function Header_userIcon() {
     setAnchorEl(null);
   };
 
-  // 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함.
-  const userId = "Prsssse@gmail.com";
-  const isLogin = true;
+  // 조건 따라 어떤 Menu 띄울지 정함. (두가지 조건)
+  const userId = "Prse1284@gmail.com";
+  // 로그인 상태
+  const isLogin = false;
+  // 관리자 여부
   const isManager = true;
   return (
     <>

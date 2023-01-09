@@ -5,7 +5,7 @@ import {
   signOut,
   updatePassword,
 } from "firebase/auth";
-import { db } from "../../../firebase";
+import { db } from "../../../../firebase";
 import {
   collection,
   deleteDoc,
@@ -15,7 +15,7 @@ import {
 } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import { loginAtom } from "../../../Recoil/Atom";
+import { loginAtom } from "../../../../Recoil/Atom";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");

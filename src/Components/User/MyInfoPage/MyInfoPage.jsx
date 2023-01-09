@@ -1,6 +1,6 @@
 import React from "react";
-import Page1 from "../../../CommonComponents/Page/Page1";
-import Footer from "../../../Footer/Footer";
+import Page1 from "../../CommonComponents/Page/Page1";
+import Footer from "../../Footer/Footer";
 import "./MyInfoPage.scss";
 import Avatar from "@mui/material/Avatar";
 
@@ -18,6 +18,7 @@ const MyInfoPage = () => {
           </div>
         </div>
       </Page1>
+      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { loginSelector } from '../../../Recoil/Selector';
+import { loginSelector } from '../../../../Recoil/Selector';
 
 const SignInInput = ({ loginClickHandler }) => {
     // recoil test
