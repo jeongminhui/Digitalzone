@@ -4,27 +4,23 @@ import Footer from '../Footer/Footer';
 import UserDataCenter from './UserManagementComponents/UserDataCenter';
 import UserAddPage from './UserManagementComponents/UserAddPage';
 import UserMyPage from './UserMyPageComponents/UserMyPage';
+import Modal1 from './UserModalTest/Modal1';
+import UserDataCenterV2 from './UserMyPageComponents/UserDataCenterV2';
+import SignUp from './UserMyPageComponents/SignUp';
+import SignIn from './UserMyPageComponents/SignIn';
+import SignInInput from './UserMyPageComponents/SignInInput';
+import UserUpdate from './UserMyPageComponents/UserUpdate';
 
 const User = () => {
     return (
         <div className='User'>
-            <div className='UserTopContainer'>
-                <div className='UserTopContainer_left'>
-                    <h1>사용자 정보</h1>
-                    <h3>
-                        <span>
-                            <b>|</b>
-                        </span>
-                        전체 사용자
-                    </h3>
-                </div>
-                <div className='UserTopContainer_right'>
-                    <button>사용자 추가</button>
-                </div>
-            </div>
-            {/* <UserDataCenter /> */}
+            {/* <UserDataCenterV2 /> */}
+            {/* <SignUp /> */}
+            <SignIn />
+            <UserUpdate />
+            {/* <SignInInput /> */}
+            {/* <Modal1 /> */}
             <Footer />
-            <UserMyPage />
         </div>
     );
 };

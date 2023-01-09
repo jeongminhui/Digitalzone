@@ -6,9 +6,9 @@ import SignUp from './SignUp';
 const UserMyPage = () => {
     return (
         <div>
-            < UserDataCenterV2 />
-            {/* <SignIn />
-            <SignUp /> */}
+            {/* < UserDataCenterV2 /> */}
+            {/* <SignIn /> */}
+            {/* <SignUp /> */}
         </div>
     );
 };

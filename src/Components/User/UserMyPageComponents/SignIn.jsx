@@ -3,6 +3,8 @@ import { getAuth, signInWithEmailAndPassword, signOut, updatePassword } from 'fi
 import { db } from '../../../firebase';
 import { collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
+import { useRecoilState } from 'recoil';
+import { loginAtom } from '../../../Recoil/Atom';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -13,6 +15,8 @@ const SignIn = () => {
     const [userpw, setUserpw] = useState('');
     // pwcheck
     const [pwcheck, setPwcheck] = useState('');
+    // recoil
+    const [loginUser, setLoginUser] = useRecoilState(loginAtom);
 
     const userCollection = collection(db, 'users');
     const auth = getAuth();
@@ -74,6 +78,7 @@ const SignIn = () => {
                 const login2 = document.getElementsByClassName('signIn')[1];
                 login1.style.display = 'block';
                 login2.style.display = 'block';
+                sessionStorage.clear();
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -97,6 +102,8 @@ const SignIn = () => {
                     const docRef = doc(userCollection, user.uid);
                     const data = await getDoc(docRef)
                     const userInfo = data.data();
+
+                    setLoginUser(userInfo);
 
                     // 로그인시 로그인창 없애기
                     const login1 = document.getElementsByClassName('signIn')[0];
@@ -232,16 +239,16 @@ const SignIn = () => {
                         <div className='signin pw'>
                             비밀번호: <input type='password' className='userpw' value={userpw} onChange={(e) => setUserpw(e.target.value)} />
                         </div>
+                        <div className='natvaildpwsignin' style={{ color: '#4665F9' }}>
+                            ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
+                        </div>
                         <div className='signin pwcheck'>
                             비밀번호 재확인: <input type='password' className='userpwcheck' value={pwcheck} onChange={(e) => setPwcheck(e.target.value)} />
                             <button type='submit' onClick={pwChangeHandler}>
                                 변경
                             </button>
-                            <span className='notsamepwsignin'> 비밀번호가 일치하지 않습니다</span>
                         </div>
-                        <div className='natvaildpwsignin' style={{ color: '#4665F9' }}>
-                            ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
-                        </div>
+                        <div className='notsamepwsignin'> 비밀번호가 일치하지 않습니다</div>
                     </form>
                     <div className='signin admin'>
                         <span className='menu admin'></span>
