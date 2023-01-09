@@ -1,24 +1,22 @@
-import React from 'react';
-import './User.scss';
-import Footer from '../Footer/Footer';
-import Modal1 from './UserModalTest/Modal1';
-import SignUp from './UserMyPageComponents/SignUp';
-import SignIn from './UserMyPageComponents/SignIn';
-import UserUpdate from './UserMyPageComponents/UserUpdate';
-import UserListPage from './UserMyPageComponents/UserListPage'
+import React from "react";
+import "./User.scss";
+import Footer from "../Footer/Footer";
+import Modal1 from "../CommonComponents/Modal/Modal1";
+import SignUp from "./UserMyPageComponents/SignUp/SignUp";
+import UserInsertModal from "./UserInsertComponents/UserInsertModal";
+import UserAdd from "./FixedComponents/UserAdd/UserAdd";
+import UserList from "./FixedComponents/UserList/UserList";
+import UserLogin from "./FixedComponents/UserLogin/UserLogin";
+import UserMyPage from "./FixedComponents/UserMyPage/UserMyPage";
+import UserUpdate from "./FixedComponents/UserUpdate/UserUpdate";
+
 const User = () => {
-    return (
-        <div className='User'>
-            {/* <UserDataCenterV2 /> */}
-            <SignUp />
-            <SignIn />
-            <UserUpdate />
-            <UserListPage />
-            {/* <SignInInput /> */}
-            {/* <Modal1 /> */}
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="User">
+      <UserList />
+      <UserInsertModal />
+    </div>
+  );
 };
 
 export default User;
