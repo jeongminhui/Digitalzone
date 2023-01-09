@@ -122,19 +122,19 @@ const UserListPage = () => {
         <tbody>
         {userlist.map((user, idx) => (
             <tr key={idx} onClick={(e)=>openModal(user.uid,e)}>
-              <td>{idx+1}</td>
-              <td>{user.userclass}</td>
+              <td onClick={e => e.stopPropagation()}>{idx+1}</td>
+              <td onClick={e => e.stopPropagation()}>{user.userclass}</td>
               <td>{user.username}</td>
-              <td>{user.userteam}</td>
+              <td onClick={e => e.stopPropagation()}>{user.userteam}</td>
               <td>{user.userid}</td>
-              <td>{adminList(user.useradmin.dashboard)}</td>
-              <td>{adminList(user.useradmin.block)}</td>
-              <td>{adminList(user.useradmin.transaction)}</td>
-              <td>{adminList(user.useradmin.node)}</td>
-              <td>{adminList(user.useradmin.service)}</td>
-              <td>{user.serviceCnt}</td>
-              <td>{user.userdate}</td>
-              <td>{user.userstatus}</td>
+              <td onClick={e => e.stopPropagation()}>{adminList(user.useradmin.dashboard)}</td>
+              <td onClick={e => e.stopPropagation()}>{adminList(user.useradmin.block)}</td>
+              <td onClick={e => e.stopPropagation()}>{adminList(user.useradmin.transaction)}</td>
+              <td onClick={e => e.stopPropagation()}>{adminList(user.useradmin.node)}</td>
+              <td onClick={e => e.stopPropagation()}>{adminList(user.useradmin.service)}</td>
+              <td onClick={e => e.stopPropagation()}>{user.serviceCnt}</td>
+              <td onClick={e => e.stopPropagation()}>{user.userdate}</td>
+              <td onClick={e => e.stopPropagation()}>{user.userstatus}</td>
               <td onClick={e => e.stopPropagation()}>
               <button type="submit"  className="DeleteButton" onClick={(e)=>deleteHandler(user.uid,e)}>
             삭제
