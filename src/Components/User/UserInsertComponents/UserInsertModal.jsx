@@ -1,9 +1,9 @@
-import "./UserInsertModal.css";
+import "./UserInsertModal.scss";
 import React, { useState } from "react";
-import { Button, Modal } from "antd";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import SignUp from "../UserMyPageComponents/SignUp";
+import SignUp from "../UserMyPageComponents/SignUp/SignUp";
 import Modal1 from "../../CommonComponents/Modal/Modal1";
+import { Button, Checkbox, Form, Input } from "antd";
 
 const UserInsertModal = () => {
   const [loading, setLoading] = useState(false);

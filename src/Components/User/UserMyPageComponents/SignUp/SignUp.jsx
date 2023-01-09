@@ -1,19 +1,31 @@
-import React, { useState } from "react";
-import { db } from "../../../firebase";
+import React, { useState, useEffect } from "react";
+import { db } from "../../../../firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
+import { Button, Checkbox, Form, Input } from "antd";
 
 const SignUp = () => {
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
   // userid
+  const [emailId, setEmailId] = useState("");
+  const [domain, setDomain] = useState("");
   const [email, setEmail] = useState("");
   // userteam
   const [team, setTeam] = useState("");
   // userpw
   const [password, setPassword] = useState("");
+  // pwcheck
+  const [pwcheck, setPwcheck] = useState("");
   // username
   const [name, setName] = useState("");
   // userclass
-  const [userclass, setUserclass] = useState("manager");
+  const [userclass, setUserclass] = useState("관리자");
   // useradmin
   const [admin, setAdmin] = useState({
     dashboard: true,
@@ -30,8 +42,8 @@ const SignUp = () => {
     service_d: false,
     service_e: false,
   });
-  // test
-  const [user, setUser] = useState("");
+
+  const [serviceCnt, setServiceCnt] = useState(0);
 
   const auth = getAuth();
 
@@ -51,6 +63,8 @@ const SignUp = () => {
       ...userservice,
       [e.target.id]: e.target.checked,
     });
+    if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
+    else setServiceCnt((prev) => prev - 1);
   };
 
   // userclass 변경
@@ -58,18 +72,70 @@ const SignUp = () => {
     setUserclass(e.target.value);
   };
 
+  // 이메일 드롭다운
+  const domainChangeHandler = (e) => {
+    if (e.target.value !== "type") {
+      setDomain(e.target.value);
+    } else {
+      setDomain("");
+    }
+  };
+  const domainInput = (e) => {
+    setDomain(e.target.value);
+  };
+
+  useEffect(() => {
+    const useremail = emailId + "@" + domain;
+    setEmail(useremail);
+  }, [emailId, domain]);
+
+  // useEffect로 동기화
+  // 비밀번호 조건 검사
+  // 8자 이상, 하나의 문자 및 하나의 숫자 및 하나의 특수 문자 포함
+  // 대소문자 구분없이 문자를 전부 하나로 침
+  useEffect(() => {
+    if (password.length > 0) {
+      setPassword((prev) => prev);
+      const regexp =
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
+
+      const div = document.getElementsByClassName("natvaildpwsignup")[0];
+      if (regexp.test(password)) {
+        div.style.display = "none";
+      } else if (password.trim() === "" || !regexp.test(password))
+        div.style.display = "block";
+    }
+  }, [password]);
+
+  // useEffect로 동기화
+  // 비밀번호 확인
+  useEffect(() => {
+    if (pwcheck.length > 0) {
+      setPwcheck((prev) => prev);
+
+      // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
+      const same = document.getElementsByClassName("notsamepwsignup")[0];
+      if (password === pwcheck) {
+        same.style.display = "none";
+      } else same.style.display = "block";
+    }
+  }, [password, pwcheck]);
+
   const clickHandler = async (e) => {
     e.preventDefault();
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user.metadata.creationTime);
+        setName("");
+        setEmailId("");
         setEmail("");
         setTeam("");
         setPassword("");
-        setName("");
+        setPwcheck("");
+        setServiceCnt(0);
         checkboxes.forEach((checkbox) => (checkbox.checked = false));
 
         const user = userCredential.user;
+
         // timestamp yyyy-MM-dd
         const time = new Date(user.metadata.creationTime);
         const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000)
@@ -89,6 +155,8 @@ const SignUp = () => {
           userclass: userclass,
           userdate: date,
           userstatus: "정상",
+          uid: user.uid,
+          serviceCnt: serviceCnt,
         });
       })
       .catch((error) => {
@@ -100,6 +168,69 @@ const SignUp = () => {
 
   return (
     <div>
+      <Form
+        name="basic"
+        labelCol={{
+          span: 8,
+        }}
+        wrapperCol={{
+          span: 16,
+        }}
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
       <form>
         <h1>사용자 추가</h1>
         <div>
@@ -108,7 +239,7 @@ const SignUp = () => {
             <input
               type="radio"
               name="type"
-              value="manager"
+              value="관리자"
               onClick={checkedItemHandler}
               defaultChecked
             />
@@ -118,7 +249,7 @@ const SignUp = () => {
             <input
               type="radio"
               name="type"
-              value="user"
+              value="사용자"
               onClick={checkedItemHandler}
             />
             사용자
@@ -144,26 +275,61 @@ const SignUp = () => {
             }}
           />
         </div>
+        {/* <div>
+                    아이디:{' '}
+                    <input
+                        type='email'
+                        value={email}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                        }}
+                    />
+                </div> */}
         <div>
           아이디:{" "}
           <input
-            type="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            type="text"
+            value={emailId}
+            onChange={(e) => setEmailId(e.target.value)}
           />
+          @
+          <input
+            className="domainTxt"
+            type="text"
+            value={domain}
+            onChange={domainInput}
+          />
+          <select className="domainList" onChange={domainChangeHandler}>
+            <option value="type">직접입력</option>
+            <option value="gmail.com">gmail.com</option>
+            <option value="naver.com">naver.com</option>
+            <option value="nate.com">nate.com</option>
+            <option value="hanmail.net">hanmail.net</option>
+            <option value="kakao.com">kakao.com</option>
+          </select>
         </div>
         <div>
           비밀번호:{" "}
           <input
             type="password"
+            className="userpw"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className="natvaildpwsignup" style={{ color: "#4665F9" }}>
+          ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
+        </div>
+        <div>
+          비밀번호 재확인:{" "}
+          <input
+            type="password"
+            className="userpwcheck"
+            value={pwcheck}
+            onChange={(e) => setPwcheck(e.target.value)}
+          />
+        </div>
+        <div className="notsamepwsignup"> 비밀번호가 일치하지 않습니다</div>
         <div>
           권한:{" "}
           <label>
@@ -181,7 +347,7 @@ const SignUp = () => {
               name="checkbox"
               onChange={adminChangeHandler}
             />
-            트랜젝션
+            트랜잭션
           </label>
           <label>
             <input
@@ -251,7 +417,7 @@ const SignUp = () => {
           </label>
         </div>
         <button type="submit" className="SignUpButton" onClick={clickHandler}>
-          추가
+          사용자 추가
         </button>
       </form>
     </div>

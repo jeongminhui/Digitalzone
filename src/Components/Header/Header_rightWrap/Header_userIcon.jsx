@@ -30,7 +30,7 @@ export default function Header_userIcon() {
   };
 
   // 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함.
-  const userId = "Profsssle@gmail.com";
+  const userId = "Prsssse@gmail.com";
   const isLogin = true;
   const isManager = true;
   return (
@@ -103,7 +103,7 @@ export default function Header_userIcon() {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/user_management">
+                <Link to="/user">
                   <ListItemIcon>
                     <Settings fontSize="small" />
                   </ListItemIcon>

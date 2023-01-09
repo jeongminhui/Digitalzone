@@ -1,7 +1,7 @@
 import React from "react";
-import SignIn from "../UserMyPageComponents/SignIn";
-import "./LoginPage.scss";
-import Page1 from "../../CommonComponents/Page/Page1";
+import SignIn from "../../UserMyPageComponents/SignIn";
+import "./UserLogin.scss";
+import Page1 from "../../../CommonComponents/Page/Page1";
 
 const LoginPage = () => {
   return (
