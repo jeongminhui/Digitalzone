@@ -173,7 +173,6 @@ const UserListPage = () => {
         <tbody>
             <tr>
               <td>{modalUser.uid}</td>
-              <td>{modalUser.userclass}</td>
               <td>{modalUser.username}</td>
               <td>{modalUser.userteam}</td>
               <td>{modalUser.userid}</td>
