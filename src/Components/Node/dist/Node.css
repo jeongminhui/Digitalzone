@@ -6,11 +6,11 @@
   justify-content: center;
 }
 
-.NodeWrap {
-  width: 90%;
+.wrapper {
+  padding: 20px 50px;
+  margin-bottom: 100px;
 }
-
-.subBar {
+.wrapper .subBar {
   color: #4669F5;
   font-weight: bold;
   font-size: 26px;
@@ -26,6 +26,7 @@
   box-shadow: 0 0 20px 0 rgba(136, 136, 136, 0.1);
   text-align: center;
   line-height: 50px;
+  cursor: pointer;
 }
 
 .is-active {

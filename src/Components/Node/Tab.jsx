@@ -13,8 +13,8 @@ import Stack from "@mui/material/Stack";
 import { createTheme, ThemeProvider } from '@mui/material';
 import { koKR } from '@mui/material/locale';
 import { useNavigate } from 'react-router-dom';
-import Grafana from './Grafana';
 import './Tab.scss';
+import Chart from './Chart'
 
 export default function Tab({rows}) {
    
@@ -97,7 +97,7 @@ export default function Tab({rows}) {
             tabTitle:<div className={activeIndex===0 ? "is-active left" : "tab"} onClick={()=>tabClickHandler(0)}> 노드 목록 </div>,
             tabCont:<div>
                  <ThemeProvider theme={theme}>
-                 <Paper sx={{ width: "100%", overflow: "hidden", margin: "15px 0px 15px 0px;" }}>
+                 <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none"}}>
         <TableContainer sx={{ maxHeight: 440, bgcolor:'background.content' }}>
           <Table stickyHeader aria-label="sticky table"  >
             <TableHead>
@@ -174,7 +174,7 @@ export default function Tab({rows}) {
         },
         {
             tabTitle:<div className={activeIndex===1 ? "is-active right" : "tab"} onClick={()=>tabClickHandler(1)}> 전체 노드 자원 현황 </div>,
-            tabCont:<div className='graph'><Grafana/></div>
+            tabCont:<div className='Wrap'><Chart/></div>
         }
     ];
     

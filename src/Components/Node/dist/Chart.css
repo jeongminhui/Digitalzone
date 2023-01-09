@@ -1,0 +1,11 @@
+.Wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.Wrap .ChartVol {
+  width: 520px;
+  height: 360px;
+  margin: 12px;
+  padding-top: 15px;
+  box-shadow: 0 0 20px 0 rgba(136, 136, 136, 0.15);
+}

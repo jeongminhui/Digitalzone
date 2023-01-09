@@ -4,8 +4,9 @@
   position: relative;
 }
 .NodeDetail .DetailWrap {
-  width: 100%;
+  width: 90%;
   padding-left: 65px;
+  margin-bottom: 100px;
 }
 .NodeDetail .subTitle {
   display: flex;

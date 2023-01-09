@@ -45,8 +45,7 @@ const Node = () => {
   return (
 
     <div className="Node">
-      
-        <div className='NodeWrap'>
+        <div className="wrapper">
           <h1 className='mainTitle'>노드</h1>
           <h3 className='subTitle'><span className='subBar'>|</span> 전체 노드 {rows.length}개</h3>
 
