@@ -53,17 +53,17 @@ const UserListPage = () => {
 
     
   // 전체 유저 데이터 가져오기
-useEffect(()=>{
-  async function getUsers() {
-      const data = await getDocs(userCollection);
-      setUserlist(
-        data.docs.map((item) => ({
-          ...item.data(),                                     
-        }))
-      );
-     };
+  useEffect(()=>{
+    async function getUsers() {
+        const data = await getDocs(userCollection);
+        setUserlist(
+          data.docs.map((item) => ({
+            ...item.data(),                                     
+          }))
+        );
+      };
      getUsers() 
-},[])
+  },[])
 
   // 특정 유저 데이터 가져오기
   const getModalUser = async(uid) => {
