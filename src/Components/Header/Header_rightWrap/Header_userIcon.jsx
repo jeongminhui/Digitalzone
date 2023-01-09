@@ -111,10 +111,12 @@ export default function Header_userIcon() {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                로그아웃
+                <Link to="/">
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  로그아웃
+                </Link>
               </MenuItem>
             </Menu>
           ) : (
@@ -154,19 +156,21 @@ export default function Header_userIcon() {
                 </ListItem>
               </List>
               <Divider />
-              <Link to="/myinfo">
-                <MenuItem>
+              <MenuItem>
+                <Link to="/myinfo">
                   <ListItemIcon>
                     <PersonRoundedIcon fontSize="small" />
                   </ListItemIcon>
                   나의 정보
-                </MenuItem>
-              </Link>
+                </Link>
+              </MenuItem>
               <MenuItem>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                로그아웃
+                <Link to="/">
+                  <ListItemIcon>
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  로그아웃
+                </Link>
               </MenuItem>
             </Menu>
           )
