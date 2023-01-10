@@ -13,7 +13,7 @@ import UserUpdate from "./FixedComponents/UserUpdate/UserUpdate";
 const User = () => {
   return (
     <div className="User">
-      <UserList />
+      <UserAdd />
       <UserInsertModal />
     </div>
   );

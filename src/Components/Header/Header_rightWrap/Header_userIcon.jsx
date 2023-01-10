@@ -33,9 +33,9 @@ export default function Header_userIcon() {
   // 조건 따라 어떤 Menu 띄울지 정함. (두가지 조건)
   const userId = "Prse1284@gmail.com";
   // 로그인 상태
-  const isLogin = false;
+  const isLogin = 1;
   // 관리자 여부
-  const isManager = true;
+  const isManager = 0;
   return (
     <>
       <React.Fragment>
@@ -208,7 +208,12 @@ export default function Header_userIcon() {
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <MenuItem>
-              <Link to="/login">
+              <Link
+                to="/login"
+                onClick={(e) => {
+                  console.log(e);
+                }}
+              >
                 <ListItemIcon>
                   <PersonRoundedIcon fontSize="small" />
                 </ListItemIcon>

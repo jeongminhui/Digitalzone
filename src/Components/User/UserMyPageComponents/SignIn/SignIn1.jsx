@@ -21,13 +21,13 @@ const SignIn1 = () => {
         rules={[
           {
             required: true,
-            message: "Please input your Username!",
+            message: "이메일을 입력하세요!",
           },
         ]}
       >
         <Input
           prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Username"
+          placeholder="아이디(이메일)"
         />
       </Form.Item>
       <Form.Item
@@ -35,14 +35,14 @@ const SignIn1 = () => {
         rules={[
           {
             required: true,
-            message: "Please input your Password!",
+            message: "비밀번호를 입력하세요!",
           },
         ]}
       >
         <Input
           prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
-          placeholder="Password"
+          placeholder="비밀번호"
         />
       </Form.Item>
       {/* <Form.Item>
