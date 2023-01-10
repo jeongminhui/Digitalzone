@@ -1,0 +1,75 @@
+.BlockInfo {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+.BlockInfo .wrap {
+  padding: 20px 70px;
+  margin-bottom: 100px;
+}
+.BlockInfo .wrap .subTitle {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.BlockInfo .wrap .subTitle .listBtn {
+  margin-right: 56px;
+}
+.BlockInfo .wrap .subTitle .subBar {
+  color: #4669f5;
+  font-weight: bold;
+  font-size: 26px;
+}
+.BlockInfo .wrap .tableWrap {
+  width: 91%;
+  box-shadow: var(--box-shadow);
+  margin: 100px auto;
+  padding: 30px;
+}
+.BlockInfo .wrap .tableWrap .table {
+  border-spacing: 25px;
+}
+.BlockInfo .wrap .tableWrap .table .infoTitle {
+  font-size: 14px;
+  font-weight: bold;
+}
+.BlockInfo .wrap .tableWrap .table .infoContent {
+  font-size: 14px;
+  padding-left: 30px;
+}
+.BlockInfo .wrap .tableWrap .table .copyButton {
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ebf4fc;
+  border: none;
+  font-size: 12px;
+  padding: 3px;
+  margin: 0;
+}
+.BlockInfo .wrap .tableWrap .table .copyButton .icon {
+  margin: 0 0 3px 1px;
+}
+.BlockInfo .wrap .tableWrap .table .txInfoBtn {
+  margin-left: 30px;
+  padding: 0;
+  width: 50px;
+  height: 30px;
+  font-size: 12px;
+}
+.BlockInfo .modalBtn {
+  width: 30px;
+  height: 30px;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+}
+.BlockInfo .modalBtn .modalIcon {
+  font-size: 20px;
+}
+.BlockInfo .submitBtn {
+  color: #fff;
+}

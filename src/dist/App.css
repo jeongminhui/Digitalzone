@@ -43,9 +43,8 @@ button {
   color: white;
   background-color: var(--point-color);
   border: 0;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 35px;
-  margin: 9px;
   padding: 9px;
   padding-left: 25px;
   padding-right: 25px;
@@ -53,4 +52,19 @@ button {
   font-size: 15px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 420;
+}
+
+.listBtn {
+  width: 85px;
+  height: 35px;
+  border: 1px solid var(--point-color);
+  border-radius: 5px;
+  margin-right: 80px;
+  padding: 5px;
+  outline: none;
+  text-decoration: none;
+  background-color: var(--point-color);
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
 }
