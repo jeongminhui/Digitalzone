@@ -3,6 +3,7 @@ import SignIn1 from "../UserMyPageComponents/SignIn/SignIn1";
 import "./LoginPage.scss";
 import Page1 from "../../CommonComponents/Page/Page1";
 import Footer from "../../Footer/Footer";
+import UserLogin from "../FixedComponents/UserLogin/UserLogin";
 
 const LoginPage = () => {
   return (
@@ -13,7 +14,8 @@ const LoginPage = () => {
           alt="logo"
           className="login_logo"
         />
-        <SignIn1 />
+        <UserLogin />
+        {/* <SignIn1 /> */}
       </div>
       <Footer />
     </div>
