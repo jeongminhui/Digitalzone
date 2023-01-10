@@ -3,12 +3,6 @@
   min-height: 100vh;
   position: relative;
 }
-.TranMain .wrapper {
-  padding: 20px 50px;
-  margin-bottom: 100px;
-  display: flex;
-  flex-direction: row wrap;
-}
 .TranMain .wrapper .subTitle {
   margin-bottom: 30px;
 }
@@ -16,7 +10,20 @@
   color: #4669f5;
   font-weight: bold;
 }
-.TranMain .wrapper .chartContainer {
+.TranMain .wrapper .chartWrapper {
+  clear: both;
   display: flex;
   flex-direction: row wrap;
+}
+.TranMain .wrapper .chartWrapper .pagenationDIV {
+  display: flex;
+  justify-content: space-between;
+}
+.TranMain .wrapper .chartWrapper .pagenationDIV .pagenation {
+  align-self: center;
+  justify-self: center;
+  margin-right: 100px;
+}
+.TranMain .wrapper .chartWrapper .pagenationDIV .tablePagenation {
+  justify-self: flex-end;
 }

@@ -20,9 +20,10 @@ const ChartLeft = () => {
   const transaction = collection(db, "transaction_test");
 
   const containerStyle = {
-    width: "400px",
-    height: "200px",
-    margin: "50px",
+    width: "450px",
+    height: "300px",
+    margin: "5px",
+    marginBottom: "50px",
   }
   useEffect(() => {
     async function getTrans() {

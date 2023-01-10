@@ -1,0 +1,9 @@
+.Transaction {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+.Transaction .wrapper {
+  padding: 20px 50px;
+  margin-bottom: 100px;
+}
