@@ -13,12 +13,7 @@ import NodeDetail from "./Components/Node/NodeDetail";
 // user 실제 사용할 사용자 페이지 목록
 import LoginPage from "./Components/User/LoginPage/LoginPage";
 import MyInfoPage from "./Components/User/MyInfoPage/MyInfoPage";
-// user 사용자 기능 컴포넌트 목록
-import UserAdd from "./Components/User/FixedComponents/UserAdd/UserAdd";
-import UserList from "./Components/User/FixedComponents/UserList/UserList";
-import UserLogin from "./Components/User/FixedComponents/UserLogin/UserLogin";
-import UserMyPage from "./Components/User/FixedComponents/UserMyPage/UserMyPage";
-import UserUpdate from "./Components/User/FixedComponents/UserUpdate/UserUpdate";
+
 // 유저 최종 페이지 링크
 import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
 import UserList_Page from "./Components/User/UserPageComponents/UserList/UserList_Page";
