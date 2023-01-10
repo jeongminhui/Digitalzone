@@ -3,9 +3,13 @@
   min-height: 100vh;
   position: relative;
 }
+.Block .wrapper {
+  padding: 20px 70px;
+  margin-bottom: 100px;
+}
 
 .wrapper {
-  padding: 20px 50px;
+  padding: 20px 200px;
   margin-bottom: 100px;
 }
 .wrapper .subTitle {
