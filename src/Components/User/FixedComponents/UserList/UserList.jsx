@@ -3,14 +3,16 @@ import { collection, deleteDoc, doc, getDoc, getDocs } from 'firebase/firestore'
 import React, { useEffect, useState } from "react";
 import { db } from '../../../../firebase';
 import Modal from "react-modal";
-import { async } from '@firebase/util';
+import { useRecoilValue } from 'recoil';
+import { loginSelector } from '../../../../Recoil/Selector';
+import { Navigate } from 'react-router-dom';
 
 const UserList = () => {
    // 스테이트 저장소
    const [userlist, setUserlist] = useState([])
    const [modalUser, setModalUser] = useState({})
    const [modalIsOpen, setIsOpen] = React.useState(false);
-
+   const loginUser = useRecoilValue(loginSelector)
 
    // firebase 연결
    const userCollection = collection(db, 'users');
@@ -96,9 +98,12 @@ const UserList = () => {
    }
  }
 
+ console.log(loginUser);
  console.log(modalUser);
  console.log(userlist);
  return (
+  <div>
+  {loginUser.userclass === '관리자' ?  
    <div>
      <table>
        <thead>
@@ -188,6 +193,8 @@ const UserList = () => {
        </tbody>
      </table>
      </Modal>
+   </div>
+   : 	<Navigate to="/" replace={true} />}
    </div>
  );
 };

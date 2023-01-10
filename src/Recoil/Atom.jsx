@@ -32,6 +32,6 @@ export const networkAtom = atom({
 
 export const loginAtom = atom({
     key: 'loginAtom',
-    default: '사용자 기본값',
+    default: 'true',
     effects_UNSTABLE: [persistAtom],
 });

@@ -3,13 +3,16 @@ import { collection, deleteDoc, doc, getDoc, getDocs } from 'firebase/firestore'
 import React, { useEffect, useState } from "react";
 import { db } from '../../../firebase';
 import Modal from "react-modal";
-import { async } from '@firebase/util';
+import { Navigate } from "react-router-dom";
 
-const UserListPage = () => {
+const UserListPage = (loginUser) => {
     // 스테이트 저장소
     const [userlist, setUserlist] = useState([])
     const [modalUser, setModalUser] = useState({})
     const [modalIsOpen, setIsOpen] = React.useState(false);
+
+
+   // 로그인 접근 제한
 
 
     // firebase 연결
@@ -95,7 +98,7 @@ const UserListPage = () => {
        return "X";
     }
   }
-
+ // loginUser.type==admin
   console.log(modalUser);
   console.log(userlist);
   return (
