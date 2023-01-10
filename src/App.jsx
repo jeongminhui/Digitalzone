@@ -11,6 +11,7 @@ import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
 import ServiceInfo from "./Components/Service/ServiceInfo/ServiceInfo";
+import TranInfo from "./Components/Transaction/TranInfo/TranInfo";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +34,10 @@ function App() {
         {
           path: "/transaction",
           element: <Transaction />,
+        },
+        {
+          path: "/transaction/:txnum",
+          element: <TranInfo />,
         },
         {
           path: "/node",

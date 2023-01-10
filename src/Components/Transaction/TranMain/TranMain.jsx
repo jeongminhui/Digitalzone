@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 // row 구조
 const TranMain = ({ rows }) => {
-  // navigation 블록 상세 이동
+  // navigation 상세 이동
   const [txnum, setTxnum] = useState("");
   const navigate = useNavigate();
 
@@ -20,22 +20,16 @@ const TranMain = ({ rows }) => {
 
   return (
     <div className="TranMain">
-      <div className="wrapper">
         <h1 className="mainTitle">트랜잭션</h1>
         <h3 className="subTitle">
           <span className="subBar">|</span> 전체 트랜잭션 {rows.length}개
         </h3>
-        <div className="chartContainer">
-          <div className="chartLeft">
-            <ChartLeft />
-          </div>
-          <div className="chartRight">
-            <ChartRight />
-          </div>
+        <div className="chartWrapper">
+          <ChartLeft />
+          <ChartRight />
         </div>
         <TranTable rows={rows} clickHandler={clickHandler} />
       </div>
-    </div>
   );
 };
 

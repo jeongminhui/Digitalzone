@@ -65,7 +65,7 @@ const TranTable = ({ rows, clickHandler }) => {
     }, [pagenation]);
 
   return (
-    <div>
+    <div className="tableWrapper">
       <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
         <TableContainer sx={{ bgcolor: "#fff" }}>
           <Table stickyHeader aria-label="sticky table">

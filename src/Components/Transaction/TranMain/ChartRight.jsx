@@ -2,27 +2,27 @@ import React, { useEffect, useState } from "react";
 import "./ChartRight.scss";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  doc,
-  query,
-  where,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import {collection,getDocs,} from "firebase/firestore";
 
 const ChartRight = () => {
   const [ten, setTen] = useState({});
   const [rows, setRows] = useState([]);
+  const [avr, setAvr] = useState({});
+  const [sum, setSum] = useState({
+    ten: 0,
+    eleven: 0,
+    tewlve: 0,
+    thirteen: 0,
+    fourteen: 0,
+  });
+
 
   const transaction = collection(db, "transaction_test");
 
   const containerStyle = {
-    width: "400px",
-    height: "200px",
-    margin: "50px",
+    width: "450px",
+    height: "300px",
+    // marginBottom: "50px"
   };
   useEffect(() => {
     async function getTrans() {
@@ -63,18 +63,31 @@ const ChartRight = () => {
       (item) => item.createdt.slice(11, 13) === "14"
     );
 
-    
-    setTen({
-      ten: timeFilter10.length,
-      eleven: timeFilter11.length,
-      twelve: timeFilter12.length,
-      thirteen: timeFilter13.length,
-      fourteen: timeFilter14.length,
-      
+    const tenTxsize = timeFilter10.map((item) => {
+      setSum({ ten: (sum.ten += parseInt(item.txsize)) })
     });
-  }, [rows]);
+    const elevenTxsize = timeFilter11.map((item) => {
+      setSum({ eleven: (sum.eleven += parseInt(item.txsize))})
+    });
+    const tewlveTxsize = timeFilter12.map((item) => {
+      setSum({ tewlve: (sum.tewlve += parseInt(item.txsize))})
+    });
+    const thirteenTxsize = timeFilter13.map((item) => {
+      setSum({ thirteen: (sum.thirteen += parseInt(item.txsize))})
+    });
+    const fourteenTxsize = timeFilter14.map((item) => {
+      setSum({ thirteen: (sum.fourteen += parseInt(item.txsize))})
+    });
 
-  // console.log(tensize);
+    setAvr({
+      ten: parseInt(sum.ten / timeFilter10.length),
+      eleven: parseInt(sum.eleven / timeFilter11.length),
+      twelve: parseInt(sum.tewlve / timeFilter12.length),
+      thirteen: parseInt(sum.thirteen / timeFilter13.length),
+      fourteen: parseInt(sum.fourteen / timeFilter14.length),
+    });
+   
+  }, [rows]);
 
   return (
     <div className="leftChart" style={containerStyle}>
@@ -83,7 +96,7 @@ const ChartRight = () => {
         series={[
           {
             name: "평균 트랜잭션 크기(KB)",
-            data: [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen],
+            data: [avr.ten, avr.eleven, avr.twelve, avr.thirteen, avr.fourteen],
           },
         ]}
         options={{
@@ -95,13 +108,16 @@ const ChartRight = () => {
             },
           },
           title: {
-            text: "시간당 트랜잭션 수(개)",
+            text: "평균 트랜잭션 크기(KB)",
             align: "center",
           },
           stroke: {
             //선의 커브를 부드럽게 하고, 두께를 3으로 지정
             curve: "smooth",
             width: 3,
+          },
+          grid: {
+            show: false,
           },
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
