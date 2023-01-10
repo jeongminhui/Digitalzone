@@ -91,9 +91,6 @@ const UserUpdate = () => {
         await deleteDoc(doc(db, 'users', user.uid));
     };
 
-    // console.log(user);
-    // console.log(serviceCnt);
-
     return (
         <div>
             <div>{user.username}</div>

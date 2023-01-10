@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../../firebase';
+import { db } from '../../../../firebase';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
-const SignUp = () => {
+const UserAdd = () => {
     // userid
     const [emailId, setEmailId] = useState('');
     const [domain, setDomain] = useState('');
@@ -22,6 +23,8 @@ const SignUp = () => {
     const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
     // userservice
     const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
+    // 사용자 추가 실패 메시지
+    const [errorMsg, setErrorMsg] = useState('');
 
     const [serviceCnt, setServiceCnt] = useState(0);
 
@@ -103,15 +106,6 @@ const SignUp = () => {
         e.preventDefault();
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                setName('');
-                setEmailId('');
-                setEmail('');
-                setTeam('');
-                setPassword('');
-                setPwcheck('');
-                setServiceCnt(0);
-                checkboxes.forEach((checkbox) => (checkbox.checked = false));
-
                 const user = userCredential.user;
 
                 // timestamp yyyy-MM-dd
@@ -134,18 +128,49 @@ const SignUp = () => {
                     uid: user.uid,
                     serviceCnt: serviceCnt,
                 });
+                Swal.fire({
+                    icon: 'success',
+                    title: '사용자를 추가하였습니다',
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage);
+                switch (error.code) {
+                    case 'auth/invalid-email':
+                        setErrorMsg('아이디가 이메일 형식이 아닙니다');
+                        break;
+                    default:
+                        setErrorMsg('사용자를 추가할 수 없습니다');
+                }
             });
+        setName('');
+        setEmailId('');
+        setEmail('');
+        setTeam('');
+        setPassword('');
+        setPwcheck('');
+        setServiceCnt(0);
+        checkboxes.forEach((checkbox) => (checkbox.checked = false));
     };
+    useEffect(() => {
+        if (errorMsg !== '') {
+            const errorPrint = async () => {
+                await Swal.fire({
+                    icon: 'error',
+                    title: errorMsg,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            };
+            errorPrint();
+            setErrorMsg('');
+        }
+    }, [errorMsg]);
 
     return (
-        <div>
+        <>
             <form>
-                <h1>사용자 추가</h1>
                 <div>
                     유형:
                     <label>
@@ -177,16 +202,6 @@ const SignUp = () => {
                         }}
                     />
                 </div>
-                {/* <div>
-                    아이디:{' '}
-                    <input
-                        type='email'
-                        value={email}
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-                </div> */}
                 <div>
                     아이디: <input type='text' value={emailId} onChange={(e) => setEmailId(e.target.value)} />@<input className='domainTxt' type='text' value={domain} onChange={domainInput} />
                     <select className='domainList' onChange={domainChangeHandler}>
@@ -258,8 +273,8 @@ const SignUp = () => {
                     사용자 추가
                 </button>
             </form>
-        </div>
+        </>
     );
 };
 
-export default SignUp;
+export default UserAdd;

@@ -1,10 +1,10 @@
 import { getAuth } from 'firebase/auth';
 import { collection, deleteDoc, doc, getDoc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { db } from '../../../firebase';
+import { db } from '../../../../firebase';
 import Modal from 'react-modal';
 
-const UserListPage = () => {
+const UserList = () => {
     // 스테이트 저장소
     const [userlist, setUserlist] = useState([]);
     const [modalUser, setModalUser] = useState({});
@@ -165,13 +165,13 @@ const UserListPage = () => {
                             <td>{modalUser.userteam}</td>
                             <td>{modalUser.userid}</td>
                             {/* <td>{adminList(userlist.useradmin.dashboard)}</td>
-              <td>{adminList(userlist.useradmin.block)}</td>
-              <td>{adminList(userlist.useradmin.transaction)}</td>
-              <td>{adminList(userlist.useradmin.node)}</td>
-              <td>{adminList(userlist.useradmin.service)}</td>
-              <td>{userlist.serviceCnt}</td>
-              <td>{userlist.userdate}</td>
-              <td>{userlist.userstatus}</td> */}
+             <td>{adminList(userlist.useradmin.block)}</td>
+             <td>{adminList(userlist.useradmin.transaction)}</td>
+             <td>{adminList(userlist.useradmin.node)}</td>
+             <td>{adminList(userlist.useradmin.service)}</td>
+             <td>{userlist.serviceCnt}</td>
+             <td>{userlist.userdate}</td>
+             <td>{userlist.userstatus}</td> */}
                         </tr>
                     </tbody>
                 </table>
@@ -180,4 +180,4 @@ const UserListPage = () => {
     );
 };
 
-export default UserListPage;
+export default UserList;

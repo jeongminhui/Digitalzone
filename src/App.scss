@@ -40,14 +40,30 @@ button {
   color: white;
   background-color: var(--point-color);
   border: 0;
-  border-radius: 10px;
-  height: 35px;
+  border-radius: 8px;
+  height: 32px;
   margin: 9px;
   padding: 9px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
   line-height: 0px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 420;
+}
+.ant-btn-primary {
+  background-color: var(--point-color);
+}
+.ant-btn > span {
+  color: white;
+}
+// .ant-btn {
+// font-size: 15px;
+//   height: 32px;
+//   padding: 4px 15px;
+//   border-radius: 6px;
+// font-family: "Noto Sans KR", sans-serif;
+// }
+path {
+  color: var(--point-color);
 }

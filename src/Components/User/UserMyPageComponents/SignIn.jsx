@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAuth, signInWithEmailAndPassword, signOut, updatePassword } from 'firebase/auth';
 import { db } from '../../../firebase';
-import { collection, doc, getDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 import { useRecoilState } from 'recoil';
 import { loginAtom } from '../../../Recoil/Atom';
@@ -86,12 +86,6 @@ const SignIn = () => {
             });
     };
 
-    // 데이터 센터와 함께 사용
-    // 버튼 클릭 시 signin 컴포넌트와 datacenter 두곳에서 로그인 함수 실행
-
-
-
-
     const signInHandler = async (e) => {
         e.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
@@ -100,7 +94,7 @@ const SignIn = () => {
                     setIsLoggedIn(true);
                     const user = userCredential.user;
                     const docRef = doc(userCollection, user.uid);
-                    const data = await getDoc(docRef)
+                    const data = await getDoc(docRef);
                     const userInfo = data.data();
 
                     setLoginUser(userInfo);
@@ -143,28 +137,55 @@ const SignIn = () => {
                     email.innerHTML = `이메일(아이디) <span className='userid'>${userInfo.userid}</span>`;
 
                     admin.innerHTML = `상세정보 접근 권한`;
-                    if (userInfo.useradmin.dashboard) dash.innerHTML = `<label><input type='checkbox' disabled checked /> 대시보드</label>`;
-                    else dash.innerHTML = `<label><input type='checkbox' disabled /> 대시보드</label>`;
-                    if (userInfo.useradmin.block) block.innerHTML = `<label><input type='checkbox' disabled checked /> 블록</label>`;
-                    else block.innerHTML = `<label><input type='checkbox' disabled /> 블록</label>`;
-                    if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' disabled checked /> 트랜잭션</label>`;
-                    else tran.innerHTML = `<label><input type='checkbox' disabled /> 트랜잭션</label>`;
-                    if (userInfo.useradmin.node) node.innerHTML = `<label><input type='checkbox' disabled checked /> 노드</label>`;
-                    else node.innerHTML = `<label><input type='checkbox' disabled /> 노드</label>`;
-                    if (userInfo.useradmin.service) serv.innerHTML = `<label><input type='checkbox' disabled checked /> 서비스</label>`;
-                    else serv.innerHTML = `<label><input type='checkbox' disabled /> 서비스</label>`;
+                    if (userInfo.userclass === '사용자') {
+                        // 사용자일 때 checkbox disabled
+                        if (userInfo.useradmin.dashboard) dash.innerHTML = `<label><input type='checkbox' disabled checked /> 대시보드</label>`;
+                        else dash.innerHTML = `<label><input type='checkbox' disabled /> 대시보드</label>`;
+                        if (userInfo.useradmin.block) block.innerHTML = `<label><input type='checkbox' disabled checked /> 블록</label>`;
+                        else block.innerHTML = `<label><input type='checkbox' disabled /> 블록</label>`;
+                        if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' disabled checked /> 트랜잭션</label>`;
+                        else tran.innerHTML = `<label><input type='checkbox' disabled /> 트랜잭션</label>`;
+                        if (userInfo.useradmin.node) node.innerHTML = `<label><input type='checkbox' disabled checked /> 노드</label>`;
+                        else node.innerHTML = `<label><input type='checkbox' disabled /> 노드</label>`;
+                        if (userInfo.useradmin.service) serv.innerHTML = `<label><input type='checkbox' disabled checked /> 서비스</label>`;
+                        else serv.innerHTML = `<label><input type='checkbox' disabled /> 서비스</label>`;
+                    } else {
+                        if (userInfo.useradmin.dashboard) dash.innerHTML = `<label><input type='checkbox' disabled checked /> 대시보드</label>`;
+                        else dash.innerHTML = `<label><input type='checkbox' disabled /> 대시보드</label>`;
+                        if (userInfo.useradmin.block) block.innerHTML = `<label><input type='checkbox' disabled checked /> 블록</label>`;
+                        else block.innerHTML = `<label><input type='checkbox' disabled /> 블록</label>`;
+                        if (userInfo.useradmin.transaction) tran.innerHTML = `<label><input type='checkbox' checked /> 트랜잭션</label>`;
+                        else tran.innerHTML = `<label><input type='checkbox' /> 트랜잭션</label>`;
+                        if (userInfo.useradmin.node) node.innerHTML = `<label><input type='checkbox' checked /> 노드</label>`;
+                        else node.innerHTML = `<label><input type='checkbox' /> 노드</label>`;
+                        if (userInfo.useradmin.service) serv.innerHTML = `<label><input type='checkbox' checked /> 서비스</label>`;
+                        else serv.innerHTML = `<label><input type='checkbox' /> 서비스</label>`;
+                    }
 
                     svc.innerHTML = `이용중인 서비스`;
-                    if (userInfo.userservice.service_a) A.innerHTML = `<label><input type='checkbox' disabled checked /> A서비스</label>`;
-                    else A.innerHTML = `<label><input type='checkbox' disabled /> A서비스</label>`;
-                    if (userInfo.userservice.service_b) B.innerHTML = `<label><input type='checkbox' disabled checked /> B서비스</label>`;
-                    else B.innerHTML = `<label><input type='checkbox' disabled /> B서비스</label>`;
-                    if (userInfo.userservice.service_c) C.innerHTML = `<label><input type='checkbox' disabled checked /> C서비스</label>`;
-                    else C.innerHTML = `<label><input type='checkbox' disabled /> C서비스</label>`;
-                    if (userInfo.userservice.service_d) D.innerHTML = `<label><input type='checkbox' disabled checked /> D서비스</label>`;
-                    else D.innerHTML = `<label><input type='checkbox' disabled /> D서비스</label>`;
-                    if (userInfo.userservice.service_e) E.innerHTML = `<label><input type='checkbox' disabled checked /> E서비스</label>`;
-                    else E.innerHTML = `<label><input type='checkbox' disabled /> E서비스</label>`;
+                    if (userInfo.userclass === '사용자') {
+                        if (userInfo.userservice.service_a) A.innerHTML = `<label><input type='checkbox' disabled checked /> A서비스</label>`;
+                        else A.innerHTML = `<label><input type='checkbox' disabled /> A서비스</label>`;
+                        if (userInfo.userservice.service_b) B.innerHTML = `<label><input type='checkbox' disabled checked /> B서비스</label>`;
+                        else B.innerHTML = `<label><input type='checkbox' disabled /> B서비스</label>`;
+                        if (userInfo.userservice.service_c) C.innerHTML = `<label><input type='checkbox' disabled checked /> C서비스</label>`;
+                        else C.innerHTML = `<label><input type='checkbox' disabled /> C서비스</label>`;
+                        if (userInfo.userservice.service_d) D.innerHTML = `<label><input type='checkbox' disabled checked /> D서비스</label>`;
+                        else D.innerHTML = `<label><input type='checkbox' disabled /> D서비스</label>`;
+                        if (userInfo.userservice.service_e) E.innerHTML = `<label><input type='checkbox' disabled checked /> E서비스</label>`;
+                        else E.innerHTML = `<label><input type='checkbox' disabled /> E서비스</label>`;
+                    } else {
+                        if (userInfo.userservice.service_a) A.innerHTML = `<label><input type='checkbox' checked /> A서비스</label>`;
+                        else A.innerHTML = `<label><input type='checkbox' /> A서비스</label>`;
+                        if (userInfo.userservice.service_b) B.innerHTML = `<label><input type='checkbox' checked /> B서비스</label>`;
+                        else B.innerHTML = `<label><input type='checkbox' /> B서비스</label>`;
+                        if (userInfo.userservice.service_c) C.innerHTML = `<label><input type='checkbox' checked /> C서비스</label>`;
+                        else C.innerHTML = `<label><input type='checkbox' /> C서비스</label>`;
+                        if (userInfo.userservice.service_d) D.innerHTML = `<label><input type='checkbox' checked /> D서비스</label>`;
+                        else D.innerHTML = `<label><input type='checkbox' /> D서비스</label>`;
+                        if (userInfo.userservice.service_e) E.innerHTML = `<label><input type='checkbox' checked /> E서비스</label>`;
+                        else E.innerHTML = `<label><input type='checkbox' /> E서비스</label>`;
+                    }
 
                     type.innerHTML = `유형 <span className='userclass'>${userInfo.userclass}</span>`;
                     date.innerHTML = `등록일자 <span className='userdate'>${userInfo.userdate}</span>`;
@@ -183,6 +204,9 @@ const SignIn = () => {
     return (
         <div>
             <form>
+                {/* <h1>로그인</h1> */}
+                {/* <div> */}
+                {/* <form> */}
                 <h1>로그인</h1>
                 <div className='signIn Email'>
                     아이디:
