@@ -26,6 +26,7 @@ const Modal1 = (props) => {
   const handleCancel = () => {
     setOpen(false);
   };
+  // 테스트
   return (
     <>
       <Button type="primary" onClick={showModal}>
