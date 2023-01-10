@@ -1,11 +1,12 @@
 .Wrap {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 
     .ChartVol {
-        width : 520px;
+        width : 550px;
         height : 360px;
-        margin: 12px;
+        margin: 22px;
         padding-top: 15px;
         box-shadow: 0 0 20px 0 rgba(136, 136, 136, 0.15);
       }

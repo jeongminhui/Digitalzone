@@ -1,13 +1,11 @@
 .Node {
   width: calc(100% - 160px);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
-  display: flex;
-  justify-content: center;
 }
 
 .wrapper {
-  padding: 20px 50px;
+  padding: 20px 70px;
   margin-bottom: 100px;
 }
 .wrapper .subBar {
