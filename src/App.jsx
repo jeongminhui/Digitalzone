@@ -10,9 +10,6 @@ import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
-// user 실제 사용할 사용자 페이지 목록
-import LoginPage from "./Components/User/LoginPage/LoginPage";
-import MyInfoPage from "./Components/User/MyInfoPage/MyInfoPage";
 
 // 유저 최종 페이지 링크
 import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
