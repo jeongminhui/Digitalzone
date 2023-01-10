@@ -13,6 +13,8 @@ const User = () => {
   return (
     <div className="User">
       <UserInsertModal />
+      <hr />
+      <Modal1 buttonName="gkgk">테스트</Modal1>
     </div>
   );
 };

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import Modal1 from "../../CommonComponents/Modal/Modal1";
-import UserAdd from "../FixedComponents/UserAdd/UserAdd";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import Modal1 from "../../../../CommonComponents/Modal/Modal1";
+import { Button, Checkbox, Form, Input } from "antd";
+import UserAdd from "./UserAdd";
 
-const UserInsertModal = () => {
+const UserAddModal = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const showModal = () => {
@@ -27,4 +29,4 @@ const UserInsertModal = () => {
   );
 };
 
-export default UserInsertModal;
+export default UserAddModal;

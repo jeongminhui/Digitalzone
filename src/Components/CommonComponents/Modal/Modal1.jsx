@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import "./Modal1.scss";
+import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const Modal1 = (props) => {
   /* 민희 메이드 모달 서식 입니다! :)
@@ -30,6 +31,7 @@ const Modal1 = (props) => {
   return (
     <>
       <Button type="primary" onClick={showModal}>
+        {/* <AddRoundedIcon />  */}
         {props.buttonName}
       </Button>
       <Modal
