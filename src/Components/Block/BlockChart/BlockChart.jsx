@@ -4,10 +4,8 @@ import BlockChartRight from "./BlockChartRight";
 
 const BlockChart = ({ rows }) => {
   const containerStyle = {
-    width: "400px",
-    height: "200px",
-    margin: "50px",
-    marginTop: "0",
+    width: "480px",
+    height: "300px",
   };
 
   return (

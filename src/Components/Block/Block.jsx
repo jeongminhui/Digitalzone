@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Block.scss";
 import Footer from "../Footer/Footer";
-import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import BlockChart from "./BlockChart/BlockChart";
 import BlockTable from "./BlockTable";
