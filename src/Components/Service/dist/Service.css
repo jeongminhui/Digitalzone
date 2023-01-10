@@ -1,0 +1,12 @@
+.Service {
+  width: calc(100% - 160px);
+  height: 100vh;
+  position: relative;
+}
+.Service .wrapper {
+  padding: 20px 70px;
+  margin-bottom: 100px;
+}
+.Service .wrapper .service {
+  color: var(--point-color);
+}

@@ -15,24 +15,38 @@ import { koKR } from '@mui/material/locale';
 import { useNavigate } from 'react-router-dom';
 import './Tab.scss';
 import Chart from './Chart'
+import { useRecoilState } from "recoil";
+import { currentBlockAtom } from "../../Recoil/Atom";
+import Swal from 'sweetalert2';
 
 export default function Tab({rows}) {
 
-
-    const columns = [
+  let NodeUser = false;
+  let columns = [];
+    NodeUser ?
+     columns = [
       { id: "service", label: "서비스명", minWidth: 70 },
       { id: "ndstatus", label: "상태", minWidth: 70 },
-      { id: "nodename", label: "노드명", minWidth: 70 },
+      { id: "nodename", label: "노드명", minWidth: 70, color:'#4669f5'},
       { id: "ndtype", label: "유형", minWidth: 70 },
       { id: "service_dcc", label: "서비스명", minWidth: 70 },
       { id: "ipaddress", label: "IP", minWidth: 170 },
       { id: "blocknum", label: "최신블록번호", minWidth: 100 },
       { id: "createdt", label: "최신블록시간", minWidth: 170 },
       { id: "tps", label: "처리속도(TPS)", minWidth: 50 },
-      { id: "latency", label: "지연율(Latency)",minWidth: 70},
-      
+      { id: "latency", label: "지연율(Latency)",minWidth: 70},     
+    ]
+    :
+    columns = [
+      { id: "service", label: "서비스명", minWidth: 70 },
+      { id: "ndstatus", label: "상태", minWidth: 70 },
+      { id: "nodename", label: "노드명", minWidth: 70, color:'#4669f5'},
+      { id: "ndtype", label: "유형", minWidth: 70 },
+      { id: "service_dcc", label: "서비스명", minWidth: 70 },
+      { id: "ipaddress", label: "IP", minWidth: 170 },
+      { id: "blocknum", label: "최신블록번호", minWidth: 100 },
+      { id: "createdt", label: "최신블록시간", minWidth: 170 },
     ];
-
     
   // table
   const [page, setPage] = useState(0);
@@ -53,7 +67,6 @@ export default function Tab({rows}) {
 
   // pagenation
   const [pagenation, setPagenation] = useState(1);
-  const [count, setCount] = useState(10);
 
   const handleChange = (event, value) => {
     setPagenation(value);
@@ -76,17 +89,45 @@ export default function Tab({rows}) {
     koKR,
   );
 
+// recoil Atom에서 가져오기
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
+  
+  
+
   // navigation
   const navigate = useNavigate();
   const [nodeName, setNodeName] = useState('');
+  const [blockNum, setBlockNum] = useState('');
 
-  const clickHandler = (nodename) => {
-        setNodeName(nodename);
+  const clickHandler = (nodeName) => {
+    NodeUser ? setNodeName(nodeName) 
+    :   
+    Swal.fire({
+      icon: "warning",
+      text: "권한이 없습니다. 관리자에게 요청하십시오.",
+      showCancelButton: false,
+      confirmButtonText: "확인",
+  }).then((res) => {
+      if (res.isConfirmed) {
+          return;
+      }     
+  })
+}
+
+  const clickBlockHandler = (blockNum, idx) => {
+      setBlockNum(blockNum);
+      setCurrentBlock(idx);
+      navigate(`/block/${blockNum}`);
     }
 
     useEffect(() => {
         navigate(`/node/${nodeName}`)
-    },[navigate, nodeName])
+    },[nodeName]);
+  //   useEffect(() => {
+  //     navigate(`/block/${blockNum}`)
+  // },[blockNum]);
+    
+    
 
 // Tab
  const [activeIndex, setActiveIndex] = useState(0);
@@ -105,7 +146,7 @@ export default function Tab({rows}) {
                   <TableCell 
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth}}
+                    style={{ minWidth: column.minWidth, color: column.color}}
                     sx={{bgcolor:'background.paper', fontWeight:'bold'}}
                   >
                     {column.label}
@@ -116,8 +157,10 @@ export default function Tab({rows}) {
             <TableBody>
               {rows
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
+                .map((row, idx) => {
                   return (
+
+                    NodeUser ? 
                     <TableRow
                       hover
                       role="checkbox"
@@ -127,15 +170,34 @@ export default function Tab({rows}) {
                       
                       <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service}</TableCell>
                       <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndstatus}</TableCell>
-                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.nodename}</TableCell>
+                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer', color:'#4669f5'}}>{row.nodename}</TableCell>
                       <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
                       <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
                       <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ipaddress}</TableCell>
-                      <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
+                      <TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell>
+                      <TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell>
                       <TableCell key={row.tps}>{row.tps}</TableCell>
                       <TableCell key={row.latency}>{row.latency}</TableCell>
 
+                      
+                    </TableRow>
+                    :
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                    >
+                      
+                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service}</TableCell>
+                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndstatus}</TableCell>
+                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer', color:'#4669f5'}}>{row.nodename}</TableCell>
+                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
+                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
+                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>http://xxx.xx.xxx.xxx:xxxxx</TableCell>
+                      <TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell>
+                      <TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell>
+                      
                       
                     </TableRow>
                   );
@@ -154,11 +216,10 @@ export default function Tab({rows}) {
           sx={{bgcolor:'background.content'}}
         />
       </Paper>
-    </ThemeProvider>
       <Stack spacing={2}>
         <Pagination className='pagination'
           count={
-            rows.length === rowsPerPage
+            rows.length % rowsPerPage === 0 
               ? parseInt(rows.length / rowsPerPage)
               : parseInt(rows.length / rowsPerPage) + 1
           }
@@ -166,14 +227,15 @@ export default function Tab({rows}) {
           onChange={handleChange}
           showFirstButton
           showLastButton
+          sx={{bgcolor:'background.content'}}
           />
       </Stack>
-                
-                </div>
+    </ThemeProvider>
+       </div>
         },
         {
             tabTitle:<div className={activeIndex===1 ? "is-active right" : "tab"} onClick={()=>tabClickHandler(1)}> 전체 노드 자원 현황 </div>,
-            tabCont:<div className='Wrap'><Chart/></div>
+            tabCont:<div><Chart/></div>
         }
     ];
     
@@ -185,7 +247,7 @@ export default function Tab({rows}) {
     <>
     
     <div className="tabs">
-	    {tabContArr.map((section, index)=>{
+	    {tabContArr.map((section)=>{
 		    return section.tabTitle
 	    })}
     </div>

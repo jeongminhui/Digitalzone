@@ -3,33 +3,35 @@
   min-height: 100vh;
   position: relative;
 
-  .subTitle {
-    margin-bottom: 30px;
+  .wrapper {
+    .subTitle {
+      margin-bottom: 30px;
 
-    .subBar {
-      color: #4669f5;
-      font-weight: bold;
-    }
-  }
-  .chartWrapper {
-    clear: both;
-    display: flex;
-    flex-direction: row wrap;
-    .pagenationDIV {
-      display: flex;
-      justify-content: space-between;
-
-      .pagenation {
-        // display: inline-block;
-        align-self: center;
-        justify-self: center;
-        margin-right: 100px;
+      .subBar {
+        color: #4669f5;
+        font-weight: bold;
       }
+    }
+    .chartWrapper {
+      clear: both;
+      display: flex;
+      flex-direction: row wrap;
+      justify-content: space-around;
+      margin-bottom: 30px;
 
-      .tablePagenation {
-        // display: inline-block;
+      .pagenationDIV {
+        display: flex;
+        justify-content: space-between;
 
-        justify-self: flex-end;
+        .pagenation {
+          align-self: center;
+          justify-self: center;
+          margin-right: 100px;
+        }
+
+        .tablePagenation {
+          justify-self: flex-end;
+        }
       }
     }
   }

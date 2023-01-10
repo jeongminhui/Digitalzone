@@ -16,7 +16,7 @@ import { Button, Modal } from "antd";
 import { width } from "@mui/system";
 
 const TxInfo = ({ txnum }) => {
-  const txCollection = collection(db, "transaction");
+  const txCollection = collection(db, "transaction_test");
   const [txInfo, setTxInfo] = useState({});
 
   useEffect(() => {

@@ -3,27 +3,29 @@
   min-height: 100vh;
   position: relative;
 }
-.TranMain .subTitle {
+.TranMain .wrapper .subTitle {
   margin-bottom: 30px;
 }
-.TranMain .subTitle .subBar {
+.TranMain .wrapper .subTitle .subBar {
   color: #4669f5;
   font-weight: bold;
 }
-.TranMain .chartWrapper {
+.TranMain .wrapper .chartWrapper {
   clear: both;
   display: flex;
   flex-direction: row wrap;
+  justify-content: space-around;
+  margin-bottom: 30px;
 }
-.TranMain .chartWrapper .pagenationDIV {
+.TranMain .wrapper .chartWrapper .pagenationDIV {
   display: flex;
   justify-content: space-between;
 }
-.TranMain .chartWrapper .pagenationDIV .pagenation {
+.TranMain .wrapper .chartWrapper .pagenationDIV .pagenation {
   align-self: center;
   justify-self: center;
   margin-right: 100px;
 }
-.TranMain .chartWrapper .pagenationDIV .tablePagenation {
+.TranMain .wrapper .chartWrapper .pagenationDIV .tablePagenation {
   justify-self: flex-end;
 }

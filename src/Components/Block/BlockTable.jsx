@@ -10,6 +10,7 @@ import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
+import { koKR } from "@mui/material/locale";
 
 const BlockTable = ({ rows, clickHandler }) => {
   const columns = [
@@ -77,6 +78,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                   sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                  className={column.id}
                 >
                   {column.label}
                 </TableCell>
@@ -94,13 +96,16 @@ const BlockTable = ({ rows, clickHandler }) => {
                     tabIndex={-1}
                     key={row.code}
                     onClick={() => clickHandler(row.blocknum, idx)}
+                    className="tableRow"
                   >
                     {/* 이부분 map으로 돌리셔도 됩니다! */}
                     <TableCell key={row.service}>{row.service}</TableCell>
-                    <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
+                    <TableCell key={row.blocknum} className="blue">
+                      {row.blocknum}
+                    </TableCell>
                     <TableCell key={row.createdt}>{row.createdt}</TableCell>
                     <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
-                    <TableCell key={row.blksize}>{row.blksize}</TableCell>
+                    <TableCell key={row.blksize}>{row.blksize} KB</TableCell>
                     <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
                   </TableRow>
                 );
@@ -108,11 +113,30 @@ const BlockTable = ({ rows, clickHandler }) => {
           </TableBody>
         </Table>
         <div className="pagenationDIV">
+          <div className="tablePagenation">
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              // onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              // SelectProps={{
+              //   inputProps: {
+              //     "aria-label": "페이지 당",
+              //   },
+              // }}
+              // onPageChange={() => {}}
+              // theme={koKR}
+            />
+          </div>
+
           <div className="pagenation">
             <Stack spacing={2}>
               <Pagination
                 count={
-                  rows.length === rowsPerPage
+                  rows.length % rowsPerPage === 0
                     ? parseInt(rows.length / rowsPerPage)
                     : parseInt(rows.length / rowsPerPage) + 1
                 }
@@ -122,18 +146,6 @@ const BlockTable = ({ rows, clickHandler }) => {
                 showLastButton
               />
             </Stack>
-          </div>
-
-          <div className="tablePagenation">
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
           </div>
         </div>
       </TableContainer>

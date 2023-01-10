@@ -30,7 +30,7 @@ const BlockChartLeft = ({ rows, containerStyle }) => {
   }, [rows]);
 
   return (
-    <div className="leftChart" style={containerStyle}>
+    <div style={containerStyle}>
       <ApexCharts
         type="area"
         series={[

@@ -82,6 +82,7 @@ const ServiceTable = ({ rows, clickHandler }) => {
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                   sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                  className={column.id}
                 >
                   {column.label}
                 </TableCell>
@@ -99,9 +100,12 @@ const ServiceTable = ({ rows, clickHandler }) => {
                     tabIndex={-1}
                     key={row.code}
                     onClick={() => clickHandler(row.blocknum, idx)}
+                    className="tableRow"
                   >
                     {/* 이부분 map으로 돌리셔도 됩니다! */}
-                    <TableCell key={row.service}>{row.service}</TableCell>
+                    <TableCell key={row.service} className="blue">
+                      {row.service}
+                    </TableCell>
                     <TableCell key={row.createdt}>{row.createdt}</TableCell>
                     <TableCell key={row.apitype}>{row.apitype}</TableCell>
                     <TableCell key={row.nodename}>{row.nodename}</TableCell>

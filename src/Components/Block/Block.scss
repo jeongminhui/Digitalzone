@@ -6,10 +6,15 @@
   .wrapper {
     padding: 20px 70px;
     margin-bottom: 100px;
+
+    .blocknum {
+      color: var(--point-color);
+    }
   }
 }
+
 .wrapper {
-  padding: 20px 200px;
+  padding: 20px 70px;
   margin-bottom: 100px;
 
   .subTitle {
@@ -21,21 +26,30 @@
     }
   }
 
+  .tableRow {
+    cursor: pointer;
+
+    .blue {
+      color: var(--point-color);
+    }
+  }
+
   .pagenationDIV {
     display: flex;
-    justify-content: space-between;
-
-    .pagenation {
-      // display: inline-block;
-      align-self: center;
-      justify-self: center;
-      margin-right: 100px;
-    }
+    flex-flow: column;
+    width: 100%;
+    padding-bottom: 10px;
+    // justify-content: space-between;
 
     .tablePagenation {
-      // display: inline-block;
+      // justify-self: flex-start;
+      display: inline-block;
+    }
 
-      justify-self: flex-end;
+    .pagenation {
+      display: inline-block;
+      align-self: center;
+      justify-self: flex-start;
     }
   }
 }
