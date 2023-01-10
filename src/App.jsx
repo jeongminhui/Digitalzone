@@ -56,16 +56,8 @@ function App() {
           path: "/user",
           element: <User />,
         },
-        // 사용자 컴포넌트
-        {
-          path: "/login",
-          element: <LoginPage />,
-        },
-        {
-          path: "/myinfo",
-          element: <MyInfoPage />,
-        },
-        // 여기부턴 사용자 페이지 (권한 따라 삼항 조건 넣어보려 함)
+
+        // 여기부턴 유저 페이지 (권한 따라 삼항 조건 넣어보려 함)
         {
           path: "/user/add",
           element: <UserAdd_Page />,
