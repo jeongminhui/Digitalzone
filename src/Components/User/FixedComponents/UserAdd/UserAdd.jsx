@@ -4,7 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { Button, Checkbox, Form, Input } from "antd";
 
-const SignUp = () => {
+const UserAdd = () => {
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -424,4 +424,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default UserAdd;

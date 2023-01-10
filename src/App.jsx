@@ -11,6 +11,11 @@ import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
 import ServiceInfo from "./Components/Service/ServiceInfo/ServiceInfo";
+import UserAdd from './Components/User/FixedComponents/UserAdd/UserAdd';
+import UserList from './Components/User/FixedComponents/UserList/UserList';
+import UserLogin from './Components/User/FixedComponents/UserLogin/UserLogin';
+import UserMyPage from './Components/User/FixedComponents/UserMyPage/UserMyPage';
+import UserUpdate from './Components/User/FixedComponents/UserUpdate/UserUpdate';
 
 function App() {
   const router = createBrowserRouter([

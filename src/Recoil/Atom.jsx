@@ -47,3 +47,9 @@ export const currentTxAtom = atom({
   default: "현재 트랜잭션 번호",
   effects_UNSTABLE: [persistAtom],
 });
+
+export const userInfoAtom = atom({
+    key: 'userInfoAtom',
+    default: '',
+    effects_UNSTABLE: [persistAtom],
+});

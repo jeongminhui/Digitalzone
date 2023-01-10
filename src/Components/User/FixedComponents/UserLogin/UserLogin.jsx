@@ -17,7 +17,7 @@ import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
 import { loginAtom } from "../../../../Recoil/Atom";
 
-const SignIn = () => {
+const UserLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // 로그인 true, 로그아웃 false
@@ -355,4 +355,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default UserLogin;

@@ -1,4 +1,4 @@
-import { blockAtom } from './Atom';
+import { blockAtom, userInfoAtom } from './Atom';
 import { transactionAtom } from './Atom';
 import { serviceAtom } from './Atom';
 import { networkAtom } from './Atom';
@@ -60,5 +60,13 @@ export const loginSelector = selector({
     get: ({ get }) => {
         const user = get(loginAtom);
         return user;
+    },
+});
+
+export const userInfoSelector = selector({
+    key: 'userInfoSelector',
+    get: ({ get }) => {
+        const updateUser = get(userInfoAtom);
+        return updateUser;
     },
 });

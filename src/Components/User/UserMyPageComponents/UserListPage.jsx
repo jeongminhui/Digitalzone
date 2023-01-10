@@ -5,14 +5,12 @@ import { db } from '../../../firebase';
 import Modal from "react-modal";
 import { Navigate } from "react-router-dom";
 
+
 const UserListPage = (loginUser) => {
     // 스테이트 저장소
     const [userlist, setUserlist] = useState([])
     const [modalUser, setModalUser] = useState({})
     const [modalIsOpen, setIsOpen] = React.useState(false);
-
-
-   // 로그인 접근 제한
 
 
     // firebase 연결
