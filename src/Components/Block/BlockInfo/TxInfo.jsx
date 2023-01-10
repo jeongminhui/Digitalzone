@@ -14,7 +14,7 @@ import { db } from "../../../firebase";
 import { Button, Modal } from "antd";
 
 const TxInfo = ({ txnum }) => {
-  const txCollection = collection(db, "transaction");
+  const txCollection = collection(db, "transaction_test");
   const [txInfo, setTxInfo] = useState({});
 
   useEffect(() => {

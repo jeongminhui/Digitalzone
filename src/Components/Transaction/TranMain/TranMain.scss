@@ -4,13 +4,6 @@
   position: relative;
 
   .wrapper {
-    // padding: 20px 50px;
-    // margin-bottom: 100px;
-    // display: flex;
-    // flex-direction: row wrap;
-    // justify-content: center;
-    // align-items: center;
-
     .subTitle {
       margin-bottom: 30px;
 
@@ -23,20 +16,20 @@
       clear: both;
       display: flex;
       flex-direction: row wrap;
+      justify-content: space-around;
+      margin-bottom: 30px;
+
       .pagenationDIV {
         display: flex;
         justify-content: space-between;
 
         .pagenation {
-          // display: inline-block;
           align-self: center;
           justify-self: center;
           margin-right: 100px;
         }
 
         .tablePagenation {
-          // display: inline-block;
-
           justify-self: flex-end;
         }
       }

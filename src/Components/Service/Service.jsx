@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 // recoil Atom에서 가져오기
 import { useRecoilValue } from "recoil";
 import { serviceSelector } from "../../Recoil/Selector";
+import ServiceChart from "./ServiceChart/ServiceChart";
 
 const Service = () => {
   const serviceData = useRecoilValue(serviceSelector);
@@ -50,7 +51,7 @@ const Service = () => {
         <h3 className="subTitle">
           <span className="subBar">|</span> 전체 발급 {rows.length}건
         </h3>
-
+        <ServiceChart rows={rows} />
         <ServiceTable rows={rows} clickHandler={clickHandler} />
       </div>
       <Footer />

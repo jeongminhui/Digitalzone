@@ -21,7 +21,7 @@ const BlockInfo = () => {
   const currentBlock = useRecoilValue(currentBlockSelector);
   const blockData = useRecoilValue(blockSelector);
 
-  const blockCollection = collection(db, "block");
+  const blockCollection = collection(db, "block_test");
   const [blockInfo, setBlockInfo] = useState({});
   const [visible, setVisible] = useState(false);
   const [copyBtn, setCopyBtn] = useState("copy");

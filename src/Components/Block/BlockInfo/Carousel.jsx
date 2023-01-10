@@ -7,13 +7,23 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const Carousel = ({ blocknum, block, currentBlock }) => {
+// recoil로 불러오기
+import { useRecoilState } from "recoil";
+import { currentBlockAtom } from "../../../Recoil/Atom";
+import { useRecoilValue } from "recoil";
+import { currentBlockSelector } from "../../../Recoil/Selector";
+
+const Carousel = ({ blocknum, block }) => {
+  const current = useRecoilValue(currentBlockSelector);
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
+
   // navigation 블록 상세 이동
   const [blocknumber, setBlocknumber] = useState(blocknum);
   const navigate = useNavigate();
 
   const carouselHandler = (blocknum, idx) => {
     setBlocknumber(blocknum);
+    setCurrentBlock(idx);
     slideTo(idx);
   };
 
@@ -22,15 +32,16 @@ const Carousel = ({ blocknum, block, currentBlock }) => {
   }, [blocknumber]);
 
   const [swiperRef, setSwiperRef] = useState(null);
+  const [swiper, setSwiper] = useState();
 
-  const slideTo = (index) => {
-    swiperRef.slideTo(index);
+  const slideTo = (current) => {
+    swiper.slideTo(current + 5);
   };
 
   return (
     <div>
       <Swiper
-        onSwiper={setSwiperRef}
+        onSwiper={(swiper) => setSwiper(swiper)}
         slidesPerView={5}
         spaceBetween={30}
         loop={true}
@@ -40,7 +51,7 @@ const Carousel = ({ blocknum, block, currentBlock }) => {
         className="mySwiper"
         centeredSlides={true}
         slidesOffsetBefore={50}
-        initialSlide={currentBlock}
+        initialSlide={current}
       >
         {block.map((item, idx) => (
           <SwiperSlide
