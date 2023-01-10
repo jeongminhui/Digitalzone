@@ -26,9 +26,12 @@ export default function Tab({rows}) {
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
   const [NodeUser, setNodeUser] = useState(false);
-  useEffect(() => {
-    setNodeUser(loginUser.useradmin.node);
+  
+    useEffect(() => {
+    setNodeUser(loginUser?.useradmin.node);
   },[])
+ 
+ 
 
   let columns = [];
     NodeUser ?
