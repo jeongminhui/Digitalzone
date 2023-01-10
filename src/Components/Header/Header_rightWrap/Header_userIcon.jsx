@@ -1,6 +1,5 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-// import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -13,22 +12,32 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Link } from "react-router-dom";
-// import { blue } from "@mui/material/colors";
+import { Link, useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
+import "./Header_userIcon.scss";
 
 export default function Header_userIcon() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
+    // 조건을 여기에 달아주어야 하나?
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // 조건 따라 어떤 Menu 띄울지 정함. (두가지 조건)
+  const userId = "Prse1284@gmail.com";
+  // 로그인 상태
+  const isLogin = 1;
+  // 관리자 여부
+  const isManager = 1;
   return (
     <>
       <React.Fragment>
@@ -47,72 +56,184 @@ export default function Header_userIcon() {
             >
               <PersonRoundedIcon
                 className="PersonRoundedIcon"
-                // 색상이 안먹힙니다요 ㅜㅜ 추후 추가 수정 하겠읍니다,,
-                // color="#4669f5"
                 fontSize="large"
               />
             </div>
           </Tooltip>
         </Box>
-        {/* 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함. */}
-        <Menu
-          anchorEl={anchorEl}
-          id="account-menu"
-          open={open}
-          onClose={handleClose}
-          onClick={handleClose}
-          PaperProps={{
-            elevation: 0,
-            sx: {
-              overflow: "visible",
-              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-              mt: 1.5,
-              "&:before": {
-                content: '""',
-                display: "block",
-                position: "absolute",
-                top: 0,
-                right: 14,
-                width: 10,
-                height: 10,
-                bgcolor: "background.paper",
-                transform: "translateY(-50%) rotate(45deg)",
-                zIndex: 0,
+        {isLogin ? (
+          isManager ? (
+            // 매니저일 경우 나타낼 메뉴
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={open}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <List>
+                <ListItem>
+                  <ListItemText primary={userId} />
+                </ListItem>
+              </List>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  navigate("/user/mypage");
+                }}
+              >
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                나의 정보
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/user/list");
+                }}
+              >
+                <ListItemIcon>
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                사용자 관리
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                로그아웃
+              </MenuItem>
+            </Menu>
+          ) : (
+            // 매니저 x 일반사용자 메뉴창
+            <Menu
+              anchorEl={anchorEl}
+              id="account-menu"
+              open={open}
+              onClose={handleClose}
+              onClick={handleClose}
+              PaperProps={{
+                elevation: 0,
+                sx: {
+                  overflow: "visible",
+                  filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                  mt: 1.5,
+                  "&:before": {
+                    content: '""',
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    right: 14,
+                    width: 10,
+                    height: 10,
+                    bgcolor: "background.paper",
+                    transform: "translateY(-50%) rotate(45deg)",
+                    zIndex: 0,
+                  },
+                },
+              }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+              <List>
+                <ListItem>
+                  <ListItemText primary={userId} />
+                </ListItem>
+              </List>
+              <Divider />
+              <MenuItem
+                onClick={() => {
+                  navigate("/user/mypage");
+                }}
+              >
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                나의 정보
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                로그아웃
+              </MenuItem>
+            </Menu>
+          )
+        ) : (
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: "visible",
+                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                mt: 1.5,
+                "&:before": {
+                  content: '""',
+                  display: "block",
+                  position: "absolute",
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: "background.paper",
+                  transform: "translateY(-50%) rotate(45deg)",
+                  zIndex: 0,
+                },
               },
-            },
-          }}
-          transformOrigin={{ horizontal: "right", vertical: "top" }}
-          anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-        >
-          {/* 프로필 데이터 받아오는 것으로 바꿔야 함. */}
-          <List>
-            <ListItem>
-              <ListItemText
-                primary="Profsssle@gmail.com"
-                // secondary="Profsssle@gmail.com"
-              />
-            </ListItem>
-          </List>
-          <Divider />
-          <MenuItem>
-            <ListItemIcon>
-              <PersonRoundedIcon fontSize="small" />
-            </ListItemIcon>
-            나의 정보
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            사용자 관리
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Logout fontSize="small" />
-            </ListItemIcon>
-            로그아웃
-          </MenuItem>
-        </Menu>
+            }}
+            transformOrigin={{ horizontal: "right", vertical: "top" }}
+            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          >
+            <MenuItem>
+              <Link
+                to="/user/login"
+                onClick={(e) => {
+                  console.log(e);
+                }}
+              >
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                로그인
+              </Link>
+            </MenuItem>
+          </Menu>
+        )}
       </React.Fragment>
     </>
   );

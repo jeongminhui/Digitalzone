@@ -9,43 +9,119 @@ import { networkSelector } from "../../../Recoil/Selector";
 
 const NtwTPS = () => {
   const networkData = useRecoilValue(networkSelector);
-  const [active, setActive] = useState("");
-  const [tps, setTps] = useState([]);
+  const [tps1, setTps1] = useState("");
+  const [tps2, setTps2] = useState("");
+  const [tps3, setTps3] = useState("");
+  const [tps4, setTps4] = useState("");
 
-  // 활성네트워크만 필터링
+  // 상태가 성공(true)인 데이터만 필터링
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
       const dataFiltering = data.filter((item) => {
         return item.ntwstatus === true;
       });
-      setActive(dataFiltering);
+      makeChartData(dataFiltering);
     }
     getActive();
   }, [networkData]);
 
-  // 활성네트워크에서 ntwtps만 뽑음
-  useEffect(() => {
-    async function getNetwork() {
-      const data = await active;
-      const dataFiltering = data.map((item) => {
-        return item.ntwtps;
-      });
-      setTps(dataFiltering);
-    }
-    getNetwork();
-  }, [active]);
+  // 활성상태의 네트워크(items)에서 ntwtps만 추출
+  const makeChartData = (items) => {
+    const tpsData = items.map((item) => {
+      return item.ntwtps;
+    });
 
-  console.log("tps : ", tps);
-  console.log("active : ", active);
+    const network1 = tpsData[0];
+    const network2 = tpsData[1];
+    const network3 = tpsData[2];
+    const network4 = tpsData[3];
 
-  // ------------------------------------------
-  // useEffect(() => {
-  //   const timeArr = tps.map((item) => {
-  //     return Object.keys(item).sort();
-  //   });
-  //   setTest(timeArr);
-  // }, [tps]);
+    setTps1(network1);
+    setTps2(network2);
+    setTps3(network3);
+    setTps4(network4);
+  };
+  // makeChartData
+
+  const time1 = "10:00";
+  const time2 = "11:00";
+  const time3 = "12:00";
+  const time4 = "13:00";
+
+  const time1Aver = (tps1[time1] + tps2[time1] + tps3[time1] + tps4[time1]) / 4;
+  const time2Aver = (tps1[time2] + tps2[time2] + tps3[time2] + tps4[time2]) / 4;
+  const time3Aver = (tps1[time3] + tps2[time3] + tps3[time3] + tps4[time3]) / 4;
+  const time4Aver = (tps1[time4] + tps2[time4] + tps3[time4] + tps4[time4]) / 4;
+
+  const data = {
+    labels: [time1, time2, time3, time4],
+    datasets: [
+      {
+        // 라인바
+        type: "line",
+        borderColor: "#116eb9",
+        data: [
+          { x: time1, y: time1Aver },
+          { x: time2, y: time2Aver },
+          { x: time3, y: time3Aver },
+          { x: time4, y: time4Aver },
+        ],
+        borderCapStyle: "round",
+        pointbarDatasetSpacing: 0,
+        pointRadius: 0,
+      },
+      {
+        // 네트워크1
+        type: "bar",
+        backgroundColor: "#5f88df",
+        data: [
+          { x: time1, y: tps1[time1] },
+          { x: time2, y: tps1[time2] },
+          { x: time3, y: tps1[time3] },
+          { x: time4, y: tps1[time4] },
+        ],
+        barPercentage: 1, // 막대사이 간격삭제
+      },
+      {
+        // 네트워크2
+        type: "bar",
+        backgroundColor: "#80baf4",
+        data: [
+          { x: time1, y: tps2[time1] },
+          { x: time2, y: tps2[time2] },
+          { x: time3, y: tps2[time3] },
+          { x: time4, y: tps2[time4] },
+        ],
+        barPercentage: 1, // 막대사이 간격삭제
+      },
+
+      {
+        // 네트워크3
+        type: "bar",
+        backgroundColor: "#2ba0e3",
+        data: [
+          { x: time1, y: tps3[time1] },
+          { x: time2, y: tps3[time2] },
+          { x: time3, y: tps3[time3] },
+          { x: time4, y: tps3[time4] },
+        ],
+        barPercentage: 1, // 막대사이 간격삭제
+      },
+      {
+        // 네트워크4
+        type: "bar",
+        backgroundColor: "#004c8c",
+        data: [
+          { x: time1, y: tps4[time1] },
+          { x: time2, y: tps4[time2] },
+          { x: time3, y: tps4[time3] },
+          { x: time4, y: tps4[time4] },
+        ],
+        barPercentage: 1, // 막대사이 간격삭제
+      },
+    ],
+  };
 
   const options = {
     scales: {
@@ -99,78 +175,7 @@ const NtwTPS = () => {
       <Link to="/transaction">
         <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
         <div className="Dashboard_chart">
-          <Line
-            type="line"
-            data={{
-              labels: ["10:00", "11:00", "12:00", "13:00"],
-              datasets: [
-                {
-                  // 라인바
-                  type: "line",
-                  borderColor: "#116eb9",
-                  data: [
-                    { x: "10:00", y: 280 },
-                    { x: "11:00", y: 400 },
-                    { x: "12:00", y: 350 },
-                    { x: "13:00", y: 300 },
-                  ],
-                  borderCapStyle: "round",
-                  pointbarDatasetSpacing: 0,
-                  pointRadius: 0,
-                },
-                {
-                  // 네트워크1
-                  type: "bar",
-                  backgroundColor: "#5f88df",
-                  data: [
-                    { x: "10:00", y: 200 },
-                    { x: "11:00", y: 300 },
-                    { x: "12:00", y: 300 },
-                    { x: "13:00", y: 250 },
-                  ],
-                  barPercentage: 1, // 막대사이 간격삭제
-                },
-                {
-                  // 네트워크2
-                  type: "bar",
-                  backgroundColor: "#80baf4",
-                  data: [
-                    { x: "10:00", y: 300 },
-                    { x: "11:00", y: 500 },
-                    { x: "12:00", y: 300 },
-                    { x: "13:00", y: 350 },
-                  ],
-                  barPercentage: 1, // 막대사이 간격삭제
-                },
-
-                {
-                  // 네트워크3
-                  type: "bar",
-                  backgroundColor: "#2ba0e3",
-                  data: [
-                    { x: "10:00", y: 250 },
-                    { x: "11:00", y: 350 },
-                    { x: "12:00", y: 350 },
-                    { x: "13:00", y: 310 },
-                  ],
-                  barPercentage: 1, // 막대사이 간격삭제
-                },
-                {
-                  // 네트워크4
-                  type: "bar",
-                  backgroundColor: "#004c8c",
-                  data: [
-                    { x: "10:00", y: 350 },
-                    { x: "11:00", y: 350 },
-                    { x: "12:00", y: 400 },
-                    { x: "13:00", y: 300 },
-                  ],
-                  barPercentage: 1, // 막대사이 간격삭제
-                },
-              ],
-            }}
-            options={options}
-          />
+          <Line type="line" data={data} options={options} />
         </div>
       </Link>
     </div>

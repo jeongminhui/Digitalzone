@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Block.scss";
 import Footer from "../Footer/Footer";
 import { db } from "../../firebase";
@@ -18,7 +18,7 @@ import { useNavigate } from "react-router-dom";
 const Block = () => {
   const blockCollection = collection(db, "block1");
   const [rows, setRows] = useState([]);
-
+ 
   const columns = [
     { id: "service", label: "서비스명", minWidth: 170 },
     { id: "blocknum", label: "블록번호", minWidth: 100 },

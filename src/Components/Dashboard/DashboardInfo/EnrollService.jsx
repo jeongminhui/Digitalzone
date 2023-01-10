@@ -8,31 +8,19 @@ import { networkSelector } from "../../../Recoil/Selector";
 
 const EnrollService = () => {
   const networkData = useRecoilValue(networkSelector);
-  const [active, setActive] = useState("");
   const [enroll, setEnroll] = useState([]);
 
-  // 활성네트워크만 필터링 (=active)
+  // 상태가 성공(true)인 데이터만 필터링
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
       const dataFiltering = data.filter((item) => {
         return item.ntwstatus === true;
       });
-      setActive(dataFiltering);
+      makeChartData(dataFiltering);
     }
     getActive();
   }, [networkData]);
-
-  // 활성 네트워크 중 enrollservice 값만 추출해서 함수로 넘겨주기
-  useEffect(() => {
-    async function getService() {
-      const data = await active;
-      data.map((item, idx) => {
-        return makeChartData(item.enrollservice);
-      });
-    }
-    getService();
-  }, [active]);
 
   let enroll1 = 0;
   let enroll2 = 0;
@@ -40,12 +28,14 @@ const EnrollService = () => {
   let enroll4 = 0;
   let enroll5 = 0;
 
-  const makeChartData = (item) => {
-    enroll1 += item["10:00"];
-    enroll2 += item["11:00"];
-    enroll3 += item["12:00"];
-    enroll4 += item["13:00"];
-    enroll5 += item["14:00"];
+  const makeChartData = (items) => {
+    items.map((item) => {
+      enroll1 += item.enrollservice["10:00"];
+      enroll2 += item.enrollservice["11:00"];
+      enroll3 += item.enrollservice["12:00"];
+      enroll4 += item.enrollservice["13:00"];
+      enroll5 += item.enrollservice["14:00"];
+    });
 
     setEnroll({
       time1: enroll1,
@@ -55,6 +45,7 @@ const EnrollService = () => {
       time5: enroll5,
     });
   };
+  // makeChartData
 
   const data = [
     {
