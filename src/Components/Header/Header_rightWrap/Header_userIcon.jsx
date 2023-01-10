@@ -24,6 +24,8 @@ export default function Header_userIcon() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
+    // 조건을 여기에 달아주어야 하나?
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -98,7 +100,7 @@ export default function Header_userIcon() {
               </List>
               <Divider />
               <MenuItem>
-                <Link to="/myinfo">
+                <Link to="/user/mypage">
                   <ListItemIcon>
                     <PersonRoundedIcon fontSize="small" />
                   </ListItemIcon>
@@ -106,7 +108,7 @@ export default function Header_userIcon() {
                 </Link>
               </MenuItem>
               <MenuItem>
-                <Link to="/user">
+                <Link to="/user/list">
                   <ListItemIcon>
                     <Settings fontSize="small" />
                   </ListItemIcon>
@@ -160,7 +162,7 @@ export default function Header_userIcon() {
               </List>
               <Divider />
               <MenuItem>
-                <Link to="/myinfo">
+                <Link to="/user/mypage">
                   <ListItemIcon>
                     <PersonRoundedIcon fontSize="small" />
                   </ListItemIcon>
@@ -209,7 +211,7 @@ export default function Header_userIcon() {
           >
             <MenuItem>
               <Link
-                to="/login"
+                to="/user/login"
                 onClick={(e) => {
                   console.log(e);
                 }}

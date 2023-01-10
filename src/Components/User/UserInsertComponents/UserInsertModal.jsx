@@ -1,10 +1,9 @@
 import "./UserInsertModal.scss";
 import React, { useState } from "react";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import SignUp from "../UserMyPageComponents/SignUp/SignUp";
-import SignUp1 from "../UserMyPageComponents/SignUp/SignUp1";
 import Modal1 from "../../CommonComponents/Modal/Modal1";
 import { Button, Checkbox, Form, Input } from "antd";
+import UserAdd from "../FixedComponents/UserAdd/UserAdd";
 
 const UserInsertModal = () => {
   const [loading, setLoading] = useState(false);
@@ -25,8 +24,7 @@ const UserInsertModal = () => {
   return (
     <div>
       <Modal1 buttonName="사용자 추가">
-        <SignUp />
-        <SignUp1 />
+        <UserAdd />
       </Modal1>
     </div>
   );

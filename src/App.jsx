@@ -19,6 +19,12 @@ import UserList from "./Components/User/FixedComponents/UserList/UserList";
 import UserLogin from "./Components/User/FixedComponents/UserLogin/UserLogin";
 import UserMyPage from "./Components/User/FixedComponents/UserMyPage/UserMyPage";
 import UserUpdate from "./Components/User/FixedComponents/UserUpdate/UserUpdate";
+// 유저 최종 페이지 링크
+import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
+import UserList_Page from "./Components/User/UserPageComponents/UserList/UserList_Page";
+import UserLogin_Page from "./Components/User/UserPageComponents/UserLogin/UserLogin_Page";
+import UserMyPage_Page from "./Components/User/UserPageComponents/UserMyPage/UserMyPage_Page";
+import UserUpdate_Page from "./Components/User/UserPageComponents/UserUpdate/UserUpdate_Page";
 
 function App() {
   const router = createBrowserRouter([
@@ -68,30 +74,25 @@ function App() {
           element: <MyInfoPage />,
         },
         // 여기부턴 사용자 페이지 (권한 따라 삼항 조건 넣어보려 함)
-        // 컴포넌트 만들어지면 링크 바꿀 것임!
         {
-          path: "/useradd",
-          element: <UserAdd />,
+          path: "/user/add",
+          element: <UserAdd_Page />,
         },
         {
-          path: "/userlist",
-          element: <UserList />,
+          path: "/user/list",
+          element: <UserList_Page />,
         },
         {
-          path: "/userlogin",
-          element: <UserLogin />,
+          path: "/user/login",
+          element: <UserLogin_Page />,
         },
         {
-          path: "/usermypage",
-          element: <UserMyPage />,
+          path: "/user/mypage",
+          element: <UserMyPage_Page />,
         },
         {
-          path: "/useradd",
-          element: <UserAdd />,
-        },
-        {
-          path: "/userupdate",
-          element: <UserUpdate />,
+          path: "/user/update",
+          element: <UserUpdate_Page />,
         },
       ],
     },

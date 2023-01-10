@@ -1,5 +1,4 @@
 import React from "react";
-import SignIn1 from "../UserMyPageComponents/SignIn/SignIn1";
 import "./LoginPage.scss";
 import Page1 from "../../CommonComponents/Page/Page1";
 import Footer from "../../Footer/Footer";

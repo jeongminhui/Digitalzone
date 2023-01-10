@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 // import "./Modal1.scss";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
 const Modal1 = (props) => {
   /* 민희 메이드 모달 서식 입니다! :)
@@ -37,22 +36,7 @@ const Modal1 = (props) => {
         // title="Title"
         onOk={handleOk}
         onCancel={handleCancel}
-        footer={
-          [
-            // <Button key="back" onClick={handleCancel}>
-            //   취소
-            // </Button>,
-            // <Button
-            //   key="submit"
-            //   type="primary"
-            //   loading={loading}
-            //   // onclick 이벤트는 변경 해주어야 함
-            //   onClick={handleOk}
-            // >
-            //   두번째 버튼 이름 넣는 곳
-            // </Button>,
-          ]
-        }
+        footer={[]}
       >
         {props.children}
       </Modal>
