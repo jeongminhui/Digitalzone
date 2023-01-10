@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { db } from "../../../firebase";
+import { db } from "../../../firebase"
 import "./TranInfo.scss";
 import Footer from "../../Footer/Footer";
 import {
@@ -19,7 +19,7 @@ const TranInfo = () => {
   const { txnum } = useParams();
   const [transactionInfo, setTransactionInfo] = useState([]);
   const [copyBtn, setCopyBtn] = useState("copy");
-  const transactionCollection = collection(db, "transaction");
+  const transactionCollection = collection(db, "transaction_test");
 
   //트랜잭션 상세 정보 로드
   useEffect(() => {

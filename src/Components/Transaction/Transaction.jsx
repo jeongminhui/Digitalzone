@@ -4,49 +4,33 @@ import Footer from "../Footer/Footer";
 import TranMain from "./TranMain/TranMain";
 import TranInfo from "./TranInfo/TranInfo";
 import { db } from "../../firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  doc,
-  where,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import { collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
+// recoil Atom에서 가져오기
+import { useRecoilValue } from "recoil";
+import { transactionSelector } from "../../Recoil/Selector";
+
 const Transaction = () => {
-  const transactionCollection = collection(db, "transaction_test");
-  const [transactionInfo, setTransactionInfo] = useState([]);
+  const transactionData = useRecoilValue(transactionSelector);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    async function getTrans() {
-      // const docRef = doc(transactionCollection, "326849");
-      const data = await getDocs(transactionCollection);
-      data.docs.map((items) => {
-        return makeTranData(items.data());
-      });
-    }
-    // setTransactionInfo(transactionData);
-    // console.log(transactionInfo);
-    getTrans();
+    //row구조
+    transactionData.map((item) => {
+      setRows((prev) => [
+        ...prev,
+        {
+          service: item.service,
+          txnum: item.txnum,
+          createdt: item.createdt,
+          txhash: item.txhash,
+          txsize: item.txsize,
+          blocknum: item.blocknum,
+        },
+      ]);
+    });
   }, []);
-
-  //row구조
-  const makeTranData = (item) => {
-    setRows((prev) => [
-      ...prev,
-      {
-        service: item.service,
-        txnum: item.txnum,
-        createdt: item.createdt,
-        txhash: item.txhash,
-        txsize: item.txsize,
-        blocknum: item.blocknum,
-      },
-    ]);
-  };
 
   // navigation 트랜잭션 상세 이동
   const [txnum, setTxnum] = useState("");
@@ -62,14 +46,11 @@ const Transaction = () => {
 
   return (
     <div className="Transaction">
-    
-        <TranMain
-          rows={rows}
-          clickHandler={clickHandler}
-        />
-        <TranInfo/>
-        <Footer />
+      <div className="wrapper">
+        <TranMain rows={rows} clickHandler={clickHandler} />
       </div>
+      <Footer />
+    </div>
   );
 };
 
