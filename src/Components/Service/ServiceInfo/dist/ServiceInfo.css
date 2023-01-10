@@ -1,7 +1,5 @@
-.BlockInfo {
+.serviceInfo {
   width: calc(100% - 160px);
   height: 100vh;
   position: relative;
 }
-
-

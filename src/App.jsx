@@ -10,14 +10,7 @@ import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
-// user 사용자 페이지 목록
-// import LoginPage from "./Components/User/NewComponents/UserLogin/UserLogin";
-// import MyInfoPage from "./Components/User/NewComponents/MyInfoPage/MyInfoPage";
-import UserAdd from "./Components/User/FixedComponents/UserAdd/UserAdd";
-import UserList from "./Components/User/FixedComponents/UserList/UserList";
-import UserLogin from "./Components/User/FixedComponents/UserLogin/UserLogin";
-import UserMyPage from "./Components/User/FixedComponents/UserMyPage/UserMyPage";
-import UserUpdate from "./Components/User/FixedComponents/UserUpdate/UserUpdate";
+import ServiceInfo from "./Components/Service/ServiceInfo/ServiceInfo";
 
 function App() {
   const router = createBrowserRouter([
@@ -52,6 +45,10 @@ function App() {
         {
           path: "/service",
           element: <Service />,
+        },
+        {
+          path: "/service/:blocknum",
+          element: <ServiceInfo />,
         },
         {
           path: "/user",

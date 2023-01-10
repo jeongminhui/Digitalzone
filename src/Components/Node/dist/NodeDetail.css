@@ -3,9 +3,13 @@
   height: 100vh;
   position: relative;
 }
+.NodeDetail .DetailWrap {
+  width: 90%;
+  padding-left: 65px;
+  margin-bottom: 100px;
+}
 .NodeDetail .subTitle {
   display: flex;
-  width: 1024px;
   justify-content: space-between;
 }
 .NodeDetail .subTitle .subBar {
@@ -17,6 +21,7 @@
   background-color: #4669F5;
   border: 1px solid #4669F5;
   border-radius: 5px;
+  margin-right: 125px;
   padding: 5px;
   outline: none;
   text-decoration: none;
