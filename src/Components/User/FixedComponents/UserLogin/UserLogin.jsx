@@ -32,6 +32,7 @@ const UserLogin = () => {
                 dataPrint();
             })
             .catch((error) => {
+                console.log(error.code)
                 switch (error.code) {
                     case 'auth/user-not-found':
                         setErrorMsg('해당 사용자가 없습니다');
