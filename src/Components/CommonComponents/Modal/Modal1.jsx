@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
-// import "./Modal1.scss";
+import "./Modal1.scss";
 
 const Modal1 = (props) => {
   /* 민희 메이드 모달 서식 입니다! :)
