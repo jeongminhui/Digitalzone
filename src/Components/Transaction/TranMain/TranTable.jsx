@@ -54,15 +54,15 @@ const TranTable = ({ rows, clickHandler }) => {
   }, [page]);
 
   //pagenation
-    const [pagenation, setPagenation] = useState(1);
+  const [pagenation, setPagenation] = useState(1);
 
-    const handleChange = (event, value) => {
-      setPagenation(value);
-    };
+  const handleChange = (event, value) => {
+    setPagenation(value);
+  };
 
-    useEffect(() => {
-      setPage(pagenation - 1);
-    }, [pagenation]);
+  useEffect(() => {
+    setPage(pagenation - 1);
+  }, [pagenation]);
 
   return (
     <div className="tableWrapper">
@@ -77,6 +77,7 @@ const TranTable = ({ rows, clickHandler }) => {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                     sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                    className={column.id}
                   >
                     {column.label}
                   </TableCell>
@@ -98,7 +99,9 @@ const TranTable = ({ rows, clickHandler }) => {
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
                       <TableCell key={row.service}>{row.service}</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum}</TableCell>
+                      <TableCell key={row.txnum} className="blue">
+                        {row.txnum}
+                      </TableCell>
                       <TableCell key={row.createdt}>{row.createdt}</TableCell>
                       <TableCell key={row.txhash}>{row.txhash}</TableCell>
                       <TableCell key={row.txsize}>{row.txsize} KB</TableCell>
@@ -109,34 +112,34 @@ const TranTable = ({ rows, clickHandler }) => {
             </TableBody>
           </Table>
           <div className="pagenationDIV">
-          <div className="pagenation">
-            <Stack spacing={2}>
-              <Pagination
-                count={
-                  rows.length % rowsPerPage === 0
-                    ? parseInt(rows.length / rowsPerPage)
-                    : parseInt(rows.length / rowsPerPage) + 1
-                }
-                page={pagenation}
-                onChange={handleChange}
-                showFirstButton
-                showLastButton
+            <div className="tablePagenation">
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
               />
-            </Stack>
-          </div>
+            </div>
 
-          <div className="tablePagenation">
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
+            <div className="pagenation">
+              <Stack spacing={2}>
+                <Pagination
+                  count={
+                    rows.length % rowsPerPage === 0
+                      ? parseInt(rows.length / rowsPerPage)
+                      : parseInt(rows.length / rowsPerPage) + 1
+                  }
+                  page={pagenation}
+                  onChange={handleChange}
+                  showFirstButton
+                  showLastButton
+                />
+              </Stack>
+            </div>
           </div>
-        </div>
         </TableContainer>
       </Paper>
     </div>

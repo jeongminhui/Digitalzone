@@ -118,22 +118,6 @@ const ServiceTable = ({ rows, clickHandler }) => {
           </TableBody>
         </Table>
         <div className="pagenationDIV">
-          <div className="pagenation">
-            <Stack spacing={2}>
-              <Pagination
-                count={
-                  rows.length === rowsPerPage
-                    ? parseInt(rows.length / rowsPerPage)
-                    : parseInt(rows.length / rowsPerPage) + 1
-                }
-                page={pagenation}
-                onChange={handleChange}
-                showFirstButton
-                showLastButton
-              />
-            </Stack>
-          </div>
-
           <div className="tablePagenation">
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
@@ -144,6 +128,22 @@ const ServiceTable = ({ rows, clickHandler }) => {
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}
             />
+          </div>
+
+          <div className="pagenation">
+            <Stack spacing={2}>
+              <Pagination
+                count={
+                  rows.length % rowsPerPage === 0
+                    ? parseInt(rows.length / rowsPerPage)
+                    : parseInt(rows.length / rowsPerPage) + 1
+                }
+                page={pagenation}
+                onChange={handleChange}
+                showFirstButton
+                showLastButton
+              />
+            </Stack>
           </div>
         </div>
       </TableContainer>

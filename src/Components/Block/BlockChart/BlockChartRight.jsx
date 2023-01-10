@@ -56,7 +56,7 @@ const BlockChartRight = ({ rows, containerStyle }) => {
   console.log(avr);
 
   return (
-    <div style={containerStyle}>
+    <div className="chart" style={containerStyle}>
       <ApexCharts
         type="area"
         series={[

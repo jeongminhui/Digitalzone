@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ChartRight.scss";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
@@ -87,7 +86,7 @@ const ChartRight = () => {
   }, [rows]);
 
   return (
-    <div className="leftChart" style={containerStyle}>
+    <div className="chart" style={containerStyle}>
       <ApexCharts
         type="area"
         series={[

@@ -3,3 +3,7 @@
   justify-content: space-around;
   margin-bottom: 30px;
 }
+.chartWrapper .chart {
+  background-color: #fff;
+  border-radius: 5px;
+}

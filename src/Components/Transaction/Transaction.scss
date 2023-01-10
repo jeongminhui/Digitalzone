@@ -6,5 +6,9 @@
   .wrapper {
     padding: 20px 70px;
     margin-bottom: 100px;
+
+    .txnum {
+      color: var(--point-color);
+    }
   }
 }
