@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./BlockInfo.scss"
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,9 +13,10 @@ import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 
 import { Button, Modal } from "antd";
+import { width } from "@mui/system";
 
 const TxInfo = ({ txnum }) => {
-  const txCollection = collection(db, "transaction");
+  const txCollection = collection(db, "transaction_test");
   const [txInfo, setTxInfo] = useState({});
 
   useEffect(() => {
@@ -28,26 +30,30 @@ const TxInfo = ({ txnum }) => {
   }, [txnum]);
 
   const columns = [
-    { id: "txnum", label: "트랜잭션번호", minWidth: 100 },
+    { id: "txnum", label: "트랜잭션번호", minWidth: 100, backgroundColor: "#F0F4FB" },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
+      backgroundColor: "#F0F4FB"
     },
     {
       id: "txhash",
       label: "트랜잭션해시",
       minWidth: 130,
+      backgroundColor: "#F0F4FB"
     },
     {
       id: "txsize",
       label: "트랜잭션크기",
       minWidth: 70,
+      backgroundColor: "#F0F4FB"
     },
     {
       id: "txdata",
       label: "데이터",
       minWidth: 70,
+      backgroundColor: "#F0F4FB"
     },
   ];
 
@@ -64,7 +70,7 @@ const TxInfo = ({ txnum }) => {
 
   return (
     <div>
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
@@ -73,7 +79,7 @@ const TxInfo = ({ txnum }) => {
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth }}
+                    style={{ minWidth: column.minWidth , backgroundColor: column.backgroundColor}}
                   >
                     {column.label}
                   </TableCell>
@@ -87,8 +93,8 @@ const TxInfo = ({ txnum }) => {
                 <TableCell>{txInfo.txhash}</TableCell>
                 <TableCell>{txInfo.txsize}</TableCell>
                 <TableCell>
-                  <button type="button" onClick={showModal}>
-                    <HiOutlineDocumentText />
+                  <button type="button" onClick={showModal} className="modalBtn">
+                    <HiOutlineDocumentText  className= "modalIcon" style={{ stroke: "#3d3d3d" }}/>
                   </button>
                 </TableCell>
               </TableRow>
@@ -102,7 +108,7 @@ const TxInfo = ({ txnum }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[
-          <Button key="submit" type="primary" onClick={handleOk}>
+          <Button key="submit" type="primary" onClick={handleOk} className= "submitBtn" color="#fff">
             Submit
           </Button>,
         ]}

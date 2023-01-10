@@ -41,9 +41,8 @@ button {
   color: white;
   background-color: var(--point-color);
   border: 0;
-  border-radius: 8px;
-  height: 32px;
-  margin: 9px;
+  border-radius: 5px;
+  height: 35px;
   padding: 9px;
   padding-left: 20px;
   padding-right: 20px;
@@ -52,19 +51,18 @@ button {
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 420;
 }
-.ant-btn-primary {
-  background-color: var(--point-color);
-}
-.ant-btn > span {
+
+.listBtn{
+  width: 85px;
+  height: 35px;
+  border: 1px solid var(--point-color);
+  border-radius: 5px;
+  margin-right : 80px;
+  padding: 5px;
+  outline: none;
+  text-decoration: none;
+  background-color:var(--point-color);
   color: white;
-}
-// .ant-btn {
-// font-size: 15px;
-//   height: 32px;
-//   padding: 4px 15px;
-//   border-radius: 6px;
-// font-family: "Noto Sans KR", sans-serif;
-// }
-path {
-  color: var(--point-color);
-}
+  cursor: pointer;
+  font-size: 13px;
+} 

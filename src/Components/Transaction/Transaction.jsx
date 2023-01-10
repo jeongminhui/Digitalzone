@@ -6,6 +6,7 @@ import TranInfo from "./TranInfo/TranInfo";
 import { db } from "../../firebase";
 import { collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import "../Block/Block.scss";
 
 // recoil Atom에서 가져오기
 import { useRecoilValue } from "recoil";

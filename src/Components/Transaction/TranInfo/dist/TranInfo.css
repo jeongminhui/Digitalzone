@@ -1,0 +1,66 @@
+.TranInfo {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+.TranInfo .wrap {
+  padding: 20px 70px;
+  margin-bottom: 100px;
+}
+.TranInfo .wrap .subTitle {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.TranInfo .wrap .subTitle .listBtn {
+  margin-right: 56px;
+}
+.TranInfo .wrap .subTitle .subBar {
+  color: #4669f5;
+  font-weight: bold;
+  font-size: 26px;
+}
+.TranInfo .wrap .tableWrap {
+  width: 91%;
+  margin-bottom: 100px;
+  box-shadow: var(--box-shadow);
+  margin: 0 auto;
+  padding: 30px;
+}
+.TranInfo .wrap .tableWrap table {
+  border-spacing: 25px;
+}
+.TranInfo .wrap .tableWrap table .infoTitle {
+  font-size: 14px;
+  font-weight: bold;
+}
+.TranInfo .wrap .tableWrap table .infoContent {
+  font-size: 14px;
+  padding-left: 30px;
+}
+.TranInfo .wrap .tableWrap table .copyButton {
+  width: 60px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ebf4fc;
+  border: none;
+  font-size: 12px;
+  padding: 3px;
+}
+.TranInfo .wrap .tableWrap table .copyButton .icon {
+  margin: 0 0 3px 1px;
+}
+.TranInfo .wrap .txdataWrap {
+  width: 91%;
+  height: 160px;
+  margin: 20px auto 0px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f3f6;
+  padding: 30px;
+  line-height: 25px;
+}

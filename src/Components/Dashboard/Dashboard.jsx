@@ -53,7 +53,7 @@ const Dashboard = () => {
 
   // // 트랜잭션 데이터
   const [transaction, setTransaction] = useRecoilState(transactionAtom);
-  const transactionData = collection(db, "transaction");
+  const transactionData = collection(db, "transaction_test");
 
   useEffect(() => {
     async function getNtw() {

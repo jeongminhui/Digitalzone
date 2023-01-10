@@ -20,11 +20,9 @@ const ChartLeft = () => {
   const transaction = collection(db, "transaction_test");
 
   const containerStyle = {
-    width: "450px",
+    width: "480px",
     height: "300px",
-    margin: "5px",
-    marginBottom: "50px",
-  }
+  };
   useEffect(() => {
     async function getTrans() {
       const data = await getDocs(transaction);
@@ -74,7 +72,7 @@ const ChartLeft = () => {
 
   // console.log(ten);
   return (
-    <div className= "leftChart" style={containerStyle}>
+    <div className="leftChart" style={containerStyle}>
       <ApexCharts
         type="area"
         series={[
@@ -88,7 +86,7 @@ const ChartLeft = () => {
             height: 300,
             width: 500,
             toolbar: {
-              show:false,
+              show: false,
             },
           },
           title: {
@@ -103,7 +101,6 @@ const ChartLeft = () => {
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
           },
-         
         }}
       ></ApexCharts>
     </div>

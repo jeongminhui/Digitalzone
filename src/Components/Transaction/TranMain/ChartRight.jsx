@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ChartRight.scss";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
-import {collection,getDocs,} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const ChartRight = () => {
   const [ten, setTen] = useState({});
@@ -16,13 +16,11 @@ const ChartRight = () => {
     fourteen: 0,
   });
 
-
   const transaction = collection(db, "transaction_test");
 
   const containerStyle = {
-    width: "450px",
+    width: "480px",
     height: "300px",
-    // marginBottom: "50px"
   };
   useEffect(() => {
     async function getTrans() {
@@ -64,19 +62,19 @@ const ChartRight = () => {
     );
 
     const tenTxsize = timeFilter10.map((item) => {
-      setSum({ ten: (sum.ten += parseInt(item.txsize)) })
+      setSum({ ten: (sum.ten += parseInt(item.txsize)) });
     });
     const elevenTxsize = timeFilter11.map((item) => {
-      setSum({ eleven: (sum.eleven += parseInt(item.txsize))})
+      setSum({ eleven: (sum.eleven += parseInt(item.txsize)) });
     });
     const tewlveTxsize = timeFilter12.map((item) => {
-      setSum({ tewlve: (sum.tewlve += parseInt(item.txsize))})
+      setSum({ tewlve: (sum.tewlve += parseInt(item.txsize)) });
     });
     const thirteenTxsize = timeFilter13.map((item) => {
-      setSum({ thirteen: (sum.thirteen += parseInt(item.txsize))})
+      setSum({ thirteen: (sum.thirteen += parseInt(item.txsize)) });
     });
     const fourteenTxsize = timeFilter14.map((item) => {
-      setSum({ thirteen: (sum.fourteen += parseInt(item.txsize))})
+      setSum({ thirteen: (sum.fourteen += parseInt(item.txsize)) });
     });
 
     setAvr({
@@ -86,7 +84,6 @@ const ChartRight = () => {
       thirteen: parseInt(sum.thirteen / timeFilter13.length),
       fourteen: parseInt(sum.fourteen / timeFilter14.length),
     });
-   
   }, [rows]);
 
   return (
