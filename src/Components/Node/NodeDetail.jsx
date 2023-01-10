@@ -8,7 +8,7 @@ import Grafana from './Grafana';
 import "./NodeDetail.scss"
 
 const NodeDetail = () => {
-    const nodeCollection = collection(db, "node1");
+    const nodeCollection = collection(db, "node");
     const { nodename } = useParams();
     const [ip, setIp] = useState('');
 
@@ -30,7 +30,7 @@ const NodeDetail = () => {
                 <h3> <span className='subBar'>|</span> 상세정보</h3>
                 <Link to="/node"><button className='listBtn'>목록으로</button></Link>
             </div>
-            <div> { nodename } <span>({ip})</span></div>
+            <div className='content'> { nodename } ({ip})</div>
             <Chart/>
             </div>​
             <Footer/>
