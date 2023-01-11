@@ -1,35 +1,39 @@
-.Transaction, .TranMain {
+.Transaction {
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
+  margin: 0;
 }
-.Transaction .wrapper, .TranMain .wrapper {
+.Transaction .TranMain .wrapper {
   padding: 20px 70px;
   margin-bottom: 100px;
 }
-.Transaction .wrapper .subTitle, .TranMain .wrapper .subTitle {
+.Transaction .TranMain .wrapper .subTitle {
   margin-bottom: 30px;
 }
-.Transaction .wrapper .subTitle .subBar, .TranMain .wrapper .subTitle .subBar {
+.Transaction .TranMain .wrapper .subTitle .subBar {
   color: #4669f5;
   font-weight: bold;
 }
-.Transaction .wrapper .chartWrapper, .TranMain .wrapper .chartWrapper {
+.Transaction .TranMain .wrapper .chartWrapper {
   clear: both;
   display: flex;
   flex-direction: row wrap;
   justify-content: space-around;
   margin-bottom: 30px;
 }
-.Transaction .wrapper .chartWrapper .pagenationDIV, .TranMain .wrapper .chartWrapper .pagenationDIV {
+.Transaction .TranMain .pagenationDIV {
   display: flex;
   justify-content: space-between;
 }
-.Transaction .wrapper .chartWrapper .pagenationDIV .pagenation, .TranMain .wrapper .chartWrapper .pagenationDIV .pagenation {
+.Transaction .TranMain .pagenationDIV .pagenation {
   align-self: center;
   justify-self: center;
   margin-right: 100px;
 }
-.Transaction .wrapper .chartWrapper .pagenationDIV .tablePagenation, .TranMain .wrapper .chartWrapper .pagenationDIV .tablePagenation {
+.Transaction .TranMain .pagenationDIV .tablePagenation {
   justify-self: flex-end;
+}
+.Transaction .TranMain .pagenationDIV .tableWrapper {
+  font-family: "Noto Sans KR", sans-serif;
 }

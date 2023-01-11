@@ -1,27 +1,31 @@
-.Transaction, .TranMain {
+.Transaction {
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
+  margin: 0;
+  .TranMain {
+    .wrapper {
+      padding: 20px 70px;
+      margin-bottom: 100px;
 
-  .wrapper {
-    padding: 20px 70px;
-    margin-bottom: 100px;
+      .subTitle {
+        margin-bottom: 30px;
 
-    .subTitle {
-      margin-bottom: 30px;
-
-      .subBar {
-        color: #4669f5;
-        font-weight: bold;
+        .subBar {
+          color: #4669f5;
+          font-weight: bold;
+        }
       }
-    }
-    .chartWrapper {
-      clear: both;
-      display: flex;
-      flex-direction: row wrap;
-      justify-content: space-around;
-      margin-bottom: 30px;
+      .chartWrapper {
+        clear: both;
+        display: flex;
+        flex-direction: row wrap;
+        justify-content: space-around;
+        margin-bottom: 30px;
 
+        }
+      }
+      
       .pagenationDIV {
         display: flex;
         justify-content: space-between;
@@ -35,6 +39,8 @@
         .tablePagenation {
           justify-self: flex-end;
         }
+      .tableWrapper {
+        font-family:  "Noto Sans KR", sans-serif;
       }
     }
   }

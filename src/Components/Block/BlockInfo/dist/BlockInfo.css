@@ -25,6 +25,7 @@
   box-shadow: var(--box-shadow);
   margin: 100px auto;
   padding: 30px;
+  background-color: #fff;
 }
 .BlockInfo .wrap .tableWrap .table {
   border-spacing: 25px;

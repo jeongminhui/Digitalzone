@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { koKR } from "@mui/material/locale";
 
 const TranTable = ({ rows, clickHandler }) => {
   const columns = [
@@ -67,7 +68,7 @@ const TranTable = ({ rows, clickHandler }) => {
   return (
     <div className="tableWrapper">
       <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
-        <TableContainer sx={{ bgcolor: "#fff" }}>
+        <TableContainer sx={{ bgcolor: "#fff"}}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -77,6 +78,7 @@ const TranTable = ({ rows, clickHandler }) => {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                     sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                    className={column.id}
                   >
                     {column.label}
                   </TableCell>
