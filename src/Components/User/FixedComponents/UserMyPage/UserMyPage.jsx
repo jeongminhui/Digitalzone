@@ -94,13 +94,14 @@ const UserMyPage = () => {
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "비밀번호가 변경되었습니다",
+          text: "비밀번호가 변경되었습니다",
           showConfirmButton: false,
           timer: 2000,
         });
       })
       .catch((error) => {
         console.log(error.code);
+        console.log(error.message);
       });
     setUserpw("");
     setPwcheck("");

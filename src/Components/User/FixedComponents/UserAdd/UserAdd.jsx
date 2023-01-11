@@ -108,7 +108,6 @@ const UserAdd = () => {
     if (pwcheck.length > 0) {
       setPwcheck((prev) => prev);
 
-      // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
       const same = document.getElementsByClassName("notsamepwsignup")[0];
       if (password === pwcheck) {
         same.style.display = "none";
@@ -146,7 +145,7 @@ const UserAdd = () => {
         });
         Swal.fire({
           icon: "success",
-          title: "사용자를 추가하였습니다",
+          text: "사용자를 추가하였습니다",
           showConfirmButton: false,
           timer: 2000,
         });
@@ -174,7 +173,7 @@ const UserAdd = () => {
       const errorPrint = async () => {
         await Swal.fire({
           icon: "error",
-          title: errorMsg,
+          text: errorMsg,
           showConfirmButton: false,
           timer: 2000,
         });
@@ -273,7 +272,10 @@ const UserAdd = () => {
             onChange={(e) => setPwcheck(e.target.value)}
           />
         </div>
-        <div className="notsamepwsignup"> 비밀번호가 일치하지 않습니다</div>
+        <div className="notsamepwsignup" style={{ color: "#ff0019" }}>
+          {" "}
+          비밀번호가 일치하지 않습니다
+        </div>
         <div>
           권한:{" "}
           <label>

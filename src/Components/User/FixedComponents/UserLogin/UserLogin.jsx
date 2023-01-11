@@ -45,9 +45,6 @@ const UserLogin = () => {
           case "auth/too-many-requests":
             setErrorMsg("너무 많이 시도했습니다");
             break;
-          case "auth/internal-error":
-            setErrorMsg("예기치 못한 오류가 생겼습니다");
-            break;
           default:
             setErrorMsg("로그인에 실패하였습니다");
         }
@@ -60,7 +57,7 @@ const UserLogin = () => {
       const errorPrint = async () => {
         await Swal.fire({
           icon: "error",
-          title: errorMsg,
+          text: errorMsg,
           showConfirmButton: false,
           timer: 2000,
         });
@@ -71,7 +68,7 @@ const UserLogin = () => {
   }, [errorMsg]);
 
   return (
-    <>
+    <div>
       <form>
         <div className="signIn Email">
           <input
@@ -97,7 +94,7 @@ const UserLogin = () => {
           로그인
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
