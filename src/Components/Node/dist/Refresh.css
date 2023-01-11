@@ -1,0 +1,10 @@
+.Refresh {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-right: 3px;
+}
+.Refresh span {
+  margin-left: 3px;
+  color: #888888;
+}
