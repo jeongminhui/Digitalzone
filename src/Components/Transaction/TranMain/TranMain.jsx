@@ -3,6 +3,7 @@ import ChartLeft from "./ChartLeft";
 import ChartRight from "./ChartRight";
 import TranTable from "./TranTable";
 import { useNavigate } from "react-router-dom";
+import "../../Transaction/Transaction.scss";
 
 // row 구조
 const TranMain = ({ rows }) => {

@@ -83,7 +83,7 @@ const Dashboard = () => {
 
   // // 서비스 데이터
   const [service, setService] = useRecoilState(serviceAtom);
-  const serviceData = collection(db, "service");
+  const serviceData = collection(db, "service_test");
 
   useEffect(() => {
     async function getNtw() {

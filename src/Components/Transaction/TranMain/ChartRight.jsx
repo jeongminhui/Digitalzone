@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ChartRight.scss";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";

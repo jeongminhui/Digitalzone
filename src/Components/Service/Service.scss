@@ -1,6 +1,6 @@
 .Service {
   width: calc(100% - 160px);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 
   .wrapper {
@@ -10,5 +10,19 @@
     .service {
       color: var(--point-color);
     }
+
+    .chartWrapper{
+      // background-color: red;
+    }
   }
+}
+.rightContainer{
+  width: 480px;
+  height: 300px;
+ 
+}
+.leftContainer{
+  width: 480px;
+  height: 300px;
+ 
 }

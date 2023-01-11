@@ -1,4 +1,4 @@
-.TranInfo {
+.TranInfo, .serviceInfo{
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
@@ -52,6 +52,7 @@
           border: none;
           font-size: 12px;
           padding: 3px;
+          cursor: pointer;
 
           .icon {
             margin: 0 0 3px 1px;
