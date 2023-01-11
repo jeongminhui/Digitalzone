@@ -9,10 +9,15 @@ import "./UserLogin.scss";
 // 민희 추가
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import { useNavigate, withRouter } from "react-router-dom";
+import {
+  unstable_HistoryRouter,
+  useNavigate,
+  withRouter,
+} from "react-router-dom";
 
 const UserLogin = () => {
   const navigate = useNavigate();
+  // const history = createBrowserHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // 로그인 실패 메시지
@@ -36,7 +41,8 @@ const UserLogin = () => {
           setLoginUser(userInfo);
         };
         dataPrint();
-        navigate(-1);
+        navigate("/");
+        // window.history.go(-1);
       })
       .catch((error) => {
         switch (error.code) {
@@ -56,7 +62,6 @@ const UserLogin = () => {
             setErrorMsg("로그인에 실패하였습니다");
         }
       });
-
     setEmail("");
     setPassword("");
   };
@@ -74,10 +79,11 @@ const UserLogin = () => {
       setErrorMsg("");
     } else return;
   }, [errorMsg]);
+
   // 민희추가
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
+  // const onFinish = (values) => {
+  //   console.log("Received values of form: ", values);
+  // };
 
   return (
     <>
@@ -88,7 +94,7 @@ const UserLogin = () => {
         initialValues={{
           remember: true,
         }}
-        onFinish={onFinish}
+        // onFinish={onFinish}
       >
         <Form.Item
           name="useremail"
