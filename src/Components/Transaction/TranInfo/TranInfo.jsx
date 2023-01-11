@@ -3,7 +3,7 @@ import { db } from "../../../firebase";
 import "./TranInfo.scss";
 import "../../../App.scss";
 import Footer from "../../Footer/Footer";
-import {collection,getDoc,doc,} from "firebase/firestore";
+import { collection, getDoc, doc } from "firebase/firestore";
 import copy from "copy-to-clipboard";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { Link, useParams } from "react-router-dom";
@@ -45,15 +45,20 @@ const TranInfo = () => {
     <div className="TranInfo">
       <div className="wrap">
         <h1 className="mainTitle">트랜잭션</h1>
-        <div className='subTitle'>
-                <h3> <span className='subBar'>|</span> 상세정보</h3>
-                <Link to="/transaction"><button className='listBtn'>목록으로</button></Link>
-            </div>
+        <div className="subTitle">
+          <h3>
+            {" "}
+            <span className="subBar">|</span> 상세정보
+          </h3>
+          <Link to="/transaction">
+            <button className="listBtn">목록으로</button>
+          </Link>
+        </div>
         <div className="tableWrap">
           <table>
             <thead></thead>
             <tbody>
-              <tr className="tr">
+              <tr>
                 <td className="infoTitle">서비스명</td>
                 <td className="infoContent">{transactionInfo.service}</td>
               </tr>
@@ -66,7 +71,8 @@ const TranInfo = () => {
                 <td className="infoContent">{transactionInfo.txhash}</td>
                 <td>
                   <button
-                    className="copyButton" style={{color:"#3598D9"}}
+                    className="copyButton"
+                    style={{ color: "#3598D9" }}
                     ref={btnRef}
                     onClick={() => {
                       copyButton();
@@ -75,9 +81,13 @@ const TranInfo = () => {
                   >
                     {copyBtn}
                     {copyBtn === "COPIED" ? (
-                      <HiOutlineDocumentDuplicate className= "icon" style={{ stroke: "#fff" }} />
+                      <HiOutlineDocumentDuplicate
+                        className="icon"
+                        style={{ stroke: "#fff" }}
+                      />
                     ) : (
-                      <HiOutlineDocumentDuplicate  className= "icon"
+                      <HiOutlineDocumentDuplicate
+                        className="icon"
                         style={{ stroke: "#3598d9" }}
                       />
                     )}

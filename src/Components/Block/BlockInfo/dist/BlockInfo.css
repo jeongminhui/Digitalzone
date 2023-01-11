@@ -49,6 +49,7 @@
   font-size: 12px;
   padding: 3px;
   margin: 0;
+  cursor: pointer;
 }
 .BlockInfo .wrap .tableWrap .table .copyButton .icon {
   margin: 0 0 3px 1px;
@@ -59,6 +60,7 @@
   width: 50px;
   height: 30px;
   font-size: 12px;
+  cursor: pointer;
 }
 .BlockInfo .wrap .tableWrap .modalBtn {
   width: 30px;

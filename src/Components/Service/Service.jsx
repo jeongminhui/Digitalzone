@@ -11,7 +11,7 @@ import { serviceSelector } from "../../Recoil/Selector";
 import ServiceChart from "./ServiceChart/ServiceChart";
 
 const Service = () => {
-  const serviceData = useRecoilValue(serviceSelector);
+   const serviceData = useRecoilValue(serviceSelector);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
