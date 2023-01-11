@@ -87,24 +87,15 @@ const UserLogin = () => {
 
   return (
     <>
-      {" "}
       <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{
-          remember: true,
-        }}
-        // onFinish={onFinish}
+      // name="normal_login"
+      // className="login-form"
+      // initialValues={{
+      //   remember: true,
+      // }}
+      // onFinish={onFinish}
       >
-        <Form.Item
-          name="useremail"
-          rules={[
-            {
-              required: true,
-              message: "이메일을 입력해 주세요!",
-            },
-          ]}
-        >
+        <Form.Item>
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
             type="email"
@@ -115,15 +106,7 @@ const UserLogin = () => {
             }}
           />
         </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please input your Password!",
-            },
-          ]}
-        >
+        <Form.Item>
           <Input
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
