@@ -5,6 +5,12 @@
     .Dashboard_title,
     .Dashboard_data {
       color: #c08728;
+
+      span {
+        color: var(--light-grey-color);
+        font-size: 20px;
+        font-weight: bold;
+      }
     }
   }
 

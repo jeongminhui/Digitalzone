@@ -1,25 +1,80 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./MenuTab.scss";
-import { Link } from "react-router-dom";
+import { MdDashboard } from "react-icons/md";
+import { IoCube } from "react-icons/io5";
+import { FaServer } from "react-icons/fa";
+import { FaNetworkWired } from "react-icons/fa";
+import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
 const MenuTab = () => {
+  const activeStyle = {
+    background: "#fafbff",
+    color: "#4669f5",
+  };
+
+  const deactiveStyle = {
+    backgroud: "#4669f5",
+    color: "#fafbff",
+  };
+
   return (
     <div className="MenuTab">
       <ul>
         <li>
-          <Link to="/">대시보드</Link>
+          <NavLink
+            to="/"
+            style={({ isActive }) => {
+              return isActive ? activeStyle : deactiveStyle;
+            }}
+          >
+            <MdDashboard />
+            대시보드
+          </NavLink>
         </li>
         <li>
-          <Link to="/block">블록</Link>
+          <NavLink
+            to="/block"
+            style={({ isActive }) => {
+              return isActive ? activeStyle : deactiveStyle;
+            }}
+          >
+            <IoCube />
+            블록
+          </NavLink>
         </li>
         <li>
-          <Link to="/transaction">트랜잭션</Link>
+          <NavLink
+            to="/transaction"
+            style={({ isActive }) => {
+              return isActive ? activeStyle : deactiveStyle;
+            }}
+          >
+            <FaServer />
+            트랜잭션
+          </NavLink>
         </li>
         <li>
-          <Link to="/node">노드</Link>
+          <NavLink
+            to="/node"
+            style={({ isActive }) => {
+              return isActive ? activeStyle : deactiveStyle;
+            }}
+          >
+            <FaNetworkWired />
+            노드
+          </NavLink>
         </li>
         <li>
-          <Link to="/service">서비스</Link>
+          <NavLink
+            to="/service"
+            style={({ isActive }) => {
+              return isActive ? activeStyle : deactiveStyle;
+            }}
+          >
+            <MdOutlineMiscellaneousServices />
+            서비스
+          </NavLink>
         </li>
       </ul>
     </div>

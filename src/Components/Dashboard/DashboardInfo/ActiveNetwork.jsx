@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./ActiveNetwork.scss";
 import { FaNetworkWired } from "react-icons/fa";
@@ -9,16 +9,27 @@ import { networkSelector } from "../../../Recoil/Selector";
 
 const ActiveNetwork = (props) => {
   const networkData = useRecoilValue(networkSelector);
+  const [active, setActive] = useState("");
 
-  // const activeNetwork = networkData.filter((item) => {
-  //   return item.ntwstatus === true;
-  // });
+  useEffect(() => {
+    async function getActive() {
+      const data = await networkData;
+      const dataFiltering = data.filter((item) => {
+        return item.ntwstatus === true;
+      });
+      setActive(dataFiltering);
+    }
+    getActive();
+  }, [networkData]);
 
   return (
     <div className="ActiveNetwork">
       <Link to="/node">
         <div className="Dashboard_title">활성 네트워크 수</div>
-        <div className="Dashboard_data">값 </div>
+        <div className="Dashboard_data">
+          {active.length}
+          <span>/{networkData.length}</span>
+        </div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
       <div className="Dashboard_icon">
