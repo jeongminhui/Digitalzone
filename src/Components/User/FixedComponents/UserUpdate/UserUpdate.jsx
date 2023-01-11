@@ -4,6 +4,7 @@ import { collection, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useRecoilValue } from 'recoil';
 import { userInfoSelector } from '../../../../Recoil/Selector';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const UserUpdate = () => {
     const updateUser = useRecoilValue(userInfoSelector);
@@ -23,6 +24,7 @@ const UserUpdate = () => {
     // 서비스 카운트
     const [serviceCnt, setServiceCnt] = useState(0);
 
+    const navigate = useNavigate();
     const userCollection = collection(db, 'users');
 
     // 로그인한 사용자 정보 가져오기
@@ -91,42 +93,42 @@ const UserUpdate = () => {
             timer: 2000,
         });
         setServiceCnt(0);
+        navigate('/user');
     };
 
     // 정보 삭제
     const deleteHandler = async (e) => {
         e.preventDefault();
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                cancelButton: 'btn btn-success',
-                confirmButton: 'btn btn-danger',
-            },
-            buttonsStyling: false,
+        Swal.fire({
+            title: '삭제하시겠습니까?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#DA3849',
+            cancelButtonColor: '#30A64A',
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const deleteUser = async () => {
+                    await deleteDoc(doc(db, 'users', user.uid));
+                };
+                deleteUser();
+                Swal.fire({
+                    confirmButtonColor: '#4665f9',
+                    icon: 'success',
+                    title: '삭제되었습니다',
+                    confirmButtonText: '확인',
+                });
+            } else {
+                Swal.fire({
+                    confirmButtonColor: '#4665f9',
+                    icon: 'error',
+                    title: '취소되었습니다',
+                    confirmButtonText: '확인',
+                });
+            }
         });
-        swalWithBootstrapButtons
-            .fire({
-                title: '정말 삭제하시겠습니까?',
-                // text: "정말 삭제하시겠습니까?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: '삭제',
-                cancelButtonText: '취소',
-                reverseButtons: false,
-            })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    const deleteUser = async () => {
-                        await deleteDoc(doc(db, 'users', user.uid));
-                    };
-                    deleteUser();
-                    swalWithBootstrapButtons.fire('삭제되었습니다', '', 'success');
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire('취소되었습니다', '', 'error');
-                }
-            });
     };
 
     return (

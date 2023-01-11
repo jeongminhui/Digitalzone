@@ -4,6 +4,7 @@ import { db } from '../../../../firebase';
 import { useRecoilState } from 'recoil';
 import { userInfoAtom } from '../../../../Recoil/Atom';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const UserList = () => {
     // 스테이트 저장소
@@ -41,13 +42,37 @@ const UserList = () => {
 
     // 특정 유저 데이터 삭제하기
     const deleteHandler = async (uid, e) => {
-        if (window.confirm('정말 삭제하시겠습니까?')) {
-            await deleteDoc(doc(userCollection, uid));
-            alert('삭제되었습니다');
-            window.location.reload();
-        } else {
-            alert('취소되었습니다.');
-        }
+        e.preventDefault();
+        Swal.fire({
+            title: '삭제하시겠습니까?',
+            // text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#DA3849',
+            cancelButtonColor: '#30A64A',
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const deleteUser = async () => {
+                    await deleteDoc(doc(db, 'users', uid));
+                };
+                deleteUser();
+                Swal.fire({
+                    confirmButtonColor: '#4665f9',
+                    icon: 'success',
+                    title: '삭제되었습니다',
+                    confirmButtonText: '확인',
+                });
+            } else {
+                Swal.fire({
+                    confirmButtonColor: '#4665f9',
+                    icon: 'error',
+                    title: '취소되었습니다',
+                    confirmButtonText: '확인',
+                });
+            }
+        });
     };
 
     // 블트노 권한에 따른 OX 표시 함수
