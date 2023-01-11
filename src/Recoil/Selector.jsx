@@ -4,6 +4,7 @@ import { serviceAtom } from "./Atom";
 import { networkAtom } from "./Atom";
 import { currentBlockAtom } from "./Atom";
 import { currentTxAtom } from "./Atom";
+import { loginAtom } from './Atom';
 import { selector } from "recoil";
 
 export const blockSelector = selector({
@@ -53,3 +54,12 @@ export const currentTxSelector = selector({
     return currentTx;
   },
 });
+
+export const loginSelector = selector({
+    key: 'loginSelector',
+    get: ({ get }) => {
+        const loginUser = get(loginAtom);
+        return loginUser;
+    },
+});
+

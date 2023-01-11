@@ -18,10 +18,21 @@ import Chart from './Chart'
 import { useRecoilState } from "recoil";
 import { currentBlockAtom } from "../../Recoil/Atom";
 import Swal from 'sweetalert2';
+import { useRecoilValue } from 'recoil';
+import { loginSelector } from '../../Recoil/Selector';
 
 export default function Tab({rows}) {
 
-  let NodeUser = false;
+  // 권한 설정
+  const loginUser = useRecoilValue(loginSelector);
+  const [NodeUser, setNodeUser] = useState(false);
+  
+    useEffect(() => {
+    setNodeUser(loginUser?.useradmin.node);
+  },[])
+ 
+ 
+
   let columns = [];
     NodeUser ?
      columns = [
