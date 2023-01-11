@@ -9,12 +9,8 @@ import UserLogin from './FixedComponents/UserLogin/UserLogin';
 import UserMyPage from './FixedComponents/UserMyPage/UserMyPage';
 import UserUpdate from './FixedComponents/UserUpdate/UserUpdate';
 
-const User = () => {
-    return (
-        <div className='User'>
-            <UserInsertModal />
-        </div>
-    );
+const User = ({ history }) => {
+    return <div className='User'></div>;
 };
 
 export default User;
