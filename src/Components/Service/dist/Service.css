@@ -10,6 +10,7 @@
 .Service .wrapper .service {
   color: var(--point-color);
 }
+
 .rightContainer {
   width: 480px;
   height: 300px;
