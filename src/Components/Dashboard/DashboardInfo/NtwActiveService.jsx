@@ -61,6 +61,15 @@ const NtwActiveService = () => {
   };
   // makeChartData
 
+  const tooltipStyle = {
+    color: "#888888",
+    background: "#fff",
+    padding: "5px 10px",
+    borderRadius: "3px",
+    boxShadow: "var(--box-shadow-chart-tooltip)",
+    textAlign: "center",
+  };
+
   return (
     <div className="NtwActiveService">
       <Link to="/service">
@@ -85,13 +94,19 @@ const NtwActiveService = () => {
             arcLinkLabelsThickness={2} //막대선 두께
             arcLinkLabelsColor={{ from: "color" }} // 막대 색상, pad 색상에 따라감
             // pad에 표현되는 글씨
-            theme={{
-              labels: {
-                text: {
-                  fontSize: 10,
-                  fill: "#000000",
-                },
-              },
+            tooltip={(data) => {
+              return (
+                <div style={tooltipStyle}>
+                  <span
+                    style={{
+                      background: data.datum.color,
+                      display: "inline-block",
+                      padding: "6px",
+                    }}
+                  ></span>{" "}
+                  {data.datum.id} : {data.datum.value}
+                </div>
+              );
             }}
           />
         </div>
