@@ -35,3 +35,9 @@ export const loginAtom = atom({
     default: '사용자 기본값',
     effects_UNSTABLE: [persistAtom],
 });
+
+export const userInfoAtom = atom({
+    key: 'userInfoAtom',
+    default: '',
+    effects_UNSTABLE: [persistAtom],
+});

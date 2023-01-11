@@ -17,6 +17,8 @@ import { IconButton, Pagination, TablePagination } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import "./UserList_Page.scss";
 import Swal from 'sweetalert2';
+import Modal1 from '../../../CommonComponents/Modal/Modal1';
+import UserAdd_Page from '../UserAdd/UserAdd_Page';
 
 const UserList_Page = () => {
   
@@ -41,7 +43,7 @@ const UserList_Page = () => {
         const clickedUser= await getDoc(docRef);
         const clickedUserData = clickedUser.data();
         setClickedUserInfo(clickedUserData);
-        navigate("/userupdate")
+        navigate("/user/update")
     }
     console.log(clickedUserInfo);
 
@@ -106,11 +108,6 @@ const UserList_Page = () => {
 
     }
 
-// 테이블    
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
 // table
 const [page, setPage] = useState(0);
 const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -147,14 +144,14 @@ useEffect(() => {
         <h3 className="subTitle">
           <span className="subBar">|</span> 전체 사용자 {userlist.length}명
         </h3>
-        {/* <div className='addButtonBox'>
-          <button className='addButton' onClick={addHandler}>
+        <div className='addButtonBox'>
+          {/* <button className='addButton' onClick={addHandler}>
               추가
-          </button>
-        </div> */}
-              <Modal1 buttonName="사용자 추가">
-        <UserAdd />
-      </Modal1>
+          </button> */}
+          <Modal1 buttonName="사용자 추가">
+          <UserAdd_Page/>
+          </Modal1>
+        </div>
     <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
     <TableContainer sx={{ bgcolor: "#fff" }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
