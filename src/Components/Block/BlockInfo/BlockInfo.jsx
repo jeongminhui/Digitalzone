@@ -61,10 +61,15 @@ const BlockInfo = () => {
     <div className="BlockInfo">
       <div className="wrap">
         <h1 className="mainTitle">블록</h1>
-        <div className='subTitle'>
-                <h3> <span className='subBar'>|</span> 블록 상세</h3>
-                <Link to="/block"><button className='listBtn'>목록으로</button></Link>
-            </div>
+        <div className="subTitle">
+          <h3>
+            {" "}
+            <span className="subBar">|</span> 블록 상세
+          </h3>
+          <Link to="/block">
+            <button className="listBtn">목록으로</button>
+          </Link>
+        </div>
 
         <Carousel
           blocknum={blocknum}
@@ -91,7 +96,8 @@ const BlockInfo = () => {
                 <td className="infoContent">{blockInfo.blockhash}</td>
                 <td>
                   <button
-                    className="copyButton" style={{color:"#3598D9"}}
+                    className="copyButton"
+                    style={{ color: "#3598D9" }}
                     ref={btnRef}
                     onClick={() => {
                       copyButton();
@@ -111,13 +117,17 @@ const BlockInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">블록크기</td>
-                <td className="infoContent">{blockInfo.blksize}</td>
+                <td className="infoContent">{blockInfo.blksize} KB</td>
               </tr>
               <tr>
                 <td className="infoTitle">트랜잭션 수</td>
                 <td className="infoContent">
                   1
-                  <button type="button" className="txInfoBtn" onClick={txInfoHandler}>
+                  <button
+                    type="button"
+                    className="txInfoBtn"
+                    onClick={txInfoHandler}
+                  >
                     자세히
                   </button>
                 </td>

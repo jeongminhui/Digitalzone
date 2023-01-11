@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Block.scss";
 import Footer from "../Footer/Footer";
 import { useNavigate } from "react-router-dom";
@@ -39,8 +39,9 @@ const Block = () => {
   const navigate = useNavigate();
 
   const clickHandler = (blocknum, idx) => {
-    navigate(`/block/${blocknum}`);
     setCurrentBlock(idx);
+    // navigate(`/block/${blocknum}`);
+    setBlocknum(blocknum);
   };
 
   useEffect(() => {

@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-around;
   margin-bottom: 30px;
+  border-radius: 5px;
 }
 .chartWrapper .chart {
-  background-color: #fff;
   border-radius: 5px;
 }

@@ -1,6 +1,47 @@
+.css-10hburv-MuiTypography-root {
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  display: block;
+}
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-family: "Noto Sans KR", sans-serif;
+}
+.css-h4y409-MuiList-root span {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #888888;
+  font-size: 13px;
+  font-weight: 400;
+}
+.css-6hp17o-MuiList-root-MuiMenu-list li {
+  font-family: "Noto Sans KR", sans-serif;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 30px;
+}
+.css-h4y409-MuiList-root li {
+  margin: auto 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.css-cveggr-MuiListItemIcon-root path {
+  // color: #3d3d3d;
+  // color: #888888;
+  color: rgba(0, 0, 0, 0.54);
+}
+a:-webkit-any-link {
+  text-decoration: none;
+}
 .Header_userIcon {
+  position: absolute;
   width: 38px;
   height: 38px;
+  top: 32px;
+  right: 66px;
   background: #ffffff;
   box-shadow: 0px 0px 12px rgba(209, 209, 209, 0.4);
   border-radius: 20px;
@@ -11,17 +52,4 @@
   position: absolute;
   right: 10%;
   top: 10%;
-}
-// .PersonRoundedIcon {
-//   position: absolute;
-//   right: 22%;
-//   top: 22%;
-//   color: #4669f5;
-// }
-
-MenuItem p {
-  color: #888888;
-}
-MenuItem {
-  font-family: "Noto Sans KR", sans-serif;
 }
