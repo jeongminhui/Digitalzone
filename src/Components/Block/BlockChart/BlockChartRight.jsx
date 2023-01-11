@@ -76,6 +76,11 @@ const BlockChartRight = ({ rows, containerStyle }) => {
           title: {
             text: "평균 블록 크기 (KB)",
             align: "center",
+            style: {
+              fontSize: "16px",
+              fontWeight: "900",
+              fontFamily: 'Noto Sans KR", sans-serif',
+            },
           },
           stroke: {
             //선의 커브를 부드럽게 하고, 두께를 3으로 지정
