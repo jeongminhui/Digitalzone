@@ -7,8 +7,12 @@ import { useRecoilState } from 'recoil';
 import { loginAtom } from '../../../../../Recoil/Atom';
 import './UserLogin.scss';
 // 민희 추가
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { Button, Checkbox, Form, Input } from 'antd';
+import { useNavigate, withRouter } from 'react-router-dom';
 
 const UserLogin = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     // 로그인 실패 메시지
@@ -32,6 +36,7 @@ const UserLogin = () => {
                     setLoginUser(userInfo);
                 };
                 dataPrint();
+                navigate(-1);
             })
             .catch((error) => {
                 switch (error.code) {
@@ -51,6 +56,7 @@ const UserLogin = () => {
                         setErrorMsg('로그인에 실패하였습니다');
                 }
             });
+
         setEmail('');
         setPassword('');
     };
@@ -59,7 +65,7 @@ const UserLogin = () => {
             const errorPrint = async () => {
                 await Swal.fire({
                     icon: 'error',
-                    text: errorMsg,
+                    title: errorMsg,
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -68,12 +74,33 @@ const UserLogin = () => {
             setErrorMsg('');
         } else return;
     }, [errorMsg]);
+    // 민희추가
+    const onFinish = (values) => {
+        console.log('Received values of form: ', values);
+    };
 
     return (
-        <div>
-            <form>
-                <div className='signIn Email'>
-                    <input
+        <>
+            {' '}
+            <Form
+                name='normal_login'
+                className='login-form'
+                initialValues={{
+                    remember: true,
+                }}
+                onFinish={onFinish}
+            >
+                <Form.Item
+                    name='useremail'
+                    rules={[
+                        {
+                            required: true,
+                            message: '이메일을 입력해 주세요!',
+                        },
+                    ]}
+                >
+                    <Input
+                        prefix={<UserOutlined className='site-form-item-icon' />}
                         type='email'
                         value={email}
                         placeholder='아이디(이메일)'
@@ -81,9 +108,18 @@ const UserLogin = () => {
                             setEmail(e.target.value);
                         }}
                     />
-                </div>
-                <div className='signIn Password'>
-                    <input
+                </Form.Item>
+                <Form.Item
+                    name='password'
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input your Password!',
+                        },
+                    ]}
+                >
+                    <Input
+                        prefix={<LockOutlined className='site-form-item-icon' />}
                         type='password'
                         value={password}
                         placeholder='비밀번호'
@@ -91,12 +127,31 @@ const UserLogin = () => {
                             setPassword(e.target.value);
                         }}
                     />
-                </div>
-                <button type='submit' className='SignInButton' onClick={signInHandler}>
-                    로그인
-                </button>
-            </form>
-        </div>
+                </Form.Item>
+                {/* <Form.Item>
+          <Form.Item name="remember" valuePropName="checked" noStyle>
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+          
+          <a className="login-form-forgot" href="">
+            Forgot password
+          </a>
+        </Form.Item> */}
+
+                <Form.Item>
+                    <Button
+                        type='primary'
+                        htmlType='submit'
+                        className='login-form-button'
+                        // type="submit"
+                        onClick={signInHandler}
+                    >
+                        로그인
+                    </Button>
+                    {/* Or <a href="">register now!</a> */}
+                </Form.Item>
+            </Form>
+        </>
     );
 };
 

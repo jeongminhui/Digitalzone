@@ -41,15 +41,7 @@ export const serviceSelector = selector({
 export const loginSelector = selector({
     key: 'loginSelector',
     get: ({ get }) => {
-        const loginUser = get(loginAtom);
-        return loginUser;
-    },
-});
-
-export const userInfoSelector = selector({
-    key: 'userInfoSelector',
-    get: ({ get }) => {
-        const updateUser = get(userInfoAtom);
-        return updateUser;
+        const user = get(loginAtom);
+        return user;
     },
 });

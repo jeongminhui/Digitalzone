@@ -12,7 +12,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
@@ -219,18 +219,15 @@ export default function Header_userIcon() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem>
-              <Link
-                to="/user/login"
-                onClick={(e) => {
-                  console.log(e);
-                }}
-              >
-                <ListItemIcon>
-                  <PersonRoundedIcon fontSize="small" />
-                </ListItemIcon>
-                로그인
-              </Link>
+            <MenuItem
+              onClick={() => {
+                navigate("/user/login");
+              }}
+            >
+              <ListItemIcon>
+                <PersonRoundedIcon fontSize="small" />
+              </ListItemIcon>
+              로그인
             </MenuItem>
           </Menu>
         )}
