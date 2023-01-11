@@ -44,7 +44,7 @@ const UserList = () => {
     const deleteHandler = async (uid, e) => {
         e.preventDefault();
         Swal.fire({
-            title: '삭제하시겠습니까?',
+            text: '삭제하시겠습니까?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#DA3849',
@@ -59,14 +59,14 @@ const UserList = () => {
                 deleteUser();
                 Swal.fire({
                     icon: 'success',
-                    title: '삭제되었습니다',
+                    text: '삭제되었습니다',
                     showConfirmButton: false,
                     timer: 2000,
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: '취소되었습니다',
+                    text: '취소되었습니다',
                     showConfirmButton: false,
                     timer: 2000,
                 });

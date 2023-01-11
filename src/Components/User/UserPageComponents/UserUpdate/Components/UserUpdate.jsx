@@ -88,7 +88,7 @@ const UserUpdate = () => {
         });
         Swal.fire({
             icon: 'success',
-            title: '정보를 변경했습니다',
+            text: '정보를 변경했습니다',
             showConfirmButton: false,
             timer: 2000,
         });
@@ -101,7 +101,7 @@ const UserUpdate = () => {
     const deleteHandler = async (e) => {
         e.preventDefault();
         Swal.fire({
-            title: '삭제하시겠습니까?',
+            text: '삭제하시겠습니까?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#DA3849',
@@ -116,14 +116,14 @@ const UserUpdate = () => {
                 deleteUser();
                 Swal.fire({
                     icon: 'success',
-                    title: '삭제되었습니다',
+                    text: '삭제되었습니다',
                     showConfirmButton: false,
                     timer: 2000,
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: '취소되었습니다',
+                    text: '취소되었습니다',
                     showConfirmButton: false,
                     timer: 2000,
                 });

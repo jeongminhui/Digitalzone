@@ -130,7 +130,7 @@ const UserAdd = () => {
                 });
                 Swal.fire({
                     icon: 'success',
-                    title: '사용자를 추가하였습니다',
+                    text: '사용자를 추가하였습니다',
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -158,7 +158,7 @@ const UserAdd = () => {
             const errorPrint = async () => {
                 await Swal.fire({
                     icon: 'error',
-                    title: errorMsg,
+                    text: errorMsg,
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -206,7 +206,6 @@ const UserAdd = () => {
                     아이디: <input type='text' value={emailId} onChange={(e) => setEmailId(e.target.value)} />@<input className='domainTxt' type='text' value={domain} onChange={domainInput} />
                     <select className='domainList' onChange={domainChangeHandler}>
                         <option value='type'>직접입력</option>
-                        <option value='test.com'>test.com</option>
                         <option value='gmail.com'>gmail.com</option>
                         <option value='naver.com'>naver.com</option>
                         <option value='nate.com'>nate.com</option>

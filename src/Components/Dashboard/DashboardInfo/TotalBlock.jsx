@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./TotalBlock.scss";
 import { IoCube } from "react-icons/io5";
 
@@ -14,7 +14,7 @@ const TotalBlock = (props) => {
     <div className="TotalBlock">
       <Link to="/block">
         <div className="Dashboard_title">전체 블록 수</div>
-        <div className="Dashboard_data">값</div>
+        <div className="Dashboard_data">{blockData.length}</div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
       <div className="Dashboard_icon">
