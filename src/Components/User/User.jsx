@@ -14,7 +14,7 @@ const User = () => {
   return (
     <div className="User">
       <UserList />
-      <UserInsertModal />
+      {/* <UserInsertModal /> */}
     </div>
   );
 };
