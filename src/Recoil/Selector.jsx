@@ -45,3 +45,11 @@ export const loginSelector = selector({
         return user;
     },
 });
+
+export const userInfoSelector = selector({
+    key: 'userInfoSelector',
+    get: ({ get }) => {
+        const updateUser = get(userInfoAtom);
+        return updateUser;
+    },
+});
