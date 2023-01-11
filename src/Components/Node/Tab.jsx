@@ -20,6 +20,7 @@ import { currentBlockAtom } from "../../Recoil/Atom";
 import Swal from 'sweetalert2';
 import { useRecoilValue } from 'recoil';
 import { loginSelector } from '../../Recoil/Selector';
+import Refresh from './Refresh';
 
 export default function Tab({rows}) {
 
@@ -147,6 +148,7 @@ export default function Tab({rows}) {
         {
             tabTitle:<div className={activeIndex===0 ? "is-active left" : "tab"} onClick={()=>tabClickHandler(0)}> 노드 목록 </div>,
             tabCont:<div>
+              <Refresh/>
                  <ThemeProvider theme={theme}>
                  <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none"}}>
         <TableContainer sx={{ maxHeight: 440, bgcolor:'background.content' }}>
@@ -246,7 +248,10 @@ export default function Tab({rows}) {
         },
         {
             tabTitle:<div className={activeIndex===1 ? "is-active right" : "tab"} onClick={()=>tabClickHandler(1)}> 전체 노드 자원 현황 </div>,
-            tabCont:<div><Chart/></div>
+            tabCont:<div>
+              <Refresh/>
+              <Chart/>
+              </div>
         }
     ];
     
