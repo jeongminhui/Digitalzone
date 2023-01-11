@@ -1,0 +1,43 @@
+.TranMain {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+
+  .wrapper {
+    .subTitle {
+      margin-bottom: 30px;
+
+      .subBar {
+        color: #4669f5;
+        font-weight: bold;
+      }
+    }
+    .chartWrapper {
+      clear: both;
+      display: flex;
+      flex-direction: row wrap;
+      justify-content: space-around;
+      margin-bottom: 30px;
+
+      .chart {
+        background-color: #fff;
+        border-radius: 5px;
+      }
+
+      .pagenationDIV {
+        display: flex;
+        justify-content: space-between;
+
+        .pagenation {
+          align-self: center;
+          justify-self: center;
+          margin-right: 100px;
+        }
+
+        .tablePagenation {
+          justify-self: flex-end;
+        }
+      }
+    }
+  }
+}

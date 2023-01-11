@@ -8,6 +8,9 @@
       padding: 20px 70px;
       margin-bottom: 100px;
 
+    .txnum {
+      color: var(--point-color);
+    }
       .subTitle {
         margin-bottom: 30px;
 
@@ -30,11 +33,11 @@
         display: flex;
         justify-content: space-between;
 
-        .pagenation {
-          align-self: center;
-          justify-self: center;
-          margin-right: 100px;
-        }
+          .pagenation {
+            align-self: center;
+            justify-self: center;
+            margin-right: 100px;
+          }
 
         .tablePagenation {
           justify-self: flex-end;

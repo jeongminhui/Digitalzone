@@ -63,16 +63,23 @@
   font-size: 12px;
   cursor: pointer;
 }
-.BlockInfo .modalBtn {
+.BlockInfo .wrap .tableWrap .modalBtn {
   width: 30px;
   height: 30px;
   background-color: inherit;
   padding: 0;
   margin: 0;
 }
-.BlockInfo .modalBtn .modalIcon {
+.BlockInfo .wrap .tableWrap .modalBtn .modalIcon {
   font-size: 20px;
 }
-.BlockInfo .submitBtn {
+
+.ant-btn-primary span {
   color: #fff;
+}
+
+.txdataBox {
+  background-color: #f2f3f6;
+  padding: 30px 20px;
+  margin-top: 30px;
 }

@@ -39,8 +39,9 @@ const Block = () => {
   const navigate = useNavigate();
 
   const clickHandler = (blocknum, idx) => {
-    navigate(`/block/${blocknum}`);
     setCurrentBlock(idx);
+    // navigate(`/block/${blocknum}`);
+    setBlocknum(blocknum);
   };
 
   useEffect(() => {
