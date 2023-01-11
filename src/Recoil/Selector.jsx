@@ -3,6 +3,7 @@ import { transactionAtom } from './Atom';
 import { serviceAtom } from './Atom';
 import { networkAtom } from './Atom';
 import { loginAtom } from './Atom';
+import { userInfoAtom } from './Atom';
 import { selector } from 'recoil';
 
 export const blockSelector = selector({
