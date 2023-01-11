@@ -32,6 +32,7 @@
   box-shadow: var(--box-shadow);
   margin: 0 auto;
   padding: 30px;
+  background-color: #fff;
 }
 .TranInfo .wrap .tableWrap table,
 .serviceInfo .wrap .tableWrap table {

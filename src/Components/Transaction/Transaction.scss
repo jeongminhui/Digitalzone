@@ -1,24 +1,24 @@
-.Transaction,
-.TranMain {
+.Transaction {
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
-
-  .wrapper {
-    padding: 20px 70px;
-    margin-bottom: 100px;
+  margin: 0;
+  .TranMain {
+    .wrapper {
+      padding: 20px 70px;
+      margin-bottom: 100px;
 
     .txnum {
       color: var(--point-color);
     }
-    .subTitle {
-      margin-bottom: 30px;
+      .subTitle {
+        margin-bottom: 30px;
 
-      .subBar {
-        color: #4669f5;
-        font-weight: bold;
+        .subBar {
+          color: #4669f5;
+          font-weight: bold;
+        }
       }
-
       .chartWrapper {
         clear: both;
         display: flex;
@@ -26,9 +26,12 @@
         justify-content: space-around;
         margin-bottom: 30px;
 
-        .pagenationDIV {
-          display: flex;
-          justify-content: space-between;
+        }
+      }
+      
+      .pagenationDIV {
+        display: flex;
+        justify-content: space-between;
 
           .pagenation {
             align-self: center;
@@ -36,10 +39,11 @@
             margin-right: 100px;
           }
 
-          .tablePagenation {
-            justify-self: flex-end;
-          }
+        .tablePagenation {
+          justify-self: flex-end;
         }
+      .tableWrapper {
+        font-family:  "Noto Sans KR", sans-serif;
       }
     }
   }
