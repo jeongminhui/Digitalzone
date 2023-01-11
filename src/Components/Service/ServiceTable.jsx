@@ -47,6 +47,13 @@ const ServiceTable = ({ rows, clickHandler }) => {
   // css
   const theme = createTheme(
     {
+      typography: {
+        allVariants: {
+          fontFamily: "Noto Sans KR",
+          fontSize: 14,
+          color: "#3d3d3d",
+        },
+      },
       palette: {
         background: {
           paper: "#F0F4FB",

@@ -24,6 +24,7 @@
 }
 .wrapper .tableRow {
   cursor: pointer;
+  color: #3d3d3d;
 }
 .wrapper .tableRow .blue {
   color: var(--point-color);
