@@ -44,3 +44,11 @@ export const loginSelector = selector({
         return loginUser;
     },
 });
+
+export const userInfoSelector = selector({
+    key: 'userInfoSelector',
+    get: ({ get }) => {
+        const updateUser = get(userInfoAtom);
+        return updateUser;
+    },
+});
