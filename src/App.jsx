@@ -10,6 +10,7 @@ import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
+import NotFound from "./Components/NotFound/NotFound";
 
 // 유저 최종 페이지 링크
 import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
@@ -55,6 +56,10 @@ function App() {
         {
           path: "/user",
           element: <User />,
+        },
+        {
+          path: "/*",
+          element: <NotFound />,
         },
 
         // 여기부턴 유저 페이지 (권한 따라 삼항 조건 넣어보려 함)
