@@ -9,7 +9,7 @@ const UserMyPage_Page = () => {
   const type = "관리자";
 
   return (
-    <div className="MyInfoPage_Container">
+    <div className="MyInfoPage_Page">
       <div className="MyInfoPage">
         <div className="MyInfoPage_top">
           <div className="MyInfoPage_top_left">

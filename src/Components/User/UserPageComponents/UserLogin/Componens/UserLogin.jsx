@@ -70,7 +70,7 @@ const UserLogin = () => {
       const errorPrint = async () => {
         await Swal.fire({
           icon: "error",
-          title: errorMsg,
+          text: errorMsg,
           showConfirmButton: false,
           timer: 2000,
         });
