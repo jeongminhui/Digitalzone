@@ -1,0 +1,50 @@
+.Header_SearchBar {
+  width: 322px;
+  height: 103px;
+  display: flex;
+  align-items: center;
+}
+.Header_SearchBar form {
+  width: 100%;
+  height: 38px;
+  position: relative;
+  border-radius: 10px;
+  background-color: var(--footer-color);
+  overflow: hidden;
+}
+.Header_SearchBar form input {
+  position: absolute;
+  width: 270px;
+  height: 100%;
+  background-color: var(--footer-color);
+  border: none;
+  padding-left: 20px;
+}
+.Header_SearchBar form input:focus {
+  outline: none;
+}
+.Header_SearchBar form input::placeholder {
+  color: var(--light-grey-color);
+  font-size: 13px;
+}
+.Header_SearchBar form .searchBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  width: 60px;
+  height: 38px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Header_SearchBar form .searchBtn .searchIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.Header_SearchBar form .searchBtn .searchIcon.searchIcon path {
+  color: var(--light-grey-color);
+}

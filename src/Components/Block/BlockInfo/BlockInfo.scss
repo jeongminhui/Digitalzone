@@ -28,6 +28,7 @@
       box-shadow: var(--box-shadow);
       margin: 100px auto;
       padding: 30px;
+      background-color: #fff;
 
       .table {
         border-spacing: 25px;
@@ -53,6 +54,7 @@
           font-size: 12px;
           padding: 3px;
           margin: 0;
+          cursor: pointer;
 
           .icon {
             margin: 0 0 3px 1px;
@@ -65,24 +67,30 @@
           width: 50px;
           height: 30px;
           font-size: 12px;
+          cursor: pointer;
+        }
+      }
+      .modalBtn {
+        width: 30px;
+        height: 30px;
+        background-color: inherit;
+        padding: 0;
+        margin: 0;
+
+        .modalIcon {
+          font-size: 20px;
         }
       }
     }
   }
-.modalBtn{
-  width: 30px;
-  height: 30px;
-  background-color: inherit;
-  padding: 0;
-  margin: 0;
-
-  .modalIcon{
-    font-size: 20px;
+}
+.ant-btn-primary {
+  span {
+    color: #fff;
   }
 }
-
-.submitBtn{
-  color: #fff;
-}
-
+.txdataBox {
+  background-color: #f2f3f6;
+  padding: 30px 20px;
+  margin-top: 30px;
 }

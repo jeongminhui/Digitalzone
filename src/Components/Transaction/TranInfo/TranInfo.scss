@@ -1,4 +1,5 @@
-.TranInfo {
+.TranInfo,
+.serviceInfo {
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
@@ -12,7 +13,7 @@
       display: flex;
       justify-content: space-between;
 
-      .listBtn{
+      .listBtn {
         margin-right: 56px;
       }
 
@@ -28,6 +29,7 @@
       box-shadow: var(--box-shadow);
       margin: 0 auto;
       padding: 30px;
+      background-color: #fff;
 
       table {
         border-spacing: 25px;
@@ -52,6 +54,7 @@
           border: none;
           font-size: 12px;
           padding: 3px;
+          cursor: pointer;
 
           .icon {
             margin: 0 0 3px 1px;

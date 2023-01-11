@@ -5,10 +5,11 @@
   padding: 0;
   position: relative;
   box-sizing: border-box;
-  font-size: 14px;
+  // font-size: 14px;
   color: var(--dark-grey-color);
   font-weight: normal;
   font-family: "Noto Sans KR", sans-serif;
+  // white-space: pre-line;
 }
 
 body {
@@ -65,4 +66,17 @@ button {
   color: white;
   cursor: pointer;
   font-size: 13px;
-} 
+}
+// .ant-btn {
+// font-size: 15px;
+//   height: 32px;
+//   padding: 4px 15px;
+//   border-radius: 6px;
+// font-family: "Noto Sans KR", sans-serif;
+// }
+
+.PersonRoundedIcon path {
+  color: var(--point-color);
+}
+  
+

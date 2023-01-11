@@ -11,6 +11,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const BlockTable = ({ rows, clickHandler }) => {
   const columns = [
@@ -37,6 +38,19 @@ const BlockTable = ({ rows, clickHandler }) => {
       minWidth: 70,
     },
   ];
+
+  // css
+  const theme = createTheme(
+    {
+      palette: {
+        background: {
+          paper: "#F0F4FB",
+          content: "#ffffff",
+        },
+      },
+    },
+    koKR
+  );
 
   // table
   const [page, setPage] = useState(0);
@@ -67,89 +81,91 @@ const BlockTable = ({ rows, clickHandler }) => {
   }, [pagenation]);
 
   return (
-    <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
-      <TableContainer sx={{ bgcolor: "#fff" }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                  sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
-                  className={column.id}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, idx) => {
-                return (
-                  <TableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.code}
-                    onClick={() => clickHandler(row.blocknum, idx)}
-                    className="tableRow"
+    <ThemeProvider theme={theme}>
+      <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
+        <TableContainer sx={{ bgcolor: "#fff" }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.id}
+                    align={column.align}
+                    style={{ minWidth: column.minWidth }}
+                    sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                    className={column.id}
                   >
-                    {/* 이부분 map으로 돌리셔도 됩니다! */}
-                    <TableCell key={row.service}>{row.service}</TableCell>
-                    <TableCell key={row.blocknum} className="blue">
-                      {row.blocknum}
-                    </TableCell>
-                    <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                    <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
-                    <TableCell key={row.blksize}>{row.blksize} KB</TableCell>
-                    <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-        <div className="pagenationDIV">
-          <div className="tablePagenation">
-            <TablePagination
-              rowsPerPageOptions={[10, 25, 100]}
-              component="div"
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              // onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              // SelectProps={{
-              //   inputProps: {
-              //     "aria-label": "페이지 당",
-              //   },
-              // }}
-              // onPageChange={() => {}}
-              // theme={koKR}
-            />
-          </div>
-
-          <div className="pagenation">
-            <Stack spacing={2}>
-              <Pagination
-                count={
-                  rows.length % rowsPerPage === 0
-                    ? parseInt(rows.length / rowsPerPage)
-                    : parseInt(rows.length / rowsPerPage) + 1
-                }
-                page={pagenation}
-                onChange={handleChange}
-                showFirstButton
-                showLastButton
+                    {column.label}
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((row, idx) => {
+                  return (
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                      onClick={() => clickHandler(row.blocknum, idx)}
+                      className="tableRow"
+                    >
+                      {/* 이부분 map으로 돌리셔도 됩니다! */}
+                      <TableCell key={row.service}>{row.service}</TableCell>
+                      <TableCell key={row.blocknum} className="blue">
+                        {row.blocknum}
+                      </TableCell>
+                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
+                      <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
+                      <TableCell key={row.blksize}>{row.blksize} KB</TableCell>
+                      <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
+                    </TableRow>
+                  );
+                })}
+            </TableBody>
+          </Table>
+          <div className="pagenationDIV">
+            <div className="tablePagenation">
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={rows.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                // onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                // SelectProps={{
+                //   inputProps: {
+                //     "aria-label": "페이지 당",
+                //   },
+                // }}
+                // onPageChange={() => {}}
+                // theme={koKR}
               />
-            </Stack>
+            </div>
+
+            <div className="pagenation">
+              <Stack spacing={2}>
+                <Pagination
+                  count={
+                    rows.length % rowsPerPage === 0
+                      ? parseInt(rows.length / rowsPerPage)
+                      : parseInt(rows.length / rowsPerPage) + 1
+                  }
+                  page={pagenation}
+                  onChange={handleChange}
+                  showFirstButton
+                  showLastButton
+                />
+              </Stack>
+            </div>
           </div>
-        </div>
-      </TableContainer>
-    </Paper>
+        </TableContainer>
+      </Paper>
+    </ThemeProvider>
   );
 };
 

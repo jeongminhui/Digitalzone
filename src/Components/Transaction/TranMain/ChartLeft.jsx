@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./ChartLeft.scss";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
 import {
@@ -72,7 +71,7 @@ const ChartLeft = () => {
 
   // console.log(ten);
   return (
-    <div className="leftChart" style={containerStyle}>
+    <div className="chart" style={containerStyle}>
       <ApexCharts
         type="area"
         series={[
@@ -92,6 +91,11 @@ const ChartLeft = () => {
           title: {
             text: "시간당 트랜잭션 수(개)",
             align: "center",
+            style: {
+              fontSize:"16px",
+              fontWeight:"900",
+              fontFamily: 'Noto Sans KR", sans-serif',
+            },
           },
           stroke: {
             //선의 커브를 부드럽게 하고, 두께를 3으로 지정

@@ -12,7 +12,7 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
@@ -20,19 +20,24 @@ import List from "@mui/material/List";
 import "./Header_userIcon.scss";
 
 export default function Header_userIcon() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
+    // 조건을 여기에 달아주어야 하나?
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  // 여기서 삼항 조건자, 로그인 상태 따라 어떤 Menu 띄울지 정함.
-  const userId = "Prsssse@gmail.com";
-  const isLogin = true;
-  const isManager = true;
+  // 조건 따라 어떤 Menu 띄울지 정함. (두가지 조건)
+  const userId = "Prse1284@gmail.com";
+  // 로그인 상태
+  const isLogin = 1;
+  // 관리자 여부
+  const isManager = 1;
   return (
     <>
       <React.Fragment>
@@ -94,29 +99,35 @@ export default function Header_userIcon() {
                 </ListItem>
               </List>
               <Divider />
-              <MenuItem>
-                <Link to="/myinfo">
-                  <ListItemIcon>
-                    <PersonRoundedIcon fontSize="small" />
-                  </ListItemIcon>
-                  나의 정보
-                </Link>
+              <MenuItem
+                onClick={() => {
+                  navigate("/user/mypage");
+                }}
+              >
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                나의 정보
               </MenuItem>
-              <MenuItem>
-                <Link to="/user">
-                  <ListItemIcon>
-                    <Settings fontSize="small" />
-                  </ListItemIcon>
-                  사용자 관리
-                </Link>
+              <MenuItem
+                onClick={() => {
+                  navigate("/user/list");
+                }}
+              >
+                <ListItemIcon>
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                사용자 관리
               </MenuItem>
-              <MenuItem>
-                <Link to="/">
-                  <ListItemIcon>
-                    <Logout fontSize="small" />
-                  </ListItemIcon>
-                  로그아웃
-                </Link>
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                로그아웃
               </MenuItem>
             </Menu>
           ) : (
@@ -156,21 +167,25 @@ export default function Header_userIcon() {
                 </ListItem>
               </List>
               <Divider />
-              <MenuItem>
-                <Link to="/myinfo">
-                  <ListItemIcon>
-                    <PersonRoundedIcon fontSize="small" />
-                  </ListItemIcon>
-                  나의 정보
-                </Link>
+              <MenuItem
+                onClick={() => {
+                  navigate("/user/mypage");
+                }}
+              >
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                나의 정보
               </MenuItem>
-              <MenuItem>
-                <Link to="/">
-                  <ListItemIcon>
-                    <Logout fontSize="small" />
-                  </ListItemIcon>
-                  로그아웃
-                </Link>
+              <MenuItem
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                <ListItemIcon>
+                  <Logout fontSize="small" />
+                </ListItemIcon>
+                로그아웃
               </MenuItem>
             </Menu>
           )
@@ -205,7 +220,12 @@ export default function Header_userIcon() {
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <MenuItem>
-              <Link to="/login">
+              <Link
+                to="/user/login"
+                onClick={(e) => {
+                  console.log(e);
+                }}
+              >
                 <ListItemIcon>
                   <PersonRoundedIcon fontSize="small" />
                 </ListItemIcon>

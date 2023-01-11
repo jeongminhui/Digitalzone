@@ -1,6 +1,6 @@
 .Service {
   width: calc(100% - 160px);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 .Service .wrapper {
@@ -9,4 +9,14 @@
 }
 .Service .wrapper .service {
   color: var(--point-color);
+}
+
+.rightContainer {
+  width: 480px;
+  height: 300px;
+}
+
+.leftContainer {
+  width: 480px;
+  height: 300px;
 }
