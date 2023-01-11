@@ -10,7 +10,11 @@ import UserMyPage from './FixedComponents/UserMyPage/UserMyPage';
 import UserUpdate from './FixedComponents/UserUpdate/UserUpdate';
 
 const User = ({ history }) => {
-    return <div className='User'></div>;
+    return (
+        <div className='User'>
+            <UserInsertModal />
+        </div>
+    );
 };
 
 export default User;
