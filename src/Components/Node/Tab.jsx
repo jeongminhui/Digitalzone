@@ -135,10 +135,6 @@ export default function Tab({rows}) {
     useEffect(() => {
         navigate(`/node/${nodeName}`)
     },[nodeName]);
-  //   useEffect(() => {
-  //     navigate(`/block/${blockNum}`)
-  // },[blockNum]);
-    
     
 
 // Tab

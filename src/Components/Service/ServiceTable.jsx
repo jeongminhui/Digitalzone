@@ -18,6 +18,8 @@ import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../Recoil/Selector";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const ServiceTable = ({ rows, clickHandler }) => {
   const navigate = useNavigate();
@@ -31,6 +33,7 @@ const ServiceTable = ({ rows, clickHandler }) => {
     setCurrentBlock(idx);
     navigate(`/block/${blockNum}`);
   };
+  
 
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },

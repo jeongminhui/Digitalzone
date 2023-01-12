@@ -19,32 +19,6 @@ const TranMain = ({ rows }) => {
   },[])
 
   
-  let columns = [];
-    TranUser ?
-     columns = [
-      { id: "service", label: "서비스명", minWidth: 70 },
-      { id: "ndstatus", label: "상태", minWidth: 70 },
-      { id: "nodename", label: "노드명", minWidth: 70, color:'#4669f5'},
-      { id: "ndtype", label: "유형", minWidth: 70 },
-      { id: "service_dcc", label: "서비스명", minWidth: 70 },
-      { id: "ipaddress", label: "IP", minWidth: 170 },
-      { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-      { id: "createdt", label: "최신블록시간", minWidth: 170 },
-      { id: "tps", label: "처리속도(TPS)", minWidth: 50 },
-      { id: "latency", label: "지연율(Latency)",minWidth: 70},     
-    ]
-    :
-    columns = [
-      { id: "service", label: "서비스명", minWidth: 70 },
-      { id: "ndstatus", label: "상태", minWidth: 70 },
-      { id: "nodename", label: "노드명", minWidth: 70, color:'#4669f5'},
-      { id: "ndtype", label: "유형", minWidth: 70 },
-      { id: "service_dcc", label: "서비스명", minWidth: 70 },
-      { id: "ipaddress", label: "IP", minWidth: 170 },
-      { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-      { id: "createdt", label: "최신블록시간", minWidth: 170 },
-    ];
-
   // navigation 상세 이동
   const [txnum, setTxnum] = useState("");
   const navigate = useNavigate();
