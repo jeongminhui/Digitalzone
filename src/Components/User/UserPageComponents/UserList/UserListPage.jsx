@@ -22,12 +22,12 @@ import Paper from "@mui/material/Paper";
 import { Stack } from "@mui/system";
 import { IconButton, Pagination, TablePagination } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import "./UserList_Page.scss";
+import "./UserListPage.scss";
 import Swal from "sweetalert2";
-import UserAdd_Page from "../UserAdd/UserAdd_Page";
+import UserAddPage from "../UserAdd/UserAddPage";
 import Footer from "../../../Footer/Footer";
 
-const UserList_Page = () => {
+const UserListPage = () => {
   // 스테이트 저장소
   const [userlist, setUserlist] = useState([]);
 
@@ -149,7 +149,7 @@ const UserList_Page = () => {
             <span className="subBar">|</span>전체 사용자 {userlist.length}명
           </span>
           <span className="addButtonBox">
-            <UserAdd_Page />
+            <UserAddPage />
           </span>
         </h3>
 
@@ -385,4 +385,4 @@ const UserList_Page = () => {
   );
 };
 
-export default UserList_Page;
+export default UserListPage;

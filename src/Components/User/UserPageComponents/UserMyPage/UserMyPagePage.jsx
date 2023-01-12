@@ -1,11 +1,11 @@
 // import UserMyPage from "./Components/UserMyPage";
 import React from "react";
 import Footer from "../../../Footer/Footer";
-import "./UserMyPage_Page.scss";
+import "./UserMyPagePage.scss";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import UserMyPage from "./Components/UserMyPage";
 
-const UserMyPage_Page = () => {
+const UserMyPagePage = () => {
   const userid = "userdatazone01@minions.com";
   const type = "관리자";
 
@@ -79,4 +79,4 @@ const UserMyPage_Page = () => {
   );
 };
 
-export default UserMyPage_Page;
+export default UserMyPagePage;

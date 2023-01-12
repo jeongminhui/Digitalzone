@@ -1,9 +1,9 @@
 import React from "react";
 import UserLogin from "./Componens/UserLogin";
-import "./UserLogin_Page.scss";
+import "./UserLoginPage.scss";
 import Footer from "../../../Footer/Footer";
 
-const UserLogin_Page = () => {
+const UserLoginPage = () => {
   return (
     <div className="UserLogin_Page">
       <div className="LoginPage">
@@ -15,10 +15,10 @@ const UserLogin_Page = () => {
           />
           <UserLogin />
         </div>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
 
-export default UserLogin_Page;
+export default UserLoginPage;
