@@ -144,9 +144,9 @@ const UserList_Page = () => {
                     {/* <button className='addButton' onClick={addHandler}>
               추가
           </button> */}
-                    <Modal1 buttonName='사용자 추가'>
-                        <UserAdd_Page />
-                    </Modal1>
+                    {/* <Modal1 buttonName='사용자 추가'> */}
+                    <UserAdd_Page />
+                    {/* </Modal1> */}
                 </div>
                 <Paper sx={{ width: '100%', overflow: 'hidden', boxShadow: 'none' }}>
                     <TableContainer sx={{ bgcolor: '#fff' }}>
