@@ -10,6 +10,7 @@ import { useRecoilValue } from "recoil";
 import { blockSelector } from "../../Recoil/Selector";
 import { useRecoilState } from "recoil";
 import { currentBlockAtom } from "../../Recoil/Atom";
+import Refresh from "../Node/Refresh";
 
 const Block = () => {
   const blockData = useRecoilValue(blockSelector);
@@ -57,6 +58,7 @@ const Block = () => {
         </h3>
 
         <BlockChart rows={rows} />
+        <Refresh/>
         <BlockTable rows={rows} clickHandler={clickHandler} />
       </div>
 

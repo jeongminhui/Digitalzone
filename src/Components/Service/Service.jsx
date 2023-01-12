@@ -4,6 +4,7 @@ import "../Block/Block.scss";
 import Footer from "../Footer/Footer";
 import ServiceTable from "./ServiceTable";
 import { useNavigate } from "react-router-dom";
+import Refresh from "../Node/Refresh";
 
 // recoil Atom에서 가져오기
 import { useRecoilValue } from "recoil";
@@ -11,7 +12,7 @@ import { serviceSelector } from "../../Recoil/Selector";
 import ServiceChart from "./ServiceChart/ServiceChart";
 
 const Service = () => {
-   const serviceData = useRecoilValue(serviceSelector);
+  const serviceData = useRecoilValue(serviceSelector);
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
@@ -52,6 +53,7 @@ const Service = () => {
           <span className="subBar">|</span> 전체 발급 {rows.length}건
         </h3>
         <ServiceChart rows={rows} />
+        <Refresh />
         <ServiceTable rows={rows} clickHandler={clickHandler} />
       </div>
       <Footer />

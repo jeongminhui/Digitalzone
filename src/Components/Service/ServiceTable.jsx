@@ -12,8 +12,26 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { currentBlockAtom } from "../../Recoil/Atom";
+import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
+import { useRecoilValue } from "recoil";
+import { loginSelector } from "../../Recoil/Selector";
 
 const ServiceTable = ({ rows, clickHandler }) => {
+  const navigate = useNavigate();
+  const [blockNum, setBlockNum] = useState("");
+  // recoil Atom에서 가져오기
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
+
+  //블록번호 클릭시 블록페이지로 이동
+  const clickBlockHandler = (blockNum, idx) => {
+    setBlockNum(blockNum);
+    setCurrentBlock(idx);
+    navigate(`/block/${blockNum}`);
+  };
+
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
     {
@@ -72,6 +90,7 @@ const ServiceTable = ({ rows, clickHandler }) => {
 
   useEffect(() => {
     setPagenation(page + 1);
+    // 11;
   }, [page]);
 
   // pagenation
@@ -115,15 +134,28 @@ const ServiceTable = ({ rows, clickHandler }) => {
                       role="checkbox"
                       tabIndex={-1}
                       key={row.code}
-                      onClick={() => clickHandler(row.blocknum, idx)}
                       className="tableRow"
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
-                      <TableCell key={row.service} className="blue">
+                      <TableCell
+                        key={row.service}
+                        className="blue"
+                     
+                      >
                         {row.service}
                       </TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                      <TableCell key={row.apitype}>{row.apitype}</TableCell>
+                      <TableCell
+                        key={row.createdt}
+                        
+                      >
+                        {row.createdt}
+                      </TableCell>
+                      <TableCell
+                        key={row.apitype}
+                        
+                      >
+                        {row.apitype}
+                      </TableCell>
                       <TableCell key={row.nodename}>{row.nodename}</TableCell>
                       <TableCell key={row.txnum}>{row.txnum}</TableCell>
                       <TableCell key={row.blocknum}>{row.blocknum}</TableCell>

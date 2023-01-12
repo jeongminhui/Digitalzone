@@ -10,13 +10,13 @@ import "../../Transaction/TranInfo/TranInfo.scss";
 
 const ServiceInfo = () => {
   const { blocknum } = useParams();
-  const serviceCollection = collection(db, "service");
+  const serviceCollection = collection(db, "service_test");
   const [serviceInfo, setServiceInfo] = useState({});
   const [copyBtn, setCopyBtn] = useState("COPY");
 
   useEffect(() => {
     async function getServiceInfo() {
-      // 블록 상세 정보 로드
+      // 서비스 상세 정보 로드
       const docRef = doc(serviceCollection, blocknum);
       const data = await getDoc(docRef);
       setServiceInfo(data.data());
