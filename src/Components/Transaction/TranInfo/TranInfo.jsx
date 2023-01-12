@@ -6,13 +6,20 @@ import Footer from "../../Footer/Footer";
 import { collection, getDoc, doc } from "firebase/firestore";
 import copy from "copy-to-clipboard";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
+import { currentBlockAtom } from "../../../Recoil/Atom";
+import { useRecoilState } from "recoil";
+import { useRecoilValue } from 'recoil';
+
 
 const TranInfo = () => {
   const { txnum } = useParams();
   const [transactionInfo, setTransactionInfo] = useState([]);
   const [copyBtn, setCopyBtn] = useState("COPY");
   const transactionCollection = collection(db, "transaction");
+  const navigate = useNavigate();
+  // recoil Atom에서 가져오기
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
 
   //트랜잭션 상세 정보 로드
   useEffect(() => {
@@ -40,6 +47,12 @@ const TranInfo = () => {
     btnRef.current.style.backgroundColor = "#4669F5";
     btnRef.current.style.width = "75px";
   }
+
+  //블록번호 클릭시 블록페이지로 이동
+  const clickBlockHandler = () => {
+    setCurrentBlock(transactionInfo.id-1);
+    navigate(`/block/${transactionInfo.blocknum}`);
+  };
 
   return (
     <div className="TranInfo">
@@ -100,7 +113,7 @@ const TranInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">블록번호</td>
-                <td className="infoContent">{transactionInfo.blocknum}</td>
+                <td className="infoContent"  onClick={() => clickBlockHandler()} style={{cursor: "pointer"}}>{transactionInfo.blocknum}</td>
               </tr>
               <tr>
                 <td className="infoTitle">요청시간</td>

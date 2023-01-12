@@ -103,7 +103,7 @@ const TranTable = ({ rows, clickHandler }) => {
   return (
     <div className="tableWrapper">
       <ThemeProvider theme={theme}>
-        <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
+        <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
           <TableContainer sx={{ bgcolor: "#fff" }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
