@@ -3,6 +3,7 @@ import { transactionAtom } from './Atom';
 import { serviceAtom } from './Atom';
 import { networkAtom } from './Atom';
 import { loginAtom } from './Atom';
+import { userInfoAtom } from './Atom';
 import { selector } from 'recoil';
 
 export const blockSelector = selector({
@@ -40,7 +41,15 @@ export const serviceSelector = selector({
 export const loginSelector = selector({
     key: 'loginSelector',
     get: ({ get }) => {
-        const user = get(loginAtom);
-        return user;
+        const loginUser = get(loginAtom);
+        return loginUser;
+    },
+});
+
+export const userInfoSelector = selector({
+    key: 'userInfoSelector',
+    get: ({ get }) => {
+        const updateUser = get(userInfoAtom);
+        return updateUser;
     },
 });

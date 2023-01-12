@@ -38,111 +38,126 @@ const UserMyPage = () => {
   // pwcheck
   const [pwcheck, setPwcheck] = useState("");
 
-  const auth = getAuth();
-  const currentUser = auth.currentUser;
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
+    console.log(currentUser);
+    console.log(userpw);
+    console.log(pwcheck);
+    // 로그인한 사용자 정보 가져오기
+    useEffect(() => {
+        setUser(loginUser);
+        setAdmin(user.useradmin);
+        setUserservice(user.userservice);
+        setServiceCnt(user.serviceCnt);
+    }, [loginUser, user]);
 
-  // 로그인한 사용자 정보 가져오기
-  useEffect(() => {
-    setUser(loginUser);
-    setAdmin(user.useradmin);
-    setUserservice(user.userservice);
-    setServiceCnt(user.serviceCnt);
-  }, [loginUser, user]);
+    // 접근 권한 가져오기
+    useEffect(() => {
+        if (admin) {
+            setTran(admin.transaction);
+            setNode(admin.node);
+            setServ(admin.service);
+        }
+    }, [admin]);
 
-  // 접근 권한 가져오기
-  useEffect(() => {
-    if (admin) {
-      setTran(admin.transaction);
-      setNode(admin.node);
-      setServ(admin.service);
-    }
-  }, [admin]);
+    // 서비스 권한 가져오기
+    useEffect(() => {
+        if (userservice) {
+            setSvcA(userservice.service_a);
+            setSvcB(userservice.service_b);
+            setSvcC(userservice.service_c);
+            setSvcD(userservice.service_d);
+            setSvcE(userservice.service_e);
+        }
+    }, [userservice]);
 
-  // 서비스 권한 가져오기
-  useEffect(() => {
-    if (userservice) {
-      setSvcA(userservice.service_a);
-      setSvcB(userservice.service_b);
-      setSvcC(userservice.service_c);
-      setSvcD(userservice.service_d);
-      setSvcE(userservice.service_e);
-    }
-  }, [userservice]);
-
-  // 접근 권한 변경
-  const adminChangeHandler = (e) => {
-    setAdmin({
-      ...admin,
-      [e.target.id]: e.target.checked,
-    });
-  };
-
-  // 서비스 권한 변경
-  const serviceChangeHandler = (e) => {
-    setUserservice({
-      ...userservice,
-      [e.target.id]: e.target.checked,
-    });
-    if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
-    else setServiceCnt((prev) => prev - 1);
-  };
-
-  // 비밀번호 변경
-  const pwChangeHandler = (e) => {
-    e.preventDefault();
-    updatePassword(currentUser, userpw)
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          title: "비밀번호가 변경되었습니다",
-          showConfirmButton: false,
-          timer: 2000,
+    // 접근 권한 변경
+    const adminChangeHandler = (e) => {
+        setAdmin({
+            ...admin,
+            [e.target.id]: e.target.checked,
         });
-      })
-      .catch((error) => {
-        console.log(error.code);
-      });
-    setUserpw("");
-    setPwcheck("");
-  };
+    };
 
-  
+    // 서비스 권한 변경
+    const serviceChangeHandler = (e) => {
+        setUserservice({
+            ...userservice,
+            [e.target.id]: e.target.checked,
+        });
+        if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
+        else setServiceCnt((prev) => prev - 1);
+    };
 
-  // 비밀번호 조건 검사
-  useEffect(() => {
-    if (userpw.length > 0) {
-      setUserpw((prev) => prev);
-      const regexp =
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
+    // 비밀번호 변경
+    const pwChangeHandler = (e) => {
+        e.preventDefault();
+        updatePassword(currentUser, userpw)
+            .then(() => {
+              if(userpw !=="" && userpw === pwcheck){
+                Swal.fire({
+                    icon: 'success',
+                    text: '비밀번호가 변경되었습니다',
+                    showConfirmButton: false,
+                    timer: 2000,
+                })} else{
+                  Swal.fire({
+                    icon: 'fail',
+                    text: '비밀번호를 확인해주세요',
+                    showConfirmButton: false,
+                    timer: 2000,
+              });
+                };
+                
+            })
+            .catch((error) => {
+                console.log(error.code);
+                Swal.fire({
+                  icon: 'fail',
+                  text: '비밀번호를 확인해주세요',
+                  showConfirmButton: false,
+                  timer: 2000,
+            });
+        setUserpw("");
+        setPwcheck("");
+    });
+  }
 
-      const div = document.getElementsByClassName("natvaildpwsignin")[0];
-      if (regexp.test(userpw)) {
-        div.style.display = "none";
-      } else if (userpw.trim() === "" || !regexp.test(userpw))
-        div.style.display = "block";
-    }
-  }, [userpw]);
+    // 비밀번호 조건 검사
+    useEffect(() => {
+        if (userpw.length > 0) {
+            setUserpw((prev) => prev);
+            const regexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
 
-  // 비밀번호 확인
-  useEffect(() => {
-    if (pwcheck.length > 0) {
-      setPwcheck((prev) => prev);
+            const div = document.getElementsByClassName('natvaildpwsignin')[0];
+            if (regexp.test(userpw)) {
+                div.style.display = 'none';
+            } else if (userpw.trim() === '' || !regexp.test(userpw)) div.style.display = 'block';
+        }
+    }, [userpw]);
 
-      // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
-      const same = document.getElementsByClassName("notsamepwsignin")[0];
-      if (userpw === pwcheck) {
-        same.style.display = "none";
-      } else same.style.display = "block";
-    }
-  }, [userpw, pwcheck]);
+    // 비밀번호 확인
+    useEffect(() => {
+        if (pwcheck.length > 0) {
+            setPwcheck((prev) => prev);
+
+            // 이 부분 기본을 display = 'none'으로 하고 비밀번호 재확인에 focus 되면 보이게 css
+            const same = document.getElementsByClassName('notsamepwsignin')[0];
+            if (userpw === pwcheck) {
+                same.style.display = 'none';
+            } else same.style.display = 'block';
+        }
+    }, [userpw, pwcheck]);
 
   return (
-    <>
+      <>
+      <hr />
       <div>{user.username}</div>
       <div>{user.userteam}</div>
       <form>
+        <div>이메일(아이디) : {user.userid}</div>
         <div className="signin pw">
-          비밀번호:{" "}
+          비밀번호 :{" "}
           <input
             type="password"
             className="userpw"
@@ -155,7 +170,7 @@ const UserMyPage = () => {
           ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
         </div>
         <div className="signin pwcheck">
-          비밀번호 재확인:{" "}
+          비밀번호 재확인 :{" "}
           <input
             type="password"
             className="userpwcheck"

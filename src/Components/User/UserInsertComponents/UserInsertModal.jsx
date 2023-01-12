@@ -1,8 +1,5 @@
-import "./UserInsertModal.scss";
 import React, { useState } from "react";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import Modal1 from "../../CommonComponents/Modal/Modal1";
-import { Button, Checkbox, Form, Input } from "antd";
 import UserAdd from "../FixedComponents/UserAdd/UserAdd";
 
 const UserInsertModal = () => {
