@@ -80,16 +80,29 @@ const UserMyPage = () => {
         e.preventDefault();
         updatePassword(currentUser, userpw)
             .then(() => {
+                if (userpw !== '' && userpw === pwcheck) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: '비밀번호가 변경되었습니다',
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: '비밀번호를 확인해 주세요',
+                        showConfirmButton: false,
+                        timer: 2000,
+                    });
+                }
+            })
+            .catch((error) => {
                 Swal.fire({
-                    icon: 'success',
-                    text: '비밀번호가 변경되었습니다',
+                    icon: 'error',
+                    text: '비밀번호를 확인해 주세요',
                     showConfirmButton: false,
                     timer: 2000,
                 });
-            })
-            .catch((error) => {
-                console.log(error.code);
-                console.log(error.message);
             });
         setUserpw('');
         setPwcheck('');
