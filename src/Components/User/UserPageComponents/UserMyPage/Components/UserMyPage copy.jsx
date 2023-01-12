@@ -88,6 +88,51 @@ const tailFormItemLayout = {
 // 민희 추가 끝
 
 const UserMyPage = () => {
+  // 민희 추가
+  const [form] = Form.useForm();
+  const onFinish = (values) => {
+    console.log("Received values of form: ", values);
+  };
+  const prefixSelector = (
+    <Form.Item name="prefix" noStyle>
+      <Select
+        style={{
+          width: 70,
+        }}
+      >
+        <Option value="86">+86</Option>
+        <Option value="87">+87</Option>
+      </Select>
+    </Form.Item>
+  );
+  const suffixSelector = (
+    <Form.Item name="suffix" noStyle>
+      <Select
+        style={{
+          width: 70,
+        }}
+      >
+        <Option value="USD">$</Option>
+        <Option value="CNY">¥</Option>
+      </Select>
+    </Form.Item>
+  );
+  const [autoCompleteResult, setAutoCompleteResult] = useState([]);
+  const onWebsiteChange = (value) => {
+    if (!value) {
+      setAutoCompleteResult([]);
+    } else {
+      setAutoCompleteResult(
+        [".com", ".org", ".net"].map((domain) => `${value}${domain}`)
+      );
+    }
+  };
+  const websiteOptions = autoCompleteResult.map((website) => ({
+    label: website,
+    value: website,
+  }));
+  // 민희추가 끝
+
   const loginUser = useRecoilValue(loginSelector);
   const [user, setUser] = useState({});
   // 상세정보 접근 권한
@@ -234,6 +279,10 @@ const UserMyPage = () => {
           name="password"
           label="비밀번호"
           rules={[
+            {
+              required: true,
+              message: "Please input your password!",
+            },
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue("password") === "ss") {
@@ -249,7 +298,7 @@ const UserMyPage = () => {
           ]}
           hasFeedback
         >
-          <Input.Password className="input_password" />
+          <Input.Password className="input_password"/>
         </Form.Item>
 
         <Form.Item
@@ -258,6 +307,10 @@ const UserMyPage = () => {
           dependencies={["password"]}
           hasFeedback
           rules={[
+            {
+              required: true,
+              message: "Please confirm your password!",
+            },
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue("password") === value) {
@@ -271,7 +324,7 @@ const UserMyPage = () => {
           ]}
         >
           <div>
-            <Input.Password className="input_password" />
+            <Input.Password className="input_password"/>
             <button type="submit" onClick={pwChangeHandler}>
               변경
             </button>
@@ -285,7 +338,7 @@ const UserMyPage = () => {
       <form>
         <div>이메일(아이디) : {user.userid}</div>
         <div className="signin pw">
-          비밀번호
+          비밀번호 :{" "}
           <input
             type="password"
             className="userpw"
@@ -297,19 +350,19 @@ const UserMyPage = () => {
         <div className="natvaildpwsignin" style={{ color: "#4665F9" }}>
           ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
         </div>
-        {/* <div className="signin pwcheck"> */}
-        비밀번호 재확인
-        <input
-          type="password"
-          className="userpwcheck"
-          placeholder="비밀번호 재확인"
-          value={pwcheck}
-          onChange={(e) => setPwcheck(e.target.value)}
-        />
-        {/* <button type="submit" onClick={pwChangeHandler}>
+        <div className="signin pwcheck">
+          비밀번호 재확인 :{" "}
+          <input
+            type="password"
+            className="userpwcheck"
+            placeholder="비밀번호 재확인"
+            value={pwcheck}
+            onChange={(e) => setPwcheck(e.target.value)}
+          />
+          <button type="submit" onClick={pwChangeHandler}>
             변경
-          </button> */}
-        {/* </div> */}
+          </button>
+        </div>
         <div className="notsamepwsignin"> 비밀번호가 일치하지 않습니다</div>
       </form>
       <div>
