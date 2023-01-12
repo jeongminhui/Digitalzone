@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import Footer from "../Footer/Footer";
 import "./Dashboard.scss";
 
@@ -23,8 +22,6 @@ import { blockAtom } from "../../Recoil/Atom";
 import { transactionAtom } from "../../Recoil/Atom";
 import { networkAtom } from "../../Recoil/Atom";
 import { serviceAtom } from "../../Recoil/Atom";
-import { ConstructionOutlined } from "@mui/icons-material";
-import { Ticks } from "chart.js";
 
 const Dashboard = () => {
   // 날짜 시간 데이터
@@ -37,7 +34,7 @@ const Dashboard = () => {
   const sec = ("0" + now.getSeconds()).slice(-2);
   const DateTime = `${year}-${month}-${date} ${hour}:${min}:${sec}`;
 
-  // // 블록 데이터
+  // 블록 데이터
   const [block, setBlock] = useRecoilState(blockAtom);
   const blockData = collection(db, "block_test");
   useEffect(() => {
@@ -65,26 +62,46 @@ const Dashboard = () => {
     }
     getNtw();
   }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setTransaction(dataArr);
+    }
+    getNtw();
+  }, []);
 
-  // // 네트워크 데이터
-  // const [network, setNetwork] = useRecoilState(networkAtom);
-  // const ntwData = collection(db, "ntwdata");
+  // 네트워크 데이터
+  const [network, setNetwork] = useRecoilState(networkAtom);
+  const ntwData = collection(db, "ntwdata");
 
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(ntwData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setNetwork(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(ntwData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setNetwork(dataArr);
+    }
+    getNtw();
+  }, []);
 
-  // // 서비스 데이터
+  // 서비스 데이터
   const [service, setService] = useRecoilState(serviceAtom);
   const serviceData = collection(db, "service_test");
 
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(serviceData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setService(dataArr);
+    }
+    getNtw();
+  }, []);
   useEffect(() => {
     async function getNtw() {
       const data = await getDocs(serviceData);

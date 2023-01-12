@@ -39,7 +39,7 @@ const Carousel = ({ blocknum, block }) => {
   };
 
   return (
-    <div>
+    <div className="carousel">
       <Swiper
         onSwiper={(swiper) => setSwiper(swiper)}
         slidesPerView={5}

@@ -8,15 +8,17 @@
     width: 100%;
     height: 38px;
     position: relative;
+    border-radius: 10px;
+    background-color: var(--footer-color);
+    overflow: hidden;
 
     input {
       position: absolute;
-      width: 100%;
+      width: 270px;
       height: 100%;
-      border-radius: 10px;
       background-color: var(--footer-color);
       border: none;
-      text-indent: 23px;
+      padding-left: 20px;
 
       &:focus {
         outline: none;
@@ -29,19 +31,26 @@
     }
 
     .searchBtn {
-      cursor: pointer;
       position: absolute;
-      border-radius: 0;
-      background-color: transparent;
-      width: 20px;
-      height: 20px;
-      margin: 9px 20px;
-      padding: 0;
       right: 0;
       top: 0;
+      background-color: transparent;
+      width: 60px;
+      height: 38px;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-      .searchIcon path {
-        color: var(--light-grey-color);
+      .searchIcon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+
+        &.searchIcon path {
+          color: var(--light-grey-color);
+        }
       }
     }
   }

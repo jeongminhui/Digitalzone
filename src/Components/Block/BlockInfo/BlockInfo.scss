@@ -22,11 +22,18 @@
         font-size: 26px;
       }
     }
+
+    .carousel {
+      width: 80%;
+      margin: 0 auto;
+      margin-top: 60px;
+      cursor: pointer;
+    }
+
     .tableWrap {
       width: 91%;
-      // margin-bottom: 100px;
       box-shadow: var(--box-shadow);
-      margin: 100px auto;
+      margin: 50px auto;
       padding: 30px;
       background-color: #fff;
 
@@ -76,6 +83,7 @@
         background-color: inherit;
         padding: 0;
         margin: 0;
+        cursor: pointer;
 
         .modalIcon {
           font-size: 20px;
@@ -93,4 +101,8 @@
   background-color: #f2f3f6;
   padding: 30px 20px;
   margin-top: 30px;
+}
+
+.tableRow {
+  cursor: pointer;
 }

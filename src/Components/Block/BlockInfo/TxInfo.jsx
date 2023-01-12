@@ -19,7 +19,6 @@ import { width } from "@mui/system";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../Recoil/Selector";
 import { useNavigate } from "react-router-dom";
-import Modal1 from "../../CommonComponents/Modal/Modal1";
 
 const TxInfo = ({ txnum }) => {
   const txCollection = collection(db, "transaction_test");
@@ -31,9 +30,9 @@ const TxInfo = ({ txnum }) => {
   const [tranNum, setTranNum] = useState("");
   console.log(loginUser);
 
-  // useEffect(() => {
-  //   setTranUser(loginUser?.useradmin.transaction);
-  // }, []);
+  useEffect(() => {
+    setTranUser(loginUser?.useradmin.transaction);
+  }, []);
 
   useEffect(() => {
     async function getBlockInfo() {
@@ -49,13 +48,13 @@ const TxInfo = ({ txnum }) => {
     {
       id: "txnum",
       label: "트랜잭션번호",
-      minWidth: 100,
+      minWidth: 110,
       backgroundColor: "#F0F4FB",
     },
     {
       id: "createdt",
       label: "타임스탬프",
-      minWidth: 100,
+      minWidth: 80,
       backgroundColor: "#F0F4FB",
     },
     {
@@ -67,7 +66,7 @@ const TxInfo = ({ txnum }) => {
     {
       id: "txsize",
       label: "트랜잭션크기",
-      minWidth: 70,
+      minWidth: 120,
       backgroundColor: "#F0F4FB",
     },
     {
@@ -128,6 +127,7 @@ const TxInfo = ({ txnum }) => {
                   <TableCell
                     key={column.id}
                     align={column.align}
+                    sx={{ fontWeight: "bold" }}
                     style={{
                       minWidth: column.minWidth,
                       backgroundColor: column.backgroundColor,
@@ -139,7 +139,13 @@ const TxInfo = ({ txnum }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow hover role="checkbox" tabIndex={-1} key={txInfo.code}>
+              <TableRow
+                hover
+                role="checkbox"
+                tabIndex={-1}
+                key={txInfo.code}
+                className="tableRow"
+              >
                 <TableCell onClick={() => clickHandler(txInfo.txnum)}>
                   {txInfo.txnum}
                 </TableCell>

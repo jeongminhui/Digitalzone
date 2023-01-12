@@ -10,7 +10,7 @@ import "../../Transaction/TranInfo/TranInfo.scss";
 
 const ServiceInfo = () => {
   const { blocknum } = useParams();
-  const serviceCollection = collection(db, "service");
+  const serviceCollection = collection(db, "service_test");
   const [serviceInfo, setServiceInfo] = useState({});
   const [copyBtn, setCopyBtn] = useState("COPY");
 
@@ -91,10 +91,13 @@ const ServiceInfo = () => {
                   >
                     {copyBtn}
                     {copyBtn === "COPIED" ? (
-                      <HiOutlineDocumentDuplicate className="icon"style={{ stroke: "#fff" }} />
+                      <HiOutlineDocumentDuplicate
+                        className="icon"
+                        style={{ stroke: "#fff" }}
+                      />
                     ) : (
                       <HiOutlineDocumentDuplicate
-                      className="icon"
+                        className="icon"
                         style={{ stroke: "#3598d9" }}
                       />
                     )}
