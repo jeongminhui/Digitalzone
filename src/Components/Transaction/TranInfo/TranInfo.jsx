@@ -106,7 +106,7 @@ const TranInfo = () => {
                 <td className="infoTitle">요청시간</td>
                 <td className="infoContent">{transactionInfo.requiretime}</td>
               </tr>
-              <tr>
+              <tr> 
                 <td className="infoTitle">API 종류</td>
                 <td className="infoContent">{transactionInfo.apitype}</td>
               </tr>
