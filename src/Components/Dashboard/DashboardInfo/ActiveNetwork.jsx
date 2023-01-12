@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./ActiveNetwork.scss";
 import { FaNetworkWired } from "react-icons/fa";
 
 // recoil로 불러오기

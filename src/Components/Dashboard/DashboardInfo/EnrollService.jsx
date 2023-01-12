@@ -51,14 +51,28 @@ const EnrollService = () => {
     {
       id: "시간당 서비스 등록건수",
       data: [
-        { x: "10:00", y: enroll.time1 },
-        { x: "11:00", y: enroll.time2 },
-        { x: "12:00", y: enroll.time3 },
-        { x: "13:00", y: enroll.time4 },
-        { x: "14:00", y: enroll.time5 },
+        { x: "10:00", y: 310 },
+        { x: "11:00", y: 400 },
+        { x: "12:00", y: 200 },
+        { x: "13:00", y: 310 },
+        { x: "14:00", y: 210 },
       ],
     },
   ];
+  // enroll.time1
+  // enroll.time2
+  // enroll.time3
+  // enroll.time4
+  // enroll.time5
+
+  const tooltipStyle = {
+    color: "#888888",
+    background: "#fff",
+    padding: "5px 10px",
+    borderRadius: "3px",
+    boxShadow: "var(--box-shadow-chart-tooltip)",
+    textAlign: "center",
+  };
 
   return (
     <div className="EnrollService">
@@ -68,10 +82,14 @@ const EnrollService = () => {
           <ResponsiveLine
             data={data}
             margin={{ top: 20, right: 15, bottom: 40, left: 45 }}
-            colors={["#008FFB"]}
+            // colors={["#008FFB"]}
+            colors={{ scheme: "category10" }}
+            enableLinkGradient={true}
+            // colors={["-webkit-linear-gradient(to right, #e6dada, #274046)"]}
             xScale={{ type: "point" }}
             yScale={{
               type: "linear",
+              stacked: true,
               min: 0,
               max: 400,
             }}
@@ -97,7 +115,22 @@ const EnrollService = () => {
             enableCrosshair={false}
             useMesh={true} // MouseHover시 효과
             enableArea={true} //fill 효과
-            areaOpacity={0.3} //fill 효과 투명도
+            areaOpacity={0.25} //fill 효과 투명도
+            animate={true}
+            tooltip={(data) => {
+              return (
+                <div style={tooltipStyle}>
+                  <span
+                    style={{
+                      background: data.point.serieColor,
+                      display: "inline-block",
+                      padding: "6px",
+                    }}
+                  ></span>{" "}
+                  {data.point.data.y}건
+                </div>
+              );
+            }}
           />
         </div>
       </Link>
