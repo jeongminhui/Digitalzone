@@ -129,6 +129,8 @@ const UserUpdate = () => {
                 });
             }
         });
+        // /user/list를 /user로 경로 변경할 때 같이 경로 변경
+        navigate('/user/list');
     };
 
     return (
