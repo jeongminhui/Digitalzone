@@ -251,7 +251,7 @@ const UserMyPage = () => {
           ]}
           hasFeedback
         >
-          <Input.Password className="input_password" />
+          <Input.Password className="UserMyPage_input_password" />
         </Form.Item>
 
         <Form.Item

@@ -139,20 +139,15 @@ useEffect(() => {
 
   return (
     <div className="userList">
-     수정중
       <div className="wrapper">
         <h1 className="mainTitle">사용자 정보</h1>
         <h3 className="subTitle">
-          <span className="subBar">|</span> 전체 사용자 {userlist.length}명
-        </h3>
-        <div className='addButtonBox'>
-          {/* <button className='addButton' onClick={addHandler}>
-              추가
-          </button> */}
-          <Modal1 buttonName="사용자 추가">
+          <span className='leftItem'><span className="subBar">|</span>전체 사용자 {userlist.length}명</span>
+          <span className='addButtonBox'>
           <UserAdd_Page/>
-          </Modal1>
-        </div>
+        </span>
+        </h3>
+       
     <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
     <TableContainer sx={{ bgcolor: "#fff" }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

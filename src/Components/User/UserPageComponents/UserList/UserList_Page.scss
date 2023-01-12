@@ -7,23 +7,26 @@
       width: 100%;
       padding: 20px 70px;
       margin-bottom: 100px;
-    }
-.tr {
-  max-height: 10;
-}
+
+   .subTitle {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+
+   
+
    .addButtonBox {
     display: flex;
     justify-content: end;
+    margin-right: 56px;
    }
-
-  .subTitle {
-    margin-bottom: 30px;
   
     .subBar {
       color: #4669f5;
       font-weight: bold;
     }
   }
+}
   
   .pagenationDIV {
     display: flex;

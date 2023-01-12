@@ -171,91 +171,89 @@ const UserUpdate_Page = () => {
             <span className='title titleEmail'>아이디(이메일)</span>
             <span className='ctn ctnEmail'>{user.userid}</span>
         </div>
-          <form>
-              <div className='divBox adminBox'>
-              <Row>
-    <Col span={8}>
-        <Checkbox defaultChecked disabled>
-            대시보드
-        </Checkbox>
-    </Col>
-    <Col span={8}>
-        <Checkbox defaultChecked disabled>
-            블록
-        </Checkbox>
-    </Col>
-    <Col span={8}>
-        {tran ? (
-            <Checkbox id='transaction' onChange={adminChangeHandler} checked={tran} style={{accentColor:"red"}}>
-                트랜잭션
-            </Checkbox>
-        ) : (
-            <Checkbox id='transaction' onChange={adminChangeHandler} checked={tran}>
-                트랜잭션
-            </Checkbox>
-        )}
-    </Col>
-    <Col span={8}>
-        {node ? (
-            <Checkbox id='node' onChange={adminChangeHandler} checked={node}>
-                노드
-            </Checkbox>
-        ) : (
-            <Checkbox id='node' onChange={adminChangeHandler} checked={node}>
-                노드
-            </Checkbox>
-        )}
-    </Col>
-    <Col span={8}>
-        {serv ? (
-            <Checkbox id='service' onChange={adminChangeHandler} checked={serv}>
-                서비스
-            </Checkbox>
-        ) : (
-            <Checkbox id='service' onChange={adminChangeHandler} checked={serv}>
-                서비스
-            </Checkbox>
-        )}
-    </Col>
-</Row>
-
-              </div>
-
-              <div className='divBox serviceBox'>
-              <Row>
-    <Col span={8}>
-        {svcA ? (
-            <Checkbox id='service_a' onChange={serviceChangeHandler} checked={svcA}>
-                A서비스
-            </Checkbox>
-        ) : (
-            <Checkbox id='service_a' onChange={serviceChangeHandler} checked={svcA}>
-                A서비스
-            </Checkbox>
-        )}
-    </Col>
-    <Col span={8}>
-        {svcB ? (
-            <Checkbox id='service_b' onChange={serviceChangeHandler} checked={svcB}>
-                B서비스
-            </Checkbox>
-        ) : (
-            <Checkbox id='service_b' onChange={serviceChangeHandler} checked={svcB}>
-                B서비스
-            </Checkbox>
-        )}
-    </Col>
-    <Col span={8}>
-        {svcC ? (
-            <Checkbox id='service_c' onChange={serviceChangeHandler} checked={svcC}>
-                C서비스
-            </Checkbox>
-        ) : (
-            <Checkbox id='service_c' onChange={serviceChangeHandler} checked={svcC}>
-                C서비스
-            </Checkbox>
-        )}
-    </Col>
+    <form>
+        <div className='divBox adminBox'>
+            <Row>
+                <Col span={8}>
+                    <Checkbox defaultChecked disabled>
+                        대시보드
+                    </Checkbox>
+                </Col>
+                <Col span={8}>
+                    <Checkbox defaultChecked disabled>
+                        블록
+                    </Checkbox>
+                </Col>
+                <Col span={8}>
+                    {tran ? (
+                    <Checkbox id='transaction' onChange={adminChangeHandler} checked={tran} style={{accentColor:"red"}}>
+                        트랜잭션
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='transaction' onChange={adminChangeHandler} checked={tran}>
+                        트랜잭션
+                    </Checkbox>
+                    )}
+                </Col>
+                <Col span={8}>
+                    {node ? (
+                    <Checkbox id='node' onChange={adminChangeHandler} checked={node}>
+                        노드
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='node' onChange={adminChangeHandler} checked={node}>
+                        노드
+                    </Checkbox>
+                     )}
+                </Col>
+                <Col span={8}>
+                    {serv ? (
+                    <Checkbox id='service' onChange={adminChangeHandler} checked={serv}>
+                       서비스
+                    </Checkbox>
+                       ) : (
+                     <Checkbox id='service' onChange={adminChangeHandler} checked={serv}>
+                        서비스
+                    </Checkbox>
+                    )}
+                </Col>
+            </Row>
+        </div>
+        <div className='divBox serviceBox'>
+            <Row>
+                <Col span={8}>
+                    {svcA ? (
+                    <Checkbox id='service_a' onChange={serviceChangeHandler} checked={svcA}>
+                    A서비스
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='service_a' onChange={serviceChangeHandler} checked={svcA}>
+                    A서비스
+                    </Checkbox>
+                    )}
+                </Col>
+                <Col span={8}>
+                    {svcB ? (
+                    <Checkbox id='service_b' onChange={serviceChangeHandler} checked={svcB}>
+                    B서비스
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='service_b' onChange={serviceChangeHandler} checked={svcB}>
+                    B서비스
+                    </Checkbox>
+                    )}
+                </Col>
+                <Col span={8}>
+                    {svcC ? (
+                    <Checkbox id='service_c' onChange={serviceChangeHandler} checked={svcC}>
+                    C서비스
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='service_c' onChange={serviceChangeHandler} checked={svcC}>
+                    C서비스
+                    </Checkbox>
+                    )}
+            </Col>
     <Col span={8}>
         {svcD ? (
             <Checkbox id='service_d' onChange={serviceChangeHandler} checked={svcD}>
