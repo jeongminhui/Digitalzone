@@ -3,6 +3,12 @@ import { getAuth, updatePassword } from "firebase/auth";
 import Swal from "sweetalert2";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../../../Recoil/Selector";
+// import Footer from "../../../Footer/Footer";
+// import "./UserMyPage_Page.scss";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+// import UserMyPage from './Components/UserMyPage';
+
+
 // 민희추가
 import "./UserMyPage.scss";
 
@@ -218,7 +224,14 @@ const UserMyPage = () => {
   }, [userpw, pwcheck]);
 
   return (
-    <>
+    <div className="MyInfoPage_top">
+          <div className="MyInfoPage_top_left">
+            <AccountCircleRoundedIcon sx={{ fontSize: 80 }} color="disabled" />
+          </div>
+          <div className="MyInfoPage_top_right">
+            <h1>{loginUser.username}</h1>
+            <h3>{loginUser.userteam}</h3>
+          </div>
       <Form
         {...formItemLayout}
         // form={form}
@@ -280,226 +293,7 @@ const UserMyPage = () => {
           </div>
         </Form.Item>
       </Form>
-
-      <hr />
-      <div>{user.username}</div>
-      <div>{user.userteam}</div>
-      <form>
-        <div>이메일(아이디) : {user.userid}</div>
-        <div className="signin pw">
-          비밀번호
-          <input
-            type="password"
-            className="userpw"
-            value={userpw}
-            placeholder="비밀번호"
-            onChange={(e) => setUserpw(e.target.value)}
-          />
-        </div>
-        <div className="natvaildpwsignin" style={{ color: "#4665F9" }}>
-          ※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요
-        </div>
-        {/* <div className="signin pwcheck"> */}
-        비밀번호 재확인
-        <input
-          type="password"
-          className="userpwcheck"
-          placeholder="비밀번호 재확인"
-          value={pwcheck}
-          onChange={(e) => setPwcheck(e.target.value)}
-        />
-        {/* <button type="submit" onClick={pwChangeHandler}>
-            변경
-          </button> */}
-        {/* </div> */}
-        <div className="notsamepwsignin"> 비밀번호가 일치하지 않습니다</div>
-      </form>
-      <div>
-        상세정보 접근 권한
-        <label>
-          <input type="checkbox" checked disabled />
-          대시보드
-        </label>
-        <label>
-          <input type="checkbox" checked disabled />
-          블록
-        </label>
-        <label>
-          {tran ? (
-            <input
-              type="checkbox"
-              id="transaction"
-              name="checkbox"
-              checked
-              disabled
-              onChange={adminChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="transaction"
-              name="checkbox"
-              disabled
-              onChange={adminChangeHandler}
-            />
-          )}
-          트랜잭션
-        </label>
-        <label>
-          {node ? (
-            <input
-              type="checkbox"
-              id="node"
-              name="checkbox"
-              checked
-              disabled
-              onChange={adminChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="node"
-              name="checkbox"
-              disabled
-              onChange={adminChangeHandler}
-            />
-          )}
-          노드
-        </label>
-        <label>
-          {serv ? (
-            <input
-              type="checkbox"
-              id="service"
-              name="checkbox"
-              checked
-              disabled
-              onChange={adminChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="service"
-              name="checkbox"
-              disabled
-              onChange={adminChangeHandler}
-            />
-          )}
-          서비스
-        </label>
       </div>
-      <div>
-        이용중인 서비스:
-        <label>
-          {svcA ? (
-            <input
-              type="checkbox"
-              id="service_a"
-              name="checkbox"
-              checked
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="service_a"
-              name="checkbox"
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          )}
-          A서비스
-        </label>
-        <label>
-          {svcB ? (
-            <input
-              type="checkbox"
-              id="service_b"
-              name="checkbox"
-              checked
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="service_b"
-              name="checkbox"
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          )}
-          B서비스
-        </label>
-        <label>
-          {svcC ? (
-            <input
-              type="checkbox"
-              id="service_c"
-              name="checkbox"
-              checked
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="service_c"
-              name="checkbox"
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          )}
-          C서비스
-        </label>
-        <label>
-          {svcD ? (
-            <input
-              type="checkbox"
-              id="service_d"
-              name="checkbox"
-              checked
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="service_d"
-              name="checkbox"
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          )}
-          D서비스
-        </label>
-        <label>
-          {svcE ? (
-            <input
-              type="checkbox"
-              id="service_e"
-              name="checkbox"
-              checked
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          ) : (
-            <input
-              type="checkbox"
-              id="service_e"
-              name="checkbox"
-              disabled
-              onChange={serviceChangeHandler}
-            />
-          )}
-          E서비스
-        </label>
-      </div>
-      <div>유형 {user.userclass}</div>
-      <div>등록일자 {user.userdate}</div>
-      <div>상태 {user.userstatus}</div>
-    </>
   );
 };
 
