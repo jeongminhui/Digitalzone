@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "../../../Footer/Footer";
 import "./UserMyPage_Page.scss";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import UserMyPage from "./Components/UserMyPage";
+import UserMyPage from './Components/UserMyPage';
 
 const UserMyPage_Page = () => {
   const userid = "userdatazone01@minions.com";

@@ -1,5 +1,3 @@
-import UserAdd from "./Components/UserAdd";
-import UserAddModal from "./Components/UserAddModal";
 import React, { useState } from "react";
 import {
   Button,
@@ -231,7 +229,6 @@ const UserAdd_Page = () => {
         </Form.Item>
       </Form>
       <hr />
-      <UserAdd />
     </div>
   );
 };
