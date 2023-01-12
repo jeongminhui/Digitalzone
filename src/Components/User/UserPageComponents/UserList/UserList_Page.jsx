@@ -261,7 +261,6 @@ useEffect(() => {
               />
             </Stack>
           </div>
-
           <div className="tablePagenation">
             <TablePagination
               rowsPerPageOptions={[10, 25, 100]}
