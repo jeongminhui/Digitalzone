@@ -193,7 +193,7 @@ useEffect(() => {
                 {user.userclass}
               </TableCell>
               <TableCell component="th" scope="row" align="center"
-              cursor='pointer'>
+              style={{cursor:"pointer"}}>
                 {user.username}
               </TableCell>
               <TableCell component="th" scope="row" align="center"
@@ -201,7 +201,7 @@ useEffect(() => {
                 {user.userteam}
               </TableCell>
               <TableCell component="th" scope="row" align="center"
-             cursor='pointer'>
+             style={{cursor:"pointer"}}>
                 {user.userid}
               </TableCell>
               <TableCell component="th" scope="row" align="center"

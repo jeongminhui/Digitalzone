@@ -5,6 +5,22 @@ import { useRecoilValue } from 'recoil';
 import { userInfoSelector } from '../../../../Recoil/Selector';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import {
+  Button,
+  Cascader,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Radio,
+  Select,
+  Switch,
+  TreeSelect,
+  Checkbox,
+  Row,
+  Col,
+} from "antd";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 
 const UserUpdate_Page = () => {
   const updateUser = useRecoilValue(userInfoSelector);
@@ -133,63 +149,150 @@ const UserUpdate_Page = () => {
       navigate('/user/list');
   };
 
+
+    const [componentSize, setComponentSize] = useState("default");
+    const onFormLayoutChange = ({ size }) => {
+      setComponentSize(size);
+    };
+  
+
   return (
-      <div>
-          <div>{user.username}</div>
-          <div>{user.userteam}</div>
-          <div>아이디(이메일) {user.userid}</div>
+    <div className='userUpdate'>
+        <div className="MyInfoPage_top">
+          <div className="MyInfoPage_top_left">
+            <AccountCircleRoundedIcon sx={{ fontSize: 80 }} color="disabled" />
+          </div>
+          <div className="MyInfoPage_top_right">
+            <h1>{user.username}</h1>
+            <h3>{user.userteam}</h3>
+          </div>
+        </div>
+          <div className='divBox emailBox'>
+            <span className='title titleEmail'>아이디(이메일)</span>
+            <span className='ctn ctnEmail'>{user.userid}</span>
+        </div>
           <form>
-              <div>
-                  상세정보 접근 권한
-                  <label>
-                      <input type='checkbox' checked disabled />
-                      대시보드
-                  </label>
-                  <label>
-                      <input type='checkbox' checked disabled />
-                      블록
-                  </label>
-                  <label>
-                      {tran ? <input type='checkbox' id='transaction' name='checkbox' checked onChange={adminChangeHandler} /> : <input type='checkbox' id='transaction' name='checkbox' onChange={adminChangeHandler} />}
-                      트랜잭션
-                  </label>
-                  <label>
-                      {node ? <input type='checkbox' id='node' name='checkbox' checked onChange={adminChangeHandler} /> : <input type='checkbox' id='node' name='checkbox' onChange={adminChangeHandler} />}
-                      노드
-                  </label>
-                  <label>
-                      {serv ? <input type='checkbox' id='service' name='checkbox' checked onChange={adminChangeHandler} /> : <input type='checkbox' id='service' name='checkbox' onChange={adminChangeHandler} />}
-                      서비스
-                  </label>
+              <div className='divBox adminBox'>
+              <Row>
+    <Col span={8}>
+        <Checkbox defaultChecked disabled>
+            대시보드
+        </Checkbox>
+    </Col>
+    <Col span={8}>
+        <Checkbox defaultChecked disabled>
+            블록
+        </Checkbox>
+    </Col>
+    <Col span={8}>
+        {tran ? (
+            <Checkbox id='transaction' onChange={adminChangeHandler} checked={tran} style={{accentColor:"red"}}>
+                트랜잭션
+            </Checkbox>
+        ) : (
+            <Checkbox id='transaction' onChange={adminChangeHandler} checked={tran}>
+                트랜잭션
+            </Checkbox>
+        )}
+    </Col>
+    <Col span={8}>
+        {node ? (
+            <Checkbox id='node' onChange={adminChangeHandler} checked={node}>
+                노드
+            </Checkbox>
+        ) : (
+            <Checkbox id='node' onChange={adminChangeHandler} checked={node}>
+                노드
+            </Checkbox>
+        )}
+    </Col>
+    <Col span={8}>
+        {serv ? (
+            <Checkbox id='service' onChange={adminChangeHandler} checked={serv}>
+                서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service' onChange={adminChangeHandler} checked={serv}>
+                서비스
+            </Checkbox>
+        )}
+    </Col>
+</Row>
+
               </div>
-              <div>
-                  이용중인 서비스:
-                  <label>
-                      {svcA ? <input type='checkbox' id='service_a' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_a' name='checkbox' onChange={serviceChangeHandler} />}
-                      A서비스
-                  </label>
-                  <label>
-                      {svcB ? <input type='checkbox' id='service_b' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_b' name='checkbox' onChange={serviceChangeHandler} />}
-                      B서비스
-                  </label>
-                  <label>
-                      {svcC ? <input type='checkbox' id='service_c' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_c' name='checkbox' onChange={serviceChangeHandler} />}
-                      C서비스
-                  </label>
-                  <label>
-                      {svcD ? <input type='checkbox' id='service_d' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_d' name='checkbox' onChange={serviceChangeHandler} />}
-                      D서비스
-                  </label>
-                  <label>
-                      {svcE ? <input type='checkbox' id='service_e' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_e' name='checkbox' onChange={serviceChangeHandler} />}
-                      E서비스
-                  </label>
+
+              <div className='divBox serviceBox'>
+              <Row>
+    <Col span={8}>
+        {svcA ? (
+            <Checkbox id='service_a' onChange={serviceChangeHandler} checked={svcA}>
+                A서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service_a' onChange={serviceChangeHandler} checked={svcA}>
+                A서비스
+            </Checkbox>
+        )}
+    </Col>
+    <Col span={8}>
+        {svcB ? (
+            <Checkbox id='service_b' onChange={serviceChangeHandler} checked={svcB}>
+                B서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service_b' onChange={serviceChangeHandler} checked={svcB}>
+                B서비스
+            </Checkbox>
+        )}
+    </Col>
+    <Col span={8}>
+        {svcC ? (
+            <Checkbox id='service_c' onChange={serviceChangeHandler} checked={svcC}>
+                C서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service_c' onChange={serviceChangeHandler} checked={svcC}>
+                C서비스
+            </Checkbox>
+        )}
+    </Col>
+    <Col span={8}>
+        {svcD ? (
+            <Checkbox id='service_d' onChange={serviceChangeHandler} checked={svcD}>
+                D서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service_d' onChange={serviceChangeHandler} checked={svcD}>
+                D서비스
+            </Checkbox>
+        )}
+    </Col>
+    <Col span={8}>
+        {svcE ? (
+            <Checkbox id='service_e' onChange={serviceChangeHandler} checked={svcE}>
+                E서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service_e' onChange={serviceChangeHandler} checked={svcE}>
+                E서비스
+            </Checkbox>
+        )}
+    </Col>
+</Row>
               </div>
           </form>
-          <div>유형 {user.userclass}</div>
-          <div>등록일자 {user.userdate}</div>
-          <div>상태 {user.userstatus}</div>
-          <button type='submit' onClick={changeHandler}>
+          <div className="divBox classBox">
+            <span className="title titleClass">유형</span> <span className="ctn ctnClass">{user.userclass}</span></div>
+          <div className="divBox dateBox">
+            <span className="title titleDate">등록일자</span> <span className="ctn ctnDate">{user.userdate}</span>
+          </div>
+          <div className="divBox nameBox">
+            <span className="title titleName">상태</span> <span className="ctn ctnName">{user.userstatus}</span>
+          </div>
+          <button className="btn cancelBtn" type='submit' onClick={changeHandler}>
+              취소
+          </button>
+          <button className="btn change"type='submit' onClick={changeHandler}>
               정보 변경
           </button>
           <button type='submit' onClick={deleteHandler}>

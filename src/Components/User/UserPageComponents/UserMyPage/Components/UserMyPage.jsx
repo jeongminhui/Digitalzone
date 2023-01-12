@@ -236,7 +236,9 @@ const UserMyPage = () => {
           rules={[
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("password") === "ss") {
+                const regexp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/g;
+                const showpw = getFieldValue("password")
+                if (!value || regexp.test(showpw)) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
