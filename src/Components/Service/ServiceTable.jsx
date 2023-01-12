@@ -21,19 +21,9 @@ import { loginSelector } from "../../Recoil/Selector";
 import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const ServiceTable = ({ rows, clickHandler }) => {
-  const navigate = useNavigate();
-  const [blockNum, setBlockNum] = useState("");
-  // recoil Atom에서 가져오기
-  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
-
-  //블록번호 클릭시 블록페이지로 이동
-  const clickBlockHandler = (blockNum, idx) => {
-    setBlockNum(blockNum);
-    setCurrentBlock(idx);
-    navigate(`/block/${blockNum}`);
-  };
-  
+const ServiceTable = (props) => {
+  const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
+    props;
 
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
@@ -68,6 +58,13 @@ const ServiceTable = ({ rows, clickHandler }) => {
   // css
   const theme = createTheme(
     {
+      typography: {
+        allVariants: {
+          fontFamily: "Noto Sans KR",
+          fontSize: 14,
+          color: "#3d3d3d",
+        },
+      },
       palette: {
         background: {
           paper: "#F0F4FB",
@@ -143,25 +140,46 @@ const ServiceTable = ({ rows, clickHandler }) => {
                       <TableCell
                         key={row.service}
                         className="blue"
-                     
+                        onClick={() =>
+                          moveServiceInfo(row.service, row.blocknum)
+                        }
                       >
                         {row.service}
                       </TableCell>
                       <TableCell
                         key={row.createdt}
-                        
+                        onClick={() =>
+                          moveServiceInfo(row.service, row.blocknum)
+                        }
                       >
                         {row.createdt}
                       </TableCell>
                       <TableCell
                         key={row.apitype}
-                        
+                        onClick={() =>
+                          moveServiceInfo(row.service, row.blocknum)
+                        }
                       >
                         {row.apitype}
                       </TableCell>
-                      <TableCell key={row.nodename}>{row.nodename}</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum}</TableCell>
-                      <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
+                      <TableCell
+                        key={row.nodename}
+                        onClick={() => moveNodeInfo(row.nodename)}
+                      >
+                        {row.nodename}
+                      </TableCell>
+                      <TableCell
+                        key={row.txnum}
+                        onClick={() => moveTxInfo(row.txnum)}
+                      >
+                        {row.txnum}
+                      </TableCell>
+                      <TableCell
+                        key={row.blocknum}
+                        onClick={() => moveBlockInfo(row.blocknum, idx)}
+                      >
+                        {row.blocknum}
+                      </TableCell>
                       <TableCell key={row.status}>{row.status}</TableCell>
                     </TableRow>
                   );

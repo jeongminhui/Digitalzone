@@ -11,7 +11,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const BlockTable = ({ rows, clickHandler }) => {
   const columns = [
@@ -42,6 +42,13 @@ const BlockTable = ({ rows, clickHandler }) => {
   // css
   const theme = createTheme(
     {
+      typography: {
+        allVariants: {
+          fontFamily: "Noto Sans KR",
+          fontSize: 14,
+          color: "#3d3d3d",
+        },
+      },
       palette: {
         background: {
           paper: "#F0F4FB",
@@ -82,7 +89,13 @@ const BlockTable = ({ rows, clickHandler }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
+      <Paper
+        sx={{
+          width: "99%",
+          overflow: "hidden",
+          boxShadow: "none",
+        }}
+      >
         <TableContainer sx={{ bgcolor: "#fff" }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>

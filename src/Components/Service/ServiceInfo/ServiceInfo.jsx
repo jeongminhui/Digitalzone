@@ -159,10 +159,13 @@ const nodeClickHandler = (txnum) => {
                   >
                     {copyBtn}
                     {copyBtn === "COPIED" ? (
-                      <HiOutlineDocumentDuplicate className="icon"style={{ stroke: "#fff" }} />
+                      <HiOutlineDocumentDuplicate
+                        className="icon"
+                        style={{ stroke: "#fff" }}
+                      />
                     ) : (
                       <HiOutlineDocumentDuplicate
-                      className="icon"
+                        className="icon"
                         style={{ stroke: "#3598d9" }}
                       />
                     )}
