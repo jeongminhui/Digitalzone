@@ -10,12 +10,24 @@ const UserUpdate = () => {
     const updateUser = useRecoilValue(userInfoSelector);
     const [user, setUser] = useState({});
     // 상세정보 접근 권한
-    const [admin, setAdmin] = useState({ dashboard: true, block: true, transaction: false, node: false, service: false });
+    const [admin, setAdmin] = useState({
+        dashboard: true,
+        block: true,
+        transaction: false,
+        node: false,
+        service: false,
+    });
     const [tran, setTran] = useState(false);
     const [node, setNode] = useState(false);
     const [serv, setServ] = useState(false);
     // 이용중인 서비스
-    const [userservice, setUserservice] = useState({ service_a: false, service_b: false, service_c: false, service_d: false, service_e: false });
+    const [userservice, setUserservice] = useState({
+        service_a: false,
+        service_b: false,
+        service_c: false,
+        service_d: false,
+        service_e: false,
+    });
     const [svcA, setSvcA] = useState(false);
     const [svcB, setSvcB] = useState(false);
     const [svcC, setSvcC] = useState(false);
@@ -129,8 +141,6 @@ const UserUpdate = () => {
                 });
             }
         });
-        // /user/list를 /user로 경로 변경할 때 같이 경로 변경
-        navigate('/user/list');
     };
 
     return (

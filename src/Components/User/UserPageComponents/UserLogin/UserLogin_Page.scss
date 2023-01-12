@@ -4,7 +4,7 @@
 }
 .UserLogin_Page {
   width: calc(100% - 160px);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
 }
 .LoginPage {
@@ -13,7 +13,7 @@
   height: 100vh;
   text-align: center;
   margin: 0 auto;
-  width: calc(100vw - 160px);
+  // width: calc(100vw - 160px);
   justify-content: center;
   align-items: center;
   .page {

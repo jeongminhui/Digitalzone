@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./TotalService.scss";
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
 // recoil로 불러오기
