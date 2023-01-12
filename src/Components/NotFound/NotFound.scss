@@ -8,22 +8,36 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
 
   > div {
-    border: 1px solid #ddd;
-    width: 40%;
-    height: 400px;
-  }
+    height: 600px;
+    // border: 1px solid #ddd;
 
-  .NotFound_text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+    &.NotFound_text {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-  button {
-    cursor: pointer;
+      h1 {
+        font-size: 38px;
+        padding: 30px 0;
+      }
+
+      button {
+        padding: 30px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+
+    &.NotFound_img {
+      img {
+        width: 600px;
+        height: 600px;
+      }
+    }
   }
 }
