@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import { Button, Modal } from "antd";
+import UserAdd1 from "./UserAdd1";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
-import Modal1 from "../../../../CommonComponents/Modal/Modal1";
-import { Button, Checkbox, Form, Input } from "antd";
-import UserAdd from "./UserAdd";
 
 const UserAddModal = () => {
   const [loading, setLoading] = useState(false);
@@ -20,13 +19,24 @@ const UserAddModal = () => {
   const handleCancel = () => {
     setOpen(false);
   };
+
   return (
-    <div>
-      <Modal1 buttonName="사용자 추가">
-        <UserAdd />
-      </Modal1>
-    </div>
+    <>
+      <Button type="primary" onClick={showModal}>
+        {/* <AddRoundedIcon />  */}
+        사용자 추가
+      </Button>
+      <Modal
+        open={open}
+        // title="Title"
+        onOk={handleOk}
+        width={800}
+        onCancel={handleCancel}
+        footer={[]}
+      >
+        <UserAdd1 />
+      </Modal>
+    </>
   );
 };
-
 export default UserAddModal;
