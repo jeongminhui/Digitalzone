@@ -33,7 +33,6 @@ export default function Header_userIcon() {
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         // 조건을 여기에 달아주어야 하나?
-        // console.log(event.currentTarget);
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {

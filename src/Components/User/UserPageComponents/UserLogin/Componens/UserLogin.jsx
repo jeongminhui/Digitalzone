@@ -81,56 +81,39 @@ const UserLogin = () => {
     //   console.log("Received values of form: ", values);
     // };
 
-    return (
-        <>
-            {' '}
-            <Form
-                name='normal_login'
-                className='login-form'
-                initialValues={{
-                    remember: true,
-                }}
-                // onFinish={onFinish}
-            >
-                <Form.Item
-                    name='useremail'
-                    rules={[
-                        {
-                            required: true,
-                            message: '이메일을 입력해 주세요!',
-                        },
-                    ]}
-                >
-                    <Input
-                        prefix={<UserOutlined className='site-form-item-icon' />}
-                        type='email'
-                        value={email}
-                        placeholder='아이디(이메일)'
-                        onChange={(e) => {
-                            setEmail(e.target.value);
-                        }}
-                    />
-                </Form.Item>
-                <Form.Item
-                    name='password'
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Password!',
-                        },
-                    ]}
-                >
-                    <Input
-                        prefix={<LockOutlined className='site-form-item-icon' />}
-                        type='password'
-                        value={password}
-                        placeholder='비밀번호'
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                    />
-                </Form.Item>
-                {/* <Form.Item>
+  return (
+    <>
+      <Form
+      // name="normal_login"
+      // className="login-form"
+      // initialValues={{
+      //   remember: true,
+      // }}
+      // onFinish={onFinish}
+      >
+        <Form.Item>
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            type="email"
+            value={email}
+            placeholder="아이디(이메일)"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </Form.Item>
+        <Form.Item>
+          <Input
+            prefix={<LockOutlined className="site-form-item-icon" />}
+            type="password"
+            value={password}
+            placeholder="비밀번호"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </Form.Item>
+        {/* <Form.Item>
           <Form.Item name="remember" valuePropName="checked" noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>

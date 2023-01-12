@@ -3,6 +3,7 @@ import React from "react";
 import Footer from "../../../Footer/Footer";
 import "./UserMyPage_Page.scss";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import UserMyPage from "./Components/UserMyPage";
 
 const UserMyPage_Page = () => {
   const userid = "userdatazone01@minions.com";
@@ -10,7 +11,7 @@ const UserMyPage_Page = () => {
 
   return (
     <div className="MyInfoPage_Page">
-      <div className="MyInfoPage">
+      {/* <div className="MyInfoPage">
         <div className="MyInfoPage_top">
           <div className="MyInfoPage_top_left">
             <AccountCircleRoundedIcon sx={{ fontSize: 80 }} color="disabled" />
@@ -70,7 +71,9 @@ const UserMyPage_Page = () => {
             </tr>
           </table>
         </div>
-      </div>
+      </div> */}
+      <hr />
+      <UserMyPage />
       <Footer />
     </div>
   );
