@@ -11,8 +11,16 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { currentBlockAtom } from "../../../Recoil/Atom";
+import { useRecoilState } from "recoil";
 
 const TranTable = ({ rows, clickHandler }) => {
+  const navigate = useNavigate();
+  const [blockNum, setBlockNum] = useState("");
+  // recoil Atom에서 가져오기
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
+
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
     { id: "txnum", label: "트랜잭션번호", minWidth: 80 },
@@ -41,6 +49,13 @@ const TranTable = ({ rows, clickHandler }) => {
   // css
   const theme = createTheme(
     {
+      typography: {
+        allVariants: {
+          fontFamily: "Noto Sans KR",
+          fontSize: 14,
+          color: "#3d3d3d",
+        },
+      },
       palette: {
         background: {
           paper: "#F0F4FB",
@@ -79,6 +94,12 @@ const TranTable = ({ rows, clickHandler }) => {
     setPage(pagenation - 1);
   }, [pagenation]);
 
+  //블록번호 클릭시 블록페이지로 이동
+  const clickBlockHandler = (blockNum, idx) => {
+    setBlockNum(blockNum);
+    setCurrentBlock(idx);
+    navigate(`/block/${blockNum}`);
+  };
   return (
     <div className="tableWrapper">
       <ThemeProvider theme={theme}>
@@ -110,18 +131,23 @@ const TranTable = ({ rows, clickHandler }) => {
                         role="checkbox"
                         tabIndex={-1}
                         key={row.code}
-                        onClick={() => clickHandler(row.txnum, idx)}
                         className="tableRow"
+                        style={{ cursor: "pointer" }}
                       >
                         {/* 이부분 map으로 돌리셔도 됩니다! */}
-                        <TableCell key={row.service}>{row.service}</TableCell>
-                        <TableCell key={row.txnum} className="blue">
+                        <TableCell key={row.service}  onClick={() => clickHandler(row.txnum, idx)}>{row.service}</TableCell>
+                        <TableCell key={row.txnum}  onClick={() => clickHandler(row.txnum, idx)}className="blue">
                           {row.txnum}
                         </TableCell>
-                        <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                        <TableCell key={row.txhash}>{row.txhash}</TableCell>
-                        <TableCell key={row.txsize}>{row.txsize} KB</TableCell>
-                        <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
+                        <TableCell key={row.createdt}  onClick={() => clickHandler(row.txnum, idx)}>{row.createdt}</TableCell>
+                        <TableCell key={row.txhash}  onClick={() => clickHandler(row.txnum, idx)}>{row.txhash}</TableCell>
+                        <TableCell key={row.txsize}  onClick={() => clickHandler(row.txnum, idx)}>{row.txsize} KB</TableCell>
+                        <TableCell
+                          key={row.blocknum}
+                          onClick={() => clickBlockHandler(row.blocknum, idx)}
+                        >
+                          {row.blocknum}{" "}
+                        </TableCell>
                       </TableRow>
                     );
                   })}

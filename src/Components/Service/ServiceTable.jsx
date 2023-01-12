@@ -12,8 +12,19 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { currentBlockAtom } from "../../Recoil/Atom";
+import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
+import { useRecoilValue } from "recoil";
+import { loginSelector } from "../../Recoil/Selector";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
 
-const ServiceTable = ({ rows, clickHandler }) => {
+const ServiceTable = (props) => {
+  const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
+    props;
+
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
     {
@@ -47,6 +58,13 @@ const ServiceTable = ({ rows, clickHandler }) => {
   // css
   const theme = createTheme(
     {
+      typography: {
+        allVariants: {
+          fontFamily: "Noto Sans KR",
+          fontSize: 14,
+          color: "#3d3d3d",
+        },
+      },
       palette: {
         background: {
           paper: "#F0F4FB",
@@ -72,6 +90,7 @@ const ServiceTable = ({ rows, clickHandler }) => {
 
   useEffect(() => {
     setPagenation(page + 1);
+    // 11;
   }, [page]);
 
   // pagenation
@@ -115,18 +134,52 @@ const ServiceTable = ({ rows, clickHandler }) => {
                       role="checkbox"
                       tabIndex={-1}
                       key={row.code}
-                      onClick={() => clickHandler(row.blocknum, idx)}
                       className="tableRow"
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
-                      <TableCell key={row.service} className="blue">
+                      <TableCell
+                        key={row.service}
+                        className="blue"
+                        onClick={() =>
+                          moveServiceInfo(row.service, row.blocknum)
+                        }
+                      >
                         {row.service}
                       </TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                      <TableCell key={row.apitype}>{row.apitype}</TableCell>
-                      <TableCell key={row.nodename}>{row.nodename}</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum}</TableCell>
-                      <TableCell key={row.blocknum}>{row.blocknum}</TableCell>
+                      <TableCell
+                        key={row.createdt}
+                        onClick={() =>
+                          moveServiceInfo(row.service, row.blocknum)
+                        }
+                      >
+                        {row.createdt}
+                      </TableCell>
+                      <TableCell
+                        key={row.apitype}
+                        onClick={() =>
+                          moveServiceInfo(row.service, row.blocknum)
+                        }
+                      >
+                        {row.apitype}
+                      </TableCell>
+                      <TableCell
+                        key={row.nodename}
+                        onClick={() => moveNodeInfo(row.nodename)}
+                      >
+                        {row.nodename}
+                      </TableCell>
+                      <TableCell
+                        key={row.txnum}
+                        onClick={() => moveTxInfo(row.txnum)}
+                      >
+                        {row.txnum}
+                      </TableCell>
+                      <TableCell
+                        key={row.blocknum}
+                        onClick={() => moveBlockInfo(row.blocknum, idx)}
+                      >
+                        {row.blocknum}
+                      </TableCell>
                       <TableCell key={row.status}>{row.status}</TableCell>
                     </TableRow>
                   );
