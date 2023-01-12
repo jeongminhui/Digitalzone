@@ -1,0 +1,52 @@
+.userID_container {
+  display: flex;
+  margin-bottom: 10px;
+  .userID {
+    width: 50%;
+  }
+}
+
+.ant-form-item .ant-form-item-label > label::after {
+  content: "";
+}
+// ant-row
+.ant-form-item-row {
+  justify-content: space-around;
+}
+.ant-form-item-label > label {
+  width: 50px;
+}
+.ant-form-item .ant-form-item-label {
+  width: 50px;
+  text-align: start;
+}
+UserAdd {
+  width: 80vw;
+  form {
+    margin: 30px;
+    padding: 30px;
+  }
+}
+h1 {
+  margin-bottom: 30px;
+}
+.UserAdd {
+  padding: 40px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+.UserAdd_footer {
+  text-align: center;
+  padding-top: 20px;
+  .SignUpButton {
+    height: 40px;
+    width: 100px;
+  }
+}
+// .ant-checkbox + span {
+//   padding-inline-start: 4px;
+//   padding-inline-end: 8px;
+// }
+.ant-form-item {
+  margin-bottom: 20px;
+}
