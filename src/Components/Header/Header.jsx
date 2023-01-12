@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import Header_userIcon from "./Header_rightWrap/Header_userIcon";
 import HeaderSearchBar from "./Header_rightWrap/HeaderSearchBar";
 import HeaderDarkmode from "./Header_rightWrap/HeaderDarkmode";
+import HeaderUserIcon from "./Header_rightWrap/HeaderUserIcon";
 
 const Header = (props) => {
   const { isDarkMode, toggleDarkMode } = props;
@@ -21,7 +21,7 @@ const Header = (props) => {
           isDarkMode={isDarkMode}
           toggleDarkMode={toggleDarkMode}
         />
-        <Header_userIcon />
+        <HeaderUserIcon />
       </div>
     </div>
   );
