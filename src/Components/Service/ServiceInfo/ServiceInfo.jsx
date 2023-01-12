@@ -17,7 +17,7 @@ import { useRecoilValue } from 'recoil';
 
 const ServiceInfo = () => {
   const { blocknum } = useParams();
-  const serviceCollection = collection(db, "service_test");
+  const serviceCollection = collection(db, "service");
   const [serviceInfo, setServiceInfo] = useState({});
   const [copyBtn, setCopyBtn] = useState("COPY");
   const navigate = useNavigate();

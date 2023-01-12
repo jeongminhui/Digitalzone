@@ -91,7 +91,7 @@ const BlockTable = ({ rows, clickHandler }) => {
     <ThemeProvider theme={theme}>
       <Paper
         sx={{
-          width: "99%",
+          width: "100%",
           overflow: "hidden",
           boxShadow: "none",
         }}

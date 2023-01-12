@@ -16,7 +16,7 @@ const ChartLeft = () => {
   const [ten, setTen] = useState({});
   const [rows, setRows] = useState([]);
 
-  const transaction = collection(db, "transaction_test");
+  const transaction = collection(db, "transaction");
 
   const containerStyle = {
     width: "480px",
