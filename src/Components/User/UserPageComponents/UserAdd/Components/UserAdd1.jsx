@@ -210,7 +210,7 @@ const UserAdd1 = () => {
       <h1>사용자 추가</h1>
       <Form
         labelCol={{
-          span: 8,
+          span: 5,
         }}
         wrapperCol={{
           span: 14,
@@ -269,6 +269,7 @@ const UserAdd1 = () => {
                 }
                 return Promise.reject(
                   new Error(
+                    // 이부분 조건 설정 하셔야 합니다! 기능 병합 없이 띄우기만 한 거에요!
                     "※ 8자리 이상 영문 대 소문자, 숫자, 특수문자를 입력하세요"
                   )
                 );
@@ -420,7 +421,7 @@ const UserAdd1 = () => {
         </Form.Item>
         <div className="UserAdd_footer">
           <button type="submit" className="SignUpButton" onClick={clickHandler}>
-            사용자 추가
+            추가
           </button>
         </div>
       </Form>
