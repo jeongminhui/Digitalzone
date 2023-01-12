@@ -148,9 +148,7 @@ const UserListPage = () => {
           <span className="leftItem">
             <span className="subBar">|</span>전체 사용자 {userlist.length}명
           </span>
-          <span className="addButtonBox">
-            <UserAddPage />
-          </span>
+          <UserAddPage />
         </h3>
 
         <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
