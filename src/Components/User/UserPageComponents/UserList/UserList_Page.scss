@@ -1,44 +1,45 @@
 .userList {
-    width: calc(100%);
-    min-height: 100vh;
-    position: relative;
-  
-    .wrapper {
-      width: 100%;
-      padding: 20px 70px;
-      margin-bottom: 100px;
-    }
-.tr {
-  max-height: 10;
-}
-   .addButtonBox {
-    display: flex;
-    justify-content: end;
-   }
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
 
-  .subTitle {
-    margin-bottom: 30px;
-  
-    .subBar {
-      color: #4669f5;
-      font-weight: bold;
+  .wrapper {
+    width: 100%;
+    padding: 20px 70px;
+    margin-bottom: 100px;
+
+    .subTitle {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+
+      .addButtonBox {
+        display: flex;
+        justify-content: end;
+        margin-right: 56px;
+      }
+
+      .subBar {
+        color: #4669f5;
+        font-weight: bold;
+      }
     }
   }
-  
+
   .pagenationDIV {
     display: flex;
     justify-content: space-between;
-  
+
     .pagenation {
       display: inline-block;
       align-self: center;
       justify-self: center;
       margin-right: 100px;
     }
-  
+
     .tablePagenation {
-    display: inline-block;  
-        // justify-self: flex-end;
+      display: inline-block;
+      // justify-self: flex-end;
     }
   }
 }
