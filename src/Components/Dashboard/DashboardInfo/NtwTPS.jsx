@@ -64,6 +64,7 @@ const NtwTPS = () => {
   const time4Aver =
     (tps1[time4] + tps2[time4] + tps3[time4] + tps4[time4]) / name.length;
 
+  const colors = ["#1f60b5", "#4edec8", "#426dfa", "#f9425e", "#ffcc5e"];
   const data = {
     labels: [time1, time2, time3, time4],
     datasets: [
@@ -71,7 +72,7 @@ const NtwTPS = () => {
         // 라인바
         type: "line",
         label: "평균",
-        borderColor: "#116eb9",
+        borderColor: colors[0],
         data: [
           { x: time1, y: time1Aver },
           { x: time2, y: time2Aver },
@@ -86,7 +87,8 @@ const NtwTPS = () => {
         // 네트워크1
         type: "bar",
         label: name[0],
-        backgroundColor: "#5f88df",
+        // backgroundColor: "#5f88df",
+        backgroundColor: colors[1],
         barPercentage: 1, // 막대사이 간격삭제
         data: [
           { x: time1, y: tps1[time1] },
@@ -99,7 +101,8 @@ const NtwTPS = () => {
         // 네트워크2
         type: "bar",
         label: name[1],
-        backgroundColor: "#80baf4",
+        // backgroundColor: "#80baf4",
+        backgroundColor: colors[2],
         barPercentage: 1,
         data: [
           { x: time1, y: tps2[time1] },
@@ -113,7 +116,8 @@ const NtwTPS = () => {
         // 네트워크3
         type: "bar",
         label: name[2],
-        backgroundColor: "#2ba0e3",
+        // backgroundColor: "#2ba0e3",
+        backgroundColor: colors[3],
         barPercentage: 1,
         data: [
           { x: time1, y: tps3[time1] },
@@ -126,7 +130,8 @@ const NtwTPS = () => {
         // 네트워크4
         type: "bar",
         label: name[3],
-        backgroundColor: "#004c8c",
+        // backgroundColor: "#004c8c",
+        backgroundColor: colors[4],
         barPercentage: 1,
         data: [
           { x: time1, y: tps4[time1] },

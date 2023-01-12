@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { Link } from "react-router-dom";
-import "./NtwCreateBlock.scss";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -123,7 +122,7 @@ const NtwCreateBlock = () => {
         <div className="Dashboard_chart">
           <ResponsiveLine
             data={data}
-            colors={["#5f88df", "#80baf4", "#2ba0e3", "#004c8c"]}
+            colors={["#4edec8", "#426dfa", "#f9425e", "#ffcc5e"]}
             style={{ width: 200, height: 100 }}
             margin={{ top: 20, right: 35, bottom: 50, left: 65 }}
             xScale={{ type: "point" }}

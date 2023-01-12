@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import "./TotalBlock.scss";
+import React from "react";
 import { IoCube } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { blockSelector } from "../../../Recoil/Selector";
-import { Link } from "react-router-dom";
 
 const TotalBlock = (props) => {
   const blockData = useRecoilValue(blockSelector);
