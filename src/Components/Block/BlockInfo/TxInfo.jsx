@@ -21,7 +21,7 @@ import { loginSelector } from "../../../Recoil/Selector";
 import { useNavigate } from "react-router-dom";
 
 const TxInfo = ({ txnum }) => {
-  const txCollection = collection(db, "transaction_test");
+  const txCollection = collection(db, "transaction");
   const [txInfo, setTxInfo] = useState({});
 
   // 권한 설정

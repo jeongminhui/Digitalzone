@@ -245,7 +245,6 @@ export default function Tab({rows}) {
         {
             tabTitle:<div className={activeIndex===1 ? "is-active right" : "tab"} onClick={()=>tabClickHandler(1)}> 전체 노드 자원 현황 </div>,
             tabCont:<div>
-              <Refresh/>
               <Chart/>
               </div>
         }

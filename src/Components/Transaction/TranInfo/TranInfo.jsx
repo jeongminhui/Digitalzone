@@ -12,7 +12,7 @@ const TranInfo = () => {
   const { txnum } = useParams();
   const [transactionInfo, setTransactionInfo] = useState([]);
   const [copyBtn, setCopyBtn] = useState("COPY");
-  const transactionCollection = collection(db, "transaction_test");
+  const transactionCollection = collection(db, "transaction");
 
   //트랜잭션 상세 정보 로드
   useEffect(() => {
