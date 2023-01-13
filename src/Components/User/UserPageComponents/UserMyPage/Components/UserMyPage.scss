@@ -1,4 +1,4 @@
-* {
+.MyInfoPage_bottom {
   text-align: start;
 }
 .input_password_box {
@@ -6,10 +6,27 @@
     width: calc(100% - 80px);
   }
 }
-.ant-form-item-control-input-content button {
+
+UserMyPage button {
   width: 70px;
   height: 100%;
   margin-left: 10px;
   padding: 0;
   text-align: center;
+}
+
+// .ant-form-item .ant-form-item-control-input-content {
+//   flex: auto;
+//   max-width: 70%;
+// }
+.ant-form .button_display {
+  // display: flex;
+  // align-items: stretch;
+  // justify-content: space-between;
+  // flex-wrap: nowrap;
+  flex-direction: column;
+  button {
+    width: max-content;
+    right: 0px;
+  }
 }

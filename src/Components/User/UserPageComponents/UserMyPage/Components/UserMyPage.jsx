@@ -240,10 +240,7 @@ const UserMyPage = () => {
             value={pwcheck}
             onChange={(e) => setPwcheck(e.target.value)}
           />
-          <button type="submit" onClick={pwChangeHandler}>
-            변경
-          </button>
-        </Form.Item>{" "}
+        </Form.Item>
         <Form.Item label="상세정보 접근 권한">
           <Row>
             <Col span={8}>
@@ -364,7 +361,11 @@ const UserMyPage = () => {
         <Form.Item label="상태">
           <label>{user.userstatus}</label>
         </Form.Item>
-        <div className="UserAdd_footer"></div>
+        <div className="UserAdd_footer">
+          <button type="submit" onClick={pwChangeHandler}>
+            변경
+          </button>
+        </div>
       </Form>
     </>
   );
