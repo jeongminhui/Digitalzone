@@ -30,7 +30,8 @@ const ServiceChartLeft = ({rows}) => {
         series={[
           {
             name: "누적 호출 상위 Top5",
-            data: [service.A, service.B, service.C, service.D, service.E],
+            data:  Object.keys(service).length > 4
+            ? [service.A, service.B, service.C, service.D, service.E] : [0],
           },
         ]}
         options={{
@@ -43,6 +44,9 @@ const ServiceChartLeft = ({rows}) => {
             toolbar: {
               show: false,
             },
+          },
+          dataLabels: {
+            enabled: false,
           },
           title: {
             text: "누적 호출 상위 Top5",

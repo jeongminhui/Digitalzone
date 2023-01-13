@@ -85,21 +85,32 @@ const ChartRight = () => {
 
   return (
     <div className="chart" style={containerStyle}>
+      {avr == [] ? (
+        ""
+      ) : (
       <ApexCharts
         type="area"
         series={[
           {
             name: "평균 트랜잭션 크기(KB)",
-            data: [avr.ten, avr.eleven, avr.twelve, avr.thirteen, avr.fourteen],
+            data:   Object.keys(avr).length > 4
+            ? [avr.ten, avr.eleven, avr.twelve, avr.thirteen, avr.fourteen]  : [0],
           },
         ]}
         options={{
+          fill: {
+            colors: ["#0151B3"],
+          },
           chart: {
             height: 300,
             width: 500,
             toolbar: {
               show: false,
             },
+           
+          },
+          dataLabels: {
+            enabled: false
           },
           title: {
             text: "평균 트랜잭션 크기(KB)",
@@ -114,12 +125,14 @@ const ChartRight = () => {
             //선의 커브를 부드럽게 하고, 두께를 3으로 지정
             curve: "smooth",
             width: 3,
+            colors: ["#0151B3"],
           },
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
           },
         }}
       ></ApexCharts>
+      )}
     </div>
   );
 };
