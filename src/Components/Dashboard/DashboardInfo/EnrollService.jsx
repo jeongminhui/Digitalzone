@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { linearGradientDef } from "@nivo/core";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
 const EnrollService = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const networkData = useRecoilValue(networkSelector);
   const [enroll, setEnroll] = useState([]);
 
@@ -75,11 +80,29 @@ const EnrollService = () => {
         <div className="Dashboard_title">시간당 서비스 등록건수</div>
         <div className="Dashboard_chart">
           <ResponsiveLine
+            arcLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"}
             data={data}
             margin={{ top: 20, right: 15, bottom: 40, left: 45 }}
             colors={["#008FFB"]}
+            defs={[
+              linearGradientDef("gradient", [
+                { offset: 20, color: "inherit" },
+                { offset: 100, color: "inherit", opacity: 0.1 },
+              ]),
+            ]}
+            fill={[{ match: "*", id: "gradient" }]}
+            theme={{
+              grid: { line: { stroke: darkmode ? "#888888" : "#ebedf3" } },
+              axis: {
+                ticks: {
+                  text: {
+                    fontSize: 12,
+                    fill: darkmode ? "#fafbff" : "#3d3d3d",
+                  },
+                },
+              },
+            }}
             enableLinkGradient={true}
-            // colors={["-webkit-linear-gradient(to right, #e6dada, #274046)"]}
             xScale={{ type: "point" }}
             yScale={{
               type: "linear",
@@ -101,15 +124,17 @@ const EnrollService = () => {
               tickSize: 0,
               tickPadding: 12,
               tickRotation: 0,
+              tickValues: [0, 100, 200, 300, 400],
             }}
             enableGridX={false}
+            gridYValues={5}
             // 기타설정
-            lineWidth={4}
+            lineWidth={5}
             enablePoints={false}
             enableCrosshair={false}
             useMesh={true} // MouseHover시 효과
             enableArea={true} //fill 효과
-            areaOpacity={0.25} //fill 효과 투명도
+            areaOpacity={darkmode ? "1" : "0.5"} //fill 효과 투명도
             animate={true}
             tooltip={(data) => {
               return (

@@ -54,14 +54,12 @@
           height: 38px;
           position: relative;
           border-radius: 10px;
-          background-color: var(--footer-color);
           overflow: hidden;
 
           input {
             position: absolute;
             width: 270px;
             height: 100%;
-            background-color: var(--footer-color);
             border: none;
             padding-left: 20px;
 
@@ -104,7 +102,7 @@
       // 다크모드
       &.HeaderDarkmode {
         button {
-          background-color: #ffffff;
+          background-color: transparent;
           width: 38px;
           height: 38px;
           padding: 0;
@@ -115,22 +113,16 @@
           svg {
             width: 22px;
             height: 22px;
-            color: var(--light-grey-color);
           }
         }
       }
 
       // 유저아이콘
       &.HeaderUserIcon {
-        background: #ffffff;
         cursor: pointer;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        .PersonRoundedIcon path {
-          color: var(--point-color);
-        }
       }
     }
   }

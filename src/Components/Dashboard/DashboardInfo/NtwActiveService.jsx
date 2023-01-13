@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recooil로 불러오기
 import { useRecoilValue } from "recoil";
 import { serviceSelector } from "../../../Recoil/Selector";
 
 const NtwActiveService = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const serviceData = useRecoilValue(serviceSelector);
   const [service, setService] = useState("");
 
@@ -85,13 +89,17 @@ const NtwActiveService = () => {
             ]}
             margin={{ top: 25, right: 0, bottom: 25, left: 0 }} //차트 margin
             innerRadius={0} //차트 중앙 빈공간 반지름
+            colors={["#8fdbf4", "#80baf4 ", " #2ba0e3", " #055ca2", "#008FFB"]}
+            arcLinkLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"} //막대선에 이어진 label색상
+            activeOuterRadiusOffset={10}
+            enableArcLinkLabels={true} //막대선 표출 여부
+            arcLinkLabelsDiagonalLength={4} // 막대선 길이1
+            arcLinkLabelsStraightLength={12} // 막대선 길이2
+            arcLinkLabelsThickness={1} //막대선 두께
             padAngle={0} //각 pad의 간격
             cornerRadius={0} //각 pad의 radius
-            colors={["#8fdbf4", "#80baf4 ", " #2ba0e3", " #055ca2", "#008FFB"]}
             borderWidth={0} //각 pad의 border
-            enableArcLinkLabels={true} //막대선 표출 여부
-            arcLinkLabelsTextColor="black" //막대선 label색상
-            arcLinkLabelsThickness={1} //막대선 두께
+            arcLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"} // pad 내부 색상
             arcLinkLabelsColor={{ from: "color" }} // 막대 색상, pad 색상에 따라감
             // pad에 표현되는 글씨
             tooltip={(data) => {

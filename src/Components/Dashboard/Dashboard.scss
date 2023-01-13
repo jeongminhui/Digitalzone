@@ -3,6 +3,7 @@
   position: relative;
   padding-top: 65px;
   padding-bottom: 136px;
+  min-height: 100vh;
 
   .DashboardInfo {
     width: 1002px;
@@ -30,73 +31,11 @@
         height: 100%;
         position: relative;
 
-        // 전체 블록 수
-        &.TotalBlock {
-          a {
-            background-color: #eef5ff;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #2965ba;
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #2965ba;
-          }
-        }
-
-        // 전체 트랜잭션 수
-        &.TotalTransaction {
-          a {
-            background-color: #fff6fb;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #cc2c85;
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #cc2c85;
-          }
-        }
-
         // 활성 네트워크 수
         &.ActiveNetwork {
-          a {
-            background-color: #fff7ec;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #c08728;
-
-              span {
-                color: var(--light-grey-color);
-                font-size: 20px;
-                font-weight: bold;
-              }
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #c08728;
-          }
-        }
-
-        // 전체 서비스 등록 건수
-        &.TotalService {
-          a {
-            background-color: #e4fbf8;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #40b4a4;
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #40b4a4;
+          span {
+            font-size: 20px;
+            font-weight: bold;
           }
         }
 
@@ -120,7 +59,6 @@
 
           .Dashboard_time {
             font-size: 13px;
-            color: var(--light-grey-color);
           }
         }
 
@@ -128,7 +66,6 @@
           width: 50px;
           height: 50px;
           border-radius: 50%;
-          border: 5px solid #fff;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -150,8 +87,6 @@
         height: 270px;
         position: relative;
         border-radius: 10px;
-        background-color: #ffffff;
-        box-shadow: var(--box-shadow);
 
         // 네트워크별 블록 생성시간
         &.NtwCreateBlock {
