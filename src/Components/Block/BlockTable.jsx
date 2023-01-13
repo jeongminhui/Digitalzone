@@ -151,7 +151,6 @@ const BlockTable = ({ rows, clickHandler }) => {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-               
               />
             </div>
 
