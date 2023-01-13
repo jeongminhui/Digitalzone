@@ -12,12 +12,17 @@ import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
 import NotFound from "./Components/NotFound/NotFound";
 
+import ServiceInfo from "./Components/Service/ServiceInfo/ServiceInfo";
+import TranInfo from "./Components/Transaction/TranInfo/TranInfo";
+
+
 // 유저 최종 페이지 링크
 import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
 import UserList_Page from "./Components/User/UserPageComponents/UserList/UserList_Page";
 import UserLogin_Page from "./Components/User/UserPageComponents/UserLogin/UserLogin_Page";
 import UserMyPage_Page from "./Components/User/UserPageComponents/UserMyPage/UserMyPage_Page";
 import UserUpdate_Page from "./Components/User/UserPageComponents/UserUpdate/UserUpdate_Page";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -42,6 +47,10 @@ function App() {
           element: <Transaction />,
         },
         {
+          path: "/transaction/:txnum",
+          element: <TranInfo />,
+        },
+        {
           path: "/node",
           element: <Node />,
         },
@@ -52,6 +61,10 @@ function App() {
         {
           path: "/service",
           element: <Service />,
+        },
+        {
+          path: "/service/:blocknum",
+          element: <ServiceInfo />,
         },
         {
           path: "/user",
