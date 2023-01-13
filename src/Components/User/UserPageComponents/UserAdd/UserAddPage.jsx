@@ -1,7 +1,7 @@
 import React from "react";
 import UserAddModal from "./Components/UserAddModal";
 
-const UserAdd_Page = () => {
+const UserAddPage = () => {
   return (
     <div>
       <UserAddModal />
@@ -9,4 +9,4 @@ const UserAdd_Page = () => {
   );
 };
 
-export default UserAdd_Page;
+export default UserAddPage;
