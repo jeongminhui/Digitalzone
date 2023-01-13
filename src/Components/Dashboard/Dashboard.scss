@@ -1,16 +1,16 @@
 .Dashboard {
-    width: calc(100% - 160px);
-    position: relative;
-    padding-top: 65px;
-    padding-bottom: 136px;
+  width: calc(100% - 160px);
+  position: relative;
+  padding-top: 65px;
+  padding-bottom: 136px;
 
-    .DashboardInfo {
-        width: 1002px;
-        height: 826px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+  .DashboardInfo {
+    width: 1002px;
+    height: 826px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .Dashboard_title {
       font-weight: bold;

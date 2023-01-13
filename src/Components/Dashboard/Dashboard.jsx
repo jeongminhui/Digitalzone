@@ -35,63 +35,83 @@ const Dashboard = () => {
   const DateTime = `${year}-${month}-${date} ${hour}:${min}:${sec}`;
 
   // // 블록 데이터
-  // const [block, setBlock] = useRecoilState(blockAtom);
-  // const blockData = collection(db, "block");
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(blockData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setBlock(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  const [block, setBlock] = useRecoilState(blockAtom);
+  const blockData = collection(db, "block");
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(blockData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setBlock(dataArr);
+    }
+    getNtw();
+  }, []);
 
   // // 트랜잭션 데이터
-  // const [transaction, setTransaction] = useRecoilState(transactionAtom);
-  // const transactionData = collection(db, "transaction");
+  const [transaction, setTransaction] = useRecoilState(transactionAtom);
+  const transactionData = collection(db, "transaction");
 
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(transactionData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setTransaction(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setTransaction(dataArr);
+    }
+    getNtw();
+  }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setTransaction(dataArr);
+    }
+    getNtw();
+  }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setTransaction(dataArr);
+    }
+    getNtw();
+  }, []);
 
   // // 네트워크 데이터
-  // const [network, setNetwork] = useRecoilState(networkAtom);
-  // const ntwData = collection(db, "ntwdata");
+  const [network, setNetwork] = useRecoilState(networkAtom);
+  const ntwData = collection(db, "ntwdata");
 
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(ntwData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setNetwork(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(ntwData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setNetwork(dataArr);
+    }
+    getNtw();
+  }, []);
 
   // // 서비스 데이터
-  // const [service, setService] = useRecoilState(serviceAtom);
-  // const serviceData = collection(db, "service");
+  const [service, setService] = useRecoilState(serviceAtom);
+  const serviceData = collection(db, "service");
 
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(serviceData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setService(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(serviceData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setService(dataArr);
+    }
+    getNtw();
+  }, []);
 
   return (
     <div className="Dashboard">
