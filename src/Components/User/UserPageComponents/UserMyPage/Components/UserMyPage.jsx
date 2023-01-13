@@ -221,31 +221,31 @@ console.log(loginUser);
         </Form.Item>
 
         <Form.Item
-          name="confirm"
-          label="비밀번호 재확인"
-          dependencies={["password"]}
-          hasFeedback
-          rules={[
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error("비밀번호가 일치하지 않습니다!")
-                );
-              },
-            }),
-          ]}
-        >
-          
+                    name='confirm'
+                    label='비밀번호 재확인'
+                    dependencies={['password']}
+                    hasFeedback
+                    rules={[
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue('password') === value) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(new Error('비밀번호가 일치하지 않습니다!'));
+                            },
+                        }),
+                    ]}
+                >
+                  <Input.Password className="input_password" />
         </Form.Item>
         <div>
-            <Input.Password className="input_password" />
-            {/* <button type="submit" onClick={pwChangeHandler}>
+            <button type="submit" onClick={pwChangeHandler}>
               변경
-            </button>  */}
+            </button> 
           </div>
+          <br/>
+          <br/>
+          <br/>
         <Form.Item label='상세정보 접근 권한'>
         <Row>
                 <Col span={8}>
