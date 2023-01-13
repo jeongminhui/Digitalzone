@@ -1,25 +1,21 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
 // import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import { Link, useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import "./Header_userIcon.scss";
 
-export default function Header_userIcon() {
+export default function HeaderUserIcon() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -41,26 +37,18 @@ export default function Header_userIcon() {
   return (
     <>
       <React.Fragment>
-        <Box
-          sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+        <div
+          className="HeaderUserIcon"
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
         >
-          <Tooltip title="마이 페이지">
-            <div
-              className="Header_userIcon"
-              onClick={handleClick}
-              size="small"
-              sx={{ ml: 2 }}
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-            >
-              <PersonRoundedIcon
-                className="PersonRoundedIcon"
-                fontSize="large"
-              />
-            </div>
-          </Tooltip>
-        </Box>
+          <PersonRoundedIcon className="PersonRoundedIcon" fontSize="large" />
+        </div>
+
         {isLogin ? (
           isManager ? (
             // 매니저일 경우 나타낼 메뉴

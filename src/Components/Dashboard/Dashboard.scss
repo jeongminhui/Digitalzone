@@ -11,6 +11,13 @@
     flex-direction: column;
     justify-content: space-between;
 
+    .Dashboard_title {
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: -1.2px;
+    }
+
+    //////////////////// Dashboard_container1 ////////////////////
     .Dashboard_container1 {
       width: 1002px;
       height: 178px;
@@ -21,6 +28,76 @@
         width: 245px;
         height: 100%;
         position: relative;
+
+        // 전체 블록 수
+        &.TotalBlock {
+          a {
+            background-color: #eef5ff;
+
+            .Dashboard_title,
+            .Dashboard_data {
+              color: #2965ba;
+            }
+          }
+
+          .Dashboard_icon {
+            background-color: #2965ba;
+          }
+        }
+
+        // 전체 트랜잭션 수
+        &.TotalTransaction {
+          a {
+            background-color: #fff6fb;
+
+            .Dashboard_title,
+            .Dashboard_data {
+              color: #cc2c85;
+            }
+          }
+
+          .Dashboard_icon {
+            background-color: #cc2c85;
+          }
+        }
+
+        // 활성 네트워크 수
+        &.ActiveNetwork {
+          a {
+            background-color: #fff7ec;
+
+            .Dashboard_title,
+            .Dashboard_data {
+              color: #c08728;
+
+              span {
+                color: var(--light-grey-color);
+                font-size: 20px;
+                font-weight: bold;
+              }
+            }
+          }
+
+          .Dashboard_icon {
+            background-color: #c08728;
+          }
+        }
+
+        // 전체 서비스 등록 건수
+        &.TotalService {
+          a {
+            background-color: #e4fbf8;
+
+            .Dashboard_title,
+            .Dashboard_data {
+              color: #40b4a4;
+            }
+          }
+
+          .Dashboard_icon {
+            background-color: #40b4a4;
+          }
+        }
 
         a {
           width: 240px;
@@ -58,6 +135,7 @@
       }
     }
 
+    //////////////////// Dashboard_container2 ////////////////////
     .Dashboard_container2 {
       width: 1000px;
       height: 590px;
@@ -74,41 +152,42 @@
         background-color: #ffffff;
         box-shadow: var(--box-shadow);
 
-        // 각 차트박스
-        a {
-          width: 100%;
-          height: 100%;
-          text-decoration: none;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-
-          .Dashboard_title {
-            padding-top: 18px;
-            color: var(--black-color);
-          }
-
+        // 네트워크별 블록 생성시간
+        &.NtwCreateBlock {
           .Dashboard_seconds {
+            color: var(--point-color);
+            font-size: 40px;
             height: 70px;
             line-height: 70px;
           }
-
           .Dashboard_chart {
-            width: 90%;
-            height: 210px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 155px !important;
           }
         }
       }
-    }
 
-    .Dashboard_title {
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: -1.5px;
+      // 각 차트박스
+      a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .Dashboard_title {
+          padding-top: 18px;
+        }
+
+        .Dashboard_chart {
+          width: 90%;
+          height: 210px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 }

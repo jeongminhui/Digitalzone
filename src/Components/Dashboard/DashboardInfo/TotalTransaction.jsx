@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./TotalTransaction.scss";
 import { FaServer } from "react-icons/fa";
 
 // recoil로 불러오기
