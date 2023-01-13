@@ -1,28 +1,14 @@
-// .MyInfoPage {
-// margin: 0 auto;
-// justify-content: center;
-// align-items: center;
-// }
-// * {
-//   color: #888888;
-// }
-
 @import url(./../../../../index.css);
 
 * {
   color: var(---light-grey);
 }
-.MyInfoPage_Page {
+.MyInfoPagePage {
   height: 100vh;
   margin: 0 auto;
   width: calc(100% - 160px);
   position: relative;
 }
-// .MyInfoPage_Container {
-//   width: 100%;
-//   height: 100vh;
-//   margin: 0 auto;
-// }
 .MyInfoPage {
   width: 800px;
   margin: auto;
