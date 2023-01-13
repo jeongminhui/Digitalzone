@@ -1,38 +1,27 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
 // import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import "./Header_userIcon.scss";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
-import "./Header_userIcon.scss";
-// 로그아웃 구현
-import { db } from "../../../firebase";
-import { getAuth, signOut } from "firebase/auth";
-import { useRecoilState } from "recoil";
-import { loginAtom } from "../../../Recoil/Atom";
 
-export default function Header_userIcon() {
+export default function HeaderUserIcon() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  // 로그아웃 구현
-  const [loginUser, setLoginUser] = useRecoilState(loginAtom);
-  const auth = getAuth();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     // 조건을 여기에 달아주어야 하나?
+    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -40,35 +29,26 @@ export default function Header_userIcon() {
   };
 
   // 조건 따라 어떤 Menu 띄울지 정함. (두가지 조건)
-  // const userId = `${loginUser.username}`;
-  let userId = "";
-  if (loginUser !== null) userId = `${loginUser.userid}`;
+  const userId = "Prse1284@gmail.com";
   // 로그인 상태
-  let isLogin;
-  if (loginUser !== null) isLogin = 1;
-  else isLogin = 0;
+  const isLogin = 1;
   // 관리자 여부
-  let isManager;
-  if (loginUser !== null && loginUser.userclass === "관리자") isManager = 1;
-  else isManager = 0;
+  const isManager = 1;
   return (
     <>
       <React.Fragment>
-        {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}> */}
-        <Tooltip title="마이 페이지">
-          <div
-            className="Header_userIcon"
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? "account-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-          >
-            <PersonRoundedIcon className="PersonRoundedIcon" fontSize="large" />
-          </div>
-        </Tooltip>
-        {/* </Box> */}
+        <div
+          className="HeaderUserIcon"
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <PersonRoundedIcon className="PersonRoundedIcon" fontSize="large" />
+        </div>
+
         {isLogin ? (
           isManager ? (
             // 매니저일 경우 나타낼 메뉴
@@ -129,8 +109,6 @@ export default function Header_userIcon() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  signOut(auth);
-                  setLoginUser(null);
                   navigate("/");
                 }}
               >
@@ -189,8 +167,6 @@ export default function Header_userIcon() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  signOut(auth);
-                  setLoginUser(null);
                   navigate("/");
                 }}
               >
@@ -231,15 +207,18 @@ export default function Header_userIcon() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem
-              onClick={() => {
-                navigate("/user/login");
-              }}
-            >
-              <ListItemIcon>
-                <PersonRoundedIcon fontSize="small" />
-              </ListItemIcon>
-              로그인
+            <MenuItem>
+              <Link
+                to="/user/login"
+                onClick={(e) => {
+                  console.log(e);
+                }}
+              >
+                <ListItemIcon>
+                  <PersonRoundedIcon fontSize="small" />
+                </ListItemIcon>
+                로그인
+              </Link>
             </MenuItem>
           </Menu>
         )}

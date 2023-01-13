@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
-import "./Header_SearchBar.scss";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 
 import { useRecoilValue } from "recoil";
 import { blockSelector } from "../../../Recoil/Selector";
 
-const Header_SearchBar = () => {
+const HeaderSearchBar = () => {
   const [inputValue, setInputValue] = useState("");
   const blockData = useRecoilValue(blockSelector);
   const navigate = useNavigate();
@@ -67,7 +66,7 @@ const Header_SearchBar = () => {
   };
 
   return (
-    <div className="Header_SearchBar">
+    <div className="HeaderSearchBar">
       <form onSubmit={searchSubmitHandler}>
         <input
           type="text"
@@ -83,4 +82,4 @@ const Header_SearchBar = () => {
   );
 };
 
-export default Header_SearchBar;
+export default HeaderSearchBar;
