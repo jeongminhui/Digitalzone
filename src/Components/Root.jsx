@@ -8,10 +8,13 @@ import { darkTheme, lightTheme } from "../style/theme";
 import { ThemeContext } from "./Context/ThemeContext";
 
 const Root = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem("mode") === "true" ? true : false
+  );
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
+    localStorage.setItem("mode", String(!isDarkMode));
   };
 
   return (
