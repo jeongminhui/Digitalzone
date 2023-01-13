@@ -10,6 +10,8 @@ import TxInfo from "./TxInfo";
 import Carousel from "./Carousel";
 import copy from "copy-to-clipboard";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
+import { VscTriangleDown } from "react-icons/vsc";
+import { VscTriangleUp } from "react-icons/vsc";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -128,7 +130,17 @@ const BlockInfo = () => {
                     className="txInfoBtn"
                     onClick={txInfoHandler}
                   >
-                    자세히
+                    {visible ? (
+                      <div>
+                        간략히
+                        <VscTriangleUp style={{ marginLeft: "2px" }} />
+                      </div>
+                    ) : (
+                      <div>
+                        자세히
+                        <VscTriangleDown style={{ marginLeft: "2px" }} />
+                      </div>
+                    )}
                   </button>
                 </td>
               </tr>

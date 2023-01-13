@@ -128,7 +128,7 @@ const TxInfo = ({ txnum }) => {
   };
 
   return (
-    <div>
+    <div className="txInfoTable">
       <ThemeProvider theme={theme}>
         <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
           <TableContainer sx={{ maxHeight: 440 }}>

@@ -194,7 +194,7 @@ export default function Tab({ rows }) {
                             hover
                             role="checkbox"
                             tabIndex={-1}
-                            key={row.code}
+                            key={idx}
                           >
                             <TableCell
                               key={row.service}
@@ -256,9 +256,7 @@ export default function Tab({ rows }) {
                             >
                               {row.createdt}
                             </TableCell>
-                            <TableCell key={row.tps}>
-                              {row.tps}
-                            </TableCell>
+                            <TableCell key={row.tps}>{row.tps}</TableCell>
                             <TableCell key={row.latency}>
                               {row.latency}
                             </TableCell>
@@ -268,7 +266,7 @@ export default function Tab({ rows }) {
                             hover
                             role="checkbox"
                             tabIndex={-1}
-                            key={row.code}
+                            key={idx}
                           >
                             <TableCell
                               key={row.service}

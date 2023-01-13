@@ -14,7 +14,6 @@ import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const BlockTable = ({ rows, clickHandler }) => {
-
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
     { id: "blocknum", label: "블록번호", minWidth: 80 },
@@ -123,7 +122,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={idx}
                       onClick={() => clickHandler(row.blocknum, idx)}
                       className="tableRow"
                     >

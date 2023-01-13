@@ -9,7 +9,6 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { withStyles } from "@material-ui/core/styles";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -23,13 +22,6 @@ import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const ServiceTable = (props) => {
-
-  const StyledTableCell = withStyles({
-    root: {
-      color: "#3d3d3d"
-    }
-  })(TableCell);
-
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
     props;
 
@@ -120,7 +112,7 @@ const ServiceTable = (props) => {
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
-                  <StyledTableCell
+                  <TableCell
                     key={column.id}
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
@@ -128,7 +120,7 @@ const ServiceTable = (props) => {
                     className={column.id}
                   >
                     {column.label}
-                  </StyledTableCell>
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
@@ -141,7 +133,7 @@ const ServiceTable = (props) => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={idx}
                       className="tableRow"
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
@@ -154,40 +146,40 @@ const ServiceTable = (props) => {
                       >
                         {row.service}
                       </TableCell>
-                      <StyledTableCell
+                      <TableCell
                         key={row.createdt}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
                       >
                         {row.createdt}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.apitype}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
                       >
                         {row.apitype}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.nodename}
                         onClick={() => moveNodeInfo(row.nodename)}
                       >
                         {row.nodename}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.txnum}
                         onClick={() => moveTxInfo(row.txnum)}
                       >
                         {row.txnum}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.blocknum}
                         onClick={() => moveBlockInfo(row.blocknum, idx)}
                       >
                         {row.blocknum}
-                      </StyledTableCell>
+                      </TableCell>
                       <TableCell key={row.status}>{row.status}</TableCell>
                     </TableRow>
                   );
