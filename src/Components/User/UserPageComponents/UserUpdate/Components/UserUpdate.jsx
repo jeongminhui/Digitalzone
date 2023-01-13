@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import { db } from '../../../../../firebase';
 import { collection, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { useRecoilValue } from 'recoil';
 import { userInfoSelector } from '../../../../../Recoil/Selector';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { Form, Checkbox, Row, Col } from 'antd';
+import React, { useState, useEffect } from 'react';
 
 const UserUpdate = () => {
     const updateUser = useRecoilValue(userInfoSelector);
@@ -145,66 +146,157 @@ const UserUpdate = () => {
 
     return (
         <div>
-            <div>{user.username}</div>
-            <div>{user.userteam}</div>
-            <div>아이디(이메일) {user.userid}</div>
-            <form>
-                <div>
-                    상세정보 접근 권한
-                    <label>
-                        <input type='checkbox' checked disabled />
-                        대시보드
-                    </label>
-                    <label>
-                        <input type='checkbox' checked disabled />
-                        블록
-                    </label>
-                    <label>
-                        {tran ? <input type='checkbox' id='transaction' name='checkbox' checked onChange={adminChangeHandler} /> : <input type='checkbox' id='transaction' name='checkbox' onChange={adminChangeHandler} />}
-                        트랜잭션
-                    </label>
-                    <label>
-                        {node ? <input type='checkbox' id='node' name='checkbox' checked onChange={adminChangeHandler} /> : <input type='checkbox' id='node' name='checkbox' onChange={adminChangeHandler} />}
-                        노드
-                    </label>
-                    <label>
-                        {serv ? <input type='checkbox' id='service' name='checkbox' checked onChange={adminChangeHandler} /> : <input type='checkbox' id='service' name='checkbox' onChange={adminChangeHandler} />}
-                        서비스
-                    </label>
+            <h1>사용자 변경</h1>
+            <Form
+                labelCol={{
+                    span: 5,
+                }}
+                wrapperCol={{
+                    span: 14,
+                }}
+                layout='horizontal'
+                initialValues={{}}
+            >
+                <Form.Item label='아이디(이메일)'>{user.userid}</Form.Item>
+                <Form.Item label='상세정보 접근 권한'>
+                    <Row>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                defaultChecked
+                                disabled
+                            >
+                                대시보드
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                defaultChecked
+                                disabled
+                            >
+                                블록
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='transaction'
+                                checked={tran}
+                                onChange={adminChangeHandler}
+                            >
+                                트랜잭션
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='node'
+                                checked={node}
+                                onChange={adminChangeHandler}
+                            >
+                                노드
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='service'
+                                checked={serv}
+                                onChange={adminChangeHandler}
+                            >
+                                서비스
+                            </Checkbox>
+                        </Col>
+                    </Row>
+                </Form.Item>
+                <Form.Item label='이용중인 서비스'>
+                    <Row>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='service_a'
+                                checked={svcA}
+                                onChange={serviceChangeHandler}
+                            >
+                                A서비스
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='service_b'
+                                checked={svcB}
+                                onChange={serviceChangeHandler}
+                            >
+                                B서비스
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='service_c'
+                                checked={svcC}
+                                onChange={serviceChangeHandler}
+                            >
+                                C서비스
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                id='service_d'
+                                checked={svcD}
+                                onChange={serviceChangeHandler}
+                            >
+                                D서비스
+                            </Checkbox>
+                        </Col>
+                        <Col span={8}>
+                            <Checkbox
+                                style={{
+                                    lineHeight: '32px',
+                                }}
+                                type='checkbox'
+                                id='service_e'
+                                checked={svcE}
+                                onChange={serviceChangeHandler}
+                            >
+                                E서비스
+                            </Checkbox>
+                        </Col>
+                    </Row>
+                </Form.Item>
+                <Form.Item label='유형'>{user.userclass}</Form.Item>
+                <Form.Item label='등록일자'>{user.userdate}</Form.Item>
+                <Form.Item label='상태'>{user.userstatus}</Form.Item>
+                <div className='UserAdd_footer'>
+                    <button type='submit' onClick={changeHandler}>
+                        정보 변경
+                    </button>
+                    <button type='submit' onClick={deleteHandler}>
+                        사용자 삭제
+                    </button>
                 </div>
-                <div>
-                    이용중인 서비스:
-                    <label>
-                        {svcA ? <input type='checkbox' id='service_a' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_a' name='checkbox' onChange={serviceChangeHandler} />}
-                        A서비스
-                    </label>
-                    <label>
-                        {svcB ? <input type='checkbox' id='service_b' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_b' name='checkbox' onChange={serviceChangeHandler} />}
-                        B서비스
-                    </label>
-                    <label>
-                        {svcC ? <input type='checkbox' id='service_c' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_c' name='checkbox' onChange={serviceChangeHandler} />}
-                        C서비스
-                    </label>
-                    <label>
-                        {svcD ? <input type='checkbox' id='service_d' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_d' name='checkbox' onChange={serviceChangeHandler} />}
-                        D서비스
-                    </label>
-                    <label>
-                        {svcE ? <input type='checkbox' id='service_e' name='checkbox' checked onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_e' name='checkbox' onChange={serviceChangeHandler} />}
-                        E서비스
-                    </label>
-                </div>
-            </form>
-            <div>유형 {user.userclass}</div>
-            <div>등록일자 {user.userdate}</div>
-            <div>상태 {user.userstatus}</div>
-            <button type='submit' onClick={changeHandler}>
-                정보 변경
-            </button>
-            <button type='submit' onClick={deleteHandler}>
-                사용자 삭제
-            </button>
+            </Form>
         </div>
     );
 };
