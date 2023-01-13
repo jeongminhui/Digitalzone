@@ -22,13 +22,6 @@ import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const ServiceTable = (props) => {
-
-  const StyledTableCell = withStyles({
-    root: {
-      color: "#3d3d3d"
-    }
-  })(TableCell);
-
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
     props;
 
@@ -119,7 +112,7 @@ const ServiceTable = (props) => {
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
-                  <StyledTableCell
+                  <TableCell
                     key={column.id}
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
@@ -127,7 +120,7 @@ const ServiceTable = (props) => {
                     className={column.id}
                   >
                     {column.label}
-                  </StyledTableCell>
+                  </TableCell>
                 ))}
               </TableRow>
             </TableHead>
