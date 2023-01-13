@@ -27,6 +27,7 @@ const ServiceChartRight = ({ rows }) => {
       E: apiFilter5.length,
     });
   }, [rows]);
+
   return (
     <div className="rightContainer">
       <ApexCharts
@@ -34,7 +35,7 @@ const ServiceChartRight = ({ rows }) => {
         series={[
           {
             name: "API 호출 상위 Top5",
-            data: [apiType.A, apiType.B, apiType.C, apiType.D, apiType.E],
+            data:  Object.keys(apiType).length > 4 ? [apiType.A, apiType.B, apiType.C, apiType.D, apiType.E]: [0],
           },
         ]}
         options={{
@@ -47,6 +48,9 @@ const ServiceChartRight = ({ rows }) => {
             toolbar: {
               show: false,
             },
+          },
+           dataLabels: {
+            enabled: false,
           },
           title: {
             text: "API 호출 상위 Top5",

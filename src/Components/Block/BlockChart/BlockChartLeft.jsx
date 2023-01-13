@@ -36,7 +36,8 @@ const BlockChartLeft = ({ rows, containerStyle }) => {
         series={[
           {
             name: "시간당 블록 수(개)",
-            data: [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen],
+            data:    Object.keys(ten).length > 4
+            ? [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen] : [0],
           },
         ]}
         options={{
@@ -46,6 +47,9 @@ const BlockChartLeft = ({ rows, containerStyle }) => {
             toolbar: {
               show: false,
             },
+          },
+          dataLabels: {
+            enabled: false,
           },
           title: {
             text: "시간당 블록 수(개)",
