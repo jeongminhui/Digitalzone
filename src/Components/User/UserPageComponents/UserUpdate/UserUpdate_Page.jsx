@@ -113,6 +113,18 @@ const UserUpdate_Page = () => {
       navigate('/user/list');
   };
 
+  const cancelHandler = () => {
+    Swal.fire({
+        icon: 'success',
+        text: '취소 되었습니다',
+        showConfirmButton: false,
+        timer: 2000,
+    });
+    navigate('/user/list');
+  }
+
+
+
   // 정보 삭제
   const deleteHandler = async (e) => {
       e.preventDefault();
@@ -136,6 +148,7 @@ const UserUpdate_Page = () => {
                   showConfirmButton: false,
                   timer: 2000,
               });
+              navigate('/user/list');
           } else {
               Swal.fire({
                   icon: 'error',
@@ -146,7 +159,6 @@ const UserUpdate_Page = () => {
           }
       });
       // /user/list를 /user로 경로 변경할 때 같이 경로 변경
-      navigate('/user/list');
   };
 
 
@@ -287,7 +299,7 @@ const UserUpdate_Page = () => {
           <div className="divBox nameBox">
             <span className="title titleName">상태</span> <span className="ctn ctnName">{user.userstatus}</span>
           </div>
-          <button className="btn cancelBtn" type='submit' onClick={changeHandler}>
+          <button className="btn cancelBtn" type='submit' onClick={cancelHandler}>
               취소
           </button>
           <button className="btn change"type='submit' onClick={changeHandler}>

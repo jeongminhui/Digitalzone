@@ -8,7 +8,7 @@ import { loginSelector } from '../../../../Recoil/Selector';
 import { Form, Input } from 'antd';
 import { getAuth, updatePassword } from "firebase/auth";
 import Swal from "sweetalert2";
-
+import "./UserMyPage_Page.scss"
 
 const UserMyPage_Page = () => {
   const loginUser = useRecoilValue(loginSelector)
@@ -18,7 +18,7 @@ const UserMyPage_Page = () => {
   return (
     <div className="MyInfoPage_Page">
       <UserMyPage />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

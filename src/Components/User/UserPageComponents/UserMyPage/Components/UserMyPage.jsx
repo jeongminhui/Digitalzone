@@ -3,64 +3,16 @@ import { getAuth, updatePassword } from "firebase/auth";
 import Swal from "sweetalert2";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../../../Recoil/Selector";
-// import Footer from "../../../Footer/Footer";
-// import "./UserMyPage_Page.scss";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-// import UserMyPage from './Components/UserMyPage';
-
-
-// 민희추가
 import "./UserMyPage.scss";
-
 import {
-  AutoComplete,
-  Button,
-  Cascader,
   Checkbox,
   Col,
   Form,
   Input,
-  InputNumber,
   Row,
-  Select,
 } from "antd";
 
-// 민희 추가
-const { Option } = Select;
-const residences = [
-  {
-    value: "zhejiang",
-    label: "Zhejiang",
-    children: [
-      {
-        value: "hangzhou",
-        label: "Hangzhou",
-        children: [
-          {
-            value: "xihu",
-            label: "West Lake",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: "jiangsu",
-    label: "Jiangsu",
-    children: [
-      {
-        value: "nanjing",
-        label: "Nanjing",
-        children: [
-          {
-            value: "zhonghuamen",
-            label: "Zhong Hua Men",
-          },
-        ],
-      },
-    ],
-  },
-];
 const formItemLayout = {
   labelCol: {
     xs: {
@@ -79,20 +31,6 @@ const formItemLayout = {
     },
   },
 };
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
-// 민희 추가 끝
-
 const UserMyPage = () => {
   const loginUser = useRecoilValue(loginSelector);
   const [user, setUser] = useState({});
@@ -158,41 +96,37 @@ const UserMyPage = () => {
     }
   }, [userservice]);
 
-  // 접근 권한 변경
-  const adminChangeHandler = (e) => {
-    setAdmin({
-      ...admin,
-      [e.target.id]: e.target.checked,
-    });
-  };
-
-  // 서비스 권한 변경
-  const serviceChangeHandler = (e) => {
-    setUserservice({
-      ...userservice,
-      [e.target.id]: e.target.checked,
-    });
-    if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
-    else setServiceCnt((prev) => prev - 1);
-  };
-
   // 비밀번호 변경
-  const pwChangeHandler = (e) => {
-    e.preventDefault();
-    updatePassword(currentUser, userpw)
-      .then(() => {
-        Swal.fire({
-          icon: "success",
-          text: "비밀번호가 변경되었습니다",
-          showConfirmButton: false,
-          timer: 2000,
-        });
-      })
-      .catch((error) => {
-        console.log(error.code);
-      });
-    setUserpw("");
-    setPwcheck("");
+     const pwChangeHandler = (e) => {
+      e.preventDefault();
+      updatePassword(currentUser, userpw)
+          .then(() => {
+              if (userpw !== '' && userpw === pwcheck) {
+                  Swal.fire({
+                      icon: 'success',
+                      text: '비밀번호가 변경되었습니다',
+                      showConfirmButton: false,
+                      timer: 2000,
+                  });
+              } else {
+                  Swal.fire({
+                      icon: 'error',
+                      text: '비밀번호를 확인해 주세요',
+                      showConfirmButton: false,
+                      timer: 2000,
+                  });
+              }
+          })
+          .catch((error) => {
+              Swal.fire({
+                  icon: 'error',
+                  text: '비밀번호를 확인해 주세요',
+                  showConfirmButton: false,
+                  timer: 2000,
+              });
+          });
+      setUserpw('');
+      setPwcheck('');
   };
 
   // 비밀번호 조건 검사
@@ -223,6 +157,29 @@ const UserMyPage = () => {
     }
   }, [userpw, pwcheck]);
 
+  // 사용자 추가 실패 메시지
+  const [errorMsg, setErrorMsg] = useState('');
+
+
+console.log(loginUser);
+
+
+  useEffect(() => {
+      if (errorMsg !== '') {
+          const errorPrint = async () => {
+              await Swal.fire({
+                  icon: 'error',
+                  text: errorMsg,
+                  showConfirmButton: false,
+                  timer: 2000,
+              });
+          };
+          errorPrint();
+          setErrorMsg('');
+      }
+  }, [errorMsg]);
+
+
   return (
     <div className="MyInfoPage_top">
           <div className="MyInfoPage_top_left">
@@ -232,16 +189,12 @@ const UserMyPage = () => {
             <h1>{loginUser.username}</h1>
             <h3>{loginUser.userteam}</h3>
           </div>
+          <div>
+            <span>이메일(아이디)</span>
+            <span>{loginUser.userid}</span>
+          </div>
       <Form
         {...formItemLayout}
-        // form={form}
-        // name="register"
-        // onFinish={onFinish}
-        // initialValues={{
-        //   residence: ["zhejiang", "hangzhou", "xihu"],
-        //   prefix: "86",
-        // }}
-        // scrollToFirstError
       >
         <Form.Item
           name="password"
@@ -285,15 +238,132 @@ const UserMyPage = () => {
             }),
           ]}
         >
-          <div>
-            <Input.Password className="input_password" />
-            <button type="submit" onClick={pwChangeHandler}>
-              변경
-            </button>
-          </div>
+          
         </Form.Item>
+        <div>
+            <Input.Password className="input_password" />
+            {/* <button type="submit" onClick={pwChangeHandler}>
+              변경
+            </button>  */}
+          </div>
+        <Form.Item label='상세정보 접근 권한'>
+        <Row>
+                <Col span={8}>
+                    <Checkbox defaultChecked disabled >
+                        대시보드
+                    </Checkbox>
+                </Col>
+                <Col span={8}>
+                    <Checkbox defaultChecked disabled>
+                        블록
+                    </Checkbox>
+                </Col>
+                <Col span={8}>
+                    {tran ? (
+                    <Checkbox id='transaction' checked={tran} disabled>
+                        트랜잭션
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='transaction' checked={tran} disabled>
+                        트랜잭션
+                    </Checkbox>
+                    )}
+                </Col>
+                <Col span={8}>
+                    {node ? (
+                    <Checkbox id='node' checked={node} disabled>
+                        노드
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='node' checked={node} disabled>
+                        노드
+                    </Checkbox>
+                     )}
+                </Col>
+                <Col span={8}>
+                    {serv ? (
+                    <Checkbox id='service' checked={serv} disabled>
+                       서비스
+                    </Checkbox>
+                       ) : (
+                     <Checkbox id='service' checked={serv} disabled>
+                        서비스
+                    </Checkbox>
+                    )}
+                </Col>
+            </Row>
+            <Row>
+                <Col span={8}>
+                    {svcA ? (
+                    <Checkbox id='service_a' checked={svcA} disabled>
+                    A서비스
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='service_a' checked={svcA} disabled>
+                    A서비스
+                    </Checkbox>
+                    )}
+                </Col>
+                <Col span={8}>
+                    {svcB ? (
+                    <Checkbox id='service_b' checked={svcB} disabled>
+                    B서비스
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='service_b' checked={svcB} disabled>
+                    B서비스
+                    </Checkbox>
+                    )}
+                </Col>
+                <Col span={8}>
+                    {svcC ? (
+                    <Checkbox id='service_c' checked={svcC} disabled>
+                    C서비스
+                    </Checkbox>
+                        ) : (
+                    <Checkbox id='service_c' checked={svcC} disabled>
+                    C서비스
+                    </Checkbox>
+                    )}
+            </Col>
+          <Col span={8}>
+               {svcD ? (
+            <Checkbox id='service_d' checked={svcD} disabled>
+                D서비스
+            </Checkbox>
+              ) : (
+            <Checkbox id='service_d' checked={svcD} disabled>
+                D서비스
+            </Checkbox>
+             )}
+        </Col>
+        <Col span={8}>
+        {svcE ? (
+            <Checkbox id='service_e' checked={svcE} disabled>
+                E서비스
+            </Checkbox>
+        ) : (
+            <Checkbox id='service_e' checked={svcE} disabled>
+                E서비스
+            </Checkbox>
+        )}
+        </Col>
+        </Row>
+                </Form.Item>
       </Form>
+      <div>
+            <span>유형</span>
+            <span>{loginUser.userclass}</span>
       </div>
+      <div>
+            <span>등록일자</span>
+            <span>{loginUser.userdate}</span>
+      </div>
+      <div>
+            <span>상태</span>
+            <span>{loginUser.userstatus}</span>
+      </div>
+    </div>
   );
 };
 

@@ -19,8 +19,7 @@ const UserMyPage = () => {
     const [svcC, setSvcC] = useState(false);
     const [svcD, setSvcD] = useState(false);
     const [svcE, setSvcE] = useState(false);
-    // 서비스 카운트
-    const [serviceCnt, setServiceCnt] = useState(0);
+
     // userpw
     const [userpw, setUserpw] = useState('');
     // pwcheck
@@ -34,7 +33,6 @@ const UserMyPage = () => {
         setUser(loginUser);
         setAdmin(user.useradmin);
         setUserservice(user.userservice);
-        setServiceCnt(user.serviceCnt);
     }, [loginUser, user]);
 
     // 접근 권한 가져오기
@@ -56,24 +54,6 @@ const UserMyPage = () => {
             setSvcE(userservice.service_e);
         }
     }, [userservice]);
-
-    // 접근 권한 변경
-    const adminChangeHandler = (e) => {
-        setAdmin({
-            ...admin,
-            [e.target.id]: e.target.checked,
-        });
-    };
-
-    // 서비스 권한 변경
-    const serviceChangeHandler = (e) => {
-        setUserservice({
-            ...userservice,
-            [e.target.id]: e.target.checked,
-        });
-        if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
-        else setServiceCnt((prev) => prev - 1);
-    };
 
     // 비밀번호 변경
     const pwChangeHandler = (e) => {
@@ -164,38 +144,38 @@ const UserMyPage = () => {
                     블록
                 </label>
                 <label>
-                    {tran ? <input type='checkbox' id='transaction' name='checkbox' checked disabled onChange={adminChangeHandler} /> : <input type='checkbox' id='transaction' name='checkbox' disabled onChange={adminChangeHandler} />}
+                    {tran ? <input type='checkbox' id='transaction' name='checkbox' checked disabled /> : <input type='checkbox' id='transaction' name='checkbox' disabled />}
                     트랜잭션
                 </label>
                 <label>
-                    {node ? <input type='checkbox' id='node' name='checkbox' checked disabled onChange={adminChangeHandler} /> : <input type='checkbox' id='node' name='checkbox' disabled onChange={adminChangeHandler} />}
+                    {node ? <input type='checkbox' id='node' name='checkbox' checked disabled /> : <input type='checkbox' id='node' name='checkbox' disabled />}
                     노드
                 </label>
                 <label>
-                    {serv ? <input type='checkbox' id='service' name='checkbox' checked disabled onChange={adminChangeHandler} /> : <input type='checkbox' id='service' name='checkbox' disabled onChange={adminChangeHandler} />}
+                    {serv ? <input type='checkbox' id='service' name='checkbox' checked disabled /> : <input type='checkbox' id='service' name='checkbox' disabled />}
                     서비스
                 </label>
             </div>
             <div>
                 이용중인 서비스:
                 <label>
-                    {svcA ? <input type='checkbox' id='service_a' name='checkbox' checked disabled onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_a' name='checkbox' disabled onChange={serviceChangeHandler} />}
+                    {svcA ? <input type='checkbox' id='service_a' name='checkbox' checked disabled /> : <input type='checkbox' id='service_a' name='checkbox' disabled />}
                     A서비스
                 </label>
                 <label>
-                    {svcB ? <input type='checkbox' id='service_b' name='checkbox' checked disabled onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_b' name='checkbox' disabled onChange={serviceChangeHandler} />}
+                    {svcB ? <input type='checkbox' id='service_b' name='checkbox' checked disabled /> : <input type='checkbox' id='service_b' name='checkbox' disabled />}
                     B서비스
                 </label>
                 <label>
-                    {svcC ? <input type='checkbox' id='service_c' name='checkbox' checked disabled onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_c' name='checkbox' disabled onChange={serviceChangeHandler} />}
+                    {svcC ? <input type='checkbox' id='service_c' name='checkbox' checked disabled /> : <input type='checkbox' id='service_c' name='checkbox' disabled />}
                     C서비스
                 </label>
                 <label>
-                    {svcD ? <input type='checkbox' id='service_d' name='checkbox' checked disabled onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_d' name='checkbox' disabled onChange={serviceChangeHandler} />}
+                    {svcD ? <input type='checkbox' id='service_d' name='checkbox' checked disabled /> : <input type='checkbox' id='service_d' name='checkbox' disabled />}
                     D서비스
                 </label>
                 <label>
-                    {svcE ? <input type='checkbox' id='service_e' name='checkbox' checked disabled onChange={serviceChangeHandler} /> : <input type='checkbox' id='service_e' name='checkbox' disabled onChange={serviceChangeHandler} />}
+                    {svcE ? <input type='checkbox' id='service_e' name='checkbox' checked disabled /> : <input type='checkbox' id='service_e' name='checkbox' disabled />}
                     E서비스
                 </label>
             </div>
