@@ -73,11 +73,15 @@ const UserAdd1 = ({ addUserOk }) => {
     };
 
     // 이메일 드롭다운
+    const domainIn = document.getElementsByClassName('userID')[1];
     const domainChangeHandler = (e) => {
         if (e !== 'type') {
             setDomain(e);
+            domainIn.disabled = true;
         } else {
             setDomain('');
+            domainIn.disabled = false;
+            domainIn.focus();
         }
     };
     const domainInput = (e) => {
