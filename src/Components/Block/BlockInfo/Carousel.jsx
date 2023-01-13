@@ -51,6 +51,7 @@ const Carousel = ({ blocknum, block }) => {
         className="mySwiper"
         centeredSlides={true}
         slidesOffsetBefore={50}
+        slidesOffsetAfter={20}
         initialSlide={current}
       >
         {block.map((item, idx) => (

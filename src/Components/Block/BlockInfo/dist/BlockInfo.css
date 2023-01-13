@@ -21,10 +21,29 @@
   font-size: 26px;
 }
 .BlockInfo .wrap .carousel {
-  width: 80%;
+  width: 70%;
+  height: 50px;
+  line-height: 50px;
   margin: 0 auto;
   margin-top: 60px;
   cursor: pointer;
+  color: var(--dark-grey-color);
+}
+.BlockInfo .wrap .carousel .swiper-button-next {
+  width: 60px;
+  background: url(../../../../public/assets/arrow_right.svg) no-repeat;
+  background-size: 35px auto;
+  background-position: right;
+}
+.BlockInfo .wrap .carousel .swiper-button-prev {
+  width: 60px;
+  background: url(../../../../public/assets/arrow_left.svg) no-repeat;
+  background-size: 35px auto;
+  background-position: left;
+}
+.BlockInfo .wrap .carousel .swiper-button-next::after,
+.BlockInfo .wrap .carousel .swiper-button-prev::after {
+  display: none;
 }
 .BlockInfo .wrap .tableWrap {
   width: 91%;
