@@ -32,6 +32,18 @@ export const networkAtom = atom({
 
 export const loginAtom = atom({
     key: 'loginAtom',
-    default: '사용자 기본값',
+    default: null,
     effects_UNSTABLE: [persistAtom],
+});
+
+export const currentBlockAtom = atom({
+  key: "currentBlockAtom",
+  default: "현재 블록",
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const currentTxAtom = atom({
+  key: "currentTxAtom",
+  default: "현재 트랜잭션 번호",
+  effects_UNSTABLE: [persistAtom],
 });
