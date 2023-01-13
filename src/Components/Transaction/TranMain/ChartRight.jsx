@@ -15,7 +15,7 @@ const ChartRight = () => {
     fourteen: 0,
   });
 
-  const transaction = collection(db, "transaction_test");
+  const transaction = collection(db, "transaction");
 
   const containerStyle = {
     width: "480px",

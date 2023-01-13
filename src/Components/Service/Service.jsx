@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import ServiceTable from "./ServiceTable";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Refresh from "../Node/Refresh";
 
 // recoil Atom에서 가져오기
 import { useRecoilValue } from "recoil";
@@ -159,6 +160,7 @@ const Service = () => {
           <span className="subBar">|</span> 전체 발급 {rows.length}건
         </h3>
         <ServiceChart rows={rows} />
+        <Refresh />
         <ServiceTable
           rows={rows}
           moveServiceInfo={moveServiceInfo}

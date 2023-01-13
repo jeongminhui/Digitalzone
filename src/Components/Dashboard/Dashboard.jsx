@@ -34,9 +34,9 @@ const Dashboard = () => {
   const sec = ("0" + now.getSeconds()).slice(-2);
   const DateTime = `${year}-${month}-${date} ${hour}:${min}:${sec}`;
 
-  // 블록 데이터
+  // // 블록 데이터
   const [block, setBlock] = useRecoilState(blockAtom);
-  const blockData = collection(db, "block_test");
+  const blockData = collection(db, "block");
   useEffect(() => {
     async function getNtw() {
       const data = await getDocs(blockData);
@@ -50,7 +50,7 @@ const Dashboard = () => {
 
   // // 트랜잭션 데이터
   const [transaction, setTransaction] = useRecoilState(transactionAtom);
-  const transactionData = collection(db, "transaction_test");
+  const transactionData = collection(db, "transaction");
 
   useEffect(() => {
     async function getNtw() {
@@ -72,8 +72,18 @@ const Dashboard = () => {
     }
     getNtw();
   }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setTransaction(dataArr);
+    }
+    getNtw();
+  }, []);
 
-  // 네트워크 데이터
+  // // 네트워크 데이터
   const [network, setNetwork] = useRecoilState(networkAtom);
   const ntwData = collection(db, "ntwdata");
 
@@ -88,20 +98,10 @@ const Dashboard = () => {
     getNtw();
   }, []);
 
-  // 서비스 데이터
+  // // 서비스 데이터
   const [service, setService] = useRecoilState(serviceAtom);
-  const serviceData = collection(db, "service_test");
+  const serviceData = collection(db, "service");
 
-  useEffect(() => {
-    async function getNtw() {
-      const data = await getDocs(serviceData);
-      const dataArr = data.docs.map((item) => {
-        return item.data();
-      });
-      setService(dataArr);
-    }
-    getNtw();
-  }, []);
   useEffect(() => {
     async function getNtw() {
       const data = await getDocs(serviceData);

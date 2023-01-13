@@ -91,7 +91,7 @@ const BlockTable = ({ rows, clickHandler }) => {
     <ThemeProvider theme={theme}>
       <Paper
         sx={{
-          width: "99%",
+          width: "100%",
           overflow: "hidden",
           boxShadow: "none",
         }}
@@ -148,15 +148,8 @@ const BlockTable = ({ rows, clickHandler }) => {
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                // onPageChange={handleChangePage}
+                onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                // SelectProps={{
-                //   inputProps: {
-                //     "aria-label": "페이지 당",
-                //   },
-                // }}
-                // onPageChange={() => {}}
-                // theme={koKR}
               />
             </div>
 

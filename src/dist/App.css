@@ -67,7 +67,3 @@ button {
   cursor: pointer;
   font-size: 13px;
 }
-
-.PersonRoundedIcon path {
-  color: var(--point-color);
-}

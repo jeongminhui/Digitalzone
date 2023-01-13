@@ -12,6 +12,14 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { currentBlockAtom } from "../../Recoil/Atom";
+import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
+import { useRecoilValue } from "recoil";
+import { loginSelector } from "../../Recoil/Selector";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const ServiceTable = (props) => {
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
@@ -82,6 +90,7 @@ const ServiceTable = (props) => {
 
   useEffect(() => {
     setPagenation(page + 1);
+    // 11;
   }, [page]);
 
   // pagenation
@@ -97,7 +106,7 @@ const ServiceTable = (props) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper sx={{ width: "99%", overflow: "hidden", boxShadow: "none" }}>
+      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
         <TableContainer sx={{ bgcolor: "#fff" }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>

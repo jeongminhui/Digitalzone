@@ -43,15 +43,14 @@ const Carousel = ({ blocknum, block }) => {
       <Swiper
         onSwiper={(swiper) => setSwiper(swiper)}
         slidesPerView={5}
-        spaceBetween={30}
+        spaceBetween={0}
         loop={true}
         pagination={false}
         navigation={true}
         modules={[Pagination, Navigation]}
         className="mySwiper"
         centeredSlides={true}
-        slidesOffsetBefore={50}
-        slidesOffsetAfter={20}
+        slidesOffsetBefore={58}
         initialSlide={current}
       >
         {block.map((item, idx) => (
@@ -61,7 +60,7 @@ const Carousel = ({ blocknum, block }) => {
               carouselHandler(item.blocknum, idx);
             }}
           >
-            <h3>{item.blocknum}</h3>
+            <h3>#{item.blocknum}</h3>
           </SwiperSlide>
         ))}
       </Swiper>
