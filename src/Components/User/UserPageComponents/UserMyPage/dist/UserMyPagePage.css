@@ -11,7 +11,7 @@
 }
 
 .MyInfoPage {
-  width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   margin-bottom: 100px;
   padding: 50px;
