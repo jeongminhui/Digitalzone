@@ -4,7 +4,7 @@
   color: var(---light-grey);
 }
 .MyInfoPagePage {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0 auto;
   width: calc(100% - 160px);
   position: relative;

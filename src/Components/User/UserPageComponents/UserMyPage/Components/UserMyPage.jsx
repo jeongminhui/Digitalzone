@@ -179,8 +179,6 @@ const UserMyPage = () => {
         setComponentSize(size);
     };
 
-    // console.log(document.getElementsByClassName('input_password')[0].event);
-
     return (
         <>
             <Form
@@ -237,10 +235,7 @@ const UserMyPage = () => {
                     className='input_password_box'
                 >
                     <Input.Password className='input_password' value={pwcheck} onChange={(e) => setPwcheck(e.target.value)} />
-                    <button type='submit' onClick={pwChangeHandler}>
-                        변경
-                    </button>
-                </Form.Item>{' '}
+                </Form.Item>
                 <Form.Item label='상세정보 접근 권한'>
                     <Row>
                         <Col span={8}>
@@ -377,7 +372,11 @@ const UserMyPage = () => {
                 <Form.Item label='상태'>
                     <label>{user.userstatus}</label>
                 </Form.Item>
-                <div className='UserAdd_footer'></div>
+                <div className='UserAdd_footer'>
+                    <button type='submit' onClick={pwChangeHandler}>
+                        변경
+                    </button>
+                </div>
             </Form>
         </>
     );
