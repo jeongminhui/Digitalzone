@@ -87,7 +87,7 @@ const NtwActiveService = () => {
             innerRadius={0} //차트 중앙 빈공간 반지름
             padAngle={0} //각 pad의 간격
             cornerRadius={0} //각 pad의 radius
-            colors={["#4edec8", "#426dfa", "#f9425e", "#ffcc5e", "#976df3"]} //차트색상
+            colors={["#8fdbf4", "#80baf4 ", " #2ba0e3", " #055ca2", "#008FFB"]}
             borderWidth={0} //각 pad의 border
             enableArcLinkLabels={true} //막대선 표출 여부
             arcLinkLabelsTextColor="black" //막대선 label색상

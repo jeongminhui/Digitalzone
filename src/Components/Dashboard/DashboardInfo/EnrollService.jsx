@@ -51,19 +51,14 @@ const EnrollService = () => {
     {
       id: "시간당 서비스 등록건수",
       data: [
-        { x: "10:00", y: 310 },
-        { x: "11:00", y: 400 },
-        { x: "12:00", y: 200 },
-        { x: "13:00", y: 310 },
-        { x: "14:00", y: 210 },
+        { x: "10:00", y: enroll.time1 },
+        { x: "11:00", y: enroll.time2 },
+        { x: "12:00", y: enroll.time3 },
+        { x: "13:00", y: enroll.time4 },
+        { x: "14:00", y: enroll.time5 },
       ],
     },
   ];
-  // enroll.time1
-  // enroll.time2
-  // enroll.time3
-  // enroll.time4
-  // enroll.time5
 
   const tooltipStyle = {
     color: "#888888",
@@ -82,8 +77,7 @@ const EnrollService = () => {
           <ResponsiveLine
             data={data}
             margin={{ top: 20, right: 15, bottom: 40, left: 45 }}
-            // colors={["#008FFB"]}
-            colors={{ scheme: "category10" }}
+            colors={["#008FFB"]}
             enableLinkGradient={true}
             // colors={["-webkit-linear-gradient(to right, #e6dada, #274046)"]}
             xScale={{ type: "point" }}

@@ -64,7 +64,7 @@ const NtwTPS = () => {
   const time4Aver =
     (tps1[time4] + tps2[time4] + tps3[time4] + tps4[time4]) / name.length;
 
-  const colors = ["#1f60b5", "#4edec8", "#426dfa", "#f9425e", "#ffcc5e"];
+  const colors = ["#116eb9", "#5f88df", "#80baf4 ", " #2ba0e3", " #004c8c"];
   const data = {
     labels: [time1, time2, time3, time4],
     datasets: [

@@ -109,16 +109,20 @@
           height: 38px;
           padding: 0;
           margin: 0;
-          box-shadow: 0px 0px 12px rgba(209, 209, 209, 0.4);
           border-radius: 50%;
           cursor: pointer;
+
+          svg {
+            width: 22px;
+            height: 22px;
+            color: var(--light-grey-color);
+          }
         }
       }
 
       // 유저아이콘
       &.HeaderUserIcon {
         background: #ffffff;
-        box-shadow: 0px 0px 12px rgba(209, 209, 209, 0.4);
         cursor: pointer;
         display: flex;
         justify-content: center;
