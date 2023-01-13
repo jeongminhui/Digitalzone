@@ -120,7 +120,7 @@ const TranTable = ({ rows, clickHandler }) => {
                       {column.label}
                     </TableCell>
                   ))}
-                </TableRow>
+                </TableRow> 
               </TableHead>
               <TableBody>
                 {rows
