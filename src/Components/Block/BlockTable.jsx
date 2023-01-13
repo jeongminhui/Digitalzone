@@ -16,27 +16,31 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 const BlockTable = ({ rows, clickHandler }) => {
 
   const columns = [
-    { id: "service", label: "서비스명", minWidth: 80 },
-    { id: "blocknum", label: "블록번호", minWidth: 80 },
+    { id: "service", label: "서비스명", minWidth: 80, align: "center" },
+    { id: "blocknum", label: "블록번호", minWidth: 80, align: "center" },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
+      align: "center"
     },
     {
       id: "blockhash",
       label: "블록해시",
       minWidth: 130,
+      align: "left"
     },
     {
       id: "blksize",
       label: "블록크기",
       minWidth: 70,
+      align: "center"
     },
     {
       id: "txcount",
       label: "트랜잭션 수",
       minWidth: 70,
+      align: "center"
     },
   ];
 
@@ -105,7 +109,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                   <TableCell
                     key={column.id}
                     align={column.align}
-                    style={{ minWidth: column.minWidth }}
+                    style={{ minWidth: column.minWidth}}
                     sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
                     className={column.id}
                   >
@@ -124,18 +128,19 @@ const BlockTable = ({ rows, clickHandler }) => {
                       role="checkbox"
                       tabIndex={-1}
                       key={row.code}
+                      align='center'
                       onClick={() => clickHandler(row.blocknum, idx)}
                       className="tableRow"
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
-                      <TableCell key={row.service}>{row.service}</TableCell>
-                      <TableCell key={row.blocknum} className="blue">
+                      <TableCell key={row.service} align='center'>{row.service}</TableCell>
+                      <TableCell key={row.blocknum} className="blue" align='center'>
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                      <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
-                      <TableCell key={row.blksize}>{row.blksize} KB</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
+                      <TableCell key={row.createdt} align='center'>{row.createdt}</TableCell>
+                      <TableCell key={row.blockhash} align='center'>{row.blockhash}</TableCell>
+                      <TableCell key={row.blksize} align='center'>{row.blksize} KB</TableCell>
+                      <TableCell key={row.txnum} align='center'>{row.txnum.length}</TableCell>
                     </TableRow>
                   );
                 })}
