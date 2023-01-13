@@ -9,7 +9,6 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { withStyles } from "@material-ui/core/styles";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -154,40 +153,40 @@ const ServiceTable = (props) => {
                       >
                         {row.service}
                       </TableCell>
-                      <StyledTableCell
+                      <TableCell
                         key={row.createdt}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
                       >
                         {row.createdt}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.apitype}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
                       >
                         {row.apitype}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.nodename}
                         onClick={() => moveNodeInfo(row.nodename)}
                       >
                         {row.nodename}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.txnum}
                         onClick={() => moveTxInfo(row.txnum)}
                       >
                         {row.txnum}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </TableCell>
+                      <TableCell
                         key={row.blocknum}
                         onClick={() => moveBlockInfo(row.blocknum, idx)}
                       >
                         {row.blocknum}
-                      </StyledTableCell>
+                      </TableCell>
                       <TableCell key={row.status}>{row.status}</TableCell>
                     </TableRow>
                   );
