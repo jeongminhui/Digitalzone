@@ -5,9 +5,7 @@ import HeaderSearchBar from "./Header_rightWrap/HeaderSearchBar";
 import HeaderDarkmode from "./Header_rightWrap/HeaderDarkmode";
 import HeaderUserIcon from "./Header_rightWrap/HeaderUserIcon";
 
-const Header = (props) => {
-  const { isDarkMode, toggleDarkMode } = props;
-
+const Header = () => {
   return (
     <div className="Header">
       <div className="Header_logo">
@@ -17,10 +15,7 @@ const Header = (props) => {
       </div>
       <div className="Header_rightWrap">
         <HeaderSearchBar />
-        <HeaderDarkmode
-          isDarkMode={isDarkMode}
-          toggleDarkMode={toggleDarkMode}
-        />
+        <HeaderDarkmode />
         <HeaderUserIcon />
       </div>
     </div>
