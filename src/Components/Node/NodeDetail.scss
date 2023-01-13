@@ -7,9 +7,15 @@
     padding: 20px 70px;
     margin-bottom: 100px;
   }
+
+  .mainTitle{
+    min-width: 200px;
+  }
+
   .subTitle{
     display: flex;
     justify-content: space-between;
+    min-width: 400px;
     
     .subBar{
       color: #4669F5;

@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  doc,
-  query,
-  where,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import {collection,getDocs,} from "firebase/firestore";
 
 const ChartLeft = () => {
   const [ten, setTen] = useState({});
@@ -69,8 +60,9 @@ const ChartLeft = () => {
     });
   }, [rows]);
 
-  // console.log(ten);
+   console.log(ten);
   return (
+    
     <div className="chart" style={containerStyle}>
       <ApexCharts
         type="area"
@@ -102,9 +94,7 @@ const ChartLeft = () => {
             curve: "smooth",
             width: 3,
           },
-          xaxis: {
-            categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
-          },
+   
         }}
       ></ApexCharts>
     </div>

@@ -4,7 +4,6 @@ import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 const ChartRight = () => {
-  const [ten, setTen] = useState({});
   const [rows, setRows] = useState([]);
   const [avr, setAvr] = useState({});
   const [sum, setSum] = useState({
@@ -27,7 +26,6 @@ const ChartRight = () => {
       data.docs.map((items) => {
         return makeChartDatas(items.data());
       });
-      //   console.log(transactionInfo);
     }
     getTrans();
   }, []);
@@ -41,7 +39,7 @@ const ChartRight = () => {
       },
     ]);
   };
-  //  console.log(rows);
+ 
 
   useEffect(() => {
     const timeFilter10 = rows.filter(
@@ -116,9 +114,6 @@ const ChartRight = () => {
             //선의 커브를 부드럽게 하고, 두께를 3으로 지정
             curve: "smooth",
             width: 3,
-          },
-          grid: {
-            show: false,
           },
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],

@@ -7,9 +7,13 @@
   padding: 20px 70px;
   margin-bottom: 100px;
 }
+.NodeDetail .mainTitle {
+  min-width: 200px;
+}
 .NodeDetail .subTitle {
   display: flex;
   justify-content: space-between;
+  min-width: 400px;
 }
 .NodeDetail .subTitle .subBar {
   color: #4669F5;

@@ -7,10 +7,14 @@
   padding: 20px 70px;
   margin-bottom: 100px;
 }
+.BlockInfo .wrap .mainTitle {
+  min-width: 200px;
+}
 .BlockInfo .wrap .subTitle {
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  min-width: 400px;
 }
 .BlockInfo .wrap .subTitle .listBtn {
   margin-right: 56px;
@@ -39,10 +43,13 @@
 .BlockInfo .wrap .tableWrap .table .infoTitle {
   font-size: 14px;
   font-weight: bold;
+  min-width: 100px;
+  color: #3d3d3d;
 }
 .BlockInfo .wrap .tableWrap .table .infoContent {
   font-size: 14px;
   padding-left: 30px;
+  color: #3d3d3d;
 }
 .BlockInfo .wrap .tableWrap .table .copyButton {
   width: 60px;

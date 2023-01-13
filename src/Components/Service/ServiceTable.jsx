@@ -9,6 +9,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
+import { withStyles } from "@material-ui/core/styles";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -22,6 +23,13 @@ import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const ServiceTable = (props) => {
+
+  const StyledTableCell = withStyles({
+    root: {
+      color: "#3d3d3d"
+    }
+  })(TableCell);
+
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
     props;
 
@@ -112,7 +120,7 @@ const ServiceTable = (props) => {
             <TableHead>
               <TableRow>
                 {columns.map((column) => (
-                  <TableCell
+                  <StyledTableCell
                     key={column.id}
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
@@ -120,7 +128,7 @@ const ServiceTable = (props) => {
                     className={column.id}
                   >
                     {column.label}
-                  </TableCell>
+                  </StyledTableCell>
                 ))}
               </TableRow>
             </TableHead>
@@ -146,40 +154,40 @@ const ServiceTable = (props) => {
                       >
                         {row.service}
                       </TableCell>
-                      <TableCell
+                      <StyledTableCell
                         key={row.createdt}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
                       >
                         {row.createdt}
-                      </TableCell>
-                      <TableCell
+                      </StyledTableCell>
+                      <StyledTableCell
                         key={row.apitype}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
                       >
                         {row.apitype}
-                      </TableCell>
-                      <TableCell
+                      </StyledTableCell>
+                      <StyledTableCell
                         key={row.nodename}
                         onClick={() => moveNodeInfo(row.nodename)}
                       >
                         {row.nodename}
-                      </TableCell>
-                      <TableCell
+                      </StyledTableCell>
+                      <StyledTableCell
                         key={row.txnum}
                         onClick={() => moveTxInfo(row.txnum)}
                       >
                         {row.txnum}
-                      </TableCell>
-                      <TableCell
+                      </StyledTableCell>
+                      <StyledTableCell
                         key={row.blocknum}
                         onClick={() => moveBlockInfo(row.blocknum, idx)}
                       >
                         {row.blocknum}
-                      </TableCell>
+                      </StyledTableCell>
                       <TableCell key={row.status}>{row.status}</TableCell>
                     </TableRow>
                   );

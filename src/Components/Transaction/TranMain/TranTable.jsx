@@ -21,6 +21,7 @@ const TranTable = ({ rows, clickHandler }) => {
   // recoil Atom에서 가져오기
   const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
 
+
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
     { id: "txnum", label: "트랜잭션번호", minWidth: 80 },
@@ -110,7 +111,7 @@ const TranTable = ({ rows, clickHandler }) => {
                 <TableRow>
                   {columns.map((column) => (
                     <TableCell
-                      key={column.id}
+                      key={column.label}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
                       sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
@@ -130,12 +131,12 @@ const TranTable = ({ rows, clickHandler }) => {
                         hover
                         role="checkbox"
                         tabIndex={-1}
-                        key={row.code}
+                        key={idx}
                         className="tableRow"
                         style={{ cursor: "pointer" }}
                       >
                         {/* 이부분 map으로 돌리셔도 됩니다! */}
-                        <TableCell key={row.service}  onClick={() => clickHandler(row.txnum, idx)}>{row.service}</TableCell>
+                        <TableCell key={row.service}  onClick={() => clickHandler(row.txnum, idx)} >{row.service}</TableCell>
                         <TableCell key={row.txnum}  onClick={() => clickHandler(row.txnum, idx)}className="blue">
                           {row.txnum}
                         </TableCell>

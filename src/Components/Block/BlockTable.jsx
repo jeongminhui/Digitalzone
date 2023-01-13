@@ -14,6 +14,7 @@ import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const BlockTable = ({ rows, clickHandler }) => {
+
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
     { id: "blocknum", label: "블록번호", minWidth: 80 },
@@ -148,15 +149,9 @@ const BlockTable = ({ rows, clickHandler }) => {
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                // onPageChange={handleChangePage}
+                onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                // SelectProps={{
-                //   inputProps: {
-                //     "aria-label": "페이지 당",
-                //   },
-                // }}
-                // onPageChange={() => {}}
-                // theme={koKR}
+               
               />
             </div>
 

@@ -28,7 +28,6 @@ const TxInfo = ({ txnum }) => {
   const loginUser = useRecoilValue(loginSelector);
   const [tranUser, setTranUser] = useState(true);
   const [tranNum, setTranNum] = useState("");
-  console.log(loginUser);
 
   useEffect(() => {
     setTranUser(loginUser?.useradmin.transaction);
