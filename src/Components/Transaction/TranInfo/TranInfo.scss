@@ -1,13 +1,86 @@
-.TranInfo{
-    width: calc(100% - 160px);
-    height: 100vh;
-    position: relative;
+.TranInfo,
+.serviceInfo {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
 
-    .copyButton{
-        background-color: #eee;
-        color: var(--point-color);
-        border: 0.8px solid var(--point-color);
-        font-size: 9px;
-        padding: 2px;
+  .wrap {
+    padding: 20px 70px;
+    margin-bottom: 100px;
+
+    .mainTitle{
+      min-width: 200px;
     }
+
+    .subTitle {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      min-width: 400px;
+
+      .listBtn {
+        margin-right: 56px;
+      }
+
+      .subBar {
+        color: #4669f5;
+        font-weight: bold;
+        font-size: 26px;
+      }
+    }
+    .tableWrap {
+      width: 91%;
+      margin-bottom: 100px;
+      box-shadow: var(--box-shadow);
+      margin: 0 auto;
+      padding: 30px;
+      background-color: #fff;
+
+      table {
+        border-spacing: 25px;
+
+        .infoTitle {
+          font-size: 14px;
+          font-weight: bold;
+          min-width: 100px;
+          color: #3d3d3d;
+        }
+
+        .infoContent {
+          font-size: 14px;
+          padding-left: 30px;
+          color: #3d3d3d;
+        }
+
+        .copyButton {
+          width: 60px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          background-color: #ebf4fc;
+          border: none;
+          font-size: 12px;
+          padding: 3px;
+          cursor: pointer;
+
+          .icon {
+            margin: 0 0 3px 1px;
+          }
+        }
+      }
+    }
+    .txdataWrap {
+      width: 91%;
+      height: 160px;
+      margin: 20px auto 0px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f2f3f6;
+      padding: 30px;
+      line-height: 25px;
+    }
+  }
 }

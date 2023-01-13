@@ -2,6 +2,8 @@ import { blockAtom } from './Atom';
 import { transactionAtom } from './Atom';
 import { serviceAtom } from './Atom';
 import { networkAtom } from './Atom';
+import { currentBlockAtom } from './Atom';
+import { currentTxAtom } from './Atom';
 import { loginAtom } from './Atom';
 import { userInfoAtom } from './Atom';
 import { selector } from 'recoil';
@@ -35,6 +37,22 @@ export const serviceSelector = selector({
     get: ({ get }) => {
         const service = get(serviceAtom);
         return service;
+    },
+});
+
+export const currentBlockSelector = selector({
+    key: 'currentBlockSelector',
+    get: ({ get }) => {
+        const currentBlock = get(currentBlockAtom);
+        return currentBlock;
+    },
+});
+
+export const currentTxSelector = selector({
+    key: 'currentTxSelector',
+    get: ({ get }) => {
+        const currentTx = get(currentTxAtom);
+        return currentTx;
     },
 });
 
