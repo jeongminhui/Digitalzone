@@ -144,7 +144,7 @@ const UserListPage = () => {
                 <h1 className='mainTitle'>사용자 정보</h1>
                 <h3 className='subTitle'>
                     <span className='leftItem'>
-                        <span className='subBar'>|</span>전체 사용자 {userlist.length}명
+                        <span className='subBar'>|</span> 전체 사용자 {userlist.length}명
                     </span>
                     <UserAddPage />
                 </h3>
@@ -224,7 +224,7 @@ const UserListPage = () => {
                                         <TableCell component='th' scope='row' align='center' onClick={(e) => e.stopPropagation()}>
                                             {user.userclass}
                                         </TableCell>
-                                        <TableCell component='th' scope='row' align='center' style={{ cursor: 'pointer' }}>
+                                        <TableCell component='th' scope='row' align='center' style={{ cursor: 'pointer', color: '#4665f9' }}>
                                             {user.username}
                                         </TableCell>
                                         <TableCell component='th' scope='row' align='center' onClick={(e) => e.stopPropagation()}>

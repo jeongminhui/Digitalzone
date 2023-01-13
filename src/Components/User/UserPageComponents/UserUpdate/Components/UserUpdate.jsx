@@ -289,10 +289,10 @@ const UserUpdate = () => {
                 <Form.Item label='등록일자'>{user.userdate}</Form.Item>
                 <Form.Item label='상태'>{user.userstatus}</Form.Item>
                 <div className='UserAdd_footer'>
-                    <button type='submit' onClick={changeHandler}>
+                    <button type='submit' onClick={changeHandler} style={{ cursor: 'pointer' }}>
                         정보 변경
                     </button>
-                    <button type='submit' onClick={deleteHandler}>
+                    <button type='submit' onClick={deleteHandler} style={{ cursor: 'pointer' }}>
                         사용자 삭제
                     </button>
                 </div>
