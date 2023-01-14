@@ -15,14 +15,12 @@ import NotFound from "./Components/NotFound/NotFound";
 import ServiceInfo from "./Components/Service/ServiceInfo/ServiceInfo";
 import TranInfo from "./Components/Transaction/TranInfo/TranInfo";
 
-
 // 유저 최종 페이지 링크
 import UserAddPage from "./Components/User/UserPageComponents/UserAdd/UserAddPage";
 import UserListPage from "./Components/User/UserPageComponents/UserList/UserListPage";
 import UserLoginPage from "./Components/User/UserPageComponents/UserLogin/UserLoginPage";
 import UserMyPagePage from "./Components/User/UserPageComponents/UserMyPage/UserMyPagePage";
 import UserUpdatePage from "./Components/User/UserPageComponents/UserUpdate/UserUpdatePage";
-
 
 function App() {
   const router = createBrowserRouter([
@@ -66,10 +64,10 @@ function App() {
           path: "/service/:blocknum",
           element: <ServiceInfo />,
         },
-        {
-          path: "/user",
-          element: <User />,
-        },
+        // {
+        //   path: "/user",
+        //   element: <User />,
+        // },
         {
           path: "/*",
           element: <NotFound />,
@@ -81,7 +79,7 @@ function App() {
           element: <UserAddPage />,
         },
         {
-          path: "/user/list",
+          path: "/user",
           element: <UserListPage />,
         },
         {
