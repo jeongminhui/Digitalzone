@@ -288,7 +288,7 @@ const UserListPage = () => {
             <Footer />
         </div>
     ) : (
-        navigate('/*')
+        navigate('/404NotFound')
     );
 };
 
