@@ -1,168 +1,81 @@
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 
+// recoil에서 가져오기
 import { useRecoilValue } from "recoil";
-import { blockSelector } from "../../../Recoil/Selector";
-import { transactionSelector } from "../../../Recoil/Selector";
+import { blockSelector, loginSelector } from "../../../Recoil/Selector";
+
+// 검색값 테스트
+// 블록번호 : 67526
+// 블록해시 : 0x5bf73440adfd11b00eed378b42e94c0a9b6816da14
+// 트랜잭션해시 : 0x5f73dabdde7b0b8db4e76a6b8c25a18c730662ec3fe5f145f9aea4ea47cf2362
 
 const HeaderSearchBar = () => {
-  const [inputValue, setInputValue] = useState("");
+  const { register, handleSubmit, setValue } = useForm();
   const blockData = useRecoilValue(blockSelector);
-  const transactionData = useRecoilValue(transactionSelector);
   const navigate = useNavigate();
 
-  const { handleSubmit } = useForm();
-
-  console.log(blockData);
-  // const searchSubmitHandler = (e) => {
-  //   e.preventDefault();
-  /*
-    blockData.filter((data) => {
-      if (data.blocknum === Number(inputValue)) {
-        navigate(`/block/${data.blocknum}`);
-      } else if (data.blockhash === inputValue) {
-        navigate(`/block/${data.blocknum}`);
-      }
-      
-      transactionData.filter((data) => {
-        if (data.txhash === inputValue) {
-          if (true) {
-            navigate(`/transaction/${data.txhash}`);
-            // } else {
-              //alert
-            }
-            //
-          }
-        });
-      });
-  */
-
-  // // 검색창이 비어있으면 알럿창
-  // if (inputValue.trim() === "") {
-  //   return Swal.fire({
-  //     icon: "warning",
-  //     text: "검색어를 입력해주세요",
-  //     showConfirmButton: false,
-  //     timer: 2000,
-  //   });
-  // }
-
-  /*
-      // 검색어 submit시 세부페이지로 이동
-      // 1. 블록번호
-      if (inputValue.length === 5) {
-      navigate(`/block/${inputValue}`);
-
-      // 2. 블록해시
-    } else if (inputValue.length <= 45 && inputValue.length >= 44) {
-      const blockhashFiltering = blockData.filter((item) => {
-        return item.blockhash === inputValue;
-      });
-      navigate(`/block/${blockhashFiltering[0].blocknum}`);
-      
-      // 3. 트랜잭션해시 (권한 필요)
-    } else if (inputValue.length === 66) {
-      // 방법1
-      // if(권한 있으면){
-        //   페이지 넘겨주기
-        // }else{
-      //   권한 없으면 alert창
-      // }
-      
-      // 방법2
-      // 권한이 있으면 ? 페이지 넘겨주기 : aler창
-      
-      navigate(`/transaction`);
-    } else {
-      Swal.fire({
-        icon: "warning",
-        text: "다시 입력하세요.",
-        showConfirmButton: false,
-        timer: 2000,
-      });
-    }
-    */
-  //   setInputValue("");
-  // };
-
-  // const getData = async () => {
-  //   try {
-  //     blockData.filter((data) => {
-  //       if (data.blocknum === Number(inputValue)) {
-  //         navigate(`block/${data.blocknum}`);
-  //       } else if (data.blockhash === inputValue) {
-  //         navigate(`/block/${data.blocknum}`);
-  //       }
-  //     });
-
-  //     transactionData.filter((data) => {
-  //       if (data.txhash === inputValue) {
-  //         if (true) {
-  //           navigate(`/transaction/${data.txhash}`);
-  //         } else {
-  //           Swal.fire({
-  //             icon: "warning",
-  //             text: "다시 입력하세요.",
-  //             showConfirmButton: false,
-  //             timer: 2000,
-  //           });
-  //         }
-  //       }
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const loginUser = useRecoilValue(loginSelector);
+  const [TranUser, setTranUser] = useState(false);
 
   useEffect(() => {
-    getData();
+    setTranUser(loginUser?.useradmin.transaction);
   }, []);
 
-  const getData = async () => {
-    try {
-      blockData.filter((data) => {
-        if (data.blocknum === Number(inputValue)) {
-          navigate(`block/${data.blocknum}`);
-        } else if (data.blockhash === inputValue) {
-          navigate(`/block/${data.blocknum}`);
-        }
-      });
+  function onSubmit(data) {
+    // data : input창에 입력된 값을 객체형태로 가져옴 => { searchValue : 입력값}
 
-      transactionData.filter((data) => {
-        if (data.txhash === inputValue) {
-          if (true) {
-            navigate(`/transaction/${data.txhash}`);
-          } else {
-            Swal.fire({
-              icon: "warning",
-              text: "다시 입력하세요.",
-              showConfirmButton: false,
-              timer: 2000,
-            });
-          }
-        }
-      });
-    } catch (err) {
-      console.log(err);
+    if (data.searchValue.trim() === "") {
+      console.log("입력칸 공란");
     }
-  };
 
-  const searchBar = async () => {
-    await getData();
-    setInputValue("");
-  };
+    blockData.map((list) => {
+      // 블록넘버
+      if (list.blocknum === parseInt(data.searchValue)) {
+        return navigate(`/block/${list.blocknum}`);
+
+        // 블록해시
+      } else if (list.blockhash === data.searchValue) {
+        return navigate(`/block/${list.blocknum}`);
+
+        // 트랜잭션해시
+      } else if (list.txhash === data.searchValue) {
+        if (TranUser) {
+          // 트랜잭션 권한있으면
+          return navigate(`/transaction/${list.txnum.slice(1, -1)}`);
+        } else {
+          // 트랜잭션 권한없으면
+          return Swal.fire({
+            icon: "warning",
+            text: "트랜잭션 권한이 없습니다",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+        }
+      } else {
+        // return Swal.fire({
+        //   icon: "warning",
+        //   text: "다시 입력해주세요",
+        //   showConfirmButton: false,
+        //   timer: 2000,
+        // });
+      }
+    });
+
+    // submit이후 검색창 비우기
+    setValue("searchValue", "");
+  }
 
   return (
     <div className="HeaderSearchBar">
-      <form onSubmit={handleSubmit(searchBar)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
           type="text"
           placeholder="블록번호 / 블록해시 / 트랜잭션해시"
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
+          {...register("searchValue")}
         />
         <button type="submit" className="searchBtn">
           <SearchIcon className="searchIcon" />

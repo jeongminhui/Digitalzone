@@ -13,10 +13,14 @@ const ActiveNetwork = (props) => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      setActive(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        setActive(dataFiltering);
+      } catch {
+        console.log("error");
+      }
     }
     getActive();
   }, [networkData]);

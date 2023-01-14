@@ -134,7 +134,7 @@ const EnrollService = () => {
             enableCrosshair={false}
             useMesh={true} // MouseHover시 효과
             enableArea={true} //fill 효과
-            areaOpacity={darkmode ? "1" : "0.5"} //fill 효과 투명도
+            areaOpacity={darkmode ? 1 : 0.5} //fill 효과 투명도
             animate={true}
             tooltip={(data) => {
               return (
