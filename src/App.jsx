@@ -17,11 +17,11 @@ import TranInfo from "./Components/Transaction/TranInfo/TranInfo";
 
 
 // 유저 최종 페이지 링크
-import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
-import UserList_Page from "./Components/User/UserPageComponents/UserList/UserList_Page";
-import UserLogin_Page from "./Components/User/UserPageComponents/UserLogin/UserLogin_Page";
-import UserMyPage_Page from "./Components/User/UserPageComponents/UserMyPage/UserMyPage_Page";
-import UserUpdate_Page from "./Components/User/UserPageComponents/UserUpdate/UserUpdate_Page";
+import UserAddPage from "./Components/User/UserPageComponents/UserAdd/UserAddPage";
+import UserListPage from "./Components/User/UserPageComponents/UserList/UserListPage";
+import UserLoginPage from "./Components/User/UserPageComponents/UserLogin/UserLoginPage";
+import UserMyPagePage from "./Components/User/UserPageComponents/UserMyPage/UserMyPagePage";
+import UserUpdatePage from "./Components/User/UserPageComponents/UserUpdate/UserUpdatePage";
 
 
 function App() {
@@ -78,23 +78,23 @@ function App() {
         // 여기부턴 유저 페이지 (권한 따라 삼항 조건 넣어보려 함)
         {
           path: "/user/add",
-          element: <UserAdd_Page />,
+          element: <UserAddPage />,
         },
         {
           path: "/user/list",
-          element: <UserList_Page />,
+          element: <UserListPage />,
         },
         {
           path: "/user/login",
-          element: <UserLogin_Page />,
+          element: <UserLoginPage />,
         },
         {
           path: "/user/mypage",
-          element: <UserMyPage_Page />,
+          element: <UserMyPagePage />,
         },
         {
           path: "/user/update",
-          element: <UserUpdate_Page />,
+          element: <UserUpdatePage />,
         },
       ],
     },

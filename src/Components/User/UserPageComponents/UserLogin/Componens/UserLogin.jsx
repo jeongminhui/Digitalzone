@@ -7,8 +7,17 @@ import { useRecoilState } from "recoil";
 import { loginAtom } from "../../../../../Recoil/Atom";
 import "./UserLogin.scss";
 // 민희 추가
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form, Input } from "antd";
+import {
+  unstable_HistoryRouter,
+  useNavigate,
+  withRouter,
+} from "react-router-dom";
 
 const UserLogin = () => {
+  const navigate = useNavigate();
+  // const history = createBrowserHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // 로그인 실패 메시지
@@ -18,7 +27,7 @@ const UserLogin = () => {
 
   const userCollection = collection(db, "users");
   const auth = getAuth();
-
+  // console.log(loginUser);
   const signInHandler = async (e) => {
     e.preventDefault();
     await signInWithEmailAndPassword(auth, email, password)
@@ -32,6 +41,10 @@ const UserLogin = () => {
           setLoginUser(userInfo);
         };
         dataPrint();
+        // navigate('/');
+        navigate(-1);
+        // window.history.go(-1);
+        // location.href  ="이전페이지주소" ;
       })
       .catch((error) => {
         switch (error.code) {
@@ -47,9 +60,6 @@ const UserLogin = () => {
           case "auth/too-many-requests":
             setErrorMsg("너무 많이 시도했습니다");
             break;
-          case "auth/internal-error":
-            setErrorMsg("예기치 못한 오류가 생겼습니다");
-            break;
           default:
             setErrorMsg("로그인에 실패하였습니다");
         }
@@ -62,7 +72,7 @@ const UserLogin = () => {
       const errorPrint = async () => {
         await Swal.fire({
           icon: "error",
-          title: errorMsg,
+          text: errorMsg,
           showConfirmButton: false,
           timer: 2000,
         });
@@ -72,11 +82,17 @@ const UserLogin = () => {
     } else return;
   }, [errorMsg]);
 
+  // 민희추가
+  // const onFinish = (values) => {
+  //   console.log("Received values of form: ", values);
+  // };
+
   return (
     <>
-      <form>
-        <div className="signIn Email">
-          <input
+      <Form>
+        <Form.Item>
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
             type="email"
             value={email}
             placeholder="아이디(이메일)"
@@ -84,9 +100,10 @@ const UserLogin = () => {
               setEmail(e.target.value);
             }}
           />
-        </div>
-        <div className="signIn Password">
-          <input
+        </Form.Item>
+        <Form.Item>
+          <Input
+            prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             value={password}
             placeholder="비밀번호"
@@ -94,11 +111,19 @@ const UserLogin = () => {
               setPassword(e.target.value);
             }}
           />
-        </div>
-        <button type="submit" className="SignInButton" onClick={signInHandler}>
-          로그인
-        </button>
-      </form>
+        </Form.Item>
+        <Form.Item>
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            // type="submit"
+            onClick={signInHandler}
+          >
+            로그인
+          </Button>
+        </Form.Item>
+      </Form>
     </>
   );
 };

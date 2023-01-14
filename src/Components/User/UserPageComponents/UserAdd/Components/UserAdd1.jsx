@@ -1,86 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import { useRecoilValue } from 'recoil';
-import { loginSelector } from '../../../../../Recoil/Selector';
-// 민희추가
-import './UserMyPage.scss';
 import { Form, Input, Radio, Select, Checkbox, Row, Col } from 'antd';
+import './UserAdd1.scss';
+import React, { useState, useEffect } from 'react';
 import { db } from '../../../../../firebase';
-import { getAuth, createUserWithEmailAndPassword, updatePassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
-// 민희 추가
-const { Option } = Select;
-const residences = [
-    {
-        value: 'zhejiang',
-        label: 'Zhejiang',
-        children: [
-            {
-                value: 'hangzhou',
-                label: 'Hangzhou',
-                children: [
-                    {
-                        value: 'xihu',
-                        label: 'West Lake',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        value: 'jiangsu',
-        label: 'Jiangsu',
-        children: [
-            {
-                value: 'nanjing',
-                label: 'Nanjing',
-                children: [
-                    {
-                        value: 'zhonghuamen',
-                        label: 'Zhong Hua Men',
-                    },
-                ],
-            },
-        ],
-    },
-];
-const formItemLayout = {
-    labelCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 8,
-        },
-    },
-    wrapperCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 16,
-        },
-    },
-};
-const tailFormItemLayout = {
-    wrapperCol: {
-        xs: {
-            span: 24,
-            offset: 0,
-        },
-        sm: {
-            span: 16,
-            offset: 8,
-        },
-    },
-};
-// 민희 추가 끝
+const UserAdd1 = ({ addUserOk }) => {
+    const [componentSize, setComponentSize] = useState('default');
+    const onFormLayoutChange = ({ size }) => {
+        setComponentSize(size);
+    };
 
-const UserMyPage = () => {
-    const loginUser = useRecoilValue(loginSelector);
-    const [user, setUser] = useState({});
-    // 상세정보 접근 권한
+    // userid
+    const [emailId, setEmailId] = useState('');
+    const [domain, setDomain] = useState('');
+    const [email, setEmail] = useState('');
+    // userteam
+    const [team, setTeam] = useState('');
+    // userpw
+    const [password, setPassword] = useState('');
+    // pwcheck
+    const [pwcheck, setPwcheck] = useState('');
+    // username
+    const [name, setName] = useState('');
+    // userclass
+    const [userclass, setUserclass] = useState('');
+    // useradmin
     const [admin, setAdmin] = useState({
         dashboard: true,
         block: true,
@@ -88,10 +34,7 @@ const UserMyPage = () => {
         node: false,
         service: false,
     });
-    const [tran, setTran] = useState(false);
-    const [node, setNode] = useState(false);
-    const [serv, setServ] = useState(false);
-    // 이용중인 서비스
+    // userservice
     const [userservice, setUserservice] = useState({
         service_a: false,
         service_b: false,
@@ -99,88 +42,127 @@ const UserMyPage = () => {
         service_d: false,
         service_e: false,
     });
-    const [svcA, setSvcA] = useState(false);
-    const [svcB, setSvcB] = useState(false);
-    const [svcC, setSvcC] = useState(false);
-    const [svcD, setSvcD] = useState(false);
-    const [svcE, setSvcE] = useState(false);
-    // 서비스 카운트
+    // 사용자 추가 실패 메시지
+    const [errorMsg, setErrorMsg] = useState('');
+
     const [serviceCnt, setServiceCnt] = useState(0);
-    // userpw
-    const [userpw, setUserpw] = useState('');
-    // pwcheck
-    const [pwcheck, setPwcheck] = useState('');
 
     const auth = getAuth();
-    const currentUser = auth.currentUser;
 
-    // 로그인한 사용자 정보 가져오기
-    useEffect(() => {
-        setUser(loginUser);
-        setAdmin(user.useradmin);
-        setUserservice(user.userservice);
-        setServiceCnt(user.serviceCnt);
-    }, [loginUser, user]);
+    // 권한 추가
+    const adminChangeHandler = (e) => {
+        setAdmin({
+            ...admin,
+            [e.target.id]: e.target.checked,
+        });
+    };
 
-    // 접근 권한 가져오기
-    useEffect(() => {
-        if (admin) {
-            setTran(admin.transaction);
-            setNode(admin.node);
-            setServ(admin.service);
+    // 서비스 권한 추가
+    const serviceChangeHandler = (e) => {
+        setUserservice({
+            ...userservice,
+            [e.target.id]: e.target.checked,
+        });
+        if (e.target.checked === true) setServiceCnt((prev) => prev + 1);
+        else setServiceCnt((prev) => prev - 1);
+    };
+
+    // userclass 변경
+    const checkedItemHandler = (e) => {
+        setUserclass(e.target.value);
+    };
+
+    // 이메일 드롭다운
+    const domainIn = document.getElementsByClassName('userID')[1];
+    const domainChangeHandler = (e) => {
+        if (e !== 'type') {
+            setDomain(e);
+            domainIn.disabled = true;
+        } else {
+            setDomain('');
+            domainIn.disabled = false;
+            domainIn.focus();
         }
-    }, [admin]);
+    };
+    const domainInput = (e) => {
+        setDomain(e.target.value);
+    };
 
-    // 서비스 권한 가져오기
     useEffect(() => {
-        if (userservice) {
-            setSvcA(userservice.service_a);
-            setSvcB(userservice.service_b);
-            setSvcC(userservice.service_c);
-            setSvcD(userservice.service_d);
-            setSvcE(userservice.service_e);
-        }
-    }, [userservice]);
+        const useremail = emailId + '@' + domain;
+        setEmail(useremail);
+    }, [emailId, domain]);
 
-    // 비밀번호 변경
-    const pwChangeHandler = (e) => {
-        e.preventDefault();
-        updatePassword(currentUser, userpw)
-            .then(() => {
-                if (userpw !== '' && userpw === pwcheck) {
-                    Swal.fire({
-                        icon: 'success',
-                        text: '비밀번호가 변경되었습니다',
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        text: '비밀번호를 확인해 주세요',
-                        showConfirmButton: false,
-                        timer: 2000,
-                    });
-                }
-            })
-            .catch((error) => {
+    const clickHandler = async (e) => {
+        // e.preventDefault();
+        await createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+
+                // timestamp yyyy-MM-dd
+                const time = new Date(user.metadata.creationTime);
+                const date = new Date(time.getTime() - time.getTimezoneOffset() * 60000).toISOString().split('T')[0];
+                // db에 데이터 추가
+                setDoc(doc(db, 'users', user.uid), {
+                    username: name,
+                    userteam: team,
+                    userid: user.email,
+                    useradmin: {
+                        ...admin,
+                    },
+                    userservice: {
+                        ...userservice,
+                    },
+                    userclass: userclass,
+                    userdate: date,
+                    userstatus: '정상',
+                    uid: user.uid,
+                    serviceCnt: serviceCnt,
+                });
                 Swal.fire({
-                    icon: 'error',
-                    text: '비밀번호를 확인해 주세요',
+                    icon: 'success',
+                    text: '사용자를 추가하였습니다',
                     showConfirmButton: false,
                     timer: 2000,
                 });
+                addUserOk();
+            })
+            .catch((error) => {
+                switch (error.code) {
+                    case 'auth/invalid-email':
+                        setErrorMsg('아이디가 이메일 형식이 아닙니다');
+                        break;
+                    default:
+                        setErrorMsg('사용자를 추가할 수 없습니다');
+                }
             });
-        setUserpw('');
+        setName('');
+        setEmailId('');
+        setEmail('');
+        setTeam('');
+        setPassword('');
         setPwcheck('');
+        setServiceCnt(0);
+        addUserOk();
     };
-    const [componentSize, setComponentSize] = useState('default');
-    const onFormLayoutChange = ({ size }) => {
-        setComponentSize(size);
-    };
+    useEffect(() => {
+        if (errorMsg !== '') {
+            const errorPrint = async () => {
+                await Swal.fire({
+                    icon: 'error',
+                    text: errorMsg,
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            };
+            errorPrint();
+            setErrorMsg('');
+        }
+    }, [errorMsg]);
 
     return (
-        <>
+        <div className='UserAdd'>
+            <h1>사용자 추가</h1>
             <Form
                 labelCol={{
                     span: 5,
@@ -195,7 +177,36 @@ const UserMyPage = () => {
                 onValuesChange={onFormLayoutChange}
                 size={componentSize}
             >
-                <Form.Item label='아이디(이메일)'>{user.userid}</Form.Item>
+                <Form.Item name='radio-button' label='유형'>
+                    <Radio.Group>
+                        <Radio.Button value='관리자' onClick={checkedItemHandler}>
+                            관리자
+                        </Radio.Button>
+                        <Radio.Button value='사용자' onClick={checkedItemHandler}>
+                            사용자
+                        </Radio.Button>
+                    </Radio.Group>
+                </Form.Item>
+                <Form.Item label='이름'>
+                    <Input value={name} onChange={(e) => setName(e.target.value)} />
+                </Form.Item>
+                <Form.Item label='소속'>
+                    <Input value={team} onChange={(e) => setTeam(e.target.value)} />
+                </Form.Item>
+                <Form.Item label='아이디(이메일)'>
+                    <div className='userID_container'>
+                        <Input className='userID' value={emailId} onChange={(e) => setEmailId(e.target.value)} /> @
+                        <Input className='userID' value={domain} onChange={domainInput} />
+                    </div>
+                    <Select className='domainList' onChange={domainChangeHandler}>
+                        <Select.Option value='type'>직접입력</Select.Option>
+                        <Select.Option value='gmail.com'>gmail.com</Select.Option>
+                        <Select.Option value='naver.com'>naver.com</Select.Option>
+                        <Select.Option value='nate.com'>nate.com</Select.Option>
+                        <Select.Option value='hanmail.net'>hanmail.net</Select.Option>
+                        <Select.Option value='kakao.com'>kakao.com</Select.Option>
+                    </Select>
+                </Form.Item>
                 <Form.Item
                     name='password'
                     label='비밀번호'
@@ -213,10 +224,10 @@ const UserMyPage = () => {
                         }),
                     ]}
                     hasFeedback
-                    className='input_password_box'
                 >
-                    <Input.Password className='input_password' value={userpw} onChange={(e) => setUserpw(e.target.value)} />
+                    <Input.Password className='input_password' value={password} onChange={(e) => setPassword(e.target.value)} />
                 </Form.Item>
+
                 <Form.Item
                     name='confirm'
                     label='비밀번호 재확인'
@@ -232,7 +243,6 @@ const UserMyPage = () => {
                             },
                         }),
                     ]}
-                    className='input_password_box'
                 >
                     <Input.Password className='input_password' value={pwcheck} onChange={(e) => setPwcheck(e.target.value)} />
                 </Form.Item>
@@ -266,8 +276,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='transaction'
-                                checked={tran}
-                                disabled
+                                onChange={adminChangeHandler}
                             >
                                 트랜잭션
                             </Checkbox>
@@ -278,8 +287,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='node'
-                                checked={node}
-                                disabled
+                                onChange={adminChangeHandler}
                             >
                                 노드
                             </Checkbox>
@@ -290,8 +298,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='service'
-                                checked={serv}
-                                disabled
+                                onChange={adminChangeHandler}
                             >
                                 서비스
                             </Checkbox>
@@ -306,8 +313,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='service_a'
-                                checked={svcA}
-                                disabled
+                                onChange={serviceChangeHandler}
                             >
                                 A서비스
                             </Checkbox>
@@ -318,8 +324,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='service_b'
-                                checked={svcB}
-                                disabled
+                                onChange={serviceChangeHandler}
                             >
                                 B서비스
                             </Checkbox>
@@ -330,8 +335,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='service_c'
-                                checked={svcC}
-                                disabled
+                                onChange={serviceChangeHandler}
                             >
                                 C서비스
                             </Checkbox>
@@ -342,8 +346,7 @@ const UserMyPage = () => {
                                     lineHeight: '32px',
                                 }}
                                 id='service_d'
-                                checked={svcD}
-                                disabled
+                                onChange={serviceChangeHandler}
                             >
                                 D서비스
                             </Checkbox>
@@ -355,31 +358,21 @@ const UserMyPage = () => {
                                 }}
                                 type='checkbox'
                                 id='service_e'
-                                checked={svcE}
-                                disabled
+                                onChange={serviceChangeHandler}
                             >
                                 E서비스
                             </Checkbox>
                         </Col>
                     </Row>
                 </Form.Item>
-                <Form.Item label='유형'>
-                    <label>{user.userclass}</label>
-                </Form.Item>
-                <Form.Item label='등록일자'>
-                    <label>{user.userdate}</label>
-                </Form.Item>
-                <Form.Item label='상태'>
-                    <label>{user.userstatus}</label>
-                </Form.Item>
                 <div className='UserAdd_footer'>
-                    <button type='submit' onClick={pwChangeHandler}>
-                        변경
+                    <button type='submit' className='SignUpButton' style={{ cursor: 'pointer' }} onClick={clickHandler}>
+                        추가
                     </button>
                 </div>
             </Form>
-        </>
+        </div>
     );
 };
 
-export default UserMyPage;
+export default UserAdd1;
