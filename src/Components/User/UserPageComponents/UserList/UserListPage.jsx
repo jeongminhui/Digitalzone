@@ -31,6 +31,7 @@ import { loginSelector } from "../../../../Recoil/Selector";
 // 민희추가
 import UserUpdate from "../UserUpdate/Components/UserUpdate";
 import { Button, Modal } from "antd";
+import "./UserListPage.scss";
 
 const UserListPage = () => {
   const [loading, setLoading] = useState(false);

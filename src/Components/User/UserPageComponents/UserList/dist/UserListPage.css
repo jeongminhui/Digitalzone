@@ -1,0 +1,40 @@
+.userList {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+.userList .wrapper {
+  width: 100%;
+  padding: 20px 70px;
+  margin-bottom: 100px;
+}
+.userList .wrapper .subTitle {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.userList .wrapper .subTitle .addButtonBox {
+  display: flex;
+  justify-content: end;
+}
+.userList .wrapper .subTitle .subBar {
+  color: #4669f5;
+  font-weight: bold;
+}
+.userList .pagenationDIV {
+  display: flex;
+  justify-content: space-between;
+}
+.userList .pagenationDIV .pagenation {
+  display: inline-block;
+  align-self: center;
+  justify-self: center;
+  margin-right: 100px;
+}
+.userList .pagenationDIV .tablePagenation {
+  display: inline-block;
+}
+
+.ant-modal .ant-modal-content {
+  width: fit-content;
+}
