@@ -75,7 +75,7 @@ const EnrollService = () => {
   };
 
   return (
-    <div className="EnrollService">
+    <div className="EnrollService Dashboard_chartBox">
       <Link to="/service">
         <div className="Dashboard_title">시간당 서비스 등록건수</div>
         <div className="Dashboard_chart">

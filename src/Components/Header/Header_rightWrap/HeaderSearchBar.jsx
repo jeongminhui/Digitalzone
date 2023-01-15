@@ -71,11 +71,12 @@ const HeaderSearchBar = () => {
 
   return (
     <div className="HeaderSearchBar">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="HeaderSearchBarStyle">
         <input
           type="text"
           placeholder="블록번호 / 블록해시 / 트랜잭션해시"
           {...register("searchValue")}
+          className="HeaderSearchBarStyle"
         />
         <button type="submit" className="searchBtn">
           <SearchIcon className="searchIcon" />
