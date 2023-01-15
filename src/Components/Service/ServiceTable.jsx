@@ -115,7 +115,7 @@ const ServiceTable = (props) => {
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
-                    align={column.align}
+                    align={"center"}
                     style={{ minWidth: column.minWidth }}
                     sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
                     className={column.id}
@@ -144,6 +144,7 @@ const ServiceTable = (props) => {
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
+                        align='center'
                       >
                         {row.service}
                       </TableCell>
@@ -152,6 +153,7 @@ const ServiceTable = (props) => {
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
+                        align='center'
                       >
                         {row.createdt}
                       </TableCell>
@@ -160,28 +162,32 @@ const ServiceTable = (props) => {
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
+                        align='center'
                       >
                         {row.apitype}
                       </TableCell>
                       <TableCell
                         key={row.nodename}
                         onClick={() => moveNodeInfo(row.nodename)}
+                        align='center'
                       >
                         {row.nodename}
                       </TableCell>
                       <TableCell
                         key={row.txnum}
                         onClick={() => moveTxInfo(row.txnum)}
+                        align='center'
                       >
                         {row.txnum}
                       </TableCell>
                       <TableCell
                         key={row.blocknum}
                         onClick={() => moveBlockInfo(row.blocknum, idx)}
+                        align='center'
                       >
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.status}>{row.status}</TableCell>
+                      <TableCell key={row.status} align='center'>{row.status}</TableCell>
                     </TableRow>
                   );
                 })}

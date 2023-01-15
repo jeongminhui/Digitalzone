@@ -55,6 +55,7 @@ const TranTable = ({ rows, clickHandler }) => {
           fontFamily: "Noto Sans KR",
           fontSize: 14,
           color: "#3d3d3d",
+          textAlign: "center"
         },
       },
       palette: {
@@ -112,7 +113,7 @@ const TranTable = ({ rows, clickHandler }) => {
                   {columns.map((column) => (
                     <TableCell
                       key={column.label}
-                      align={column.align}
+                      align={"center"}
                       style={{ minWidth: column.minWidth }}
                       sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
                       className={column.id}
@@ -136,16 +137,16 @@ const TranTable = ({ rows, clickHandler }) => {
                         style={{ cursor: "pointer" }}
                       >
                         {/* 이부분 map으로 돌리셔도 됩니다! */}
-                        <TableCell key={row.service}  onClick={() => clickHandler(row.txnum, idx)} >{row.service}</TableCell>
-                        <TableCell key={row.txnum}  onClick={() => clickHandler(row.txnum, idx)}className="blue">
+                        <TableCell key={row.service}  onClick={() => clickHandler(row.txnum, idx)}align='center' >{row.service}</TableCell>
+                        <TableCell key={row.txnum}  onClick={() => clickHandler(row.txnum, idx)}className="blue" align='center'>
                           {row.txnum}
                         </TableCell>
-                        <TableCell key={row.createdt}  onClick={() => clickHandler(row.txnum, idx)}>{row.createdt}</TableCell>
-                        <TableCell key={row.txhash}  onClick={() => clickHandler(row.txnum, idx)}>{row.txhash}</TableCell>
-                        <TableCell key={row.txsize}  onClick={() => clickHandler(row.txnum, idx)}>{row.txsize} KB</TableCell>
+                        <TableCell key={row.createdt}  onClick={() => clickHandler(row.txnum, idx)} align='center'>{row.createdt}</TableCell>
+                        <TableCell key={row.txhash}  onClick={() => clickHandler(row.txnum, idx)} align='center'>{row.txhash}</TableCell>
+                        <TableCell key={row.txsize}  onClick={() => clickHandler(row.txnum, idx)} align='center'>{row.txsize} KB</TableCell>
                         <TableCell
                           key={row.blocknum}
-                          onClick={() => clickBlockHandler(row.blocknum, idx)}
+                          onClick={() => clickBlockHandler(row.blocknum, idx)} align='center'
                         >
                           {row.blocknum}{" "}
                         </TableCell>

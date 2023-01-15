@@ -12,6 +12,7 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Padding } from "@mui/icons-material";
 
 const BlockTable = ({ rows, clickHandler }) => {
 
@@ -22,7 +23,7 @@ const BlockTable = ({ rows, clickHandler }) => {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
-      align: "center"
+      align: "left"
     },
     {
       id: "blockhash",
@@ -137,8 +138,8 @@ const BlockTable = ({ rows, clickHandler }) => {
                       <TableCell key={row.blocknum} className="blue" align='center'>
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.createdt} align='center'>{row.createdt}</TableCell>
-                      <TableCell key={row.blockhash} align='center'>{row.blockhash}</TableCell>
+                      <TableCell key={row.createdt} align='left'>{row.createdt}</TableCell>
+                      <TableCell key={row.blockhash} align='left'>{row.blockhash}</TableCell>
                       <TableCell key={row.blksize} align='center'>{row.blksize} KB</TableCell>
                       <TableCell key={row.txnum} align='center'>{row.txnum.length}</TableCell>
                     </TableRow>
