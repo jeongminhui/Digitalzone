@@ -10,13 +10,13 @@ const TotalTransaction = (props) => {
   const transactionData = useRecoilValue(transactionSelector);
 
   return (
-    <div className="TotalTransaction">
+    <div className="TotalTransaction Dashboard_infoBox">
       <Link to="/transaction">
         <div className="Dashboard_title">전체 트랜잭션 수</div>
         <div className="Dashboard_data">{transactionData.length}</div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
-      <div className="Dashboard_icon">
+      <div className="Dashboard_icon Dashboard_iconBorder">
         <FaServer fill="#fff" size="20" />
       </div>
     </div>

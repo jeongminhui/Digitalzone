@@ -121,7 +121,7 @@ const NtwCreateBlock = () => {
   const test = {};
 
   return (
-    <div className="NtwCreateBlock">
+    <div className="NtwCreateBlock Dashboard_chartBox">
       <Link to="/block">
         <div className="Dashboard_title">네트워크별 블록 생성시간(초)</div>
         <div className="Dashboard_seconds">{average}초</div>
