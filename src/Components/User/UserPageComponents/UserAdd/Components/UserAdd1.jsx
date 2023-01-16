@@ -14,7 +14,7 @@ const UserAdd1 = ({ addUserOk }) => {
 
     // userid
     const [emailId, setEmailId] = useState('');
-    const [domain, setDomain] = useState('');
+    const [domain, setDomain] = useState(null);
     const [email, setEmail] = useState('');
     // userteam
     const [team, setTeam] = useState('');
@@ -25,7 +25,7 @@ const UserAdd1 = ({ addUserOk }) => {
     // username
     const [name, setName] = useState('');
     // userclass
-    const [userclass, setUserclass] = useState('');
+    const [userclass, setUserclass] = useState('사용자');
     // useradmin
     const [admin, setAdmin] = useState({
         dashboard: true,
@@ -46,6 +46,8 @@ const UserAdd1 = ({ addUserOk }) => {
     const [errorMsg, setErrorMsg] = useState('');
 
     const [serviceCnt, setServiceCnt] = useState(0);
+
+    const [form] = Form.useForm();
 
     const auth = getAuth();
 
@@ -94,7 +96,6 @@ const UserAdd1 = ({ addUserOk }) => {
     }, [emailId, domain]);
 
     const clickHandler = async (e) => {
-        // e.preventDefault();
         await createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -128,6 +129,7 @@ const UserAdd1 = ({ addUserOk }) => {
                 addUserOk();
             })
             .catch((error) => {
+                const userID = document.getElementsByClassName('userID')[0];
                 switch (error.code) {
                     case 'auth/invalid-email':
                         setErrorMsg('아이디가 이메일 형식이 아닙니다');
@@ -135,15 +137,15 @@ const UserAdd1 = ({ addUserOk }) => {
                     default:
                         setErrorMsg('사용자를 추가할 수 없습니다');
                 }
+                userID.focus();
             });
-        setName('');
+        // setName('');
         setEmailId('');
         setEmail('');
-        setTeam('');
-        setPassword('');
-        setPwcheck('');
+        // setTeam('');
         setServiceCnt(0);
-        addUserOk();
+        form.resetFields();
+        setDomain(null);
     };
     useEffect(() => {
         if (errorMsg !== '') {
@@ -164,6 +166,7 @@ const UserAdd1 = ({ addUserOk }) => {
         <div className='UserAdd'>
             <h1>사용자 추가</h1>
             <Form
+                form={form}
                 labelCol={{
                     span: 5,
                 }}
@@ -178,7 +181,7 @@ const UserAdd1 = ({ addUserOk }) => {
                 size={componentSize}
             >
                 <Form.Item name='radio-button' label='유형'>
-                    <Radio.Group>
+                    <Radio.Group defaultValue='사용자'>
                         <Radio.Button value='관리자' onClick={checkedItemHandler}>
                             관리자
                         </Radio.Button>
@@ -198,7 +201,7 @@ const UserAdd1 = ({ addUserOk }) => {
                         <Input className='userID' value={emailId} onChange={(e) => setEmailId(e.target.value)} /> @
                         <Input className='userID' value={domain} onChange={domainInput} />
                     </div>
-                    <Select className='domainList' onChange={domainChangeHandler}>
+                    <Select className='domainList' value={domain} onChange={domainChangeHandler}>
                         <Select.Option value='type'>직접입력</Select.Option>
                         <Select.Option value='gmail.com'>gmail.com</Select.Option>
                         <Select.Option value='naver.com'>naver.com</Select.Option>
