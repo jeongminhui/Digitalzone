@@ -127,7 +127,7 @@ export default function HeaderUserIcon() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  navigate("/user/list");
+                  navigate("/user");
                 }}
               >
                 <ListItemIcon>
