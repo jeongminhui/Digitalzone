@@ -39,7 +39,7 @@ const HeaderSearchBar = () => {
     blockData.map((list) => {
       // 블록넘버
       if (list.blocknum === parseInt(data.searchValue)) {
-        setCurrentBlock(list.id);
+        setCurrentBlock(list.id-1);
         return navigate(`/block/${list.blocknum}`);
 
         // 블록해시
