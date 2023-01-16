@@ -31,14 +31,14 @@ const TxInfo = ({ txnum }) => {
   const [tranUser, setTranUser] = useState(true);
   const [tranNum, setTranNum] = useState("");
 
-  useEffect(() => {
-    setTranUser(loginUser?.useradmin.transaction);
-  }, []);
+  // useEffect(() => {
+  //   setTranUser(loginUser?.useradmin.transaction);
+  // }, []);
 
   useEffect(() => {
     async function getBlockInfo() {
       // 트랜잭션 상세 정보 로드
-      const txRef = doc(txCollection, String(txnum));
+      const txRef = doc(txCollection, txnum);
       const txdata = await getDoc(txRef);
       setTxInfo(txdata.data());
     }
@@ -97,6 +97,7 @@ const TxInfo = ({ txnum }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -120,6 +121,7 @@ const TxInfo = ({ txnum }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -194,6 +196,7 @@ const TxInfo = ({ txnum }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[]}
+        centered={true}
       >
         <p className="txdataBox">{JSON.stringify(txInfo.txdata, null, 2)}</p>
       </Modal>
