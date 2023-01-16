@@ -103,7 +103,7 @@ const ServiceInfo = () => {
       <div className="wrap">
         <h1 className="mainTitle">서비스</h1>
         <div className="subTitle">
-          <h3>
+          <h3 className="detailInfoTitle">
             {" "}
             <span className="subBar">|</span> 상세정보
           </h3>
@@ -111,7 +111,7 @@ const ServiceInfo = () => {
             <button className="listBtn">목록으로</button>
           </Link>
         </div>
-        <div className="tableWrap">
+        <div className="tableWrap detailInfoBox">
           <table>
             <tbody>
               <tr>

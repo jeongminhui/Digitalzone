@@ -34,26 +34,26 @@ export default function Tab({ rows }) {
   let columns = [];
   NodeUser
     ? (columns = [
-        { id: "service", label: "서비스명", minWidth: 70 },
-        { id: "ndstatus", label: "상태", minWidth: 70 },
-        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5" },
-        { id: "ndtype", label: "유형", minWidth: 70 },
-        { id: "service_dcc", label: "서비스명", minWidth: 70 },
-        { id: "ipaddress", label: "IP", minWidth: 170 },
-        { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-        { id: "createdt", label: "최신블록시간", minWidth: 170 },
-        { id: "tps", label: "처리속도(TPS)", minWidth: 50 },
-        { id: "latency", label: "지연율(Latency)", minWidth: 70 },
+        { id: "service", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ndstatus", label: "상태", minWidth: 70, align: "center" },
+        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5", align: "center" },
+        { id: "ndtype", label: "유형", minWidth: 70, align: "center" },
+        { id: "service_dcc", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ipaddress", label: "IP", minWidth: 170, align: "center" },
+        { id: "blocknum", label: "최신블록번호", minWidth: 100, align: "center" },
+        { id: "createdt", label: "최신블록시간", minWidth: 170, align: "center" },
+        { id: "tps", label: "처리속도(TPS)", minWidth: 50, align: "center" },
+        { id: "latency", label: "지연율(Latency)", minWidth: 70, align: "center" },
       ])
     : (columns = [
-        { id: "service", label: "서비스명", minWidth: 70 },
-        { id: "ndstatus", label: "상태", minWidth: 70 },
-        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5" },
-        { id: "ndtype", label: "유형", minWidth: 70 },
-        { id: "service_dcc", label: "서비스명", minWidth: 70 },
-        { id: "ipaddress", label: "IP", minWidth: 170 },
-        { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-        { id: "createdt", label: "최신블록시간", minWidth: 170 },
+        { id: "service", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ndstatus", label: "상태", minWidth: 70, align: "center" },
+        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5", align: "center" },
+        { id: "ndtype", label: "유형", minWidth: 70, align: "center" },
+        { id: "service_dcc", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ipaddress", label: "IP", minWidth: 170, align: "center" },
+        { id: "blocknum", label: "최신블록번호", minWidth: 100, align: "center" },
+        { id: "createdt", label: "최신블록시간", minWidth: 170, align: "center" },
       ]);
 
   // table
@@ -120,6 +120,7 @@ export default function Tab({ rows }) {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -194,12 +195,14 @@ export default function Tab({ rows }) {
                             hover
                             role="checkbox"
                             tabIndex={-1}
-                            key={idx}
+                            key={row.code}
+                            align= "center"
                           >
                             <TableCell
                               key={row.service}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.service}
                             </TableCell>
@@ -207,6 +210,7 @@ export default function Tab({ rows }) {
                               key={row.ndstatus}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.ndstatus}
                             </TableCell>
@@ -214,6 +218,7 @@ export default function Tab({ rows }) {
                               key={row.nodename}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer", color: "#4669f5" }}
+                              align= "center"
                             >
                               {row.nodename}
                             </TableCell>
@@ -221,6 +226,7 @@ export default function Tab({ rows }) {
                               key={row.ndtype}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.ndtype}
                             </TableCell>
@@ -228,6 +234,7 @@ export default function Tab({ rows }) {
                               key={row.service_dcc}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.service_dcc}
                             </TableCell>
@@ -235,6 +242,7 @@ export default function Tab({ rows }) {
                               key={row.ipaddress}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.ipaddress}
                             </TableCell>
@@ -244,6 +252,7 @@ export default function Tab({ rows }) {
                                 clickBlockHandler(row.blocknum, idx)
                               }
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.blocknum}
                             </TableCell>
@@ -253,11 +262,12 @@ export default function Tab({ rows }) {
                                 clickBlockHandler(row.blocknum, idx)
                               }
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.createdt}
                             </TableCell>
-                            <TableCell key={row.tps}>{row.tps}</TableCell>
-                            <TableCell key={row.latency}>
+                            <TableCell key={row.tps} align= "center">{row.tps}</TableCell>
+                            <TableCell key={row.latency} align= "center">
                               {row.latency}
                             </TableCell>
                           </TableRow>
@@ -266,12 +276,14 @@ export default function Tab({ rows }) {
                             hover
                             role="checkbox"
                             tabIndex={-1}
-                            key={idx}
+                            key={row.code}
+                            align= "center"
                           >
                             <TableCell
                               key={row.service}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.service}
                             </TableCell>
@@ -279,6 +291,7 @@ export default function Tab({ rows }) {
                               key={row.ndstatus}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.ndstatus}
                             </TableCell>
@@ -286,6 +299,7 @@ export default function Tab({ rows }) {
                               key={row.nodename}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer", color: "#4669f5" }}
+                              align= "center"
                             >
                               {row.nodename}
                             </TableCell>
@@ -293,6 +307,7 @@ export default function Tab({ rows }) {
                               key={row.ndtype}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.ndtype}
                             </TableCell>
@@ -300,6 +315,7 @@ export default function Tab({ rows }) {
                               key={row.service_dcc}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.service_dcc}
                             </TableCell>
@@ -307,6 +323,7 @@ export default function Tab({ rows }) {
                               key={row.ipaddress}
                               onClick={() => clickHandler(row.nodename)}
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               http://xxx.xx.xxx.xxx:xxxxx
                             </TableCell>
@@ -316,6 +333,7 @@ export default function Tab({ rows }) {
                                 clickBlockHandler(row.blocknum, idx)
                               }
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.blocknum}
                             </TableCell>
@@ -325,6 +343,7 @@ export default function Tab({ rows }) {
                                 clickBlockHandler(row.blocknum, idx)
                               }
                               style={{ cursor: "pointer" }}
+                              align= "center"
                             >
                               {row.createdt}
                             </TableCell>

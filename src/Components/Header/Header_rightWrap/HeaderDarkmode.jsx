@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import { ThemeContext } from "../../Context/ThemeContext";
 
-const HeaderDarkmode = (props) => {
-  const { isdarkmode, toggleDarkMode } = props;
+const HeaderDarkmode = () => {
+  const theme = useContext(ThemeContext);
+
   return (
-    <div className="HeaderDarkmode">
+    <div className="HeaderDarkmode HeaderBtn">
       <button
         type="button"
-        onClick={toggleDarkMode}
-        isdarkmode={isdarkmode}
+        onClick={theme.toggleDarkMode}
         className="toggleBtn"
       >
-        {isdarkmode ? <BsFillSunFill /> : <BsFillMoonFill />}
+        {theme.isDarkMode ? <BsFillMoonFill /> : <BsFillSunFill />}
       </button>
     </div>
   );

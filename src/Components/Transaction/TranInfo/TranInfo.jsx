@@ -9,8 +9,7 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { currentBlockAtom } from "../../../Recoil/Atom";
 import { useRecoilState } from "recoil";
-import { useRecoilValue } from 'recoil';
-
+import { useRecoilValue } from "recoil";
 
 const TranInfo = () => {
   const { txnum } = useParams();
@@ -50,7 +49,7 @@ const TranInfo = () => {
 
   //블록번호 클릭시 블록페이지로 이동
   const clickBlockHandler = () => {
-    setCurrentBlock(transactionInfo.id-1);
+    setCurrentBlock(transactionInfo.id - 1);
     navigate(`/block/${transactionInfo.blocknum}`);
   };
 
@@ -59,7 +58,7 @@ const TranInfo = () => {
       <div className="wrap">
         <h1 className="mainTitle">트랜잭션</h1>
         <div className="subTitle">
-          <h3>
+          <h3 className="detailInfoTitle">
             {" "}
             <span className="subBar">|</span> 상세정보
           </h3>
@@ -67,7 +66,7 @@ const TranInfo = () => {
             <button className="listBtn">목록으로</button>
           </Link>
         </div>
-        <div className="tableWrap">
+        <div className="tableWrap detailInfoBox">
           <table>
             <thead></thead>
             <tbody>
@@ -113,13 +112,19 @@ const TranInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">블록번호</td>
-                <td className="infoContent"  onClick={() => clickBlockHandler()} style={{cursor: "pointer"}}>{transactionInfo.blocknum}</td>
+                <td
+                  className="infoContent"
+                  onClick={() => clickBlockHandler()}
+                  style={{ cursor: "pointer" }}
+                >
+                  {transactionInfo.blocknum}
+                </td>
               </tr>
               <tr>
                 <td className="infoTitle">요청시간</td>
                 <td className="infoContent">{transactionInfo.requiretime}</td>
               </tr>
-              <tr> 
+              <tr>
                 <td className="infoTitle">API 종류</td>
                 <td className="infoContent">{transactionInfo.apitype}</td>
               </tr>

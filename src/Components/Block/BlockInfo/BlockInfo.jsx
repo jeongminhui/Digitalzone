@@ -3,9 +3,9 @@ import "./BlockInfo.scss";
 import "../../../App.scss";
 import Footer from "../../Footer/Footer";
 import { async } from "@firebase/util";
-import { collection, getDoc, doc, getDocs } from "firebase/firestore";
+import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TxInfo from "./TxInfo";
 import Carousel from "./Carousel";
 import copy from "copy-to-clipboard";
@@ -64,7 +64,7 @@ const BlockInfo = () => {
       <div className="wrap">
         <h1 className="mainTitle">블록</h1>
         <div className="subTitle">
-          <h3>
+          <h3 className="detailInfoTitle">
             {" "}
             <span className="subBar">|</span> 블록 상세
           </h3>
@@ -78,7 +78,7 @@ const BlockInfo = () => {
           block={blockData}
           currentBlock={currentBlock}
         />
-        <div className="tableWrap">
+        <div className="tableWrap detailInfoBox">
           <table className="table">
             <tbody>
               <tr>

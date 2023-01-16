@@ -12,11 +12,9 @@ import { async } from "@firebase/util";
 import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Swal from "sweetalert2";
-import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import { Button, Modal } from "antd";
-import { width } from "@mui/system";
+import { Modal } from "antd";
 
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../Recoil/Selector";
@@ -28,8 +26,7 @@ const TxInfo = ({ txnum }) => {
 
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
-  const [tranUser, setTranUser] = useState(true);
-  const [tranNum, setTranNum] = useState("");
+  const [tranUser, setTranUser] = useState(false);
 
   useEffect(() => {
     setTranUser(loginUser?.useradmin.transaction);
@@ -38,7 +35,7 @@ const TxInfo = ({ txnum }) => {
   useEffect(() => {
     async function getBlockInfo() {
       // 트랜잭션 상세 정보 로드
-      const txRef = doc(txCollection, String(txnum));
+      const txRef = doc(txCollection, txnum);
       const txdata = await getDoc(txRef);
       setTxInfo(txdata.data());
     }
@@ -97,6 +94,7 @@ const TxInfo = ({ txnum }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -120,6 +118,7 @@ const TxInfo = ({ txnum }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -194,6 +193,7 @@ const TxInfo = ({ txnum }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[]}
+        centered={true}
       >
         <p className="txdataBox">{JSON.stringify(txInfo.txdata, null, 2)}</p>
       </Modal>
