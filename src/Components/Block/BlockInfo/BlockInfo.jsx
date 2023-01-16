@@ -5,7 +5,7 @@ import Footer from "../../Footer/Footer";
 import { async } from "@firebase/util";
 import { collection, getDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
 import TxInfo from "./TxInfo";
 import Carousel from "./Carousel";
 import copy from "copy-to-clipboard";
@@ -15,8 +15,11 @@ import { HiOutlineDocumentDuplicate } from "react-icons/hi";
 import { useRecoilValue } from "recoil";
 import { currentBlockSelector } from "../../../Recoil/Selector";
 import { blockSelector } from "../../../Recoil/Selector";
+import { unstable_createMuiStrictModeTheme } from "@material-ui/core";
 
 const BlockInfo = () => {
+
+ 
   const { blocknum } = useParams();
 
   const currentBlock = useRecoilValue(currentBlockSelector);

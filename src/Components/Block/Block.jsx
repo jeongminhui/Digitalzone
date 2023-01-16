@@ -41,7 +41,7 @@ const Block = () => {
 
   const clickHandler = (blocknum, idx) => {
     setCurrentBlock(idx);
-    // navigate(`/block/${blocknum}`);
+    navigate(`/block/${blocknum}`, {state: {isValid: true }});
     setBlocknum(blocknum);
   };
 
