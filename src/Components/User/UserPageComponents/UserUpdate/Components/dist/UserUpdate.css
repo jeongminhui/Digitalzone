@@ -1,0 +1,28 @@
+.UserUpdate {
+  padding: 40px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+.UserUpdate h1 {
+  margin-bottom: 40px;
+}
+.UserUpdate .ant-modal .ant-modal-content {
+  width: fit-content;
+}
+.UserUpdate form {
+  width: 450px;
+}
+.UserUpdate form botton {
+  margin-right: 100px;
+}
+.UserUpdate .UserAdd_footer {
+  width: 330px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 100px;
+}
+
+.ant-form-item {
+  margin-bottom: 20px;
+}

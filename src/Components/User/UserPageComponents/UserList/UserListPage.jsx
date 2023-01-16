@@ -24,7 +24,8 @@ import { IconButton, Pagination, TablePagination } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./UserListPage.scss";
 import Swal from "sweetalert2";
-import UserAddPage from "../UserAdd/UserAddPage";
+// import UserAddPage from "../UserAdd/UserAddPage";
+import UserAddModal from "../UserAdd/Components/UserAddModal";
 import Footer from "../../../Footer/Footer";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../../Recoil/Selector";
@@ -176,7 +177,7 @@ const UserListPage = () => {
           <span className="leftItem">
             <span className="subBar">|</span> 전체 사용자 {userlist.length}명
           </span>
-          <UserAddPage />
+          <UserAddModal className="modal" />
         </h3>
 
         <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
@@ -410,15 +411,20 @@ const UserListPage = () => {
           </TableContainer>
         </Paper>
         {/* 여기부터 모달! */}
-        <Modal
-          open={open}
-          // title="Title"
-          onOk={handleOk}
-          onCancel={handleCancel}
-          footer={[]}
-        >
-          <UserUpdate />
-        </Modal>
+
+        <div className="updateModal">
+          <Modal
+            open={open}
+            // title="Title"
+            onOk={handleOk}
+            onCancel={handleCancel}
+            footer={[]}
+            width={600}
+            centered={true}
+          >
+            <UserUpdate />
+          </Modal>
+        </div>
       </div>
       <Footer />
     </div>

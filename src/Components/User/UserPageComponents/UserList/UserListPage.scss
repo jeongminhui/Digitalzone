@@ -42,6 +42,6 @@
     }
   }
 }
-.ant-modal .ant-modal-content {
-  width: fit-content;
+.ant-form-item .ant-form-item-label > label::after {
+  content: "";
 }

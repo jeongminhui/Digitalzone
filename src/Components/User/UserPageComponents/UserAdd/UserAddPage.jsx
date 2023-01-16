@@ -2,11 +2,7 @@ import React from "react";
 import UserAddModal from "./Components/UserAddModal";
 
 const UserAddPage = () => {
-  return (
-    <div>
-      <UserAddModal />
-    </div>
-  );
+  return <UserAddModal />;
 };
 
 export default UserAddPage;

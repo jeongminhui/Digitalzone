@@ -300,7 +300,7 @@ const UserUpdate = () => {
           <button
             type="submit"
             onClick={deleteHandler}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", background: "#E5361E" }}
           >
             사용자 삭제
           </button>
