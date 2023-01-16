@@ -23,13 +23,13 @@ const BlockTable = ({ rows, clickHandler }) => {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
-      align: "left"
+      align: "center"
     },
     {
       id: "blockhash",
       label: "블록해시",
       minWidth: 130,
-      align: "left"
+      align: "center"
     },
     {
       id: "blksize",
@@ -138,8 +138,8 @@ const BlockTable = ({ rows, clickHandler }) => {
                       <TableCell key={row.blocknum} className="blue" align='center'>
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.createdt} align='left'>{row.createdt}</TableCell>
-                      <TableCell key={row.blockhash} align='left'>{row.blockhash}</TableCell>
+                      <TableCell key={row.createdt} align='center'>{row.createdt}</TableCell>
+                      <TableCell key={row.blockhash} align='center'>{row.blockhash}</TableCell>
                       <TableCell key={row.blksize} align='center'>{row.blksize} KB</TableCell>
                       <TableCell key={row.txnum} align='center'>{row.txnum.length}</TableCell>
                     </TableRow>
