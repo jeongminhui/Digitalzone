@@ -39,7 +39,7 @@ function App() {
         },
         {
           path: "/block/:blocknum",
-          element: <BlockInfo />,
+          element: <BlockInfo exact={true} />,
         },
         {
           path: "/transaction",
@@ -47,15 +47,15 @@ function App() {
         },
         {
           path: "/transaction/:txnum",
-          element: <TranInfo />,
+          element: <TranInfo exact={true} />,
         },
         {
           path: "/node",
-          element: <Node />,
+          element: <Node exact={true} />,
         },
         {
           path: "/node/:nodename",
-          element: <NodeDetail />,
+          element: <NodeDetail exact={true} />,
         },
         {
           path: "/service",

@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import { loginSelector } from "../../../Recoil/Selector";
 import { useRecoilValue } from "recoil";
+import Tooltip from "@mui/material/Tooltip";
 
 const ServiceInfo = () => {
   const { blocknum } = useParams();
@@ -127,15 +128,17 @@ const ServiceInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">노드명</td>
-                <td
-                  className="infoContent"
-                  onClick={() => {
-                    moveNodeInfo();
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  {serviceInfo.nodename}
-                </td>
+                <Tooltip title="Add" arrow followCursor>
+                  <td
+                    className="infoContent"
+                    onClick={() => {
+                      moveNodeInfo();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.nodename}
+                  </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">트랜잭션 번호</td>

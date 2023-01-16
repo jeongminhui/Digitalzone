@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { db } from "../../firebase";
 import Footer from "../Footer/Footer";
 import Chart from "./Chart";
-import Grafana from "./Grafana";
+// import Grafana from "./Grafana";
 import "./NodeDetail.scss";
 
 const NodeDetail = () => {
@@ -18,7 +18,6 @@ const NodeDetail = () => {
       const data = await getDoc(docRef);
       setIp(data.data().ipaddress);
     }
-
     getNode();
   }, []);
 

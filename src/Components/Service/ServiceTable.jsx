@@ -12,17 +12,8 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { currentBlockAtom } from "../../Recoil/Atom";
-import { useRecoilState } from "recoil";
-import Swal from "sweetalert2";
-import { useRecoilValue } from "recoil";
-import { loginSelector } from "../../Recoil/Selector";
-import { collection, getDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase";
 
 const ServiceTable = (props) => {
-
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
     props;
 
@@ -134,17 +125,16 @@ const ServiceTable = (props) => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={idx}
                       className="tableRow"
                     >
-                      {/* 이부분 map으로 돌리셔도 됩니다! */}
                       <TableCell
                         key={row.service}
                         className="blue"
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
-                        align='center'
+                        align="center"
                       >
                         {row.service}
                       </TableCell>
@@ -153,7 +143,7 @@ const ServiceTable = (props) => {
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
-                        align='center'
+                        align="center"
                       >
                         {row.createdt}
                       </TableCell>
@@ -162,32 +152,34 @@ const ServiceTable = (props) => {
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
-                        align='center'
+                        align="center"
                       >
                         {row.apitype}
                       </TableCell>
                       <TableCell
                         key={row.nodename}
                         onClick={() => moveNodeInfo(row.nodename)}
-                        align='center'
+                        align="center"
                       >
                         {row.nodename}
                       </TableCell>
                       <TableCell
                         key={row.txnum}
                         onClick={() => moveTxInfo(row.txnum)}
-                        align='center'
+                        align="center"
                       >
                         {row.txnum}
                       </TableCell>
                       <TableCell
                         key={row.blocknum}
                         onClick={() => moveBlockInfo(row.blocknum, idx)}
-                        align='center'
+                        align="center"
                       >
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.status} align='center'>{row.status}</TableCell>
+                      <TableCell key={row.status} align="center">
+                        {row.status}
+                      </TableCell>
                     </TableRow>
                   );
                 })}
