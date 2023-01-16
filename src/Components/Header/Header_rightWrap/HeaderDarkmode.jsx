@@ -6,7 +6,7 @@ const HeaderDarkmode = () => {
   const theme = useContext(ThemeContext);
 
   return (
-    <div className="HeaderDarkmode">
+    <div className="HeaderDarkmode HeaderBtn">
       <button
         type="button"
         onClick={theme.toggleDarkMode}

@@ -10,13 +10,13 @@ const TotalBlock = (props) => {
   const blockData = useRecoilValue(blockSelector);
 
   return (
-    <div className="TotalBlock">
+    <div className="TotalBlock Dashboard_infoBox">
       <Link to="/block">
         <div className="Dashboard_title">전체 블록 수</div>
         <div className="Dashboard_data">{blockData.length}</div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
-      <div className="Dashboard_icon">
+      <div className="Dashboard_icon Dashboard_iconBorder">
         <IoCube fill="#fff" size="25" />
       </div>
     </div>

@@ -196,7 +196,7 @@ const NtwTPS = () => {
   };
 
   return (
-    <div className="NtwTPS">
+    <div className="NtwTPS Dashboard_chartBox">
       <Link to="/transaction">
         <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
         <div className="Dashboard_chart">

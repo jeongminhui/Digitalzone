@@ -66,7 +66,7 @@ export default function HeaderUserIcon() {
         {/* </Tooltip> */}
         {/* </Box> */}
         <div
-          className="HeaderUserIcon"
+          className="HeaderUserIcon HeaderBtn"
           onClick={handleClick}
           size="small"
           sx={{ ml: 2 }}

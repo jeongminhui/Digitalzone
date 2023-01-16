@@ -58,7 +58,7 @@ const Block = () => {
         </h3>
 
         <BlockChart rows={rows} />
-        <Refresh/>
+        <Refresh />
         <BlockTable rows={rows} clickHandler={clickHandler} />
       </div>
 
