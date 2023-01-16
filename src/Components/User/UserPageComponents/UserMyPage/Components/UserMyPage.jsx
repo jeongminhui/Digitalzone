@@ -173,8 +173,6 @@ const UserMyPage = () => {
                     timer: 2000,
                 });
             });
-        // setUserpw('');
-        // setPwcheck('');
         form.resetFields();
     };
     const [componentSize, setComponentSize] = useState('default');
