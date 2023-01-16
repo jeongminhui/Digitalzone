@@ -1,18 +1,19 @@
 .userID_container {
   display: flex;
   margin-bottom: 10px;
-  .userID {
-    width: 50%;
-  }
+}
+.userID_container .userID {
+  width: 50%;
 }
 
-// ant-row
 .ant-form-item-row {
   justify-content: space-around;
 }
+
 .ant-form-item-label > label {
   width: 50px;
 }
+
 .ant-form-item .ant-form-item-label {
   width: 50px;
   text-align: start;
@@ -22,25 +23,24 @@
   padding: 40px;
   padding-left: 70px;
   padding-right: 70px;
-  h1 {
-    margin-bottom: 40px;
-  }
 }
+.UserAdd h1 {
+  margin-bottom: 40px;
+}
+
 .UserAdd_footer {
   text-align: center;
   padding-top: 20px;
-  .SignUpButton {
-    height: 40px;
-    width: 100px;
-  }
 }
-// .ant-checkbox + span {
-//   padding-inline-start: 4px;
-//   padding-inline-end: 8px;
-// }
+.UserAdd_footer .SignUpButton {
+  height: 40px;
+  width: 100px;
+}
+
 .ant-form-item {
   margin-bottom: 20px;
 }
+
 .UserAdd_footer button {
   width: 100px;
   height: 35px;
