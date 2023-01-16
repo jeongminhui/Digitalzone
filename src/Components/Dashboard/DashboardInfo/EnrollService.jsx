@@ -75,7 +75,7 @@ const EnrollService = () => {
   };
 
   return (
-    <div className="EnrollService">
+    <div className="EnrollService Dashboard_chartBox">
       <Link to="/service">
         <div className="Dashboard_title">시간당 서비스 등록건수</div>
         <div className="Dashboard_chart">
@@ -134,7 +134,7 @@ const EnrollService = () => {
             enableCrosshair={false}
             useMesh={true} // MouseHover시 효과
             enableArea={true} //fill 효과
-            areaOpacity={darkmode ? "1" : "0.5"} //fill 효과 투명도
+            areaOpacity={darkmode ? 1 : 0.5} //fill 효과 투명도
             animate={true}
             tooltip={(data) => {
               return (

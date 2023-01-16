@@ -256,9 +256,7 @@ export default function Tab({ rows }) {
                             >
                               {row.createdt}
                             </TableCell>
-                            <TableCell key={row.tps}>
-                              {row.tps}
-                            </TableCell>
+                            <TableCell key={row.tps}>{row.tps}</TableCell>
                             <TableCell key={row.latency}>
                               {row.latency}
                             </TableCell>

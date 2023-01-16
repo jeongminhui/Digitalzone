@@ -75,7 +75,7 @@ const NtwActiveService = () => {
   };
 
   return (
-    <div className="NtwActiveService">
+    <div className="NtwActiveService Dashboard_chartBox">
       <Link to="/service">
         <div className="Dashboard_title">서비스별 네트워크 활동비율</div>
         <div className="Dashboard_chart">

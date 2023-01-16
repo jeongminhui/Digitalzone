@@ -13,16 +13,20 @@ const ActiveNetwork = (props) => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      setActive(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        setActive(dataFiltering);
+      } catch {
+        console.log("error");
+      }
     }
     getActive();
   }, [networkData]);
 
   return (
-    <div className="ActiveNetwork">
+    <div className="ActiveNetwork Dashboard_infoBox">
       <Link to="/node">
         <div className="Dashboard_title">활성 네트워크 수</div>
         <div className="Dashboard_data">
@@ -31,7 +35,7 @@ const ActiveNetwork = (props) => {
         </div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
-      <div className="Dashboard_icon">
+      <div className="Dashboard_icon Dashboard_iconBorder">
         <FaNetworkWired fill="#fff" size="25" />
       </div>
     </div>
