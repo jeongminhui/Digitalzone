@@ -111,6 +111,8 @@ const UserMyPage = () => {
     // pwcheck
     const [pwcheck, setPwcheck] = useState('');
 
+    const [form] = Form.useForm();
+
     const auth = getAuth();
     const currentUser = auth.currentUser;
 
@@ -171,8 +173,9 @@ const UserMyPage = () => {
                     timer: 2000,
                 });
             });
-        setUserpw('');
-        setPwcheck('');
+        // setUserpw('');
+        // setPwcheck('');
+        form.resetFields();
     };
     const [componentSize, setComponentSize] = useState('default');
     const onFormLayoutChange = ({ size }) => {
@@ -182,6 +185,7 @@ const UserMyPage = () => {
     return (
         <>
             <Form
+                form={form}
                 labelCol={{
                     span: 5,
                 }}
@@ -373,7 +377,7 @@ const UserMyPage = () => {
                     <label>{user.userstatus}</label>
                 </Form.Item>
                 <div className='UserAdd_footer'>
-                    <button type='submit' onClick={pwChangeHandler}>
+                    <button type='submit' onClick={pwChangeHandler} style={{ cursor: 'pointer' }}>
                         변경
                     </button>
                 </div>
