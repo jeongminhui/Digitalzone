@@ -12,11 +12,9 @@ import { async } from "@firebase/util";
 import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Swal from "sweetalert2";
-import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-import { Button, Modal } from "antd";
-import { width } from "@mui/system";
+import { Modal } from "antd";
 
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../Recoil/Selector";
@@ -28,12 +26,11 @@ const TxInfo = ({ txnum }) => {
 
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
-  const [tranUser, setTranUser] = useState(true);
-  const [tranNum, setTranNum] = useState("");
+  const [tranUser, setTranUser] = useState(false);
 
-  // useEffect(() => {
-  //   setTranUser(loginUser?.useradmin.transaction);
-  // }, []);
+  useEffect(() => {
+    setTranUser(loginUser?.useradmin.transaction);
+  }, []);
 
   useEffect(() => {
     async function getBlockInfo() {

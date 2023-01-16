@@ -38,7 +38,7 @@ export default function HeaderUserIcon() {
     <>
       <React.Fragment>
         <div
-          className="HeaderUserIcon"
+          className="HeaderUserIcon HeaderBtn"
           onClick={handleClick}
           size="small"
           sx={{ ml: 2 }}

@@ -3,13 +3,15 @@ import "./BlockInfo.scss";
 import "../../../App.scss";
 import Footer from "../../Footer/Footer";
 import { async } from "@firebase/util";
-import { collection, getDoc, doc, getDocs } from "firebase/firestore";
+import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import TxInfo from "./TxInfo";
 import Carousel from "./Carousel";
 import copy from "copy-to-clipboard";
 import { HiOutlineDocumentDuplicate } from "react-icons/hi";
+import { GoTriangleUp } from "react-icons/go";
+import { GoTriangleDown } from "react-icons/go";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
@@ -62,7 +64,7 @@ const BlockInfo = () => {
       <div className="wrap">
         <h1 className="mainTitle">블록</h1>
         <div className="subTitle">
-          <h3>
+          <h3 className="detailInfoTitle">
             {" "}
             <span className="subBar">|</span> 블록 상세
           </h3>
@@ -76,7 +78,7 @@ const BlockInfo = () => {
           block={blockData}
           currentBlock={currentBlock}
         />
-        <div className="tableWrap">
+        <div className="tableWrap detailInfoBox">
           <table className="table">
             <tbody>
               <tr>
@@ -122,14 +124,32 @@ const BlockInfo = () => {
               <tr>
                 <td className="infoTitle">트랜잭션 수</td>
                 <td className="infoContent">
-                  1
-                  <button
-                    type="button"
-                    className="txInfoBtn"
-                    onClick={txInfoHandler}
-                  >
-                    자세히
-                  </button>
+                  1{/* {blockInfo.txnum.length} */}
+                  {visible ? (
+                    <button
+                      type="button"
+                      className="txInfoBtn"
+                      onClick={txInfoHandler}
+                    >
+                      간략히
+                      <GoTriangleUp style={{ marginLeft: "2px" }} />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="txInfoBtn"
+                      onClick={txInfoHandler}
+                    >
+                      자세히
+                      <GoTriangleDown
+                        style={{
+                          position: "relative",
+                          top: "2px",
+                          marginLeft: "2px",
+                        }}
+                      />
+                    </button>
+                  )}
                 </td>
               </tr>
             </tbody>

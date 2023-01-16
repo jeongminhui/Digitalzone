@@ -120,6 +120,7 @@ export default function Tab({ rows }) {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -256,9 +257,7 @@ export default function Tab({ rows }) {
                             >
                               {row.createdt}
                             </TableCell>
-                            <TableCell key={row.tps}>
-                              {row.tps}
-                            </TableCell>
+                            <TableCell key={row.tps}>{row.tps}</TableCell>
                             <TableCell key={row.latency}>
                               {row.latency}
                             </TableCell>
