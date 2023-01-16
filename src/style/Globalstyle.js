@@ -132,6 +132,11 @@ const Globalstyle = createGlobalStyle`
   .nodeContent{
     color : ${(props) => props.theme.darkgrey_to_bg};
   }
+  
+
+  
+  
+ 
 
 `;
 

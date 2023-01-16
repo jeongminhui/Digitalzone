@@ -19,6 +19,7 @@ export const lightTheme = {
   white_to_dark: "#fff",
 
   point_to_footer: "var(--point-color)",
+  point_to_bgcolor: "var(--point-color)",
 
   lightgery_to_footer: "var(--light-grey-color)",
   lightgrey_to_bg: " var(--light-grey-color)",
@@ -67,6 +68,7 @@ export const darkTheme = {
   white_to_dark: "var(--dark-color)",
 
   point_to_footer: "var(--footer-color)",
+  point_to_bgcolor: "var(--bg-color)",
 
   lightgery_to_footer: "var(--footer-color)",
   lightgrey_to_bg: "var(--bg-color)",

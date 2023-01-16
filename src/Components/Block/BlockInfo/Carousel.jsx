@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Pagination, Navigation } from "swiper";
@@ -12,10 +12,15 @@ import { useRecoilState } from "recoil";
 import { currentBlockAtom } from "../../../Recoil/Atom";
 import { useRecoilValue } from "recoil";
 import { currentBlockSelector } from "../../../Recoil/Selector";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const Carousel = ({ blocknum, block }) => {
   const current = useRecoilValue(currentBlockSelector);
   const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
+
+  // 다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   // navigation 블록 상세 이동
   const [blocknumber, setBlocknumber] = useState(blocknum);
@@ -58,6 +63,9 @@ const Carousel = ({ blocknum, block }) => {
             key={idx}
             onClick={() => {
               carouselHandler(item.blocknum, idx);
+            }}
+            style={{
+              color: darkmode ? "var(--bg-color)" : "var(--dark-grey-color)",
             }}
           >
             <h3>#{item.blocknum}</h3>

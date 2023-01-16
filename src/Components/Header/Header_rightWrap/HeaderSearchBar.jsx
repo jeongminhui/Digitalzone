@@ -45,7 +45,7 @@ const HeaderSearchBar = () => {
       } else if (list.txhash === data.searchValue) {
         if (TranUser) {
           // 트랜잭션 권한있으면
-          return navigate(`/transaction/${list.txnum.slice(1, -1)}`);
+          return navigate(`/transaction/${list.txnum[0]}`);
         } else {
           // 트랜잭션 권한없으면
           return Swal.fire({

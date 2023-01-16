@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,8 +12,12 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const BlockTable = ({ rows, clickHandler }) => {
+  //다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
@@ -47,7 +51,7 @@ const BlockTable = ({ rows, clickHandler }) => {
         allVariants: {
           fontFamily: "Noto Sans KR",
           fontSize: 14,
-          color: "#3d3d3d",
+          color: darkmode ? "var(--bg-color)" : "var(--dark-grey-color)",
         },
       },
       palette: {
@@ -97,7 +101,9 @@ const BlockTable = ({ rows, clickHandler }) => {
           boxShadow: "none",
         }}
       >
-        <TableContainer sx={{ bgcolor: "#fff" }}>
+        <TableContainer
+          sx={{ bgcolor: darkmode ? "var(--darkmode-color)" : "#fff" }}
+        >
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -106,7 +112,11 @@ const BlockTable = ({ rows, clickHandler }) => {
                     key={column.id}
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
-                    sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                    sx={{
+                      bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                      color: darkmode ? "#F0F4FB" : "#000000",
+                      fontWeight: "bold",
+                    }}
                     className={column.id}
                   >
                     {column.label}
@@ -128,14 +138,57 @@ const BlockTable = ({ rows, clickHandler }) => {
                       className="tableRow"
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
-                      <TableCell key={row.service}>{row.service}</TableCell>
-                      <TableCell key={row.blocknum} className="blue">
+                      <TableCell
+                        key={row.service}
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
+                      >
+                        {row.service}
+                      </TableCell>
+                      <TableCell
+                        key={row.blocknum}
+                        className="blue"
+                        style={{
+                          color: darkmode
+                            ? "var(--bg-color)"
+                            : "var(--point-color)",
+                        }}
+                      >
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                      <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
-                      <TableCell key={row.blksize}>{row.blksize} KB</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
+                      <TableCell
+                        key={row.createdt}
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
+                      >
+                        {row.createdt}
+                      </TableCell>
+                      <TableCell
+                        key={row.blockhash}
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
+                      >
+                        {row.blockhash}
+                      </TableCell>
+                      <TableCell
+                        key={row.blksize}
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
+                      >
+                        {row.blksize} KB
+                      </TableCell>
+                      <TableCell
+                        key={row.txnum}
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
+                      >
+                        {row.txnum.length}
+                      </TableCell>
                     </TableRow>
                   );
                 })}
