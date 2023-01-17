@@ -39,13 +39,13 @@ const HeaderSearchBar = () => {
     blockData.map((list) => {
       // 블록넘버
       if (list.blocknum === parseInt(data.searchValue)) {
-        setCurrentBlock(list.id-1);
-        return navigate(`/block/${list.blocknum}`);
+         setCurrentBlock(list.id-1);
+        navigate(`/block/${list.blocknum}`);
 
         // 블록해시
       } else if (list.blockhash === data.searchValue) {
         setCurrentBlock(list.id);
-        return navigate(`/block/${list.blocknum}`);
+         navigate(`/block/${list.blocknum}`);
 
         // 트랜잭션해시
       } else if (list.txhash === data.searchValue) {
