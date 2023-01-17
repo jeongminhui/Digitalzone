@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import ApexCharts from "react-apexcharts";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const BlockChartRight = ({ rows, containerStyle }) => {
   const [avr, setAvr] = useState({});
@@ -10,6 +11,10 @@ const BlockChartRight = ({ rows, containerStyle }) => {
     thirteen: 0,
     fourteen: 0,
   });
+
+  //다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   useEffect(() => {
     const timeFilter10 = rows.filter(
@@ -84,6 +89,7 @@ const BlockChartRight = ({ rows, containerStyle }) => {
             text: "평균 블록 크기 (KB)",
             align: "center",
             style: {
+              color: darkmode ? "var(--bg-color)" : "#000000",
               fontSize: "16px",
               fontWeight: "900",
               fontFamily: 'Noto Sans KR", sans-serif',
@@ -97,6 +103,22 @@ const BlockChartRight = ({ rows, containerStyle }) => {
           },
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
+            labels: {
+              style: {
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
+            },
           },
         }}
       ></ApexCharts>

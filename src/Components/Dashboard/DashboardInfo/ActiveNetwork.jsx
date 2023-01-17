@@ -18,8 +18,8 @@ const ActiveNetwork = (props) => {
           return item.ntwstatus === true;
         });
         setActive(dataFiltering);
-      } catch {
-        console.log("error");
+      } catch (err) {
+        console.log(err);
       }
     }
     getActive();

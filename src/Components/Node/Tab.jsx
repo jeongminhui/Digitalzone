@@ -100,9 +100,16 @@ export default function Tab({ rows }) {
         },
       },
       palette: {
+        text: {
+          primary: darkmode ? "#fff" : "#000",
+        },
+        primary: {
+          main: darkmode ? "#434c6c" : "#ebedf3",
+          contrastText: darkmode ? "#fff" : "#000",
+        },
         background: {
-          paper: "#F0F4FB",
-          content: "#ffffff",
+          paper: darkmode ? "#434c6c" : "#fff",
+          content: darkmode ? "#ffffff" : "#ebedf3",
         },
       },
     },
@@ -403,11 +410,14 @@ export default function Tab({ rows }) {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                sx={{ bgcolor: darkmode ? "var(--darkmode-color)" : "#fff" }}
+                sx={{
+                  bgcolor: darkmode ? "var(--darkmode-color)" : "#fff",
+                }}
               />
             </Paper>
             <Stack spacing={2}>
               <Pagination
+                color="primary"
                 className="pagination"
                 count={
                   rows.length % rowsPerPage === 0

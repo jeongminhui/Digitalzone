@@ -19,10 +19,14 @@ const EnrollService = () => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [networkData]);
@@ -87,7 +91,7 @@ const EnrollService = () => {
             defs={[
               linearGradientDef("gradient", [
                 { offset: 20, color: "inherit" },
-                { offset: 100, color: "inherit", opacity: 0.1 },
+                { offset: 100, color: "inherit", opacity: 0.3 },
               ]),
             ]}
             fill={[{ match: "*", id: "gradient" }]}

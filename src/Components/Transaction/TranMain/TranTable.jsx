@@ -62,9 +62,16 @@ const TranTable = ({ rows, clickHandler }) => {
         },
       },
       palette: {
+        text: {
+          primary: darkmode ? "#fff" : "#000",
+        },
+        primary: {
+          main: darkmode ? "#434c6c" : "#ebedf3",
+          contrastText: darkmode ? "#fff" : "#000",
+        },
         background: {
-          paper: "#F0F4FB",
-          content: "#ffffff",
+          paper: darkmode ? "#434c6c" : "#fff",
+          content: darkmode ? "#ffffff" : "#ebedf3",
         },
       },
     },
@@ -224,6 +231,7 @@ const TranTable = ({ rows, clickHandler }) => {
               <div className="pagenation">
                 <Stack spacing={2}>
                   <Pagination
+                    color="primary"
                     count={
                       rows.length % rowsPerPage === 0
                         ? parseInt(rows.length / rowsPerPage)
