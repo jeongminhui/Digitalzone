@@ -19,6 +19,8 @@ import { currentBlockSelector } from "../../../Recoil/Selector";
 import { blockSelector } from "../../../Recoil/Selector";
 
 const BlockInfo = () => {
+
+ 
   const { blocknum } = useParams();
 
   const currentBlock = useRecoilValue(currentBlockSelector);
