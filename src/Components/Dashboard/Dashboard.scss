@@ -46,7 +46,7 @@
           position: absolute;
           right: 0;
           bottom: 0;
-          border-radius: 10px;
+          border-radius: 5px;
           text-align: center;
           display: flex;
           flex-direction: column;
@@ -86,7 +86,7 @@
         width: 475px;
         height: 270px;
         position: relative;
-        border-radius: 10px;
+        border-radius: 5px;
 
         // 네트워크별 블록 생성시간
         &.NtwCreateBlock {

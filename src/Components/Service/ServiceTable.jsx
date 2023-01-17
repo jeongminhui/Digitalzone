@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -12,8 +12,21 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { currentBlockAtom } from "../../Recoil/Atom";
+import { useRecoilState } from "recoil";
+import Swal from "sweetalert2";
+import { useRecoilValue } from "recoil";
+import { loginSelector } from "../../Recoil/Selector";
+import { collection, getDoc, doc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const ServiceTable = (props) => {
+  //다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
+
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
     props;
 
@@ -54,13 +67,20 @@ const ServiceTable = (props) => {
         allVariants: {
           fontFamily: "Noto Sans KR",
           fontSize: 14,
-          color: "#3d3d3d",
+          color: darkmode ? "var(--bg-color)" : "var(--dark-grey-color)",
         },
       },
       palette: {
+        text: {
+          primary: darkmode ? "#fff" : "#000",
+        },
+        primary: {
+          main: darkmode ? "#434c6c" : "#ebedf3",
+          contrastText: darkmode ? "#fff" : "#000",
+        },
         background: {
-          paper: "#F0F4FB",
-          content: "#ffffff",
+          paper: darkmode ? "#434c6c" : "#fff",
+          content: darkmode ? "#ffffff" : "#ebedf3",
         },
       },
     },
@@ -99,7 +119,9 @@ const ServiceTable = (props) => {
   return (
     <ThemeProvider theme={theme}>
       <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
-        <TableContainer sx={{ bgcolor: "#fff" }}>
+        <TableContainer
+          sx={{ bgcolor: darkmode ? "var(--darkmode-color)" : "#fff" }}
+        >
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
@@ -108,7 +130,11 @@ const ServiceTable = (props) => {
                     key={column.id}
                     align={"center"}
                     style={{ minWidth: column.minWidth }}
-                    sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                    sx={{
+                      bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                      color: darkmode ? "#F0F4FB" : "#000000",
+                      fontWeight: "bold",
+                    }}
                     className={column.id}
                   >
                     {column.label}
@@ -128,23 +154,34 @@ const ServiceTable = (props) => {
                       key={idx}
                       className="tableRow"
                     >
-                      <TableCell
-                        key={row.service}
-                        className="blue"
-                        onClick={() =>
-                          moveServiceInfo(row.service, row.blocknum)
-                        }
-                        align="center"
+                      <Tooltip
+                        title="해당 노드의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.service}
-                      </TableCell>
+                        <TableCell
+                          key={row.service}
+                          className="blue"
+                          onClick={() =>
+                            moveServiceInfo(row.service, row.blocknum)
+                          }
+                          style={{
+                            color: darkmode
+                              ? "var(--bg-color)"
+                              : "var(--point-color)",
+                          }}
+                        >
+                          {row.service}
+                        </TableCell>
+                      </Tooltip>
 
                       <TableCell
                         key={row.createdt}
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
-                        align="center"
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
                       >
                         {row.createdt}
                       </TableCell>
@@ -153,51 +190,27 @@ const ServiceTable = (props) => {
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
-                        align="center"
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
                       >
                         {row.apitype}
                       </TableCell>
 
-                      <Tooltip
-                        title="해당 노드의 상세페이지로 이동합니다."
-                        arrow
+                      <TableCell
+                        key={row.nodename}
+                        onClick={() => moveNodeInfo(row.nodename)}
+                        align="center"
                       >
-                        <TableCell
-                          key={row.nodename}
-                          onClick={() => moveNodeInfo(row.nodename)}
-                          align="center"
-                        >
-                          {row.nodename}
-                        </TableCell>
-                      </Tooltip>
+                        {row.nodename}
+                      </TableCell>
 
-                      <Tooltip
-                        title="해당 트랜잭션의 상세페이지로 이동합니다."
-                        arrow
+                      <TableCell
+                        key={row.status}
+                        style={{
+                          color: darkmode ? "var(--bg-color)" : "#000000",
+                        }}
                       >
-                        <TableCell
-                          key={row.txnum}
-                          onClick={() => moveTxInfo(row.txnum)}
-                          align="center"
-                        >
-                          {row.txnum}
-                        </TableCell>
-                      </Tooltip>
-
-                      <Tooltip
-                        title="해당 블록의 상세페이지로 이동합니다."
-                        arrow
-                      >
-                        <TableCell
-                          key={row.blocknum}
-                          onClick={() => moveBlockInfo(row.blocknum, idx)}
-                          align="center"
-                        >
-                          {row.blocknum}
-                        </TableCell>
-                      </Tooltip>
-
-                      <TableCell key={row.status} align="center">
                         {row.status}
                       </TableCell>
                     </TableRow>
@@ -221,6 +234,7 @@ const ServiceTable = (props) => {
             <div className="pagenation">
               <Stack spacing={2}>
                 <Pagination
+                  color="primary"
                   count={
                     rows.length % rowsPerPage === 0
                       ? parseInt(rows.length / rowsPerPage)

@@ -14,6 +14,7 @@ const Globalstyle = createGlobalStyle`
 
   // 다크모드버튼, 유저버튼
   .HeaderBtn{
+    
     background-color: ${(props) => props.theme.white_to_darkgrey};
     box-shadow: ${(props) => props.theme.boxShadow_Header};
   }
@@ -132,6 +133,11 @@ const Globalstyle = createGlobalStyle`
   .nodeContent{
     color : ${(props) => props.theme.darkgrey_to_bg};
   }
+  
+
+  
+  
+ 
 
 `;
 

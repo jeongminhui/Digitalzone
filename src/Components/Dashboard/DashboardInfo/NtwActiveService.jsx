@@ -18,10 +18,14 @@ const NtwActiveService = () => {
   useEffect(() => {
     async function getActive() {
       const data = await serviceData;
-      const dataFiltering = data.filter((item) => {
-        return item.status === "성공";
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.status === "성공";
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [serviceData]);
