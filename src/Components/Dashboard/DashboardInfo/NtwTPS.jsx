@@ -23,10 +23,14 @@ const NtwTPS = () => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [networkData]);
@@ -196,7 +200,7 @@ const NtwTPS = () => {
   };
 
   return (
-    <div className="NtwTPS">
+    <div className="NtwTPS Dashboard_chartBox">
       <Link to="/transaction">
         <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
         <div className="Dashboard_chart">

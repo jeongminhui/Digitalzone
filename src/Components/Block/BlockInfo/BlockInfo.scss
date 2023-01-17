@@ -7,7 +7,7 @@
     padding: 20px 70px;
     margin-bottom: 100px;
 
-    .mainTitle{
+    .mainTitle {
       min-width: 200px;
     }
 
@@ -65,10 +65,8 @@
 
     .tableWrap {
       width: 91%;
-      box-shadow: var(--box-shadow);
       margin: 40px auto;
       padding: 30px;
-      background-color: #fff;
 
       .table {
         border-spacing: 25px;
@@ -76,13 +74,11 @@
           font-size: 14px;
           font-weight: bold;
           min-width: 100px;
-          color: #3d3d3d;
         }
 
         .infoContent {
           font-size: 14px;
           padding-left: 30px;
-          color: #3d3d3d;
         }
 
         .copyButton {
@@ -134,7 +130,7 @@
   }
 }
 .txdataBox {
-  background-color: #f2f3f6;
+  // background-color: #f2f3f6;
   padding: 30px 20px;
   margin-top: 30px;
 }

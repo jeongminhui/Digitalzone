@@ -2,11 +2,24 @@
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
+  font-family: "Noto Sans KR", sans-serif;
 }
 .userList .wrapper {
   width: 100%;
   padding: 20px 70px;
   margin-bottom: 100px;
+}
+.userList .wrapper .css-1ndpvdd-MuiTableCell-root {
+  font-weight: 700;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.userList .wrapper .MuiTableCell-root MuiTableCell-body {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+}
+.userList .wrapper .css-1yhpg23-MuiTableCell-root {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
 }
 .userList .wrapper .subTitle {
   margin-bottom: 30px;
@@ -35,6 +48,11 @@
   display: inline-block;
 }
 
-.ant-modal .ant-modal-content {
-  width: fit-content;
+.ant-form-item .ant-form-item-label > label::after {
+  content: "";
+}
+
+.UserAdd_footer button {
+  width: 120px;
+  height: 35px;
 }

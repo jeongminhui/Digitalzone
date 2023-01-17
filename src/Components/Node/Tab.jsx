@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./Node.scss";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -21,11 +21,16 @@ import Swal from "sweetalert2";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../Recoil/Selector";
 import Refresh from "./Refresh";
+import { ThemeContext } from "../Context/ThemeContext";
 
 export default function Tab({ rows }) {
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
   const [NodeUser, setNodeUser] = useState(false);
+
+  //다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   useEffect(() => {
     setNodeUser(loginUser?.useradmin.node);
@@ -91,13 +96,20 @@ export default function Tab({ rows }) {
         allVariants: {
           fontFamily: "Noto Sans KR",
           fontSize: 14,
-          color: "#3d3d3d",
+          color: darkmode ? "var(--bg-color)" : "var(--dark-grey-color)",
         },
       },
       palette: {
+        text: {
+          primary: darkmode ? "#fff" : "#000",
+        },
+        primary: {
+          main: darkmode ? "#434c6c" : "#ebedf3",
+          contrastText: darkmode ? "#fff" : "#000",
+        },
         background: {
-          paper: "#F0F4FB",
-          content: "#ffffff",
+          paper: darkmode ? "#434c6c" : "#fff",
+          content: darkmode ? "#ffffff" : "#ebedf3",
         },
       },
     },
@@ -159,7 +171,10 @@ export default function Tab({ rows }) {
               sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}
             >
               <TableContainer
-                sx={{ maxHeight: 440, bgcolor: "background.content" }}
+                sx={{
+                  maxHeight: 440,
+                  bgcolor: darkmode ? "var(--darkmode-color)" : "#fff",
+                }}
               >
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
@@ -173,7 +188,8 @@ export default function Tab({ rows }) {
                             color: column.color,
                           }}
                           sx={{
-                            bgcolor: "background.paper",
+                            bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                            color: darkmode ? "#F0F4FB" : "#000000",
                             fontWeight: "bold",
                           }}
                         >
@@ -199,42 +215,62 @@ export default function Tab({ rows }) {
                             <TableCell
                               key={row.service}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.service}
                             </TableCell>
                             <TableCell
                               key={row.ndstatus}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.ndstatus}
                             </TableCell>
                             <TableCell
                               key={row.nodename}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer", color: "#4669f5" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode
+                                  ? "var(--bg-color)"
+                                  : "var(--point-color)",
+                              }}
                             >
                               {row.nodename}
                             </TableCell>
                             <TableCell
                               key={row.ndtype}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.ndtype}
                             </TableCell>
                             <TableCell
                               key={row.service_dcc}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.service_dcc}
                             </TableCell>
                             <TableCell
                               key={row.ipaddress}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.ipaddress}
                             </TableCell>
@@ -243,7 +279,10 @@ export default function Tab({ rows }) {
                               onClick={() =>
                                 clickBlockHandler(row.blocknum, idx)
                               }
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.blocknum}
                             </TableCell>
@@ -252,13 +291,14 @@ export default function Tab({ rows }) {
                               onClick={() =>
                                 clickBlockHandler(row.blocknum, idx)
                               }
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.createdt}
                             </TableCell>
-                            <TableCell key={row.tps}>
-                              {row.tps}
-                            </TableCell>
+                            <TableCell key={row.tps}>{row.tps}</TableCell>
                             <TableCell key={row.latency}>
                               {row.latency}
                             </TableCell>
@@ -273,42 +313,62 @@ export default function Tab({ rows }) {
                             <TableCell
                               key={row.service}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.service}
                             </TableCell>
                             <TableCell
                               key={row.ndstatus}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.ndstatus}
                             </TableCell>
                             <TableCell
                               key={row.nodename}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer", color: "#4669f5" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode
+                                  ? "var(--bg-color)"
+                                  : "var(--point-color)",
+                              }}
                             >
                               {row.nodename}
                             </TableCell>
                             <TableCell
                               key={row.ndtype}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.ndtype}
                             </TableCell>
                             <TableCell
                               key={row.service_dcc}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.service_dcc}
                             </TableCell>
                             <TableCell
                               key={row.ipaddress}
                               onClick={() => clickHandler(row.nodename)}
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               http://xxx.xx.xxx.xxx:xxxxx
                             </TableCell>
@@ -317,7 +377,10 @@ export default function Tab({ rows }) {
                               onClick={() =>
                                 clickBlockHandler(row.blocknum, idx)
                               }
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.blocknum}
                             </TableCell>
@@ -326,7 +389,10 @@ export default function Tab({ rows }) {
                               onClick={() =>
                                 clickBlockHandler(row.blocknum, idx)
                               }
-                              style={{ cursor: "pointer" }}
+                              style={{
+                                cursor: "pointer",
+                                color: darkmode ? "var(--bg-color)" : "#000000",
+                              }}
                             >
                               {row.createdt}
                             </TableCell>
@@ -344,11 +410,14 @@ export default function Tab({ rows }) {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                sx={{ bgcolor: "background.content" }}
+                sx={{
+                  bgcolor: darkmode ? "var(--darkmode-color)" : "#fff",
+                }}
               />
             </Paper>
             <Stack spacing={2}>
               <Pagination
+                color="primary"
                 className="pagination"
                 count={
                   rows.length % rowsPerPage === 0
@@ -359,7 +428,7 @@ export default function Tab({ rows }) {
                 onChange={handleChange}
                 showFirstButton
                 showLastButton
-                sx={{ bgcolor: "background.content" }}
+                sx={{ bgcolor: darkmode ? "var(--darkmode-color)" : "#fff" }}
               />
             </Stack>
           </ThemeProvider>

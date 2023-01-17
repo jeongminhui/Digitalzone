@@ -2,12 +2,28 @@
   width: calc(100% - 160px);
   min-height: 100vh;
   position: relative;
+  font-family: "Noto Sans KR", sans-serif;
 
   .wrapper {
     width: 100%;
     padding: 20px 70px;
     margin-bottom: 100px;
 
+    // 테이블 해더
+    .css-1ndpvdd-MuiTableCell-root {
+      font-weight: 700;
+      font-family: "Noto Sans KR", sans-serif;
+    }
+
+    //테이블 바디
+    .MuiTableCell-root MuiTableCell-body {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 400;
+    }
+    .css-1yhpg23-MuiTableCell-root {
+      font-family: "Noto Sans KR", sans-serif;
+      font-weight: 400;
+    }
     .subTitle {
       margin-bottom: 30px;
       display: flex;
@@ -42,6 +58,11 @@
     }
   }
 }
-.ant-modal .ant-modal-content {
-  width: fit-content;
+.ant-form-item .ant-form-item-label > label::after {
+  content: "";
+}
+
+.UserAdd_footer button {
+  width: 120px;
+  height: 35px;
 }

@@ -62,7 +62,7 @@ const BlockInfo = () => {
       <div className="wrap">
         <h1 className="mainTitle">블록</h1>
         <div className="subTitle">
-          <h3>
+          <h3 className="detailInfoTitle">
             {" "}
             <span className="subBar">|</span> 블록 상세
           </h3>
@@ -76,7 +76,7 @@ const BlockInfo = () => {
           block={blockData}
           currentBlock={currentBlock}
         />
-        <div className="tableWrap">
+        <div className="tableWrap detailInfoBox">
           <table className="table">
             <tbody>
               <tr>
