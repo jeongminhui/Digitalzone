@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const BlockChartLeft = ({ rows, containerStyle }) => {
   const [ten, setTen] = useState({});
+
+  // 다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   useEffect(() => {
     const timeFilter10 = rows.filter(
@@ -36,8 +41,10 @@ const BlockChartLeft = ({ rows, containerStyle }) => {
         series={[
           {
             name: "시간당 블록 수(개)",
-            data:    Object.keys(ten).length > 4
-            ? [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen] : [0],
+            data:
+              Object.keys(ten).length > 4
+                ? [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen]
+                : [0],
           },
         ]}
         options={{
@@ -55,6 +62,7 @@ const BlockChartLeft = ({ rows, containerStyle }) => {
             text: "시간당 블록 수(개)",
             align: "center",
             style: {
+              color: darkmode ? "var(--bg-color)" : "#000000",
               fontSize: "16px",
               fontWeight: "900",
               fontFamily: 'Noto Sans KR", sans-serif',
@@ -67,6 +75,22 @@ const BlockChartLeft = ({ rows, containerStyle }) => {
           },
           xaxis: {
             categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
+            labels: {
+              style: {
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
+            },
           },
         }}
       ></ApexCharts>

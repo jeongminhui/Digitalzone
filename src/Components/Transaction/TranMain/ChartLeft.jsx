@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
 import { collection, getDocs } from "firebase/firestore";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const ChartLeft = () => {
   const [ten, setTen] = useState({});
   const [rows, setRows] = useState([]);
+
+  // 다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   const transaction = collection(db, "transaction");
 
@@ -61,53 +66,64 @@ const ChartLeft = () => {
   }, [rows]);
   return (
     <div className="chart" style={containerStyle}>
-        <ApexCharts
-          type="area"
-          series={[
-            {
-              name: "시간당 트랜잭션 수(개)",
-              data:
-                Object.keys(ten).length > 4
-                  ? [
-                      ten.ten,
-                      ten.eleven,
-                      ten.twelve,
-                      ten.thirteen,
-                      ten.fourteen,
-                    ]
-                  : [0],
+      <ApexCharts
+        type="area"
+        series={[
+          {
+            name: "시간당 트랜잭션 수(개)",
+            data:
+              Object.keys(ten).length > 4
+                ? [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen]
+                : [0],
+          },
+        ]}
+        options={{
+          chart: {
+            height: 300,
+            width: 500,
+            toolbar: {
+              show: false,
             },
-          ]}
-          options={{
-            chart: {
-              height: 300,
-              width: 500,
-              toolbar: {
-                show: false,
-              },
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          title: {
+            text: "시간당 트랜잭션 수(개)",
+            align: "center",
+            style: {
+              color: darkmode ? "var(--bg-color)" : "#000000",
+              fontSize: "16px",
+              fontWeight: "900",
+              fontFamily: 'Noto Sans KR", sans-serif',
             },
-            dataLabels: {
-              enabled: false
-            },
-            title: {
-              text: "시간당 트랜잭션 수(개)",
-              align: "center",
+          },
+          stroke: {
+            //선의 커브를 부드럽게 하고, 두께를 3으로 지정
+            curve: "smooth",
+            width: 3,
+          },
+          xaxis: {
+            categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
+            labels: {
               style: {
-                fontSize: "16px",
-                fontWeight: "900",
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
                 fontFamily: 'Noto Sans KR", sans-serif',
               },
             },
-            stroke: {
-              //선의 커브를 부드럽게 하고, 두께를 3으로 지정
-              curve: "smooth",
-              width: 3,
+          },
+          yaxis: {
+            labels: {
+              style: {
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
             },
-            xaxis: {
-              categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
-            },
-          }}
-        ></ApexCharts>
+          },
+        }}
+      ></ApexCharts>
     </div>
   );
 };

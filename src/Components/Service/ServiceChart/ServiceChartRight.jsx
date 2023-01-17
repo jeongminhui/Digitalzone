@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 import { useRecoilValue } from "recoil";
 import { serviceSelector } from "../../../Recoil/Selector";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const ServiceChartRight = ({ rows }) => {
   const serviceData = useRecoilValue(serviceSelector);
   const [apiType, setapiType] = useState({});
- 
+
+  // 다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
+
   useEffect(() => {
     const apiFilter1 = rows.filter((item) => item.apitype === "인증서 등록");
     const apiFilter2 = rows.filter(
@@ -35,7 +40,10 @@ const ServiceChartRight = ({ rows }) => {
         series={[
           {
             name: "API 호출 상위 Top5",
-            data:  Object.keys(apiType).length > 4 ? [apiType.A, apiType.B, apiType.C, apiType.D, apiType.E]: [0],
+            data:
+              Object.keys(apiType).length > 4
+                ? [apiType.A, apiType.B, apiType.C, apiType.D, apiType.E]
+                : [0],
           },
         ]}
         options={{
@@ -49,23 +57,24 @@ const ServiceChartRight = ({ rows }) => {
               show: false,
             },
           },
-           dataLabels: {
+          dataLabels: {
             enabled: false,
           },
           title: {
             text: "API 호출 상위 Top5",
             align: "center",
             style: {
-              fontSize: '16px',
+              color: darkmode ? "var(--bg-color)" : "#000000",
+              fontSize: "16px",
               fontFamily: 'Noto Sans KR", sans-serif',
               fontWeight: "bold",
-          },
+            },
           },
           plotOptions: {
             bar: {
               borderRadius: 1,
               horizontal: false,
-              columnWidth: '30%',
+              columnWidth: "30%",
             },
           },
 
@@ -73,9 +82,9 @@ const ServiceChartRight = ({ rows }) => {
             categories: [
               "인증서등록",
               `콘텐츠검증`,
-               `콘텐츠등록 `,
-                `DID DOCU등록`,
-                `IPFS업로드`,
+              `콘텐츠등록 `,
+              `DID DOCU등록`,
+              `IPFS업로드`,
             ],
             // position: "bottom",
             overwriteCategories: undefined,
@@ -84,13 +93,20 @@ const ServiceChartRight = ({ rows }) => {
               // rotate: 0,
               style: {
                 fontSize: "11px",
-                  colors: [],
-                  fontFamily: 'Noto Sans KR", sans-serif',
-              },
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
               },
             },
+          },
           yaxis: {
             // width: "-10%",
+            labels: {
+              style: {
+                fontSize: "12px",
+                colors: darkmode ? "var(--bg-color)" : "#000000",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
+            },
           },
           dataLabels: {
             enabled: false,

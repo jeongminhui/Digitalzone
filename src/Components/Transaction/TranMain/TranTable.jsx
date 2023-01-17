@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -14,6 +14,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { currentBlockAtom } from "../../../Recoil/Atom";
 import { useRecoilState } from "recoil";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const TranTable = ({ rows, clickHandler }) => {
   const navigate = useNavigate();
@@ -21,6 +22,9 @@ const TranTable = ({ rows, clickHandler }) => {
   // recoil Atom에서 가져오기
   const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
 
+  // 다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   const columns = [
     { id: "service", label: "서비스명", minWidth: 80 },
@@ -54,13 +58,20 @@ const TranTable = ({ rows, clickHandler }) => {
         allVariants: {
           fontFamily: "Noto Sans KR",
           fontSize: 14,
-          color: "#3d3d3d",
+          color: darkmode ? "var(--bg-color)" : "var(--dark-grey-color)",
         },
       },
       palette: {
+        text: {
+          primary: darkmode ? "#fff" : "#000",
+        },
+        primary: {
+          main: darkmode ? "#434c6c" : "#ebedf3",
+          contrastText: darkmode ? "#fff" : "#000",
+        },
         background: {
-          paper: "#F0F4FB",
-          content: "#ffffff",
+          paper: darkmode ? "#434c6c" : "#fff",
+          content: darkmode ? "#ffffff" : "#ebedf3",
         },
       },
     },
@@ -105,7 +116,9 @@ const TranTable = ({ rows, clickHandler }) => {
     <div className="tableWrapper">
       <ThemeProvider theme={theme}>
         <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
-          <TableContainer sx={{ bgcolor: "#fff" }}>
+          <TableContainer
+            sx={{ bgcolor: darkmode ? "var(--darkmode-color)" : "#fff" }}
+          >
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
                 <TableRow>
@@ -114,13 +127,17 @@ const TranTable = ({ rows, clickHandler }) => {
                       key={column.label}
                       align={column.align}
                       style={{ minWidth: column.minWidth }}
-                      sx={{ bgcolor: "#F0F4FB", fontWeight: "bold" }}
+                      sx={{
+                        bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                        color: darkmode ? "#F0F4FB" : "#000000",
+                        fontWeight: "bold",
+                      }}
                       className={column.id}
                     >
                       {column.label}
                     </TableCell>
                   ))}
-                </TableRow> 
+                </TableRow>
               </TableHead>
               <TableBody>
                 {rows
@@ -136,16 +153,60 @@ const TranTable = ({ rows, clickHandler }) => {
                         style={{ cursor: "pointer" }}
                       >
                         {/* 이부분 map으로 돌리셔도 됩니다! */}
-                        <TableCell key={row.service}  onClick={() => clickHandler(row.txnum, idx)} >{row.service}</TableCell>
-                        <TableCell key={row.txnum}  onClick={() => clickHandler(row.txnum, idx)}className="blue">
+                        <TableCell
+                          key={row.service}
+                          onClick={() => clickHandler(row.txnum, idx)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
+                        >
+                          {row.service}
+                        </TableCell>
+                        <TableCell
+                          key={row.txnum}
+                          onClick={() => clickHandler(row.txnum, idx)}
+                          className="blue"
+                          style={{
+                            color: darkmode
+                              ? "var(--bg-color)"
+                              : "var(--point-color)",
+                          }}
+                        >
                           {row.txnum}
                         </TableCell>
-                        <TableCell key={row.createdt}  onClick={() => clickHandler(row.txnum, idx)}>{row.createdt}</TableCell>
-                        <TableCell key={row.txhash}  onClick={() => clickHandler(row.txnum, idx)}>{row.txhash}</TableCell>
-                        <TableCell key={row.txsize}  onClick={() => clickHandler(row.txnum, idx)}>{row.txsize} KB</TableCell>
+                        <TableCell
+                          key={row.createdt}
+                          onClick={() => clickHandler(row.txnum, idx)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
+                        >
+                          {row.createdt}
+                        </TableCell>
+                        <TableCell
+                          key={row.txhash}
+                          onClick={() => clickHandler(row.txnum, idx)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
+                        >
+                          {row.txhash}
+                        </TableCell>
+                        <TableCell
+                          key={row.txsize}
+                          onClick={() => clickHandler(row.txnum, idx)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
+                        >
+                          {row.txsize} KB
+                        </TableCell>
                         <TableCell
                           key={row.blocknum}
                           onClick={() => clickBlockHandler(row.blocknum, idx)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
                         >
                           {row.blocknum}{" "}
                         </TableCell>
@@ -170,6 +231,7 @@ const TranTable = ({ rows, clickHandler }) => {
               <div className="pagenation">
                 <Stack spacing={2}>
                   <Pagination
+                    color="primary"
                     count={
                       rows.length % rowsPerPage === 0
                         ? parseInt(rows.length / rowsPerPage)
