@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./BlockInfo.scss";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -21,10 +21,15 @@ import { width } from "@mui/system";
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../Recoil/Selector";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const TxInfo = ({ txnum }) => {
   const txCollection = collection(db, "transaction");
   const [txInfo, setTxInfo] = useState({});
+
+  // 다크모드
+  const darkmodeTheme = useContext(ThemeContext);
+  const darkmode = darkmodeTheme.isDarkMode;
 
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
@@ -130,7 +135,10 @@ const TxInfo = ({ txnum }) => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
+        <Paper
+          sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}
+          style={{ backgroundColor: "transparent" }}
+        >
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -142,7 +150,12 @@ const TxInfo = ({ txnum }) => {
                       sx={{ fontWeight: "bold" }}
                       style={{
                         minWidth: column.minWidth,
-                        backgroundColor: column.backgroundColor,
+                        backgroundColor: darkmode
+                          ? "#434c6c"
+                          : `${column.backgroundColor}`,
+                        color: darkmode
+                          ? "var(--bg-color)"
+                          : "var(--dark-grey-color)",
                       }}
                     >
                       {column.label}
@@ -158,19 +171,68 @@ const TxInfo = ({ txnum }) => {
                   key={txInfo.code}
                   className="tableRow"
                 >
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)}>
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    style={{
+                      backgroundColor: darkmode
+                        ? "var(--dark-color)"
+                        : "inherit",
+                      color: darkmode
+                        ? "var(--bg-color)"
+                        : "var(--dark-grey-color)",
+                    }}
+                  >
                     {txInfo.txnum}
                   </TableCell>
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)}>
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    style={{
+                      backgroundColor: darkmode
+                        ? "var(--dark-color)"
+                        : "inherit",
+                      color: darkmode
+                        ? "var(--bg-color)"
+                        : "var(--dark-grey-color)",
+                    }}
+                  >
                     {txInfo.createdt}
                   </TableCell>
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)}>
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    style={{
+                      backgroundColor: darkmode
+                        ? "var(--dark-color)"
+                        : "inherit",
+                      color: darkmode
+                        ? "var(--bg-color)"
+                        : "var(--dark-grey-color)",
+                    }}
+                  >
                     {txInfo.txhash}
                   </TableCell>
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)}>
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    style={{
+                      backgroundColor: darkmode
+                        ? "var(--dark-color)"
+                        : "inherit",
+                      color: darkmode
+                        ? "var(--bg-color)"
+                        : "var(--dark-grey-color)",
+                    }}
+                  >
                     {txInfo.txsize} KB
                   </TableCell>
-                  <TableCell>
+                  <TableCell
+                    style={{
+                      backgroundColor: darkmode
+                        ? "var(--dark-color)"
+                        : "inherit",
+                      color: darkmode
+                        ? "var(--bg-color)"
+                        : "var(--dark-grey-color)",
+                    }}
+                  >
                     <button
                       type="button"
                       onClick={showModal}
@@ -178,7 +240,11 @@ const TxInfo = ({ txnum }) => {
                     >
                       <HiOutlineDocumentText
                         className="modalIcon"
-                        style={{ stroke: "#3d3d3d" }}
+                        style={{
+                          stroke: darkmode
+                            ? "var(--bg-color)"
+                            : "var(--dark-grey-color)",
+                        }}
                       />
                     </button>
                   </TableCell>

@@ -25,10 +25,14 @@ const NtwCreateBlock = () => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [networkData]);
