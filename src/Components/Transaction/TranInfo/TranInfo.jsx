@@ -10,8 +10,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { currentBlockAtom } from "../../../Recoil/Atom";
 import { useRecoilState } from "recoil";
 import { useRecoilValue } from "recoil";
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import {Tooltip} from "@mui/material";
 
 const TranInfo = () => {
   const { txnum } = useParams();
@@ -113,15 +112,15 @@ const TranInfo = () => {
                 <td className="infoContent">{transactionInfo.txsize}</td>
               </tr>
               <tr>
-              <Tooltip title="Add" arrow>
                 <td className="infoTitle">블록번호</td>
-                <td
-                  className="infoContent"
-                  onClick={() => clickBlockHandler()}
-                  style={{ cursor: "pointer" }}
-                >
-                  {transactionInfo.blocknum}
-                </td>
+                <Tooltip title="해당 블록의 상세페이지로 이동합니다." placement="bottom-start">
+                  <td
+                    className="infoContent"
+                    onClick={() => clickBlockHandler()}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {transactionInfo.blocknum}
+                  </td>
                 </Tooltip>
               </tr>
               <tr>
