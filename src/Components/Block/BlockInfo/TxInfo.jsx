@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./BlockInfo.scss";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
@@ -12,29 +12,22 @@ import { async } from "@firebase/util";
 import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Swal from "sweetalert2";
-import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Tooltip } from "@mui/material";
 
-import { Button, Modal } from "antd";
-import { width } from "@mui/system";
+import { Modal } from "antd";
 
 import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../Recoil/Selector";
 import { useNavigate } from "react-router-dom";
-import { ThemeContext } from "../../Context/ThemeContext";
 
 const TxInfo = ({ txnum }) => {
   const txCollection = collection(db, "transaction");
   const [txInfo, setTxInfo] = useState({});
 
-  // 다크모드
-  const darkmodeTheme = useContext(ThemeContext);
-  const darkmode = darkmodeTheme.isDarkMode;
-
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
-  const [tranUser, setTranUser] = useState(true);
-  const [tranNum, setTranNum] = useState("");
+  const [tranUser, setTranUser] = useState(false);
 
   useEffect(() => {
     setTranUser(loginUser?.useradmin.transaction);
@@ -43,7 +36,7 @@ const TxInfo = ({ txnum }) => {
   useEffect(() => {
     async function getBlockInfo() {
       // 트랜잭션 상세 정보 로드
-      const txRef = doc(txCollection, String(txnum));
+      const txRef = doc(txCollection, txnum);
       const txdata = await getDoc(txRef);
       setTxInfo(txdata.data());
     }
@@ -66,30 +59,35 @@ const TxInfo = ({ txnum }) => {
       label: "트랜잭션번호",
       minWidth: 110,
       backgroundColor: "#F0F4FB",
+      align: "center",
     },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 60,
       backgroundColor: "#F0F4FB",
+      align: "center",
     },
     {
       id: "txhash",
       label: "트랜잭션해시",
       minWidth: 170,
       backgroundColor: "#F0F4FB",
+      align: "center",
     },
     {
       id: "txsize",
       label: "트랜잭션크기",
       minWidth: 120,
       backgroundColor: "#F0F4FB",
+      align: "center",
     },
     {
       id: "txdata",
       label: "데이터",
       minWidth: 80,
       backgroundColor: "#F0F4FB",
+      align: "center",
     },
   ];
 
@@ -102,6 +100,7 @@ const TxInfo = ({ txnum }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -125,6 +124,7 @@ const TxInfo = ({ txnum }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -133,12 +133,9 @@ const TxInfo = ({ txnum }) => {
   };
 
   return (
-    <div>
+    <div className="txInfoTable">
       <ThemeProvider theme={theme}>
-        <Paper
-          sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}
-          style={{ backgroundColor: "transparent" }}
-        >
+        <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -150,12 +147,7 @@ const TxInfo = ({ txnum }) => {
                       sx={{ fontWeight: "bold" }}
                       style={{
                         minWidth: column.minWidth,
-                        backgroundColor: darkmode
-                          ? "#434c6c"
-                          : `${column.backgroundColor}`,
-                        color: darkmode
-                          ? "var(--bg-color)"
-                          : "var(--dark-grey-color)",
+                        backgroundColor: column.backgroundColor,
                       }}
                     >
                       {column.label}
@@ -171,83 +163,42 @@ const TxInfo = ({ txnum }) => {
                   key={txInfo.code}
                   className="tableRow"
                 >
+                  
+                    <TableCell
+                      onClick={() => clickHandler(txInfo.txnum)}
+                      align="center"
+                    >
+                      {txInfo.txnum}
+                    </TableCell>
+        
                   <TableCell
                     onClick={() => clickHandler(txInfo.txnum)}
-                    style={{
-                      backgroundColor: darkmode
-                        ? "var(--dark-color)"
-                        : "inherit",
-                      color: darkmode
-                        ? "var(--bg-color)"
-                        : "var(--dark-grey-color)",
-                    }}
-                  >
-                    {txInfo.txnum}
-                  </TableCell>
-                  <TableCell
-                    onClick={() => clickHandler(txInfo.txnum)}
-                    style={{
-                      backgroundColor: darkmode
-                        ? "var(--dark-color)"
-                        : "inherit",
-                      color: darkmode
-                        ? "var(--bg-color)"
-                        : "var(--dark-grey-color)",
-                    }}
+                    align="center"
                   >
                     {txInfo.createdt}
                   </TableCell>
                   <TableCell
                     onClick={() => clickHandler(txInfo.txnum)}
-                    style={{
-                      backgroundColor: darkmode
-                        ? "var(--dark-color)"
-                        : "inherit",
-                      color: darkmode
-                        ? "var(--bg-color)"
-                        : "var(--dark-grey-color)",
-                    }}
+                    align="center"
                   >
                     {txInfo.txhash}
                   </TableCell>
                   <TableCell
                     onClick={() => clickHandler(txInfo.txnum)}
-                    style={{
-                      backgroundColor: darkmode
-                        ? "var(--dark-color)"
-                        : "inherit",
-                      color: darkmode
-                        ? "var(--bg-color)"
-                        : "var(--dark-grey-color)",
-                    }}
+                    align="center"
                   >
                     {txInfo.txsize} KB
                   </TableCell>
-                  <TableCell
-                    style={{
-                      backgroundColor: darkmode
-                        ? "var(--dark-color)"
-                        : "inherit",
-                      color: darkmode
-                        ? "var(--bg-color)"
-                        : "var(--dark-grey-color)",
-                    }}
-                  >
-                    <button
-                      type="button"
-                      onClick={showModal}
-                      className="modalBtn"
-                    >
+                  <Tooltip title="해당 트랜잭션의 상세 데이터를 보여줍니다." arrow>
+                  <TableCell onClick={showModal} align="center">
+                    <button type="button" className="modalBtn">
                       <HiOutlineDocumentText
                         className="modalIcon"
-                        style={{
-                          stroke: darkmode
-                            ? "var(--bg-color)"
-                            : "var(--dark-grey-color)",
-                        }}
+                        style={{ stroke: "#3d3d3d" }}
                       />
                     </button>
                   </TableCell>
+                  </Tooltip>
                 </TableRow>
               </TableBody>
             </Table>
@@ -260,6 +211,7 @@ const TxInfo = ({ txnum }) => {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={[]}
+        centered={true}
       >
         <p className="txdataBox">{JSON.stringify(txInfo.txdata, null, 2)}</p>
       </Modal>

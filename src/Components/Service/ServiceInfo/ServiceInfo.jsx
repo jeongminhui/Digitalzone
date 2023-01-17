@@ -13,6 +13,7 @@ import { useRecoilState } from "recoil";
 import Swal from "sweetalert2";
 import { loginSelector } from "../../../Recoil/Selector";
 import { useRecoilValue } from "recoil";
+import Tooltip from "@mui/material/Tooltip";
 
 const ServiceInfo = () => {
   const { blocknum } = useParams();
@@ -127,39 +128,55 @@ const ServiceInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">노드명</td>
-                <td
-                  className="infoContent"
-                  onClick={() => {
-                    moveNodeInfo();
-                  }}
-                  style={{ cursor: "pointer" }}
+                <Tooltip
+                  title="해당 노드의 상세페이지로 이동합니다."
+                  placement="bottom-start"
                 >
-                  {serviceInfo.nodename}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => {
+                      moveNodeInfo();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.nodename}
+                  </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">트랜잭션 번호</td>
-                <td
-                  className="infoContent"
-                  onClick={() => {
-                    moveTxInfo();
-                  }}
-                  style={{ cursor: "pointer" }}
+
+                <Tooltip
+                  title="해당 트랜잭션의 상세페이지로 이동합니다."
+                  placement="bottom-start"
                 >
-                  {serviceInfo.txnum}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => {
+                      moveTxInfo();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.txnum}
+                  </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">트랜잭션 해시</td>
-                <td
-                  className="infoContent"
-                  onClick={() => {
-                    moveTxInfo();
-                  }}
-                  style={{ cursor: "pointer" }}
+                <Tooltip
+                  title="해당 트랜잭션의 상세페이지로 이동합니다."
+                  placement="bottom-start"
                 >
-                  {serviceInfo.txhash}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => {
+                      moveTxInfo();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.txhash}
+                  </td>
+                </Tooltip>
                 <td>
                   <button
                     className="copyButton"
@@ -187,13 +204,18 @@ const ServiceInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">블록 번호</td>
-                <td
-                  className="infoContent"
-                  onClick={() => clickBlockHandler()}
-                  style={{ cursor: "pointer" }}
+                <Tooltip
+                  title="해당 블록의 상세페이지로 이동합니다."
+                  placement="bottom-start"
                 >
-                  {serviceInfo.blocknum}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => clickBlockHandler()}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.blocknum}
+                  </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">상태</td>

@@ -11,7 +11,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { currentBlockAtom } from "../../Recoil/Atom";
 import { useRecoilState } from "recoil";
@@ -128,7 +128,7 @@ const ServiceTable = (props) => {
                 {columns.map((column) => (
                   <TableCell
                     key={column.id}
-                    align={column.align}
+                    align={"center"}
                     style={{ minWidth: column.minWidth }}
                     sx={{
                       bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
@@ -151,13 +151,13 @@ const ServiceTable = (props) => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={idx}
                       className="tableRow"
                     >
-                      {/* 이부분 map으로 돌리셔도 됩니다! */}
                       <TableCell
                         key={row.service}
                         className="blue"
+                        align="center"
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
@@ -169,8 +169,10 @@ const ServiceTable = (props) => {
                       >
                         {row.service}
                       </TableCell>
+
                       <TableCell
                         key={row.createdt}
+                        align="center"
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
@@ -182,6 +184,7 @@ const ServiceTable = (props) => {
                       </TableCell>
                       <TableCell
                         key={row.apitype}
+                        align="center"
                         onClick={() =>
                           moveServiceInfo(row.service, row.blocknum)
                         }
@@ -191,35 +194,55 @@ const ServiceTable = (props) => {
                       >
                         {row.apitype}
                       </TableCell>
-                      <TableCell
-                        key={row.nodename}
-                        onClick={() => moveNodeInfo(row.nodename)}
-                        style={{
-                          color: darkmode ? "var(--bg-color)" : "#000000",
-                        }}
+
+                      <Tooltip
+                        title="해당 노드의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.nodename}
-                      </TableCell>
-                      <TableCell
-                        key={row.txnum}
-                        onClick={() => moveTxInfo(row.txnum)}
-                        style={{
-                          color: darkmode ? "var(--bg-color)" : "#000000",
-                        }}
+                        <TableCell
+                          key={row.nodename}
+                          align="center"
+                          onClick={() => moveNodeInfo(row.nodename)}
+                        >
+                          {row.nodename}
+                        </TableCell>
+                      </Tooltip>
+
+                      <Tooltip
+                        title="해당 트랜잭션의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.txnum}
-                      </TableCell>
-                      <TableCell
-                        key={row.blocknum}
-                        onClick={() => moveBlockInfo(row.blocknum, idx)}
-                        style={{
-                          color: darkmode ? "var(--bg-color)" : "#000000",
-                        }}
+                        <TableCell
+                          key={row.txnum}
+                          align="center"
+                          onClick={() => moveTxInfo(row.txnum)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
+                        >
+                          {row.txnum}
+                        </TableCell>
+                      </Tooltip>
+
+                      <Tooltip
+                        title="해당 블록의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.blocknum}
-                      </TableCell>
+                        <TableCell
+                          key={row.blocknum}
+                          align="center"
+                          onClick={() => moveBlockInfo(row.blocknum, idx)}
+                          style={{
+                            color: darkmode ? "var(--bg-color)" : "#000000",
+                          }}
+                        >
+                          {row.blocknum}
+                        </TableCell>
+                      </Tooltip>
+
                       <TableCell
                         key={row.status}
+                        align="center"
                         style={{
                           color: darkmode ? "var(--bg-color)" : "#000000",
                         }}

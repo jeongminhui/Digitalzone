@@ -28,6 +28,7 @@ const TranMain = ({ rows }) => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
