@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
-import "./Modal1.scss";
+import UserAdd1 from "./UserAdd1";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import "./UserAddModal.scss";
 
-const Modal1 = (props) => {
-  /* 민희 메이드 모달 서식 입니다! :)
-  모달이 필요한 페이지에 이 모달을 import하시고
-  속성에 buttonName = {} 로 버튼 이름 넣어 주시고
-  모달 안에 들어가야할 내용들은 import한 모달의 자식 컴포넌트로 넣어주세요! 
-
-  <Modal1> 이 안에 컴포넌트로 넣어주세요! :D </Modal1>
-  */
-
+const UserAddModal = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+
   const showModal = () => {
     setOpen(true);
   };
@@ -27,23 +21,33 @@ const Modal1 = (props) => {
   const handleCancel = () => {
     setOpen(false);
   };
+  const addUserHandler = () => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 2200);
+    // 모달창 닫고나서 user 새로고침
+    setTimeout(() => {
+      window.location.reload();
+    }, 2300);
+  };
 
   return (
     <>
       <Button type="primary" onClick={showModal}>
         {/* <AddRoundedIcon />  */}
-        {props.buttonName}
+        사용자 추가
       </Button>
       <Modal
         open={open}
         // title="Title"
         onOk={handleOk}
+        width={820}
         onCancel={handleCancel}
         footer={[]}
       >
-        {props.children}
+        <UserAdd1 addUserOk={addUserHandler} />
       </Modal>
     </>
   );
 };
-export default Modal1;
+export default UserAddModal;

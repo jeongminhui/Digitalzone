@@ -2,13 +2,18 @@
   height: 80px;
   margin-bottom: 30px;
 }
+.UserLogin_Page {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
 .LoginPage {
   display: flex;
   // height: calc(100vh - 103px);
   height: 100vh;
   text-align: center;
   margin: 0 auto;
-  width: 100%;
+  // width: calc(100vw - 160px);
   justify-content: center;
   align-items: center;
   .page {
