@@ -10,7 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { createTheme, ThemeProvider } from '@mui/material';
+import { createTheme, ThemeProvider, Tooltip } from '@mui/material';
 import { koKR } from '@mui/material/locale';
 import { useNavigate } from 'react-router-dom';
 import './Tab.scss';
@@ -21,6 +21,8 @@ import Swal from 'sweetalert2';
 import { useRecoilValue } from 'recoil';
 import { loginSelector } from '../../Recoil/Selector';
 import Refresh from './Refresh';
+import "./Refresh.scss";
+
 
 export default function Tab({rows}) {
 
@@ -136,7 +138,6 @@ export default function Tab({rows}) {
         navigate(`/node/${nodeName}`)
     },[nodeName]);
     
-
 // Tab
  const [activeIndex, setActiveIndex] = useState(0);
   
@@ -144,7 +145,7 @@ export default function Tab({rows}) {
         {
             tabTitle:<div className={activeIndex===0 ? "is-active left" : "tab"} onClick={()=>tabClickHandler(0)}> 노드 목록 </div>,
             tabCont:<div>
-              <Refresh/>
+                  <Refresh/>
                  <ThemeProvider theme={theme}>
                  <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none"}}>
         <TableContainer sx={{ maxHeight: 440, bgcolor:'background.content' }}>
@@ -183,8 +184,8 @@ export default function Tab({rows}) {
                       <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
                       <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
                       <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ipaddress}</TableCell>
-                      <TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell>
-                      <TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell></Tooltip>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell></Tooltip>
                       <TableCell key={row.tps}>{row.tps}</TableCell>
                       <TableCell key={row.latency}>{row.latency}</TableCell>
 
@@ -204,8 +205,8 @@ export default function Tab({rows}) {
                       <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
                       <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
                       <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>http://xxx.xx.xxx.xxx:xxxxx</TableCell>
-                      <TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell>
-                      <TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell></Tooltip>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell></Tooltip>
                       
                       
                     </TableRow>

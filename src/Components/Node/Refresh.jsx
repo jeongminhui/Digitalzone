@@ -7,12 +7,12 @@ const Refresh = () => {
 
     const [time, setTime] = useState(0);
 
-    useEffect(() => {
-        const timer = setInterval(() => {setTime(time + 1)}, 1000);
-        const timer1 = setTimeout(() => {setTime(0); window.location.reload()}, 30000)
-        return () => clearInterval(timer, timer1);
-    },[time])
     
+    useEffect(() => {
+        const timer = setInterval(() => {setTime(time => time + 1)}, 1000);
+        const timer1 = setTimeout(() => {window.location.reload(); setTime(0)}, 3000000)
+        return () => clearInterval(timer1)
+    },[])
 
     const refreshHandler = () => {
         window.location.reload()
@@ -21,8 +21,8 @@ const Refresh = () => {
         setTime(0);
     }
     return (
-        <div className='Refresh'>
-            <GrRefresh onClick={() => {refreshHandler(); refreshTime()}}/><span>{time}초 전</span>
+        <div className='Refresh' onClick={() => {refreshHandler(); refreshTime()}}>
+          <GrRefresh/><span>{time}초 전</span>
         </div>
     );
 };

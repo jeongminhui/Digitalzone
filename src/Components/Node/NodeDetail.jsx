@@ -4,7 +4,6 @@ import { Link, useParams } from 'react-router-dom';
 import { db } from '../../firebase';
 import Footer from '../Footer/Footer';
 import Chart from './Chart';
-import Grafana from './Grafana';
 import "./NodeDetail.scss"
 
 const NodeDetail = () => {
@@ -14,11 +13,10 @@ const NodeDetail = () => {
 
     useEffect(() => {
         async function getNode() {
-        const docRef = doc(nodeCollection, nodename);
-        const data = await getDoc(docRef);       
-        setIp(data.data().ipaddress);
+            const docRef = doc(nodeCollection, nodename);
+            const data = await getDoc(docRef);       
+            setIp(data.data().ipaddress);
         }
-     
         getNode();
         }, []);
     
