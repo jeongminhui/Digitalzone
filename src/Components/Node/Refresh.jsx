@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { GrRefresh } from 'react-icons/gr';
+import React, { useEffect, useState } from "react";
+import { GrRefresh } from "react-icons/gr";
 import "./Refresh.scss";
 
-
 const Refresh = () => {
+  // const [time, setTime] = useState(0);
 
     const [time, setTime] = useState(0);
 

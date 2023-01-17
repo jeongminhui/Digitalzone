@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./TotalService.scss";
 import { MdOutlineMiscellaneousServices } from "react-icons/md";
 
 // recoil로 불러오기
@@ -11,13 +10,13 @@ const TotalService = (props) => {
   const serviceData = useRecoilValue(serviceSelector);
 
   return (
-    <div className="TotalService">
+    <div className="TotalService Dashboard_infoBox">
       <Link to="/service">
         <div className="Dashboard_title">전체 서비스 등록 건수</div>
         <div className="Dashboard_data">{serviceData.length}</div>
         <div className="Dashboard_time">{props.DateTime}</div>
       </Link>
-      <div className="Dashboard_icon">
+      <div className="Dashboard_icon Dashboard_iconBorder">
         <MdOutlineMiscellaneousServices fill="#fff" size="28" />
       </div>
     </div>

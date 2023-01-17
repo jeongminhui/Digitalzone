@@ -1,20 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.scss";
-import Header_userIcon from "./Header_rightWrap/Header_userIcon";
-import Header_SearchBar from "./Header_rightWrap/Header_SearchBar";
+import HeaderSearchBar from "./Header_rightWrap/HeaderSearchBar";
+import HeaderDarkmode from "./Header_rightWrap/HeaderDarkmode";
+import HeaderUserIcon from "./Header_rightWrap/HeaderUserIcon";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const Header = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   return (
     <div className="Header">
       <div className="Header_logo">
         <Link to="/">
-          <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="logo" />
+          {darkmode ? (
+            <img
+              src={`${process.env.PUBLIC_URL}/assets/logo_white.png`}
+              alt="logo"
+            />
+          ) : (
+            <img src={`${process.env.PUBLIC_URL}/assets/logo.png`} alt="logo" />
+          )}
         </Link>
       </div>
       <div className="Header_rightWrap">
-        <Header_SearchBar />
-        <Header_userIcon />
+        <HeaderSearchBar />
+        <HeaderDarkmode />
+        <HeaderUserIcon />
       </div>
     </div>
   );

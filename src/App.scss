@@ -9,7 +9,6 @@
   color: var(--dark-grey-color);
   font-weight: normal;
   font-family: "Noto Sans KR", sans-serif;
-  // white-space: pre-line;
 }
 
 body {
@@ -53,32 +52,17 @@ button {
   font-weight: 420;
 }
 
-.listBtn{
+.listBtn {
   width: 85px;
   height: 35px;
   border: 1px solid var(--point-color);
   border-radius: 5px;
-  margin-right : 80px;
+  margin-right: 80px;
   padding: 5px;
   outline: none;
   text-decoration: none;
-  background-color:var(--point-color);
+  background-color: var(--point-color);
   color: white;
   cursor: pointer;
   font-size: 13px;
 }
-// .ant-btn {
-// font-size: 15px;
-//   height: 32px;
-//   padding: 4px 15px;
-//   border-radius: 6px;
-// font-family: "Noto Sans KR", sans-serif;
-// }
-
-.PersonRoundedIcon path {
-  color: var(--point-color);
-}
-  
-// .infoTitle{
-//   max-width: 300px;
-// }

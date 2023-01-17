@@ -10,10 +10,10 @@ import Service from "./Components/Service/Service";
 import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
+import NotFound from "./Components/NotFound/NotFound";
 
 import ServiceInfo from "./Components/Service/ServiceInfo/ServiceInfo";
 import TranInfo from "./Components/Transaction/TranInfo/TranInfo";
-
 
 // 유저 최종 페이지 링크
 import UserAdd_Page from "./Components/User/UserPageComponents/UserAdd/UserAdd_Page";
@@ -22,12 +22,12 @@ import UserLogin_Page from "./Components/User/UserPageComponents/UserLogin/UserL
 import UserMyPage_Page from "./Components/User/UserPageComponents/UserMyPage/UserMyPage_Page";
 import UserUpdate_Page from "./Components/User/UserPageComponents/UserUpdate/UserUpdate_Page";
 
-
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Root />,
+      errorElement: <NotFound />,
       children: [
         {
           index: true,
@@ -39,7 +39,7 @@ function App() {
         },
         {
           path: "/block/:blocknum",
-          element: <BlockInfo />,
+          element: <BlockInfo exact={true} />,
         },
         {
           path: "/transaction",
@@ -47,15 +47,15 @@ function App() {
         },
         {
           path: "/transaction/:txnum",
-          element: <TranInfo />,
+          element: <TranInfo exact={true} />,
         },
         {
           path: "/node",
-          element: <Node />,
+          element: <Node exact={true} />,
         },
         {
           path: "/node/:nodename",
-          element: <NodeDetail />,
+          element: <NodeDetail exact={true} />,
         },
         {
           path: "/service",
@@ -68,6 +68,10 @@ function App() {
         {
           path: "/user",
           element: <User />,
+        },
+        {
+          path: "/*",
+          element: <NotFound />,
         },
 
         // 여기부턴 유저 페이지 (권한 따라 삼항 조건 넣어보려 함)

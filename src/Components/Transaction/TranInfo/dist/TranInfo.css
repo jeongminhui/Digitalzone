@@ -9,11 +9,16 @@
   padding: 20px 70px;
   margin-bottom: 100px;
 }
+.TranInfo .wrap .mainTitle,
+.serviceInfo .wrap .mainTitle {
+  min-width: 200px;
+}
 .TranInfo .wrap .subTitle,
 .serviceInfo .wrap .subTitle {
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  min-width: 400px;
 }
 .TranInfo .wrap .subTitle .listBtn,
 .serviceInfo .wrap .subTitle .listBtn {
@@ -42,11 +47,14 @@
 .serviceInfo .wrap .tableWrap table .infoTitle {
   font-size: 14px;
   font-weight: bold;
+  min-width: 100px;
+  color: #3d3d3d;
 }
 .TranInfo .wrap .tableWrap table .infoContent,
 .serviceInfo .wrap .tableWrap table .infoContent {
   font-size: 14px;
   padding-left: 30px;
+  color: #3d3d3d;
 }
 .TranInfo .wrap .tableWrap table .copyButton,
 .serviceInfo .wrap .tableWrap table .copyButton {

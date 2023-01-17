@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 import { db } from "../../../firebase";
-import {
-  collection,
-  getDoc,
-  getDocs,
-  doc,
-  query,
-  where,
-  updateDoc,
-  deleteDoc,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const ChartLeft = () => {
   const [ten, setTen] = useState({});
@@ -68,45 +59,55 @@ const ChartLeft = () => {
       fourteen: timeFilter14.length,
     });
   }, [rows]);
-
-  // console.log(ten);
   return (
     <div className="chart" style={containerStyle}>
-      <ApexCharts
-        type="area"
-        series={[
-          {
-            name: "시간당 트랜잭션 수(개)",
-            data: [ten.ten, ten.eleven, ten.twelve, ten.thirteen, ten.fourteen],
-          },
-        ]}
-        options={{
-          chart: {
-            height: 300,
-            width: 500,
-            toolbar: {
-              show: false,
+        <ApexCharts
+          type="area"
+          series={[
+            {
+              name: "시간당 트랜잭션 수(개)",
+              data:
+                Object.keys(ten).length > 4
+                  ? [
+                      ten.ten,
+                      ten.eleven,
+                      ten.twelve,
+                      ten.thirteen,
+                      ten.fourteen,
+                    ]
+                  : [0],
             },
-          },
-          title: {
-            text: "시간당 트랜잭션 수(개)",
-            align: "center",
-            style: {
-              fontSize:"16px",
-              fontWeight:"900",
-              fontFamily: 'Noto Sans KR", sans-serif',
+          ]}
+          options={{
+            chart: {
+              height: 300,
+              width: 500,
+              toolbar: {
+                show: false,
+              },
             },
-          },
-          stroke: {
-            //선의 커브를 부드럽게 하고, 두께를 3으로 지정
-            curve: "smooth",
-            width: 3,
-          },
-          xaxis: {
-            categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
-          },
-        }}
-      ></ApexCharts>
+            dataLabels: {
+              enabled: false
+            },
+            title: {
+              text: "시간당 트랜잭션 수(개)",
+              align: "center",
+              style: {
+                fontSize: "16px",
+                fontWeight: "900",
+                fontFamily: 'Noto Sans KR", sans-serif',
+              },
+            },
+            stroke: {
+              //선의 커브를 부드럽게 하고, 두께를 3으로 지정
+              curve: "smooth",
+              width: 3,
+            },
+            xaxis: {
+              categories: ["10:00", "11:00", "12:00", "13:00", "14:00"],
+            },
+          }}
+        ></ApexCharts>
     </div>
   );
 };

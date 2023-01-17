@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import './Node.scss';
+import "./Node.scss";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -24,44 +24,40 @@ import Refresh from './Refresh';
 import "./Refresh.scss";
 
 
-export default function Tab({rows}) {
-
+export default function Tab({ rows }) {
   // 권한 설정
   const loginUser = useRecoilValue(loginSelector);
   const [NodeUser, setNodeUser] = useState(false);
-  
-    useEffect(() => {
+
+  useEffect(() => {
     setNodeUser(loginUser?.useradmin.node);
-  },[])
- 
- 
+  }, []);
 
   let columns = [];
-    NodeUser ?
-     columns = [
-      { id: "service", label: "서비스명", minWidth: 70 },
-      { id: "ndstatus", label: "상태", minWidth: 70 },
-      { id: "nodename", label: "노드명", minWidth: 70, color:'#4669f5'},
-      { id: "ndtype", label: "유형", minWidth: 70 },
-      { id: "service_dcc", label: "서비스명", minWidth: 70 },
-      { id: "ipaddress", label: "IP", minWidth: 170 },
-      { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-      { id: "createdt", label: "최신블록시간", minWidth: 170 },
-      { id: "tps", label: "처리속도(TPS)", minWidth: 50 },
-      { id: "latency", label: "지연율(Latency)",minWidth: 70},     
-    ]
-    :
-    columns = [
-      { id: "service", label: "서비스명", minWidth: 70 },
-      { id: "ndstatus", label: "상태", minWidth: 70 },
-      { id: "nodename", label: "노드명", minWidth: 70, color:'#4669f5'},
-      { id: "ndtype", label: "유형", minWidth: 70 },
-      { id: "service_dcc", label: "서비스명", minWidth: 70 },
-      { id: "ipaddress", label: "IP", minWidth: 170 },
-      { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-      { id: "createdt", label: "최신블록시간", minWidth: 170 },
-    ];
-    
+  NodeUser
+    ? (columns = [
+        { id: "service", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ndstatus", label: "상태", minWidth: 70, align: "center" },
+        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5", align: "center" },
+        { id: "ndtype", label: "유형", minWidth: 70, align: "center" },
+        { id: "service_dcc", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ipaddress", label: "IP", minWidth: 170, align: "center" },
+        { id: "blocknum", label: "최신블록번호", minWidth: 100, align: "center" },
+        { id: "createdt", label: "최신블록시간", minWidth: 170, align: "center" },
+        { id: "tps", label: "처리속도(TPS)", minWidth: 50, align: "center" },
+        { id: "latency", label: "지연율(Latency)", minWidth: 70, align: "center" },
+      ])
+    : (columns = [
+        { id: "service", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ndstatus", label: "상태", minWidth: 70, align: "center" },
+        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5", align: "center" },
+        { id: "ndtype", label: "유형", minWidth: 70, align: "center" },
+        { id: "service_dcc", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ipaddress", label: "IP", minWidth: 170, align: "center" },
+        { id: "blocknum", label: "최신블록번호", minWidth: 100, align: "center" },
+        { id: "createdt", label: "최신블록시간", minWidth: 170, align: "center" },
+      ]);
+
   // table
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -93,46 +89,52 @@ export default function Tab({rows}) {
   // css
   const theme = createTheme(
     {
-    palette: {
-      background: {
-        paper: '#F0F4FB',
-        content:'#ffffff'
+      typography: {
+        allVariants: {
+          fontFamily: "Noto Sans KR",
+          fontSize: 14,
+          color: "#3d3d3d",
+        },
+      },
+      palette: {
+        background: {
+          paper: "#F0F4FB",
+          content: "#ffffff",
         },
       },
     },
-    koKR,
+    koKR
   );
 
-// recoil Atom에서 가져오기
+  // recoil Atom에서 가져오기
   const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
-  
-  
 
   // navigation
   const navigate = useNavigate();
-  const [nodeName, setNodeName] = useState('');
-  const [blockNum, setBlockNum] = useState('');
+  const [nodeName, setNodeName] = useState("");
+  const [blockNum, setBlockNum] = useState("");
 
   const clickHandler = (nodeName) => {
-    NodeUser ? setNodeName(nodeName) 
-    :   
-    Swal.fire({
-      icon: "warning",
-      text: "권한이 없습니다. 관리자에게 요청하십시오.",
-      showCancelButton: false,
-      confirmButtonText: "확인",
-  }).then((res) => {
-      if (res.isConfirmed) {
-          return;
-      }     
-  })
-}
+    NodeUser
+      ? setNodeName(nodeName)
+      : Swal.fire({
+          icon: "warning",
+          text: "권한이 없습니다. 관리자에게 요청하십시오.",
+          showCancelButton: false,
+          confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
+        }).then((res) => {
+          if (res.isConfirmed) {
+            return;
+          }
+        });
+  };
 
   const clickBlockHandler = (blockNum, idx) => {
-      setBlockNum(blockNum);
-      setCurrentBlock(idx);
-      navigate(`/block/${blockNum}`);
-    }
+    setBlockNum(blockNum);
+    setCurrentBlock(idx);
+    navigate(`/block/${blockNum}`);
+  };
 
     useEffect(() => {
         navigate(`/node/${nodeName}`)
@@ -257,17 +259,13 @@ export default function Tab({rows}) {
 
   return (
     <>
-    
-    <div className="tabs">
-	    {tabContArr.map((section)=>{
-		    return section.tabTitle
-	    })}
-    </div>
+      <div className="tabs">
+        {tabContArr.map((section) => {
+          return section.tabTitle;
+        })}
+      </div>
 
-    <div>
-	    { tabContArr[activeIndex].tabCont }
-    </div>
-
+      <div>{tabContArr[activeIndex].tabCont}</div>
     </>
-  )
+  );
 }

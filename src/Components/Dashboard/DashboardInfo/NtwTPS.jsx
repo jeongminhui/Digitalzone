@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
 const NtwTPS = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const networkData = useRecoilValue(networkSelector);
+  const [name, setName] = useState("");
   const [tps1, setTps1] = useState("");
   const [tps2, setTps2] = useState("");
   const [tps3, setTps3] = useState("");
@@ -32,6 +37,11 @@ const NtwTPS = () => {
       return item.ntwtps;
     });
 
+    const name = items.map((item) => {
+      return item.ntwname;
+    });
+    setName(name);
+
     const network1 = tpsData[0];
     const network2 = tpsData[1];
     const network3 = tpsData[2];
@@ -49,18 +59,24 @@ const NtwTPS = () => {
   const time3 = "12:00";
   const time4 = "13:00";
 
-  const time1Aver = (tps1[time1] + tps2[time1] + tps3[time1] + tps4[time1]) / 4;
-  const time2Aver = (tps1[time2] + tps2[time2] + tps3[time2] + tps4[time2]) / 4;
-  const time3Aver = (tps1[time3] + tps2[time3] + tps3[time3] + tps4[time3]) / 4;
-  const time4Aver = (tps1[time4] + tps2[time4] + tps3[time4] + tps4[time4]) / 4;
+  const time1Aver =
+    (tps1[time1] + tps2[time1] + tps3[time1] + tps4[time1]) / name.length;
+  const time2Aver =
+    (tps1[time2] + tps2[time2] + tps3[time2] + tps4[time2]) / name.length;
+  const time3Aver =
+    (tps1[time3] + tps2[time3] + tps3[time3] + tps4[time3]) / name.length;
+  const time4Aver =
+    (tps1[time4] + tps2[time4] + tps3[time4] + tps4[time4]) / name.length;
 
+  const colors = ["#116eb9", "#5f88df", "#80baf4 ", " #2ba0e3", " #004c8c"];
   const data = {
     labels: [time1, time2, time3, time4],
     datasets: [
       {
         // 라인바
         type: "line",
-        borderColor: "#116eb9",
+        label: "평균",
+        borderColor: colors[0],
         data: [
           { x: time1, y: time1Aver },
           { x: time2, y: time2Aver },
@@ -74,51 +90,55 @@ const NtwTPS = () => {
       {
         // 네트워크1
         type: "bar",
-        backgroundColor: "#5f88df",
+        label: name[0],
+        backgroundColor: colors[1],
+        barPercentage: 1, // 막대사이 간격삭제
         data: [
           { x: time1, y: tps1[time1] },
           { x: time2, y: tps1[time2] },
           { x: time3, y: tps1[time3] },
           { x: time4, y: tps1[time4] },
         ],
-        barPercentage: 1, // 막대사이 간격삭제
       },
       {
         // 네트워크2
         type: "bar",
-        backgroundColor: "#80baf4",
+        label: name[1],
+        backgroundColor: colors[2],
+        barPercentage: 1,
         data: [
           { x: time1, y: tps2[time1] },
           { x: time2, y: tps2[time2] },
           { x: time3, y: tps2[time3] },
           { x: time4, y: tps2[time4] },
         ],
-        barPercentage: 1, // 막대사이 간격삭제
       },
 
       {
         // 네트워크3
         type: "bar",
-        backgroundColor: "#2ba0e3",
+        label: name[2],
+        backgroundColor: colors[3],
+        barPercentage: 1,
         data: [
           { x: time1, y: tps3[time1] },
           { x: time2, y: tps3[time2] },
           { x: time3, y: tps3[time3] },
           { x: time4, y: tps3[time4] },
         ],
-        barPercentage: 1, // 막대사이 간격삭제
       },
       {
         // 네트워크4
         type: "bar",
-        backgroundColor: "#004c8c",
+        label: name[3],
+        backgroundColor: colors[4],
+        barPercentage: 1,
         data: [
           { x: time1, y: tps4[time1] },
           { x: time2, y: tps4[time2] },
           { x: time3, y: tps4[time3] },
           { x: time4, y: tps4[time4] },
         ],
-        barPercentage: 1, // 막대사이 간격삭제
       },
     ],
   };
@@ -127,7 +147,10 @@ const NtwTPS = () => {
     scales: {
       x: {
         grid: {
-          lineWidth: 0, // x축 라인제거
+          lineWidth: false,
+        },
+        ticks: {
+          color: darkmode ? "#fafbff" : "#3d3d3d",
         },
       },
       y: {
@@ -135,32 +158,34 @@ const NtwTPS = () => {
         max: 600,
         ticks: {
           stepSize: 100,
+          color: darkmode ? "#fafbff" : "#3d3d3d",
+        },
+        grid: {
+          color: darkmode ? "#888888" : "#ebedf3",
         },
       },
     },
 
     plugins: {
-      // 라벨제거
-      // true:표시, false:숨김
       legend: {
         display: false,
       },
       // 툴팁
-      // enabled true:표시, false:숨김
       tooltip: {
-        position: "nearest",
         enabled: true,
+        position: "nearest",
         backgroundColor: "#fff",
+        title: "",
         titleAlign: "center",
-        titleColor: "#000",
+        titleColor: "#888888",
         bodyAlign: "center",
         bodyColor: "#555",
-        padding: 10,
         caretPadding: 0,
-        caretSize: 10,
+        caretSize: 0,
+        cornerRadius: 3,
+        multiKeyBackground: "transparent",
         cornerRadius: 5,
         displayColors: true,
-        borderColor: "#444",
         borderWidth: 3,
       },
     },
@@ -171,7 +196,7 @@ const NtwTPS = () => {
   };
 
   return (
-    <div className="NtwTPS">
+    <div className="NtwTPS Dashboard_chartBox">
       <Link to="/transaction">
         <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
         <div className="Dashboard_chart">

@@ -1,10 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./Transaction.scss";
 import Footer from "../Footer/Footer";
 import TranMain from "./TranMain/TranMain";
-import TranInfo from "./TranInfo/TranInfo";
-import { db } from "../../firebase";
-import { collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import "../Block/Block.scss";
 

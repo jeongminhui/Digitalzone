@@ -8,10 +8,15 @@
     padding: 20px 70px;
     margin-bottom: 100px;
 
+    .mainTitle {
+      min-width: 200px;
+    }
+
     .subTitle {
       margin-bottom: 30px;
       display: flex;
       justify-content: space-between;
+      min-width: 400px;
 
       .listBtn {
         margin-right: 56px;
@@ -26,16 +31,16 @@
     .tableWrap {
       width: 91%;
       margin-bottom: 100px;
-      box-shadow: var(--box-shadow);
       margin: 0 auto;
       padding: 30px;
-      background-color: #fff;
 
       table {
         border-spacing: 25px;
+
         .infoTitle {
           font-size: 14px;
           font-weight: bold;
+          min-width: 100px;
         }
 
         .infoContent {
@@ -69,7 +74,6 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #f2f3f6;
       padding: 30px;
       line-height: 25px;
     }

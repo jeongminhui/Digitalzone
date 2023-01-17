@@ -7,10 +7,14 @@
   padding: 20px 70px;
   margin-bottom: 100px;
 }
+.BlockInfo .wrap .mainTitle {
+  min-width: 200px;
+}
 .BlockInfo .wrap .subTitle {
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+  min-width: 400px;
 }
 .BlockInfo .wrap .subTitle .listBtn {
   margin-right: 56px;
@@ -21,17 +25,39 @@
   font-size: 26px;
 }
 .BlockInfo .wrap .carousel {
-  width: 80%;
+  width: 73%;
+  height: 50px;
+  line-height: 50px;
   margin: 0 auto;
   margin-top: 60px;
   cursor: pointer;
+  color: var(--dark-grey-color);
+}
+.BlockInfo .wrap .carousel .swiper-slide {
+  text-align: left;
+}
+.BlockInfo .wrap .carousel .swiper-button-next {
+  width: 60px;
+  background: url(../../../../public/assets/arrow_right.svg) no-repeat;
+  background-size: 35px auto;
+  background-position: right;
+  position: absolute;
+  right: 0;
+}
+.BlockInfo .wrap .carousel .swiper-button-prev {
+  width: 60px;
+  background: url(../../../../public/assets/arrow_left.svg) no-repeat;
+  background-size: 35px auto;
+  background-position: left;
+}
+.BlockInfo .wrap .carousel .swiper-button-next::after,
+.BlockInfo .wrap .carousel .swiper-button-prev::after {
+  display: none;
 }
 .BlockInfo .wrap .tableWrap {
   width: 91%;
-  box-shadow: var(--box-shadow);
-  margin: 50px auto;
+  margin: 40px auto;
   padding: 30px;
-  background-color: #fff;
 }
 .BlockInfo .wrap .tableWrap .table {
   border-spacing: 25px;
@@ -39,6 +65,7 @@
 .BlockInfo .wrap .tableWrap .table .infoTitle {
   font-size: 14px;
   font-weight: bold;
+  min-width: 100px;
 }
 .BlockInfo .wrap .tableWrap .table .infoContent {
   font-size: 14px;
@@ -63,8 +90,7 @@
 }
 .BlockInfo .wrap .tableWrap .table .txInfoBtn {
   margin-left: 30px;
-  padding: 0;
-  width: 50px;
+  padding: 0 10px;
   height: 30px;
   font-size: 12px;
   cursor: pointer;
@@ -86,7 +112,6 @@
 }
 
 .txdataBox {
-  background-color: #f2f3f6;
   padding: 30px 20px;
   margin-top: 30px;
 }

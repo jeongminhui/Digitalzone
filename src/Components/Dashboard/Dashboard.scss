@@ -3,14 +3,23 @@
   position: relative;
   padding-top: 65px;
   padding-bottom: 136px;
+  min-height: 100vh;
 
   .DashboardInfo {
     width: 1002px;
     height: 826px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
+    .Dashboard_title {
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: -1.2px;
+    }
+
+    //////////////////// Dashboard_container1 ////////////////////
     .Dashboard_container1 {
       width: 1002px;
       height: 178px;
@@ -21,6 +30,14 @@
         width: 245px;
         height: 100%;
         position: relative;
+
+        // 활성 네트워크 수
+        &.ActiveNetwork {
+          span {
+            font-size: 20px;
+            font-weight: bold;
+          }
+        }
 
         a {
           width: 240px;
@@ -42,7 +59,6 @@
 
           .Dashboard_time {
             font-size: 13px;
-            color: var(--light-grey-color);
           }
         }
 
@@ -50,7 +66,6 @@
           width: 50px;
           height: 50px;
           border-radius: 50%;
-          border: 5px solid #fff;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -58,6 +73,7 @@
       }
     }
 
+    //////////////////// Dashboard_container2 ////////////////////
     .Dashboard_container2 {
       width: 1000px;
       height: 590px;
@@ -71,44 +87,43 @@
         height: 270px;
         position: relative;
         border-radius: 10px;
-        background-color: #ffffff;
-        box-shadow: var(--box-shadow);
 
-        // 각 차트박스
-        a {
-          width: 100%;
-          height: 100%;
-          text-decoration: none;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-
-          .Dashboard_title {
-            padding-top: 18px;
-            color: var(--black-color);
-          }
-
+        // 네트워크별 블록 생성시간
+        &.NtwCreateBlock {
           .Dashboard_seconds {
+            color: var(--point-color);
+            font-size: 40px;
             height: 70px;
             line-height: 70px;
           }
-
           .Dashboard_chart {
-            width: 90%;
-            height: 210px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 155px !important;
           }
         }
       }
-    }
 
-    .Dashboard_title {
-      font-size: 16px;
-      font-weight: bold;
-      letter-spacing: -1.5px;
+      // 각 차트박스
+      a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .Dashboard_title {
+          padding-top: 18px;
+        }
+
+        .Dashboard_chart {
+          width: 90%;
+          height: 210px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 }

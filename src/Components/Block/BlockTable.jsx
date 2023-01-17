@@ -12,30 +12,35 @@ import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Padding } from "@mui/icons-material";
 
 const BlockTable = ({ rows, clickHandler }) => {
   const columns = [
-    { id: "service", label: "서비스명", minWidth: 80 },
-    { id: "blocknum", label: "블록번호", minWidth: 80 },
+    { id: "service", label: "서비스명", minWidth: 80, align: "center" },
+    { id: "blocknum", label: "블록번호", minWidth: 80, align: "center" },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
+      align: "center"
     },
     {
       id: "blockhash",
       label: "블록해시",
       minWidth: 130,
+      align: "center"
     },
     {
       id: "blksize",
       label: "블록크기",
       minWidth: 70,
+      align: "center",
     },
     {
       id: "txcount",
       label: "트랜잭션 수",
       minWidth: 70,
+      align: "center",
     },
   ];
 
@@ -122,19 +127,26 @@ const BlockTable = ({ rows, clickHandler }) => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={idx}
+                      align="center"
                       onClick={() => clickHandler(row.blocknum, idx)}
                       className="tableRow"
                     >
                       {/* 이부분 map으로 돌리셔도 됩니다! */}
-                      <TableCell key={row.service}>{row.service}</TableCell>
-                      <TableCell key={row.blocknum} className="blue">
+                      <TableCell key={row.service} align="center">
+                        {row.service}
+                      </TableCell>
+                      <TableCell
+                        key={row.blocknum}
+                        className="blue"
+                        align="center"
+                      >
                         {row.blocknum}
                       </TableCell>
-                      <TableCell key={row.createdt}>{row.createdt}</TableCell>
-                      <TableCell key={row.blockhash}>{row.blockhash}</TableCell>
-                      <TableCell key={row.blksize}>{row.blksize} KB</TableCell>
-                      <TableCell key={row.txnum}>{row.txnum.length}</TableCell>
+                      <TableCell key={row.createdt} align='center'>{row.createdt}</TableCell>
+                      <TableCell key={row.blockhash} align='center'>{row.blockhash}</TableCell>
+                      <TableCell key={row.blksize} align='center'>{row.blksize} KB</TableCell>
+                      <TableCell key={row.txnum} align='center'>{row.txnum.length}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -148,15 +160,8 @@ const BlockTable = ({ rows, clickHandler }) => {
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                // onPageChange={handleChangePage}
+                onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-                // SelectProps={{
-                //   inputProps: {
-                //     "aria-label": "페이지 당",
-                //   },
-                // }}
-                // onPageChange={() => {}}
-                // theme={koKR}
               />
             </div>
 

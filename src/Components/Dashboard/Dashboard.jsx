@@ -48,20 +48,10 @@ const Dashboard = () => {
     getNtw();
   }, []);
 
-  // // 트랜잭션 데이터
+  // 트랜잭션 데이터
   const [transaction, setTransaction] = useRecoilState(transactionAtom);
   const transactionData = collection(db, "transaction");
 
-  useEffect(() => {
-    async function getNtw() {
-      const data = await getDocs(transactionData);
-      const dataArr = data.docs.map((item) => {
-        return item.data();
-      });
-      setTransaction(dataArr);
-    }
-    getNtw();
-  }, []);
   useEffect(() => {
     async function getNtw() {
       const data = await getDocs(transactionData);
@@ -92,16 +82,6 @@ const Dashboard = () => {
   const [service, setService] = useRecoilState(serviceAtom);
   const serviceData = collection(db, "service");
 
-  useEffect(() => {
-    async function getNtw() {
-      const data = await getDocs(serviceData);
-      const dataArr = data.docs.map((item) => {
-        return item.data();
-      });
-      setService(dataArr);
-    }
-    getNtw();
-  }, []);
   useEffect(() => {
     async function getNtw() {
       const data = await getDocs(serviceData);
