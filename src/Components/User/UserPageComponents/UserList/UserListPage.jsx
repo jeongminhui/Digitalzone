@@ -430,10 +430,14 @@ const UserListPage = () => {
             onOk={handleOk}
             onCancel={handleCancel}
             footer={[]}
-            width={600}
+            width={650}
             // centered={true}
+            style={{ width: "max-content" }}
           >
-            <UserUpdate updateOk={updateHandler} />
+            <UserUpdate
+              updateOk={updateHandler}
+              style={{ width: "max-content" }}
+            />
           </Modal>
         </div>
       </div>

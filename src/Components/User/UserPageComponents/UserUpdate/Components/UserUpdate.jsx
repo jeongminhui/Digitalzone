@@ -161,7 +161,7 @@ const UserUpdate = ({ updateOk }) => {
       </div>
       <Form
         labelCol={{
-          span: 8,
+          span: 10,
         }}
         wrapperCol={{
           span: 14,

@@ -1,0 +1,35 @@
+.UserUpdate {
+  padding: 40px;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+.UserUpdate form {
+  width: 500px;
+}
+.UserUpdate form botton {
+  margin-right: 100px;
+}
+.UserUpdate .UserAdd_footer {
+  display: flex;
+  padding-left: 60px;
+}
+.UserUpdate .UserAdd_footer button {
+  margin-left: 30px;
+}
+
+.ant-form-item {
+  margin-bottom: 20px;
+}
+
+.MyInfoPage_top {
+  display: flex;
+  margin-bottom: 30px;
+}
+.MyInfoPage_top .MyInfoPage_top_right {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.UserUpdate h1 {
+  margin-bottom: 0px;
+}
