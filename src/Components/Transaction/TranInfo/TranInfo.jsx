@@ -10,6 +10,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { currentBlockAtom } from "../../../Recoil/Atom";
 import { useRecoilState } from "recoil";
 import { useRecoilValue } from "recoil";
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
 
 const TranInfo = () => {
   const { txnum } = useParams();
@@ -111,6 +113,7 @@ const TranInfo = () => {
                 <td className="infoContent">{transactionInfo.txsize}</td>
               </tr>
               <tr>
+              <Tooltip title="Add" arrow>
                 <td className="infoTitle">블록번호</td>
                 <td
                   className="infoContent"
@@ -119,6 +122,7 @@ const TranInfo = () => {
                 >
                   {transactionInfo.blocknum}
                 </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">요청시간</td>
