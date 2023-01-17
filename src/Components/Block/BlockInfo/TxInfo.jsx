@@ -13,6 +13,7 @@ import { collection, getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import Swal from "sweetalert2";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Tooltip } from "@mui/material";
 
 import { Modal } from "antd";
 
@@ -58,35 +59,35 @@ const TxInfo = ({ txnum }) => {
       label: "트랜잭션번호",
       minWidth: 110,
       backgroundColor: "#F0F4FB",
-      align: "center"
+      align: "center",
     },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 60,
       backgroundColor: "#F0F4FB",
-      align: "center"
+      align: "center",
     },
     {
       id: "txhash",
       label: "트랜잭션해시",
       minWidth: 170,
       backgroundColor: "#F0F4FB",
-      align: "center"
+      align: "center",
     },
     {
       id: "txsize",
       label: "트랜잭션크기",
       minWidth: 120,
       backgroundColor: "#F0F4FB",
-      align: "center"
+      align: "center",
     },
     {
       id: "txdata",
       label: "데이터",
       minWidth: 80,
       backgroundColor: "#F0F4FB",
-      align: "center"
+      align: "center",
     },
   ];
 
@@ -162,29 +163,42 @@ const TxInfo = ({ txnum }) => {
                   key={txInfo.code}
                   className="tableRow"
                 >
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)}  align= "center">
-                    {txInfo.txnum}
-                  </TableCell>
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)} align= "center">
+                  
+                    <TableCell
+                      onClick={() => clickHandler(txInfo.txnum)}
+                      align="center"
+                    >
+                      {txInfo.txnum}
+                    </TableCell>
+        
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    align="center"
+                  >
                     {txInfo.createdt}
                   </TableCell>
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)} align= "center">
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    align="center"
+                  >
                     {txInfo.txhash}
                   </TableCell>
-                  <TableCell onClick={() => clickHandler(txInfo.txnum)} align= "center">
+                  <TableCell
+                    onClick={() => clickHandler(txInfo.txnum)}
+                    align="center"
+                  >
                     {txInfo.txsize} KB
                   </TableCell>
-                  <TableCell  onClick={showModal} align= "center">
-                    <button
-                      type="button"
-                      className="modalBtn"
-                    >
+                  <Tooltip title="해당 트랜잭션의 상세 데이터를 보여줍니다." arrow>
+                  <TableCell onClick={showModal} align="center">
+                    <button type="button" className="modalBtn">
                       <HiOutlineDocumentText
                         className="modalIcon"
                         style={{ stroke: "#3d3d3d" }}
                       />
                     </button>
                   </TableCell>
+                  </Tooltip>
                 </TableRow>
               </TableBody>
             </Table>

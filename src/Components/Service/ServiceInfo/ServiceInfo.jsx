@@ -128,7 +128,10 @@ const ServiceInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">노드명</td>
-                <Tooltip title="Add" arrow followCursor>
+                <Tooltip
+                  title="해당 노드의 상세페이지로 이동합니다."
+                  placement="bottom-start"
+                >
                   <td
                     className="infoContent"
                     onClick={() => {
@@ -142,18 +145,28 @@ const ServiceInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">트랜잭션 번호</td>
-                <td
-                  className="infoContent"
-                  onClick={() => {
-                    moveTxInfo();
-                  }}
-                  style={{ cursor: "pointer" }}
+
+                <Tooltip
+                  title="해당 트랜잭션의 상세페이지로 이동합니다."
+                  placement="bottom-start"
                 >
-                  {serviceInfo.txnum}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => {
+                      moveTxInfo();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.txnum}
+                  </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">트랜잭션 해시</td>
+                <Tooltip
+                  title="해당 서비스의 상세페이지로 이동합니다."
+                  placement="bottom-start"
+                >
                 <td
                   className="infoContent"
                   onClick={() => {
@@ -163,6 +176,7 @@ const ServiceInfo = () => {
                 >
                   {serviceInfo.txhash}
                 </td>
+                </Tooltip>
                 <td>
                   <button
                     className="copyButton"
@@ -190,6 +204,10 @@ const ServiceInfo = () => {
               </tr>
               <tr>
                 <td className="infoTitle">블록 번호</td>
+                <Tooltip
+                  title="해당 블록의 상세페이지로 이동합니다."
+                  placement="bottom-start"
+                >
                 <td
                   className="infoContent"
                   onClick={() => clickBlockHandler()}
@@ -197,6 +215,7 @@ const ServiceInfo = () => {
                 >
                   {serviceInfo.blocknum}
                 </td>
+                </Tooltip>
               </tr>
               <tr>
                 <td className="infoTitle">상태</td>

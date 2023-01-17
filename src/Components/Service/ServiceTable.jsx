@@ -11,7 +11,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "../Block/BlockChart/BlockChart.scss";
 import { koKR } from "@mui/material/locale";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
 
 const ServiceTable = (props) => {
   const { rows, moveServiceInfo, moveTxInfo, moveBlockInfo, moveNodeInfo } =
@@ -138,6 +138,7 @@ const ServiceTable = (props) => {
                       >
                         {row.service}
                       </TableCell>
+
                       <TableCell
                         key={row.createdt}
                         onClick={() =>
@@ -156,27 +157,46 @@ const ServiceTable = (props) => {
                       >
                         {row.apitype}
                       </TableCell>
-                      <TableCell
-                        key={row.nodename}
-                        onClick={() => moveNodeInfo(row.nodename)}
-                        align="center"
+
+                      <Tooltip
+                        title="해당 노드의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.nodename}
-                      </TableCell>
-                      <TableCell
-                        key={row.txnum}
-                        onClick={() => moveTxInfo(row.txnum)}
-                        align="center"
+                        <TableCell
+                          key={row.nodename}
+                          onClick={() => moveNodeInfo(row.nodename)}
+                          align="center"
+                        >
+                          {row.nodename}
+                        </TableCell>
+                      </Tooltip>
+
+                      <Tooltip
+                        title="해당 트랜잭션의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.txnum}
-                      </TableCell>
-                      <TableCell
-                        key={row.blocknum}
-                        onClick={() => moveBlockInfo(row.blocknum, idx)}
-                        align="center"
+                        <TableCell
+                          key={row.txnum}
+                          onClick={() => moveTxInfo(row.txnum)}
+                          align="center"
+                        >
+                          {row.txnum}
+                        </TableCell>
+                      </Tooltip>
+
+                      <Tooltip
+                        title="해당 블록의 상세페이지로 이동합니다."
+                        arrow
                       >
-                        {row.blocknum}
-                      </TableCell>
+                        <TableCell
+                          key={row.blocknum}
+                          onClick={() => moveBlockInfo(row.blocknum, idx)}
+                          align="center"
+                        >
+                          {row.blocknum}
+                        </TableCell>
+                      </Tooltip>
+
                       <TableCell key={row.status} align="center">
                         {row.status}
                       </TableCell>
