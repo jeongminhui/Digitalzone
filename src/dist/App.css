@@ -48,7 +48,6 @@ button {
   padding-left: 20px;
   padding-right: 20px;
   line-height: 0px;
-  font-size: 14px;
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 420;
 }
@@ -66,4 +65,8 @@ button {
   color: white;
   cursor: pointer;
   font-size: 13px;
+}
+
+th {
+  font-family: "Noto Sans KR", sans-serif;
 }

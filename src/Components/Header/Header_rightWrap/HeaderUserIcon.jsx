@@ -9,19 +9,26 @@ import Typography from "@mui/material/Typography";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import List from "@mui/material/List";
+// 로그아웃 구현
+import { db } from "../../../firebase";
+import { getAuth, signOut } from "firebase/auth";
+import { useRecoilState } from "recoil";
+import { loginAtom } from "../../../Recoil/Atom";
 
 export default function HeaderUserIcon() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  // 로그아웃 구현
+  const [loginUser, setLoginUser] = useRecoilState(loginAtom);
+  const auth = getAuth();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     // 조건을 여기에 달아주어야 하나?
-    console.log(event.currentTarget);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -29,14 +36,35 @@ export default function HeaderUserIcon() {
   };
 
   // 조건 따라 어떤 Menu 띄울지 정함. (두가지 조건)
-  const userId = "Prse1284@gmail.com";
+  // const userId = `${loginUser.username}`;
+  let userId = "";
+  if (loginUser !== null) userId = `${loginUser.userid}`;
   // 로그인 상태
-  const isLogin = 1;
+  let isLogin;
+  if (loginUser !== null) isLogin = 1;
+  else isLogin = 0;
   // 관리자 여부
-  const isManager = 1;
+  let isManager;
+  if (loginUser !== null && loginUser.userclass === "관리자") isManager = 1;
+  else isManager = 0;
   return (
     <>
       <React.Fragment>
+        {/* <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}> */}
+        {/* <Tooltip title="마이 페이지"> */}
+        {/* <div
+          className="Header_userIcon"
+          onClick={handleClick}
+          size="small"
+          sx={{ ml: 2 }}
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <PersonRoundedIcon className="PersonRoundedIcon" fontSize="large" />
+        </div> */}
+        {/* </Tooltip> */}
+        {/* </Box> */}
         <div
           className="HeaderUserIcon HeaderBtn"
           onClick={handleClick}
@@ -99,7 +127,7 @@ export default function HeaderUserIcon() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
-                  navigate("/user/list");
+                  navigate("/user");
                 }}
               >
                 <ListItemIcon>
@@ -109,6 +137,8 @@ export default function HeaderUserIcon() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
+                  signOut(auth);
+                  setLoginUser(null);
                   navigate("/");
                 }}
               >
@@ -167,6 +197,8 @@ export default function HeaderUserIcon() {
               </MenuItem>
               <MenuItem
                 onClick={() => {
+                  signOut(auth);
+                  setLoginUser(null);
                   navigate("/");
                 }}
               >
@@ -207,18 +239,15 @@ export default function HeaderUserIcon() {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem>
-              <Link
-                to="/user/login"
-                onClick={(e) => {
-                  console.log(e);
-                }}
-              >
-                <ListItemIcon>
-                  <PersonRoundedIcon fontSize="small" />
-                </ListItemIcon>
-                로그인
-              </Link>
+            <MenuItem
+              onClick={() => {
+                navigate("/user/login");
+              }}
+            >
+              <ListItemIcon>
+                <PersonRoundedIcon fontSize="small" />
+              </ListItemIcon>
+              로그인
             </MenuItem>
           </Menu>
         )}
