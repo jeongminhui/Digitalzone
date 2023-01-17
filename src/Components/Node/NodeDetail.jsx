@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { db } from '../../firebase';
 import Footer from '../Footer/Footer';
+import Chart from './Chart';
 import "./NodeDetail.scss"
 
 const NodeDetail = () => {
@@ -28,7 +29,7 @@ const NodeDetail = () => {
                 <Link to="/node"><button className='listBtn'>목록으로</button></Link>
             </div>
             <div className='content'> { nodename } ({ip})</div>
-            
+            <Chart/>
             </div>​
             <Footer/>
         </div>     
