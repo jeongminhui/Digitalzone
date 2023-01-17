@@ -1,11 +1,12 @@
-.Refresh {
+@charset "UTF-8";
+햣.Refresh {
   display: flex;
   justify-content: end;
   align-items: center;
   margin-right: 3px;
   cursor: pointer;
 }
-.Refresh span {
+햣.Refresh span {
   margin-left: 3px;
   color: #888888;
 }
