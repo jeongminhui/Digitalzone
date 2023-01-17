@@ -180,16 +180,16 @@ export default function Tab({ rows }) {
                       key={row.code}
                     >
                       
-                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service}</TableCell>
-                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndstatus}</TableCell>
-                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer', color:'#4669f5'}}>{row.nodename}</TableCell>
-                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
-                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
-                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ipaddress}</TableCell>
-                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell></Tooltip>
-                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell></Tooltip>
-                      <TableCell key={row.tps}>{row.tps}</TableCell>
-                      <TableCell key={row.latency}>{row.latency}</TableCell>
+                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.service}</TableCell>
+                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.ndstatus}</TableCell>
+                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer', color:'#4669f5'}} align="center">{row.nodename}</TableCell>
+                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.ndtype}</TableCell>
+                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.service_dcc}</TableCell>
+                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.ipaddress}</TableCell>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}} align="center">{row.blocknum}</TableCell></Tooltip>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}} align="center">{row.createdt}</TableCell></Tooltip>
+                      <TableCell key={row.tps} align="center">{row.tps} </TableCell>
+                      <TableCell key={row.latency} align="center">{row.latency}</TableCell>
 
                       
                     </TableRow>
@@ -201,14 +201,14 @@ export default function Tab({ rows }) {
                       key={row.code}
                     >
                       
-                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service}</TableCell>
-                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndstatus}</TableCell>
-                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer', color:'#4669f5'}}>{row.nodename}</TableCell>
-                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.ndtype}</TableCell>
-                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>{row.service_dcc}</TableCell>
-                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}}>http://xxx.xx.xxx.xxx:xxxxx</TableCell>
-                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.blocknum}</TableCell></Tooltip>
-                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}}>{row.createdt}</TableCell></Tooltip>
+                      <TableCell key={row.service} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.service}</TableCell>
+                      <TableCell key={row.ndstatus} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.ndstatus}</TableCell>
+                      <TableCell key={row.nodename} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer', color:'#4669f5'}} align="center">{row.nodename}</TableCell>
+                      <TableCell key={row.ndtype} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.ndtype}</TableCell>
+                      <TableCell key={row.service_dcc} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">{row.service_dcc}</TableCell>
+                      <TableCell key={row.ipaddress} onClick={() => clickHandler(row.nodename)} style={{cursor : 'pointer'}} align="center">http://xxx.xx.xxx.xxx:xxxxx</TableCell>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.blocknum} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}} align="center">{row.blocknum}</TableCell></Tooltip>
+                      <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow><TableCell key={row.createdt} onClick={() => clickBlockHandler(row.blocknum, idx)} style={{cursor : 'pointer'}} align="center">{row.createdt} </TableCell></Tooltip>
                       
                       
                     </TableRow>

@@ -51,7 +51,7 @@ function App() {
         },
         {
           path: "/node",
-          element: <Node exact={true} />,
+          element: <Node />,
         },
         {
           path: "/node/:nodename",
@@ -63,7 +63,7 @@ function App() {
         },
         {
           path: "/service/:blocknum",
-          element: <ServiceInfo />,
+          element: <ServiceInfo exact={true} />,
         },
         {
           path: "/user",

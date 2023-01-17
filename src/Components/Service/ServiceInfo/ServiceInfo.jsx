@@ -164,18 +164,18 @@ const ServiceInfo = () => {
               <tr>
                 <td className="infoTitle">트랜잭션 해시</td>
                 <Tooltip
-                  title="해당 서비스의 상세페이지로 이동합니다."
+                  title="해당 트랜잭션의 상세페이지로 이동합니다."
                   placement="bottom-start"
                 >
-                <td
-                  className="infoContent"
-                  onClick={() => {
-                    moveTxInfo();
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  {serviceInfo.txhash}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => {
+                      moveTxInfo();
+                    }}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.txhash}
+                  </td>
                 </Tooltip>
                 <td>
                   <button
@@ -208,13 +208,13 @@ const ServiceInfo = () => {
                   title="해당 블록의 상세페이지로 이동합니다."
                   placement="bottom-start"
                 >
-                <td
-                  className="infoContent"
-                  onClick={() => clickBlockHandler()}
-                  style={{ cursor: "pointer" }}
-                >
-                  {serviceInfo.blocknum}
-                </td>
+                  <td
+                    className="infoContent"
+                    onClick={() => clickBlockHandler()}
+                    style={{ cursor: "pointer" }}
+                  >
+                    {serviceInfo.blocknum}
+                  </td>
                 </Tooltip>
               </tr>
               <tr>
