@@ -6,7 +6,9 @@ import SearchIcon from "@mui/icons-material/Search";
 
 // recoil에서 가져오기
 import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { blockSelector, loginSelector } from "../../../Recoil/Selector";
+import { currentBlockAtom } from "../../../Recoil/Atom";
 
 // 검색값 테스트
 // 블록번호 : 67526
@@ -16,6 +18,7 @@ import { blockSelector, loginSelector } from "../../../Recoil/Selector";
 const HeaderSearchBar = () => {
   const { register, handleSubmit, setValue } = useForm();
   const blockData = useRecoilValue(blockSelector);
+  const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
   const navigate = useNavigate();
 
   const loginUser = useRecoilValue(loginSelector);
@@ -35,10 +38,12 @@ const HeaderSearchBar = () => {
     blockData.map((list) => {
       // 블록넘버
       if (list.blocknum === parseInt(data.searchValue)) {
+        setCurrentBlock(list.id);
         return navigate(`/block/${list.blocknum}`);
 
         // 블록해시
       } else if (list.blockhash === data.searchValue) {
+        setCurrentBlock(list.id);
         return navigate(`/block/${list.blocknum}`);
 
         // 트랜잭션해시
