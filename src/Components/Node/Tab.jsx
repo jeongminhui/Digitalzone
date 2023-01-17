@@ -318,6 +318,7 @@ export default function Tab({ rows }) {
                             >
                               {row.ipaddress}
                             </TableCell>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.blocknum}
                               onClick={() =>
@@ -330,7 +331,8 @@ export default function Tab({ rows }) {
                               align="center"
                             >
                               {row.blocknum}
-                            </TableCell>
+                            </TableCell></Tooltip>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.createdt}
                               onClick={() =>
@@ -343,7 +345,7 @@ export default function Tab({ rows }) {
                               align="center"
                             >
                               {row.createdt}
-                            </TableCell>
+                            </TableCell></Tooltip>
                             <TableCell key={row.tps} align="center">{row.tps}</TableCell>
                             <TableCell key={row.latency} align="center">
                               {row.latency}
@@ -424,6 +426,7 @@ export default function Tab({ rows }) {
                             >
                               http://xxx.xx.xxx.xxx:xxxxx
                             </TableCell>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.blocknum}
                               onClick={() =>
@@ -436,7 +439,8 @@ export default function Tab({ rows }) {
                               align="center"
                             >
                               {row.blocknum}
-                            </TableCell>
+                            </TableCell></Tooltip>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.createdt}
                               onClick={() =>
@@ -449,7 +453,7 @@ export default function Tab({ rows }) {
                               align="center"
                             >
                               {row.createdt}
-                            </TableCell>
+                            </TableCell></Tooltip>
                           </TableRow>
                         );
                       })}

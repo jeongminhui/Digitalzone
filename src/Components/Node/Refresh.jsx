@@ -10,7 +10,7 @@ const Refresh = () => {
     
     useEffect(() => {
         const timer = setInterval(() => {setTime(time => time + 1)}, 1000);
-        const timer1 = setTimeout(() => {window.location.reload(); setTime(0)}, 3000000)
+        const timer1 = setTimeout(() => {window.location.reload(); setTime(0)}, 30000)
         return () => clearInterval(timer1)
     },[])
 
