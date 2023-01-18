@@ -20,27 +20,31 @@ const BlockTable = ({ rows, clickHandler }) => {
   const darkmode = darkmodeTheme.isDarkMode;
 
   const columns = [
-    { id: "service", label: "서비스명", minWidth: 80 },
-    { id: "blocknum", label: "블록번호", minWidth: 80 },
+    { id: "service", label: "서비스명", minWidth: 80, align: "center" },
+    { id: "blocknum", label: "블록번호", minWidth: 80, align: "center" },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
+      align: "center"
     },
     {
       id: "blockhash",
       label: "블록해시",
       minWidth: 130,
+      align: "center"
     },
     {
       id: "blksize",
       label: "블록크기",
       minWidth: 70,
+      align: "center",
     },
     {
       id: "txcount",
       label: "트랜잭션 수",
       minWidth: 70,
+      align: "center",
     },
   ];
 
@@ -140,7 +144,8 @@ const BlockTable = ({ rows, clickHandler }) => {
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={idx}
+                      align="center"
                       onClick={() => clickHandler(row.blocknum, idx)}
                       className="tableRow"
                     >
@@ -150,6 +155,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                         style={{
                           color: darkmode ? "var(--bg-color)" : "#000000",
                         }}
+                        align="center"
                       >
                         {row.service}
                       </TableCell>
@@ -161,6 +167,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                             ? "var(--bg-color)"
                             : "var(--point-color)",
                         }}
+                        align="center"
                       >
                         {row.blocknum}
                       </TableCell>
@@ -169,6 +176,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                         style={{
                           color: darkmode ? "var(--bg-color)" : "#000000",
                         }}
+                        align="center"
                       >
                         {row.createdt}
                       </TableCell>
@@ -177,6 +185,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                         style={{
                           color: darkmode ? "var(--bg-color)" : "#000000",
                         }}
+                        align="center"
                       >
                         {row.blockhash}
                       </TableCell>
@@ -185,6 +194,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                         style={{
                           color: darkmode ? "var(--bg-color)" : "#000000",
                         }}
+                        align="center"
                       >
                         {row.blksize} KB
                       </TableCell>
@@ -193,6 +203,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                         style={{
                           color: darkmode ? "var(--bg-color)" : "#000000",
                         }}
+                        align="center"
                       >
                         {row.txnum.length}
                       </TableCell>

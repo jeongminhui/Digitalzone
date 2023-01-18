@@ -27,27 +27,31 @@ const TranTable = ({ rows, clickHandler }) => {
   const darkmode = darkmodeTheme.isDarkMode;
 
   const columns = [
-    { id: "service", label: "서비스명", minWidth: 80 },
-    { id: "txnum", label: "트랜잭션번호", minWidth: 80 },
+    { id: "service", label: "서비스명", minWidth: 80, align: "center" },
+    { id: "txnum", label: "트랜잭션번호", minWidth: 80, align: "center" },
     {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
+      align: "center",
     },
     {
       id: "txhash",
       label: "트랜잭션해시",
       minWidth: 130,
+      align: "center",
     },
     {
       id: "txsize",
       label: "트랜잭션크기",
       minWidth: 70,
+      align: "center",
     },
     {
       id: "blocknum",
       label: "블록번호",
       minWidth: 70,
+      align: "center",
     },
   ];
 
@@ -159,6 +163,7 @@ const TranTable = ({ rows, clickHandler }) => {
                           style={{
                             color: darkmode ? "var(--bg-color)" : "#000000",
                           }}
+                          align="center"
                         >
                           {row.service}
                         </TableCell>
@@ -171,6 +176,7 @@ const TranTable = ({ rows, clickHandler }) => {
                               ? "var(--bg-color)"
                               : "var(--point-color)",
                           }}
+                          align="center"
                         >
                           {row.txnum}
                         </TableCell>
@@ -180,6 +186,7 @@ const TranTable = ({ rows, clickHandler }) => {
                           style={{
                             color: darkmode ? "var(--bg-color)" : "#000000",
                           }}
+                          align="center"
                         >
                           {row.createdt}
                         </TableCell>
@@ -189,6 +196,7 @@ const TranTable = ({ rows, clickHandler }) => {
                           style={{
                             color: darkmode ? "var(--bg-color)" : "#000000",
                           }}
+                          align="center"
                         >
                           {row.txhash}
                         </TableCell>
@@ -198,6 +206,7 @@ const TranTable = ({ rows, clickHandler }) => {
                           style={{
                             color: darkmode ? "var(--bg-color)" : "#000000",
                           }}
+                          align="center"
                         >
                           {row.txsize} KB
                         </TableCell>
@@ -207,6 +216,7 @@ const TranTable = ({ rows, clickHandler }) => {
                           style={{
                             color: darkmode ? "var(--bg-color)" : "#000000",
                           }}
+                          align="center"
                         >
                           {row.blocknum}{" "}
                         </TableCell>

@@ -10,7 +10,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme, ThemeProvider, Tooltip } from "@mui/material";
 import { koKR } from "@mui/material/locale";
 import { useNavigate } from "react-router-dom";
 import "./Tab.scss";
@@ -39,26 +39,63 @@ export default function Tab({ rows }) {
   let columns = [];
   NodeUser
     ? (columns = [
-        { id: "service", label: "서비스명", minWidth: 70 },
-        { id: "ndstatus", label: "상태", minWidth: 70 },
-        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5" },
-        { id: "ndtype", label: "유형", minWidth: 70 },
-        { id: "service_dcc", label: "서비스명", minWidth: 70 },
-        { id: "ipaddress", label: "IP", minWidth: 170 },
-        { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-        { id: "createdt", label: "최신블록시간", minWidth: 170 },
-        { id: "tps", label: "처리속도(TPS)", minWidth: 50 },
-        { id: "latency", label: "지연율(Latency)", minWidth: 70 },
+        { id: "service", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ndstatus", label: "상태", minWidth: 70, align: "center" },
+        {
+          id: "nodename",
+          label: "노드명",
+          minWidth: 70,
+          color: "#4669f5",
+          align: "center",
+        },
+        { id: "ndtype", label: "유형", minWidth: 70, align: "center" },
+        { id: "service_dcc", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ipaddress", label: "IP", minWidth: 170, align: "center" },
+        {
+          id: "blocknum",
+          label: "최신블록번호",
+          minWidth: 100,
+          align: "center",
+        },
+        {
+          id: "createdt",
+          label: "최신블록시간",
+          minWidth: 170,
+          align: "center",
+        },
+        { id: "tps", label: "처리속도(TPS)", minWidth: 50, align: "center" },
+        {
+          id: "latency",
+          label: "지연율(Latency)",
+          minWidth: 70,
+          align: "center",
+        },
       ])
     : (columns = [
-        { id: "service", label: "서비스명", minWidth: 70 },
-        { id: "ndstatus", label: "상태", minWidth: 70 },
-        { id: "nodename", label: "노드명", minWidth: 70, color: "#4669f5" },
-        { id: "ndtype", label: "유형", minWidth: 70 },
-        { id: "service_dcc", label: "서비스명", minWidth: 70 },
-        { id: "ipaddress", label: "IP", minWidth: 170 },
-        { id: "blocknum", label: "최신블록번호", minWidth: 100 },
-        { id: "createdt", label: "최신블록시간", minWidth: 170 },
+        { id: "service", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ndstatus", label: "상태", minWidth: 70, align: "center" },
+        {
+          id: "nodename",
+          label: "노드명",
+          minWidth: 70,
+          color: "#4669f5",
+          align: "center",
+        },
+        { id: "ndtype", label: "유형", minWidth: 70, align: "center" },
+        { id: "service_dcc", label: "서비스명", minWidth: 70, align: "center" },
+        { id: "ipaddress", label: "IP", minWidth: 170, align: "center" },
+        {
+          id: "blocknum",
+          label: "최신블록번호",
+          minWidth: 100,
+          align: "center",
+        },
+        {
+          id: "createdt",
+          label: "최신블록시간",
+          minWidth: 170,
+          align: "center",
+        },
       ]);
 
   // table
@@ -132,6 +169,7 @@ export default function Tab({ rows }) {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          confirmButtonColor: "#4665f9",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -219,6 +257,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.service}
                             </TableCell>
@@ -229,6 +268,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.ndstatus}
                             </TableCell>
@@ -241,6 +281,7 @@ export default function Tab({ rows }) {
                                   ? "var(--bg-color)"
                                   : "var(--point-color)",
                               }}
+                              align="center"
                             >
                               {row.nodename}
                             </TableCell>
@@ -251,6 +292,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.ndtype}
                             </TableCell>
@@ -261,6 +303,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.service_dcc}
                             </TableCell>
@@ -271,9 +314,11 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.ipaddress}
                             </TableCell>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.blocknum}
                               onClick={() =>
@@ -283,9 +328,11 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.blocknum}
-                            </TableCell>
+                            </TableCell></Tooltip>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.createdt}
                               onClick={() =>
@@ -295,11 +342,12 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.createdt}
-                            </TableCell>
-                            <TableCell key={row.tps}>{row.tps}</TableCell>
-                            <TableCell key={row.latency}>
+                            </TableCell></Tooltip>
+                            <TableCell key={row.tps} align="center">{row.tps}</TableCell>
+                            <TableCell key={row.latency} align="center">
                               {row.latency}
                             </TableCell>
                           </TableRow>
@@ -317,6 +365,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.service}
                             </TableCell>
@@ -327,6 +376,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.ndstatus}
                             </TableCell>
@@ -339,6 +389,7 @@ export default function Tab({ rows }) {
                                   ? "var(--bg-color)"
                                   : "var(--point-color)",
                               }}
+                              align="center"
                             >
                               {row.nodename}
                             </TableCell>
@@ -349,6 +400,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.ndtype}
                             </TableCell>
@@ -359,6 +411,7 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.service_dcc}
                             </TableCell>
@@ -369,9 +422,11 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               http://xxx.xx.xxx.xxx:xxxxx
                             </TableCell>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.blocknum}
                               onClick={() =>
@@ -381,9 +436,11 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.blocknum}
-                            </TableCell>
+                            </TableCell></Tooltip>
+                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
                             <TableCell
                               key={row.createdt}
                               onClick={() =>
@@ -393,9 +450,10 @@ export default function Tab({ rows }) {
                                 cursor: "pointer",
                                 color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
+                              align="center"
                             >
                               {row.createdt}
-                            </TableCell>
+                            </TableCell></Tooltip>
                           </TableRow>
                         );
                       })}
