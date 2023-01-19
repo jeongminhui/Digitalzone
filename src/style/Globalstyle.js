@@ -97,6 +97,11 @@ const Globalstyle = createGlobalStyle`
   h3.detailInfoTitle{
    color : ${(props) => props.theme.black_to_bg};
   }
+  
+  // 테이블페이지네이션 토글
+  .css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon path {
+    color : ${(props) => props.theme.black_to_white};
+  }
 
 
   // 블록, 트랜잭션 상세 박스
