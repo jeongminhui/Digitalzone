@@ -42,6 +42,8 @@ export const lightTheme = {
 
   txdataWrap: "#f2f3f6",
 
+  refresh: "#888888",
+
   ///////////////////////// 대시보드 /////////////////////////
   bg_totalBlock: "#eef5ff",
   bg_totalTransaction: "#fff6fb",
@@ -90,6 +92,8 @@ export const darkTheme = {
   boxShadow_nodeTabs: "none",
 
   txdataWrap: "var(--dark-color)",
+
+  refresh: "var(--bg-color)",
 
   ///////////////////////// 대시보드 ////////////////////////////
   bg_totalBlock: "#229AEE",

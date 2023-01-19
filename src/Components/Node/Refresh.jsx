@@ -30,21 +30,24 @@ const Refresh = () => {
     setTime(0);
   };
   return (
-    <div
-      className="Refresh"
-      onClick={() => {
-        refreshHandler();
-        refreshTime();
-      }}
-    >
-      <GrRefresh />{" "}
-      <span
-        style={{
-          color: darkmode ? "var(--bg-color)" : "#888888",
-        }}
-      >
-        {time}초 전
-      </span>
+    <div className="Refresh">
+      <div className="Refresh_wrap">
+        <GrRefresh
+          className="Refresh_icon"
+          onClick={() => {
+            refreshHandler();
+            refreshTime();
+          }}
+          size="19"
+        />{" "}
+        <span
+          style={{
+            color: darkmode ? "var(--bg-color)" : "#888888",
+          }}
+        >
+          {time}초 전
+        </span>
+      </div>
     </div>
   );
 };

@@ -37,6 +37,7 @@ var lightTheme = {
   boxShadow_Header: "var(--box-shadow-header)",
   boxShadow_nodeTabs: "0 0 20px rgba(136, 136, 136, 0.1)",
   txdataWrap: "#f2f3f6",
+  refresh: "#888888",
   ///////////////////////// 대시보드 /////////////////////////
   bg_totalBlock: "#eef5ff",
   bg_totalTransaction: "#fff6fb",
@@ -74,6 +75,7 @@ var darkTheme = {
   boxShadow_Header: "none",
   boxShadow_nodeTabs: "none",
   txdataWrap: "var(--dark-color)",
+  refresh: "var(--bg-color)",
   ///////////////////////// 대시보드 ////////////////////////////
   bg_totalBlock: "#229AEE",
   bg_totalTransaction: "#FF316F",

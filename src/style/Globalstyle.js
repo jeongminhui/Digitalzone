@@ -135,12 +135,18 @@ const Globalstyle = createGlobalStyle`
   }
   
 
+  // point color 텍스트
   .Block .wrapper .blocknum,
   .Transaction .wrapper .txnum,
   .Service .wrapper .service {
     color : ${(props) => props.theme.point_to_bgcolor};
   }
 
+
+// refresh
+.Refresh svg path{
+  stroke : ${(props) => props.theme.refresh};
+}
 `;
 
 export default Globalstyle;
