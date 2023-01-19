@@ -135,9 +135,11 @@ const Globalstyle = createGlobalStyle`
   }
   
 
-  
-  
- 
+  .Block .wrapper .blocknum,
+  .Transaction .wrapper .txnum,
+  .Service .wrapper .service {
+    color : ${(props) => props.theme.point_to_bgcolor};
+  }
 
 `;
 

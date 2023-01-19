@@ -223,10 +223,12 @@ export default function Tab({ rows }) {
                           align={column.align}
                           style={{
                             minWidth: column.minWidth,
-                            color: column.color,
+                            color: darkmode ? "var(--bg-color)" : column.color,
                           }}
                           sx={{
-                            bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                            bgcolor: darkmode
+                              ? "var(--dark-table-color)"
+                              : "#F0F4FB",
                             color: darkmode ? "#F0F4FB" : "#000000",
                             fontWeight: "bold",
                           }}
@@ -266,7 +268,7 @@ export default function Tab({ rows }) {
                               onClick={() => clickHandler(row.nodename)}
                               style={{
                                 cursor: "pointer",
-                                color: darkmode ? "var(--bg-color)" : "#000000",
+                                // color: darkmode ? "var(--bg-color)" : "#000000",
                               }}
                               align="center"
                             >
@@ -318,35 +320,49 @@ export default function Tab({ rows }) {
                             >
                               {row.ipaddress}
                             </TableCell>
-                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
-                            <TableCell
-                              key={row.blocknum}
-                              onClick={() =>
-                                clickBlockHandler(row.blocknum, idx)
-                              }
-                              style={{
-                                cursor: "pointer",
-                                color: darkmode ? "var(--bg-color)" : "#000000",
-                              }}
-                              align="center"
+                            <Tooltip
+                              title="해당 블록의 상세페이지로 이동합니다."
+                              arrow
                             >
-                              {row.blocknum}
-                            </TableCell></Tooltip>
-                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
-                            <TableCell
-                              key={row.createdt}
-                              onClick={() =>
-                                clickBlockHandler(row.blocknum, idx)
-                              }
-                              style={{
-                                cursor: "pointer",
-                                color: darkmode ? "var(--bg-color)" : "#000000",
-                              }}
-                              align="center"
+                              <TableCell
+                                key={row.blocknum}
+                                onClick={() =>
+                                  clickBlockHandler(row.blocknum, idx)
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                  color: darkmode
+                                    ? "var(--bg-color)"
+                                    : "#000000",
+                                }}
+                                align="center"
+                              >
+                                {row.blocknum}
+                              </TableCell>
+                            </Tooltip>
+                            <Tooltip
+                              title="해당 블록의 상세페이지로 이동합니다."
+                              arrow
                             >
-                              {row.createdt}
-                            </TableCell></Tooltip>
-                            <TableCell key={row.tps} align="center">{row.tps}</TableCell>
+                              <TableCell
+                                key={row.createdt}
+                                onClick={() =>
+                                  clickBlockHandler(row.blocknum, idx)
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                  color: darkmode
+                                    ? "var(--bg-color)"
+                                    : "#000000",
+                                }}
+                                align="center"
+                              >
+                                {row.createdt}
+                              </TableCell>
+                            </Tooltip>
+                            <TableCell key={row.tps} align="center">
+                              {row.tps}
+                            </TableCell>
                             <TableCell key={row.latency} align="center">
                               {row.latency}
                             </TableCell>
@@ -426,34 +442,46 @@ export default function Tab({ rows }) {
                             >
                               http://xxx.xx.xxx.xxx:xxxxx
                             </TableCell>
-                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
-                            <TableCell
-                              key={row.blocknum}
-                              onClick={() =>
-                                clickBlockHandler(row.blocknum, idx)
-                              }
-                              style={{
-                                cursor: "pointer",
-                                color: darkmode ? "var(--bg-color)" : "#000000",
-                              }}
-                              align="center"
+                            <Tooltip
+                              title="해당 블록의 상세페이지로 이동합니다."
+                              arrow
                             >
-                              {row.blocknum}
-                            </TableCell></Tooltip>
-                            <Tooltip title="해당 블록의 상세페이지로 이동합니다." arrow>
-                            <TableCell
-                              key={row.createdt}
-                              onClick={() =>
-                                clickBlockHandler(row.blocknum, idx)
-                              }
-                              style={{
-                                cursor: "pointer",
-                                color: darkmode ? "var(--bg-color)" : "#000000",
-                              }}
-                              align="center"
+                              <TableCell
+                                key={row.blocknum}
+                                onClick={() =>
+                                  clickBlockHandler(row.blocknum, idx)
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                  color: darkmode
+                                    ? "var(--bg-color)"
+                                    : "#000000",
+                                }}
+                                align="center"
+                              >
+                                {row.blocknum}
+                              </TableCell>
+                            </Tooltip>
+                            <Tooltip
+                              title="해당 블록의 상세페이지로 이동합니다."
+                              arrow
                             >
-                              {row.createdt}
-                            </TableCell></Tooltip>
+                              <TableCell
+                                key={row.createdt}
+                                onClick={() =>
+                                  clickBlockHandler(row.blocknum, idx)
+                                }
+                                style={{
+                                  cursor: "pointer",
+                                  color: darkmode
+                                    ? "var(--bg-color)"
+                                    : "#000000",
+                                }}
+                                align="center"
+                              >
+                                {row.createdt}
+                              </TableCell>
+                            </Tooltip>
                           </TableRow>
                         );
                       })}

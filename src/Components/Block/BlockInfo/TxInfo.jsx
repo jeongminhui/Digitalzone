@@ -140,7 +140,14 @@ const TxInfo = ({ txnum }) => {
   return (
     <div className="txInfoTable">
       <ThemeProvider theme={theme}>
-        <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
+        <Paper
+          sx={{
+            width: "100%",
+            overflow: "hidden",
+            boxShadow: "none",
+            bgcolor: darkmode ? "var(--darkmode-color)" : "#fff",
+          }}
+        >
           <TableContainer sx={{ maxHeight: 440 }}>
             <Table stickyHeader aria-label="sticky table">
               <TableHead>
@@ -149,15 +156,15 @@ const TxInfo = ({ txnum }) => {
                     <TableCell
                       key={column.id}
                       align={column.align}
-                      sx={{ fontWeight: "bold" }}
-                      style={{
-                        minWidth: column.minWidth,
-                        backgroundColor: darkmode
-                          ? "#434c6c"
+                      style={{ minWidth: column.minWidth }}
+                      sx={{
+                        bgcolor: darkmode
+                          ? "var(--dark-table-color)"
                           : `${column.backgroundColor}`,
                         color: darkmode
                           ? "var(--bg-color)"
                           : "var(--dark-grey-color)",
+                        fontWeight: "bold",
                       }}
                     >
                       {column.label}

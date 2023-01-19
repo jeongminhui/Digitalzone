@@ -3,6 +3,7 @@
   justify-content: end;
   align-items: center;
   margin-right: 3px;
+  padding-bottom: 10px;
   cursor: pointer;
 }
 .Refresh span {
