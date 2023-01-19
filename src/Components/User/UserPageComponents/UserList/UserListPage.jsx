@@ -33,6 +33,8 @@ import { loginSelector } from "../../../../Recoil/Selector";
 import UserUpdate from "../UserUpdate/Components/UserUpdate";
 import { Button, Modal } from "antd";
 import "./UserListPage.scss";
+import { useContext } from "react";
+import { ThemeContext } from "../../../Context/ThemeContext";
 
 const UserListPage = () => {
   const [loading, setLoading] = useState(false);
@@ -50,7 +52,12 @@ const UserListPage = () => {
   const handleCancel = () => {
     setOpen(false);
   };
+
   // 위의 것 민희추가
+
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   // 스테이트 저장소
   const [userlist, setUserlist] = useState([]);
@@ -103,6 +110,8 @@ const UserListPage = () => {
       cancelButtonColor: "#30A64A",
       confirmButtonText: "삭제",
       cancelButtonText: "취소",
+      color: darkmode ? "var(--bg-color)" : "#545454",
+      background: darkmode ? "var(--darkmode-color)" : "#fff",
     }).then((result) => {
       if (result.isConfirmed) {
         const deleteUser = async () => {
@@ -114,6 +123,8 @@ const UserListPage = () => {
           text: "삭제되었습니다",
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
         setTimeout(() => {
           window.location.reload();
@@ -124,6 +135,8 @@ const UserListPage = () => {
           text: "취소되었습니다",
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
       }
     });

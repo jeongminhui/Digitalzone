@@ -15,6 +15,8 @@ import { loginSelector } from "../../Recoil/Selector";
 
 import { useRecoilState } from "recoil";
 import { currentBlockAtom } from "../../Recoil/Atom";
+import { useContext } from "react";
+import { ThemeContext } from "../Context/ThemeContext";
 
 const Service = () => {
   const serviceData = useRecoilValue(serviceSelector);
@@ -35,6 +37,10 @@ const Service = () => {
     service_d: false,
     service_e: false,
   });
+
+  //다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   useEffect(() => {
     setUser({
@@ -104,6 +110,8 @@ const Service = () => {
           showCancelButton: false,
           confirmButtonText: "확인",
           confirmButtonColor: "#4665f9",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -125,6 +133,8 @@ const Service = () => {
           showCancelButton: false,
           confirmButtonText: "확인",
           confirmButtonColor: "#4665f9",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -142,6 +152,8 @@ const Service = () => {
           showCancelButton: false,
           confirmButtonText: "확인",
           confirmButtonColor: "#4665f9",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;

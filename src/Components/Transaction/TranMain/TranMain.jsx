@@ -8,10 +8,16 @@ import { useRecoilValue } from "recoil";
 import { loginSelector } from "../../../Recoil/Selector";
 import Refresh from "../../Node/Refresh";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const TranMain = ({ rows }) => {
   const loginUser = useRecoilValue(loginSelector);
   const [TranUser, setTranUser] = useState(false);
+
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   useEffect(() => {
     setTranUser(loginUser?.useradmin.transaction);
@@ -29,6 +35,8 @@ const TranMain = ({ rows }) => {
           showCancelButton: false,
           confirmButtonText: "확인",
           confirmButtonColor: "#4665f9",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;

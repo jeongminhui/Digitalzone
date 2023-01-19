@@ -8,8 +8,14 @@ import { Form, Checkbox, Row, Col } from "antd";
 import React, { useState, useEffect } from "react";
 import "./UserUpdate.scss";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import { useContext } from "react";
+import { ThemeContext } from "../../../../Context/ThemeContext";
 
 const UserUpdate = ({ updateOk }) => {
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const updateUser = useRecoilValue(userInfoSelector);
   const [user, setUser] = useState({});
   // 상세정보 접근 권한
@@ -106,6 +112,8 @@ const UserUpdate = ({ updateOk }) => {
       text: "정보를 변경했습니다",
       showConfirmButton: false,
       timer: 2000,
+      color: darkmode ? "var(--bg-color)" : "#545454",
+      background: darkmode ? "var(--darkmode-color)" : "#fff",
     });
     setServiceCnt(0);
     // /user/list를 /user로 경로 변경할 때 같이 경로 변경
@@ -124,6 +132,8 @@ const UserUpdate = ({ updateOk }) => {
       cancelButtonColor: "#30A64A",
       confirmButtonText: "삭제",
       cancelButtonText: "취소",
+      color: darkmode ? "var(--bg-color)" : "#545454",
+      background: darkmode ? "var(--darkmode-color)" : "#fff",
     }).then((result) => {
       if (result.isConfirmed) {
         const deleteUser = async () => {
@@ -135,6 +145,8 @@ const UserUpdate = ({ updateOk }) => {
           text: "삭제되었습니다",
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
         updateOk();
       } else {
@@ -143,6 +155,8 @@ const UserUpdate = ({ updateOk }) => {
           text: "취소되었습니다",
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
       }
     });

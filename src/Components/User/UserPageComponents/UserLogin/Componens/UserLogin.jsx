@@ -14,8 +14,14 @@ import {
   useNavigate,
   withRouter,
 } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../../../../Context/ThemeContext";
 
 const UserLogin = () => {
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const navigate = useNavigate();
   // const history = createBrowserHistory();
   const [email, setEmail] = useState("");
@@ -75,6 +81,8 @@ const UserLogin = () => {
           text: errorMsg,
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
       };
       errorPrint();

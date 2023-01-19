@@ -14,6 +14,8 @@ import Swal from "sweetalert2";
 import { loginSelector } from "../../../Recoil/Selector";
 import { useRecoilValue } from "recoil";
 import Tooltip from "@mui/material/Tooltip";
+import { useContext } from "react";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 const ServiceInfo = () => {
   const { blocknum } = useParams();
@@ -28,6 +30,10 @@ const ServiceInfo = () => {
   const loginUser = useRecoilValue(loginSelector);
   const [TranUser, setTranUser] = useState(false);
   const [NodeUser, setNodeUser] = useState(false);
+
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   useEffect(() => {
     setTranUser(loginUser?.useradmin.transaction);
@@ -75,6 +81,8 @@ const ServiceInfo = () => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;
@@ -91,6 +99,8 @@ const ServiceInfo = () => {
           text: "권한이 없습니다. 관리자에게 요청하십시오.",
           showCancelButton: false,
           confirmButtonText: "확인",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;

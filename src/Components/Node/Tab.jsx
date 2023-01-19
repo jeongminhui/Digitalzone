@@ -170,6 +170,8 @@ export default function Tab({ rows }) {
           showCancelButton: false,
           confirmButtonText: "확인",
           confirmButtonColor: "#4665f9",
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         }).then((res) => {
           if (res.isConfirmed) {
             return;

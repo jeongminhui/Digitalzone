@@ -9,6 +9,8 @@ import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 import { blockSelector, loginSelector } from "../../../Recoil/Selector";
 import { currentBlockAtom } from "../../../Recoil/Atom";
+import { useContext } from "react";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 // 검색값 테스트
 // 블록번호 : 67526
@@ -20,6 +22,10 @@ const HeaderSearchBar = () => {
   const blockData = useRecoilValue(blockSelector);
   const [currentBlock, setCurrentBlock] = useRecoilState(currentBlockAtom);
   const navigate = useNavigate();
+
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   const loginUser = useRecoilValue(loginSelector);
   const [TranUser, setTranUser] = useState(false);
@@ -37,6 +43,8 @@ const HeaderSearchBar = () => {
           text: "검색어를 입력하세요",
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
       }
 
@@ -63,18 +71,22 @@ const HeaderSearchBar = () => {
               text: "트랜잭션 권한이 없습니다",
               showConfirmButton: false,
               timer: 2000,
+              color: darkmode ? "var(--bg-color)" : "#545454",
+              background: darkmode ? "var(--darkmode-color)" : "#fff",
             });
           }
         }
       });
-    } catch (dd) {
+    } catch (err) {
       // return Swal.fire({
       //   icon: "warning",
       //   text: "다시 입력해주세요",
       //   showConfirmButton: false,
       //   timer: 2000,
+      // color: darkmode ? "var(--bg-color)" : "#545454",
+      // background: darkmode ? "var(--darkmode-color)" : "#fff",
       // });
-      console.log(dd);
+      console.log(err);
     }
 
     // submit이후 검색창 비우기
