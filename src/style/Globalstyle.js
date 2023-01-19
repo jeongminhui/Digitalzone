@@ -14,7 +14,6 @@ const Globalstyle = createGlobalStyle`
 
   // 다크모드버튼, 유저버튼
   .HeaderBtn{
-    
     background-color: ${(props) => props.theme.white_to_darkgrey};
     box-shadow: ${(props) => props.theme.boxShadow_Header};
   }
@@ -134,19 +133,31 @@ const Globalstyle = createGlobalStyle`
     color : ${(props) => props.theme.darkgrey_to_bg};
   }
   
-
-  // point color 텍스트
+  // point-color 텍스트
   .Block .wrapper .blocknum,
   .Transaction .wrapper .txnum,
   .Service .wrapper .service {
     color : ${(props) => props.theme.point_to_bgcolor};
   }
 
+  // refresh
+  .Refresh svg path{
+    stroke : ${(props) => props.theme.refresh};
+  }
 
-// refresh
-.Refresh svg path{
-  stroke : ${(props) => props.theme.refresh};
-}
+
+
+  /////////////////////////// USER ///////////////////////////
+  .LoginBox{
+    background-color : ${(props) => props.theme.white_to_dark};
+    box-shadow:  ${(props) => props.theme.boxShadow};
+  }
+
+  .LoginForm, .LoginForm input{
+    background-color: ${(props) => props.theme.white_to_darkgrey};
+    color :  ${(props) => props.theme.darkgrey_to_footer};
+  }
+  
 `;
 
 export default Globalstyle;

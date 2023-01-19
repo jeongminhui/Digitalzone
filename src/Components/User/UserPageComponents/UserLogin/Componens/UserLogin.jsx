@@ -100,6 +100,7 @@ const UserLogin = () => {
       <Form>
         <Form.Item>
           <Input
+            className="LoginForm"
             prefix={<UserOutlined className="site-form-item-icon" />}
             type="email"
             value={email}
@@ -111,6 +112,7 @@ const UserLogin = () => {
         </Form.Item>
         <Form.Item>
           <Input
+            className="LoginForm"
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
             value={password}
