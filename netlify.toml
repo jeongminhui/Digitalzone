@@ -4,5 +4,10 @@
   publish = "build"
 
 [context.production.environment]
-  TOML_ENV_VAR = "From netlify.toml"
-  REACT_APP_TOML_ENV_VAR = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_API_KEY = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_AUTH_DOMAIN = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_PROJECT_ID = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_STORAGE_BUCKET = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_MESSAGING_SENDER_ID = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_APP_ID = "From netlify.toml (REACT_APP_)"
+  REACT_APP_FIREBASE_MEASUREMENT_ID = "From netlify.toml (REACT_APP_)"
