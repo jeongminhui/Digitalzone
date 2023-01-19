@@ -24,7 +24,6 @@ import { IconButton, Pagination, TablePagination } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./UserListPage.scss";
 import Swal from "sweetalert2";
-// import UserAddPage from '../UserAdd/UserAddPage';
 import UserAddModal from "../UserAdd/Components/UserAddModal";
 import Footer from "../../../Footer/Footer";
 import { useRecoilValue } from "recoil";

@@ -1,0 +1,105 @@
+.Dashboard {
+  width: calc(100% - 160px);
+  position: relative;
+  padding-top: 65px;
+  padding-bottom: 136px;
+  min-height: 100vh;
+}
+.Dashboard .DashboardInfo {
+  width: 1002px;
+  height: 826px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.Dashboard .DashboardInfo .Dashboard_title {
+  font-weight: bold;
+  font-size: 16px;
+  letter-spacing: -1.2px;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 {
+  width: 1002px;
+  height: 178px;
+  display: flex;
+  justify-content: space-between;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 > div {
+  width: 245px;
+  height: 100%;
+  position: relative;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 > div.ActiveNetwork span {
+  font-size: 20px;
+  font-weight: bold;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 > div a {
+  width: 240px;
+  height: 170px;
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 > div a .Dashboard_data {
+  font-size: 36px;
+  font-weight: bold;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 > div a .Dashboard_time {
+  font-size: 13px;
+}
+.Dashboard .DashboardInfo .Dashboard_container1 > div .Dashboard_icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 {
+  width: 1000px;
+  height: 590px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 50px 50px;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 > div {
+  width: 475px;
+  height: 270px;
+  position: relative;
+  border-radius: 5px;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 > div.NtwCreateBlock .Dashboard_seconds {
+  color: var(--point-color);
+  font-size: 40px;
+  height: 70px;
+  line-height: 70px;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 > div.NtwCreateBlock .Dashboard_chart {
+  height: 155px !important;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 a {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 a .Dashboard_title {
+  padding-top: 18px;
+}
+.Dashboard .DashboardInfo .Dashboard_container2 a .Dashboard_chart {
+  width: 90%;
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
