@@ -86,7 +86,7 @@ const EnrollService = () => {
           <ResponsiveLine
             arcLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"}
             data={data}
-            margin={{ top: 20, right: 15, bottom: 40, left: 45 }}
+            margin={{ top: 20, right: 20, bottom: 50, left: 45 }}
             colors={["#008FFB"]}
             defs={[
               linearGradientDef("gradient", [
@@ -133,7 +133,7 @@ const EnrollService = () => {
             enableGridX={false}
             gridYValues={5}
             // 기타설정
-            lineWidth={5}
+            lineWidth={4}
             enablePoints={false}
             enableCrosshair={false}
             useMesh={true} // MouseHover시 효과

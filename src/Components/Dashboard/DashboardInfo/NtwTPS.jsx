@@ -151,10 +151,13 @@ const NtwTPS = () => {
     scales: {
       x: {
         grid: {
-          lineWidth: false,
+          display: false,
         },
         ticks: {
           color: darkmode ? "#fafbff" : "#3d3d3d",
+        },
+        border: {
+          color: "transparent",
         },
       },
       y: {
@@ -166,6 +169,10 @@ const NtwTPS = () => {
         },
         grid: {
           color: darkmode ? "#888888" : "#ebedf3",
+          drawTicks: false,
+        },
+        border: {
+          color: "transparent",
         },
       },
     },
@@ -184,6 +191,11 @@ const NtwTPS = () => {
         titleColor: "#888888",
         bodyAlign: "center",
         bodyColor: "#555",
+        bodyFont: {
+          font: {
+            family: "'Noto Sans KR', sans-serif",
+          },
+        },
         caretPadding: 0,
         caretSize: 0,
         cornerRadius: 3,
@@ -192,10 +204,6 @@ const NtwTPS = () => {
         displayColors: true,
         borderWidth: 3,
       },
-    },
-
-    layout: {
-      padding: 12,
     },
   };
 
