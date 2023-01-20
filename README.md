@@ -3,7 +3,7 @@
 # :wave: 소개 및 개요
 - 프로젝트 기간 : 2022.12.19 ~ 2023.01.26
 
-- 배포 URL : :link: [민희언즈](https://digitalzone-minhuions.netlify.app/)
+- 배포 URL : :link: [민희언즈](https://docuchain-minhuions.netlify.app/)
 
 - Test ID / PW : ksh@minions.com / test1234!
 
