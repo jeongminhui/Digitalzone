@@ -5,7 +5,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  updateDoc,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../../../../firebase";
