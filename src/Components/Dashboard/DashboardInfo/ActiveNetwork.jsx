@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaNetworkWired } from "react-icons/fa";
+import Time from "./Time";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
-const ActiveNetwork = (props) => {
+const ActiveNetwork = () => {
   const networkData = useRecoilValue(networkSelector);
   const [active, setActive] = useState("");
 
@@ -33,7 +34,9 @@ const ActiveNetwork = (props) => {
           {active.length}
           <span>/{networkData.length}</span>
         </div>
-        <div className="Dashboard_time">{props.DateTime}</div>
+        <div className="Dashboard_time">
+          <Time />
+        </div>
       </Link>
       <div className="Dashboard_icon Dashboard_iconBorder">
         <FaNetworkWired fill="#fff" size="25" />

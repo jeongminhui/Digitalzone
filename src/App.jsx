@@ -7,7 +7,6 @@ import Block from "./Components/Block/Block";
 import Transaction from "./Components/Transaction/Transaction";
 import Node from "./Components/Node/Node";
 import Service from "./Components/Service/Service";
-import User from "./Components/User/User";
 import BlockInfo from "./Components/Block/BlockInfo/BlockInfo";
 import NodeDetail from "./Components/Node/NodeDetail";
 import NotFound from "./Components/NotFound/NotFound";
@@ -20,7 +19,6 @@ import UserAddPage from "./Components/User/UserPageComponents/UserAdd/UserAddPag
 import UserListPage from "./Components/User/UserPageComponents/UserList/UserListPage";
 import UserLoginPage from "./Components/User/UserPageComponents/UserLogin/UserLoginPage";
 import UserMyPagePage from "./Components/User/UserPageComponents/UserMyPage/UserMyPagePage";
-// import UserUpdatePage from "./Components/User/UserPageComponents/UserUpdate/UserUpdatePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -91,10 +89,6 @@ function App() {
           path: "/user/mypage",
           element: <UserMyPagePage />,
         },
-        // {
-        //   path: "/user/update",
-        //   element: <UserUpdatePage />,
-        // },
       ],
     },
   ]);

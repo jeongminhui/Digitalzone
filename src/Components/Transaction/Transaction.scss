@@ -8,9 +8,9 @@
       padding: 20px 70px;
       margin-bottom: 100px;
 
-    .txnum {
-      color: var(--point-color);
-    }
+      .txnum {
+        color: var(--point-color);
+      }
       .subTitle {
         margin-bottom: 30px;
 
@@ -25,29 +25,25 @@
         flex-direction: row wrap;
         justify-content: space-around;
         margin-bottom: 30px;
-
-        }
-      }
-      
-      .pagenationDIV {
-        display: flex;
-        justify-content: space-between;
-
-          .pagenation {
-            align-self: center;
-            justify-self: center;
-            margin-right: 100px;
-          }
-
-        .tablePagenation {
-          justify-self: flex-end;
-        }
-      .tableWrapper {
-        font-family:  "Noto Sans KR", sans-serif;
       }
     }
-    .txnum{
-      color: var(--point-color);
+
+    .pagenationDIV {
+      display: flex;
+      justify-content: space-between;
+
+      .pagenation {
+        align-self: center;
+        justify-self: center;
+        margin-right: 100px;
+      }
+
+      .tablePagenation {
+        justify-self: flex-end;
+      }
+      .tableWrapper {
+        font-family: "Noto Sans KR", sans-serif;
+      }
     }
   }
 }

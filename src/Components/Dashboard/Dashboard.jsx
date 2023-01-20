@@ -24,16 +24,6 @@ import { networkAtom } from "../../Recoil/Atom";
 import { serviceAtom } from "../../Recoil/Atom";
 
 const Dashboard = () => {
-  // 날짜 시간 데이터
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = ("0" + now.getMonth() + 1).slice(-2);
-  const date = ("0" + now.getDate()).slice(-2);
-  const hour = ("0" + now.getHours()).slice(-2);
-  const min = ("0" + now.getMinutes()).slice(-2);
-  const sec = ("0" + now.getSeconds()).slice(-2);
-  const DateTime = `${year}-${month}-${date} ${hour}:${min}:${sec}`;
-
   // 블록 데이터
   const [block, setBlock] = useRecoilState(blockAtom);
   const blockData = collection(db, "block");
@@ -97,10 +87,10 @@ const Dashboard = () => {
     <div className="Dashboard">
       <div className="DashboardInfo">
         <div className="Dashboard_container1">
-          <TotalBlock DateTime={DateTime} />
-          <TotalTransaction DateTime={DateTime} />
-          <ActiveNetwork DateTime={DateTime} />
-          <TotalService DateTime={DateTime} />
+          <TotalBlock />
+          <TotalTransaction />
+          <ActiveNetwork />
+          <TotalService />
         </div>
         <div className="Dashboard_container2">
           <NtwTPS />

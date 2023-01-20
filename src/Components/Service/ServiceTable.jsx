@@ -131,7 +131,7 @@ const ServiceTable = (props) => {
                     align={"center"}
                     style={{ minWidth: column.minWidth }}
                     sx={{
-                      bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                      bgcolor: darkmode ? "var(--dark-table-color)" : "#F0F4FB",
                       color: darkmode ? "#F0F4FB" : "#000000",
                       fontWeight: "bold",
                     }}

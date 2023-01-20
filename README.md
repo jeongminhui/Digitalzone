@@ -1,69 +1,147 @@
-# 💻 DigitalZone 팀 프로젝트
+<img src="https://capsule-render.vercel.app/api?type=waving&color=4665F9&height=300&section=header&text=민희언즈%20팀%20프로젝트&fontSize=55&fontAlignY=35&desc=DigitalZone의%20블록체인%20기반%20사이트%20제작&descAlign=50&descAlignY=53&fontColor=FFFFFF" />
 
-DigitalZone의 블록체인 기반 사이트
+# :wave: 소개 및 개요
+- 프로젝트 기간 : 2022.12.19 ~ 2023.01.26
 
-<br/>
-<br/>
+- 배포 URL : :link: [민희언즈](https://docuchain-minhuions.netlify.app/)
 
-## 작업기간
+- Test ID / PW : ksh@minhuions.com / test1234!
 
-2022.12.19 ~ 2023.01.26
+- Notion : [<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/200px-Notion-logo.svg.png?20220918151013" height=15 /> 민희언즈 노션](https://glow-frog-e92.notion.site/a95c9b57958f411f8926a648c7950b6d)
 
-<br/>
-<br/>
+# :speech_balloon: 팀원 소개
+**:sunny: 민희언즈를 소개합니다**
+|:crown: 정민희|김규리|김태원|유승현|
+|:---:|:---:|:---:|:---:|
+|<img src="https://avatars.githubusercontent.com/u/62429295?v=4" height=100/>|<img src="https://avatars.githubusercontent.com/u/117346967?v=4" height=100/>|<img src="https://avatars.githubusercontent.com/u/119502221?v=4" height=100/>|<img src="https://avatars.githubusercontent.com/u/86696942?v=4" height=100/>|
+|[@jeongminhui](https://github.com/jeongminhui)|[@gyulls2](https://github.com/gyulls2)|[@KrTeddyKim](https://github.com/KrTeddyKim)|[@RYU339](https://github.com/RYU339)|
+|윤예지|임유빈|정재은|
+|<img src="https://avatars.githubusercontent.com/u/106970503?v=4" height=100/>|<img src="https://avatars.githubusercontent.com/u/108451986?v=4" height=100/>|<img src="https://avatars.githubusercontent.com/u/116541435?v=4" height=100/>|
+|[@YejiNote](https://github.com/YejiNote)|[@Been0701](https://github.com/Been0701)|[@may-jan](https://github.com/may-jan)|
 
-## 팀원
+# :hammer_and_wrench: 기술 스택
+**Languages**
 
-| 이름 | 김규리 | 김태원 | 유승현 | 윤예지 | 임유빈 | 정민희 | 정재은 |
-| :--: | :----: | :----: | :----: | :----: | :----: | :----: | :----: |
-| 역할 |  팀원  |  팀원  |  팀원  |  팀원  |  팀원  |  팀장  |  팀원  |
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=JavaScript&logoColor=white"/> 
 
-<br/>
-<br/>
+**Libraries**
 
-## 기술스택
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/React%20Router-CA4245?style=flat&logo=React%20Router&logoColor=white"/> <img src="https://img.shields.io/badge/React%20Hook%20Form-EC5990?style=flat&logo=React%20Hook%20Form&logoColor=white"/> <img src="https://img.shields.io/badge/Recoil-3A7BE2?style=flat&logo=Recoil&logoColor=white"/>
 
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=flat-square&logo=Javascript&logoColor=white"/> <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/>
+**Styles**
 
-<br/>
-<br/>
+<img src="https://img.shields.io/badge/Sass-CC6699?style=flat&logo=Sass&logoColor=white"/> <img src="https://img.shields.io/badge/Styled%20Components-DB7093?style=flat&logo=styled-components&logoColor=white"/> <img src="https://img.shields.io/badge/MUI-007FFF?style=flat&logo=MUI&logoColor=white"/> <img src="https://img.shields.io/badge/Ant%20Design-0170FE?style=flat&logo=Ant%20Design&logoColor=white"/>
 
-## 사용방법 및 규칙
+**Charts**
 
-### 터미널
+<img src="https://img.shields.io/badge/Chart.js-FF6384?style=flat&logo=Chart.js&logoColor=white"/> <img src="https://img.shields.io/badge/Nivo.rocks-FD6B57?style=flat&logo=Nivo.rocks&logoColor=white"/> <img src="https://img.shields.io/badge/Apexcharts.js-1A85EE?style=flat&logo=Apexcharts.js&logoColor=white"/>
 
-```bash
-$ git clone https://github.com/jeongminhui/Digitalzone.git
+**Tools**
+
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=flat&logo=Notion&logoColor=white"/> <img src="https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=flat&logo=Visual%20Studio%20Code&logoColor=white"/> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/> <img src="https://img.shields.io/badge/Google%20Meet-00897B?style=flat&logo=Google%20Meet&logoColor=white"/>
+
+**Database**
+
+<img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=Firebase&logoColor=white"/> <img src="https://img.shields.io/badge/Firebase%20Authentication-FFCA28?style=flat&logo=Firebase%20Authentication&logoColor=white"/>
+
+# :package: 프로젝트 구조
 ```
+📦Digitalzone
+src
+ ┣ Components
+ ┃ ┣ Block
+ ┃ ┃ ┣ BlockChart
+ ┃ ┃ ┣ BlockInfo
+ ┃ ┃ ┣ Block.jsx
+ ┃ ┃ ┣ Block.scss
+ ┃ ┃ ┗ BlockTable.jsx
+ ┃ ┣ CommonComponents
+ ┃ ┃ ┣ Modal
+ ┃ ┃ ┗ Page
+ ┃ ┣ Context
+ ┃ ┃ ┗ ThemeContext.js
+ ┃ ┣ Dashboard
+ ┃ ┃ ┣ DashboardInfo
+ ┃ ┃ ┣ Dashboard.jsx
+ ┃ ┃ ┗ Dashboard.scss
+ ┃ ┣ Footer
+ ┃ ┃ ┣ Footer.jsx
+ ┃ ┃ ┗ Footer.scss
+ ┃ ┣ Header
+ ┃ ┃ ┣ Header_rightWrap
+ ┃ ┃ ┣ Header.jsx
+ ┃ ┃ ┗ Header.scss
+ ┃ ┣ MenuTab
+ ┃ ┃ ┣ MenuTab.jsx
+ ┃ ┃ ┗ MenuTab.scss
+ ┃ ┣ Node
+ ┃ ┃ ┣ Chart.jsx
+ ┃ ┃ ┣ Chart.scss
+ ┃ ┃ ┣ Node.jsx
+ ┃ ┃ ┣ Node.scss
+ ┃ ┃ ┣ NodeDetail.jsx
+ ┃ ┃ ┣ NodeDetail.scss
+ ┃ ┃ ┣ Refresh.jsx
+ ┃ ┃ ┣ Refresh.scss
+ ┃ ┃ ┣ Tab.jsx
+ ┃ ┃ ┗ Tab.scss
+ ┃ ┣ NotFound
+ ┃ ┃ ┣ NotFound.jsx
+ ┃ ┃ ┗ NotFound.scss
+ ┃ ┣ Service
+ ┃ ┃ ┣ ServiceChart
+ ┃ ┃ ┣ ServiceInfo
+ ┃ ┃ ┣ Service.jsx
+ ┃ ┃ ┣ Service.scss
+ ┃ ┃ ┗ ServiceTable.jsx
+ ┃ ┣ Transaction
+ ┃ ┃ ┣ TranInfo
+ ┃ ┃ ┣ TranMain
+ ┃ ┃ ┣ Transaction.jsx
+ ┃ ┃ ┗ Transaction.scss
+ ┃ ┣ User
+ ┃ ┃ ┣ FixedComponents
+ ┃ ┃ ┃ ┣ UserAdd
+ ┃ ┃ ┃ ┣ UserList
+ ┃ ┃ ┃ ┣ UserLogin
+ ┃ ┃ ┃ ┣ UserMyPage
+ ┃ ┃ ┃ ┗ UserUpdate
+ ┃ ┃ ┣ UserPageComponents
+ ┃ ┃ ┃ ┣ UserAdd
+ ┃ ┃ ┃ ┣ UserList
+ ┃ ┃ ┃ ┣ UserLogin
+ ┃ ┃ ┃ ┣ UserMyPage
+ ┃ ┃ ┃ ┗ UserUpdate
+ ┃ ┃ ┣ User.jsx
+ ┃ ┃ ┗ User.scss
+ ┃ ┗ Root.jsx
+ ┣ Recoil
+ ┃ ┣ Atom.jsx
+ ┃ ┗ Selector.jsx
+ ┣ style
+ ┃ ┣ Globalstyle.js
+ ┃ ┗ theme.js
+ ┣ App.jsx
+ ┣ App.scss
+ ┣ firebase.js
+ ┣ index.css
+ ┗ index.js
+ ```
+ 
+# :card_index_dividers: 데이터 구조
+<img src="https://github.com/jeongminhui/Digitalzone/blob/main/public/assets/data_structure_2.png" width=800 />
 
-```bash
-$ cd Digitalzone/
-```
+# :crayon: Flowchart
+- 관리자 / 사용자
+<img src="https://github.com/jeongminhui/Digitalzone/blob/main/public/assets/flowchartuser.png" width=800 />
 
-```bash
-$ npm install
-```
+- 블록 / 트랜잭션 / 노드 / 서비스
+<img src="https://github.com/jeongminhui/Digitalzone/blob/main/public/assets/flowchartbtns.png" width=800 />
 
-```bash
-$ npm start
-```
+# :pushpin: 역할 분담
+<img src="https://github.com/jeongminhui/Digitalzone/blob/main/public/assets/distributing_roles.png" width=800 />
 
-<br/>
+# :date: 개발 일정
+<img src="https://github.com/jeongminhui/Digitalzone/blob/main/public/assets/development_process.png" width=800 />
 
-### 커밋메시지 규칙
-
-`< type > : 무엇을, 왜에 대하여 설명`
-
-- initial : 초기 세팅 추가
-- feat : 새로운 기능 추가, 기존의 기능을 요구 사항에 맞추어 수정
-- fix : 기능에 대한 버그 수정
-- build : 빌드 관련 파일 수정
-- chore : 패키지 매니저 수정, 기타 자잘한 수정
-- ci : CI 관련 설정 수정
-- docs : 문서(주석) 수정
-- style : 코드 스타일, 포맷 등 수정
-- refactor : 기능 변화가 아닌 코드 리팩터링 ex) 변수 이름 변경
-- test : 테스트 코드 추가 및 수정
-- release : 버전 릴리즈
-
-<br/>
+# :computer: Demo

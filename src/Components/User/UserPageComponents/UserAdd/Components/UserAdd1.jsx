@@ -5,12 +5,18 @@ import { db } from "../../../../../firebase";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
+import { useContext } from "react";
+import { ThemeContext } from "../../../../Context/ThemeContext";
 
 const UserAdd1 = ({ addUserOk }) => {
   const [componentSize, setComponentSize] = useState("default");
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   // userid
   const [emailId, setEmailId] = useState("");
@@ -127,6 +133,8 @@ const UserAdd1 = ({ addUserOk }) => {
           text: "사용자를 추가하였습니다",
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
         addUserOk();
       })
@@ -157,6 +165,8 @@ const UserAdd1 = ({ addUserOk }) => {
           text: errorMsg,
           showConfirmButton: false,
           timer: 2000,
+          color: darkmode ? "var(--bg-color)" : "#545454",
+          background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
       };
       errorPrint();
