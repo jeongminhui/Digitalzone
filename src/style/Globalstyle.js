@@ -157,12 +157,44 @@ const Globalstyle = createGlobalStyle`
     background-color : ${(props) => props.theme.white_to_dark};
     box-shadow:  ${(props) => props.theme.boxShadow};
   }
-
+  
   .LoginForm, .LoginForm input{
     background-color: ${(props) => props.theme.white_to_darkgrey};
     color :  ${(props) => props.theme.darkgrey_to_footer};
   }
   
-`;
+  
+  
+  
+  .MyInfoPagePage .MyInfoPage{
+    background-color: ${(props) => props.theme.white_to_dark};
+    box-shadow:  ${(props) => props.theme.boxShadow};
+  }
+
+  /* .MyInfoPage_username{
+    color:  ${(props) => props.theme.black_to_bg};
+  } */
+  
+  .MyInfoPage_black_txt{
+    color:  ${(props) => props.theme.black_to_bg} !important;
+  }
+  
+  .MyInfoPage_inputBox, .MyInfoPage_inputBox input{
+    background-color:  ${(props) => props.theme.white_to_dark} ;
+    color:  ${(props) => props.theme.black_to_footer}
+  }
+
+  .ant-input-password-icon svg{
+    color:${(props) => props.theme.lightgrey_to_bg}
+  }
+  
+  .MyInfoPage_username{
+    color:${(props) => props.theme.black_to_white}
+  }
+
+  .MyInfoPage_top_left svg{
+    color:${(props) => props.theme.user_img}
+  }
+  `;
 
 export default Globalstyle;

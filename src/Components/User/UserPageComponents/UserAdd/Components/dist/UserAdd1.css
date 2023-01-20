@@ -12,6 +12,7 @@
 
 .ant-form-item-label > label {
   width: 50px;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .ant-form-item .ant-form-item-label {
