@@ -186,17 +186,17 @@ const Globalstyle = createGlobalStyle`
   }
 
   // 나의정보 비밀번호 icon
-  .ant-input-password-icon svg{
+  .MyInfoPagePage .ant-input-password-icon svg{
     color:${(props) => props.theme.lightgrey_to_bg};
   }
 
   // 나의정보 체크박스
-  .ant-checkbox-disabled .ant-checkbox-inner:after{
+  .MyInfoPagePage .ant-checkbox-disabled .ant-checkbox-inner:after{
     border-color:${(props) => props.theme.checkbox_color};
   }
   
   // 나의정보 텍스트
-  .css-dev-only-do-not-override-k83k30 label span{
+  .MyInfoPagePage .css-dev-only-do-not-override-k83k30 label span{
     color:${(props) => props.theme.checkbox_color};
   }
   
