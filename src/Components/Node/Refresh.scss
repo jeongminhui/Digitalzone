@@ -1,0 +1,24 @@
+.Refresh {
+  position: relative;
+  margin-bottom: 10px;
+  height: 25px;
+  display: flex;
+  justify-content: end;
+
+  .Refresh_wrap {
+    width: 90px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 3px;
+
+    .Refresh_icon {
+      margin: 0 3px;
+      cursor: pointer;
+    }
+    span {
+      margin-left: 3px;
+      color: #888888;
+    }
+  }
+}

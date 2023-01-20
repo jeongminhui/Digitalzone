@@ -1,16 +1,17 @@
 .Dashboard {
-    width: calc(100% - 160px);
-    position: relative;
-    padding-top: 65px;
-    padding-bottom: 136px;
+  width: calc(100% - 160px);
+  position: relative;
+  padding-top: 65px;
+  padding-bottom: 136px;
+  min-height: 100vh;
 
-    .DashboardInfo {
-        width: 1002px;
-        height: 826px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+  .DashboardInfo {
+    width: 1050px;
+    height: 840px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .Dashboard_title {
       font-weight: bold;
@@ -20,138 +21,76 @@
 
     //////////////////// Dashboard_container1 ////////////////////
     .Dashboard_container1 {
-      width: 1002px;
+      width: 100%;
       height: 178px;
       display: flex;
       justify-content: space-between;
 
       > div {
-        width: 245px;
+        width: 250px;
         height: 100%;
         position: relative;
 
-        // 전체 블록 수
-        &.TotalBlock {
-          a {
-            background-color: #eef5ff;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #2965ba;
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #2965ba;
-          }
-        }
-
-        // 전체 트랜잭션 수
-        &.TotalTransaction {
-          a {
-            background-color: #fff6fb;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #cc2c85;
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #cc2c85;
-          }
-        }
-
         // 활성 네트워크 수
         &.ActiveNetwork {
-          a {
-            background-color: #fff7ec;
-
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #c08728;
-
-              span {
-                color: var(--light-grey-color);
-                font-size: 20px;
-                font-weight: bold;
-              }
-            }
-          }
-
-          .Dashboard_icon {
-            background-color: #c08728;
+          span {
+            font-size: 20px;
+            font-weight: bold;
           }
         }
 
-        // 전체 서비스 등록 건수
-        &.TotalService {
-          a {
-            background-color: #e4fbf8;
+        a {
+          width: 245px;
+          height: 170px;
+          text-decoration: none;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          border-radius: 5px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
 
-            .Dashboard_title,
-            .Dashboard_data {
-              color: #40b4a4;
-            }
+          .Dashboard_data {
+            font-size: 36px;
+            font-weight: bold;
           }
 
-          .Dashboard_icon {
-            background-color: #40b4a4;
+          .Dashboard_time {
+            font-size: 13px;
           }
         }
 
-                a {
-                    width: 240px;
-                    height: 170px;
-                    text-decoration: none;
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    border-radius: 10px;
-                    text-align: center;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-evenly;
-
-                    .Dashboard_data {
-                        font-size: 36px;
-                        font-weight: bold;
-                    }
-
-                    .Dashboard_time {
-                        font-size: 13px;
-                        color: var(--light-grey-color);
-                    }
-                }
-
-                .Dashboard_icon {
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    border: 5px solid #fff;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-            }
+        .Dashboard_icon {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
+      }
+    }
 
     //////////////////// Dashboard_container2 ////////////////////
     .Dashboard_container2 {
-      width: 1000px;
-      height: 590px;
+      width: 100%;
+      height: 610px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
       gap: 50px 50px;
 
-            > div {
-                width: 475px;
-                height: 270px;
-                position: relative;
-                border-radius: 10px;
-                background-color: #ffffff;
-                box-shadow: var(--box-shadow);
+      > div {
+        width: 500px;
+        height: 280px;
+        position: relative;
+        border-radius: 5px;
+
+        &.NtwTPS canvas {
+          padding-bottom: 20px;
+        }
 
         // 네트워크별 블록 생성시간
         &.NtwCreateBlock {

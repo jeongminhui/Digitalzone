@@ -6,9 +6,10 @@ import { collection, getDocs } from 'firebase/firestore';
 import Tab from './Tab';
 
 
+
 const Node = () => {
 
-  const nodeCollection = collection(db, "node1");
+  const nodeCollection = collection(db, "node");
   const [rows, setRows] = useState([]);
  
 
@@ -45,11 +46,10 @@ const Node = () => {
   return (
 
     <div className="Node">
-      
-        <div>
+        <div className="wrapper">
           <h1 className='mainTitle'>노드</h1>
           <h3 className='subTitle'><span className='subBar'>|</span> 전체 노드 {rows.length}개</h3>
-
+          
           <Tab rows={rows}/>
           
         </div>

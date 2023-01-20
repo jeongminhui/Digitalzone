@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
 const NtwCreateBlock = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const networkData = useRecoilValue(networkSelector);
   const [name, setName] = useState("");
   const [blk1, setBlk1] = useState("");
@@ -21,10 +25,14 @@ const NtwCreateBlock = () => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [networkData]);
@@ -115,21 +123,31 @@ const NtwCreateBlock = () => {
   };
 
   return (
-    <div className="NtwCreateBlock">
+    <div className="NtwCreateBlock Dashboard_chartBox">
       <Link to="/block">
         <div className="Dashboard_title">네트워크별 블록 생성시간(초)</div>
         <div className="Dashboard_seconds">{average}초</div>
         <div className="Dashboard_chart">
           <ResponsiveLine
             data={data}
-            colors={["#4edec8", "#426dfa", "#f9425e", "#ffcc5e"]}
+            colors={["#5f88df", "#80baf4 ", " #2ba0e3", " #004c8c"]}
             style={{ width: 200, height: 100 }}
-            margin={{ top: 20, right: 35, bottom: 50, left: 65 }}
+            margin={{ top: 20, right: 25, bottom: 60, left: 50 }}
+            theme={{
+              axis: {
+                ticks: {
+                  text: {
+                    fontSize: 12,
+                    fill: darkmode ? "#fafbff" : "#3d3d3d",
+                  },
+                },
+              },
+            }}
             xScale={{ type: "point" }}
             yScale={{
               type: "linear",
               min: 0,
-              max: "auto",
+              max: "6",
             }}
             // 상하좌우 인덱스
             axisTop={null}
@@ -140,13 +158,13 @@ const NtwCreateBlock = () => {
               tickPadding: 20,
               tickRotation: 0,
             }}
-            linear
             scale={[0, 20, 40, 60, 80]}
             axisLeft={{
               orient: "left",
               tickSize: 0,
               tickPadding: 16,
               tickRotation: 0,
+              tickValues: [0, 2, 4, 6],
             }}
             enableGridX={false}
             enableGridY={false}
@@ -155,7 +173,6 @@ const NtwCreateBlock = () => {
             enablePoints={false}
             enableCrosshair={false}
             useMesh={true}
-            // animate={true}
             tooltip={(data) => {
               return (
                 <div style={tooltipStyle}>

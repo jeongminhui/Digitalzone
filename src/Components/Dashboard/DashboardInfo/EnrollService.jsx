@@ -1,12 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ResponsiveLine } from "@nivo/line";
+import { linearGradientDef } from "@nivo/core";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
 const EnrollService = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const networkData = useRecoilValue(networkSelector);
   const [enroll, setEnroll] = useState([]);
 
@@ -14,10 +19,14 @@ const EnrollService = () => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [networkData]);
@@ -51,19 +60,14 @@ const EnrollService = () => {
     {
       id: "시간당 서비스 등록건수",
       data: [
-        { x: "10:00", y: 310 },
-        { x: "11:00", y: 400 },
-        { x: "12:00", y: 200 },
-        { x: "13:00", y: 310 },
-        { x: "14:00", y: 210 },
+        { x: "10:00", y: enroll.time1 },
+        { x: "11:00", y: enroll.time2 },
+        { x: "12:00", y: enroll.time3 },
+        { x: "13:00", y: enroll.time4 },
+        { x: "14:00", y: enroll.time5 },
       ],
     },
   ];
-  // enroll.time1
-  // enroll.time2
-  // enroll.time3
-  // enroll.time4
-  // enroll.time5
 
   const tooltipStyle = {
     color: "#888888",
@@ -75,17 +79,34 @@ const EnrollService = () => {
   };
 
   return (
-    <div className="EnrollService">
+    <div className="EnrollService Dashboard_chartBox">
       <Link to="/service">
         <div className="Dashboard_title">시간당 서비스 등록건수</div>
         <div className="Dashboard_chart">
           <ResponsiveLine
+            arcLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"}
             data={data}
-            margin={{ top: 20, right: 15, bottom: 40, left: 45 }}
-            // colors={["#008FFB"]}
-            colors={{ scheme: "category10" }}
+            margin={{ top: 20, right: 20, bottom: 50, left: 45 }}
+            colors={["#008FFB"]}
+            defs={[
+              linearGradientDef("gradient", [
+                { offset: 20, color: "inherit" },
+                { offset: 100, color: "inherit", opacity: 0.3 },
+              ]),
+            ]}
+            fill={[{ match: "*", id: "gradient" }]}
+            theme={{
+              grid: { line: { stroke: darkmode ? "#888888" : "#ebedf3" } },
+              axis: {
+                ticks: {
+                  text: {
+                    fontSize: 12,
+                    fill: darkmode ? "#fafbff" : "#3d3d3d",
+                  },
+                },
+              },
+            }}
             enableLinkGradient={true}
-            // colors={["-webkit-linear-gradient(to right, #e6dada, #274046)"]}
             xScale={{ type: "point" }}
             yScale={{
               type: "linear",
@@ -107,15 +128,17 @@ const EnrollService = () => {
               tickSize: 0,
               tickPadding: 12,
               tickRotation: 0,
+              tickValues: [0, 100, 200, 300, 400],
             }}
             enableGridX={false}
+            gridYValues={5}
             // 기타설정
             lineWidth={4}
             enablePoints={false}
             enableCrosshair={false}
             useMesh={true} // MouseHover시 효과
             enableArea={true} //fill 효과
-            areaOpacity={0.25} //fill 효과 투명도
+            areaOpacity={darkmode ? 1 : 0.5} //fill 효과 투명도
             animate={true}
             tooltip={(data) => {
               return (

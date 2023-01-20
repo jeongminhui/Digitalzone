@@ -1,5 +1,139 @@
 .BlockInfo {
   width: calc(100% - 160px);
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
+
+  .wrap {
+    padding: 20px 70px;
+    margin-bottom: 100px;
+
+    .mainTitle {
+      min-width: 200px;
+    }
+
+    .subTitle {
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      min-width: 400px;
+
+      .listBtn {
+        margin-right: 56px;
+      }
+
+      .subBar {
+        color: #4669f5;
+        font-weight: bold;
+        font-size: 26px;
+      }
+    }
+
+    .carousel {
+      width: 73%;
+      height: 50px;
+      line-height: 50px;
+      margin: 0 auto;
+      margin-top: 60px;
+      cursor: pointer;
+      color: var(--dark-grey-color);
+
+      .swiper-slide {
+        text-align: left;
+      }
+
+      .swiper-button-next {
+        width: 60px;
+        background: url(../../../../public/assets/arrow_right.svg) no-repeat;
+        background-size: 35px auto;
+        background-position: right;
+        position: absolute;
+        right: 0;
+      }
+
+      .swiper-button-prev {
+        width: 60px;
+        background: url(../../../../public/assets/arrow_left.svg) no-repeat;
+        background-size: 35px auto;
+        background-position: left;
+      }
+
+      .swiper-button-next::after,
+      .swiper-button-prev::after {
+        display: none;
+      }
+    }
+
+    .tableWrap {
+      width: 91%;
+      margin: 40px auto;
+      padding: 30px;
+
+      .table {
+        border-spacing: 25px;
+        .infoTitle {
+          font-size: 14px;
+          font-weight: bold;
+          min-width: 100px;
+        }
+
+        .infoContent {
+          font-size: 14px;
+          padding-left: 30px;
+        }
+
+        .copyButton {
+          width: 60px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
+          background-color: #ebf4fc;
+          border: none;
+          font-size: 12px;
+          padding: 3px;
+          margin: 0;
+          cursor: pointer;
+
+          .icon {
+            margin: 0 0 3px 1px;
+          }
+        }
+
+        .txInfoBtn {
+          margin-left: 30px;
+          padding: 0 10px;
+          height: 30px;
+          font-size: 12px;
+          cursor: pointer;
+        }
+      }
+      .modalBtn {
+        width: 30px;
+        height: 30px;
+        background-color: inherit;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+
+        .modalIcon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+.ant-btn-primary {
+  span {
+    color: #fff;
+  }
+}
+.txdataBox {
+  // background-color: #f2f3f6;
+  padding: 30px 20px;
+  margin-top: 30px;
+}
+
+.tableRow {
+  cursor: pointer;
 }

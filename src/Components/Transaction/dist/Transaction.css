@@ -1,0 +1,42 @@
+.Transaction {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+}
+.Transaction .TranMain .wrapper {
+  padding: 20px 70px;
+  margin-bottom: 100px;
+}
+.Transaction .TranMain .wrapper .txnum {
+  color: var(--point-color);
+}
+.Transaction .TranMain .wrapper .subTitle {
+  margin-bottom: 30px;
+}
+.Transaction .TranMain .wrapper .subTitle .subBar {
+  color: #4669f5;
+  font-weight: bold;
+}
+.Transaction .TranMain .wrapper .chartWrapper {
+  clear: both;
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+.Transaction .TranMain .pagenationDIV {
+  display: flex;
+  justify-content: space-between;
+}
+.Transaction .TranMain .pagenationDIV .pagenation {
+  align-self: center;
+  justify-self: center;
+  margin-right: 100px;
+}
+.Transaction .TranMain .pagenationDIV .tablePagenation {
+  justify-self: flex-end;
+}
+.Transaction .TranMain .pagenationDIV .tableWrapper {
+  font-family: "Noto Sans KR", sans-serif;
+}

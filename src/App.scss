@@ -5,7 +5,7 @@
   padding: 0;
   position: relative;
   box-sizing: border-box;
-  font-size: 14px;
+  // font-size: 14px;
   color: var(--dark-grey-color);
   font-weight: normal;
   font-family: "Noto Sans KR", sans-serif;
@@ -25,6 +25,7 @@ body {
 .Root_layoutWrap {
   display: flex;
 }
+
 h1 {
   font-size: 30px;
   font-weight: bolder;
@@ -40,9 +41,8 @@ button {
   color: white;
   background-color: var(--point-color);
   border: 0;
-  border-radius: 8px;
-  height: 32px;
-  margin: 9px;
+  border-radius: 5px;
+  height: 35px;
   padding: 9px;
   padding-left: 20px;
   padding-right: 20px;
@@ -51,11 +51,20 @@ button {
   font-family: "Noto Sans KR", sans-serif;
   font-weight: 420;
 }
-.ant-btn-primary {
+
+.listBtn {
+  width: 85px;
+  height: 35px;
+  border: 1px solid var(--point-color);
+  border-radius: 5px;
+  margin-right: 80px;
+  padding: 5px;
+  outline: none;
+  text-decoration: none;
   background-color: var(--point-color);
-}
-.ant-btn > span {
   color: white;
+  cursor: pointer;
+  font-size: 13px;
 }
 // .ant-btn {
 // font-size: 15px;
@@ -64,7 +73,6 @@ button {
 //   border-radius: 6px;
 // font-family: "Noto Sans KR", sans-serif;
 // }
-
-.PersonRoundedIcon path {
-  color: var(--point-color);
+th {
+  font-family: "Noto Sans KR", sans-serif;
 }

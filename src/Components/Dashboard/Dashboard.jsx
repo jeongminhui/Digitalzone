@@ -24,83 +24,73 @@ import { networkAtom } from "../../Recoil/Atom";
 import { serviceAtom } from "../../Recoil/Atom";
 
 const Dashboard = () => {
-  // 날짜 시간 데이터
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = ("0" + now.getMonth() + 1).slice(-2);
-  const date = ("0" + now.getDate()).slice(-2);
-  const hour = ("0" + now.getHours()).slice(-2);
-  const min = ("0" + now.getMinutes()).slice(-2);
-  const sec = ("0" + now.getSeconds()).slice(-2);
-  const DateTime = `${year}-${month}-${date} ${hour}:${min}:${sec}`;
+  // 블록 데이터
+  const [block, setBlock] = useRecoilState(blockAtom);
+  const blockData = collection(db, "block");
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(blockData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setBlock(dataArr);
+    }
+    getNtw();
+  }, []);
 
-  // // 블록 데이터
-  // const [block, setBlock] = useRecoilState(blockAtom);
-  // const blockData = collection(db, "block");
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(blockData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setBlock(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  // 트랜잭션 데이터
+  const [transaction, setTransaction] = useRecoilState(transactionAtom);
+  const transactionData = collection(db, "transaction");
 
-  // // 트랜잭션 데이터
-  // const [transaction, setTransaction] = useRecoilState(transactionAtom);
-  // const transactionData = collection(db, "transaction");
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(transactionData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setTransaction(dataArr);
+    }
+    getNtw();
+  }, []);
 
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(transactionData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setTransaction(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  // 네트워크 데이터
+  const [network, setNetwork] = useRecoilState(networkAtom);
+  const ntwData = collection(db, "ntwdata");
 
-  // // 네트워크 데이터
-  // const [network, setNetwork] = useRecoilState(networkAtom);
-  // const ntwData = collection(db, "ntwdata");
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(ntwData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setNetwork(dataArr);
+    }
+    getNtw();
+  }, []);
 
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(ntwData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setNetwork(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  // 서비스 데이터
+  const [service, setService] = useRecoilState(serviceAtom);
+  const serviceData = collection(db, "service");
 
-  // // 서비스 데이터
-  // const [service, setService] = useRecoilState(serviceAtom);
-  // const serviceData = collection(db, "service");
-
-  // useEffect(() => {
-  //   async function getNtw() {
-  //     const data = await getDocs(serviceData);
-  //     const dataArr = data.docs.map((item) => {
-  //       return item.data();
-  //     });
-  //     setService(dataArr);
-  //   }
-  //   getNtw();
-  // }, []);
+  useEffect(() => {
+    async function getNtw() {
+      const data = await getDocs(serviceData);
+      const dataArr = data.docs.map((item) => {
+        return item.data();
+      });
+      setService(dataArr);
+    }
+    getNtw();
+  }, []);
 
   return (
     <div className="Dashboard">
       <div className="DashboardInfo">
         <div className="Dashboard_container1">
-          <TotalBlock DateTime={DateTime} />
-          <TotalTransaction DateTime={DateTime} />
-          <ActiveNetwork DateTime={DateTime} />
-          <TotalService DateTime={DateTime} />
+          <TotalBlock />
+          <TotalTransaction />
+          <ActiveNetwork />
+          <TotalService />
         </div>
         <div className="Dashboard_container2">
           <NtwTPS />

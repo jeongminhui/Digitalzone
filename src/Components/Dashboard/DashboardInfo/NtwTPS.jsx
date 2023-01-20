@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recoil로 불러오기
 import { useRecoilValue } from "recoil";
 import { networkSelector } from "../../../Recoil/Selector";
 
 const NtwTPS = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const networkData = useRecoilValue(networkSelector);
   const [name, setName] = useState("");
   const [tps1, setTps1] = useState("");
@@ -19,10 +23,14 @@ const NtwTPS = () => {
   useEffect(() => {
     async function getActive() {
       const data = await networkData;
-      const dataFiltering = data.filter((item) => {
-        return item.ntwstatus === true;
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.ntwstatus === true;
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [networkData]);
@@ -64,7 +72,7 @@ const NtwTPS = () => {
   const time4Aver =
     (tps1[time4] + tps2[time4] + tps3[time4] + tps4[time4]) / name.length;
 
-  const colors = ["#1f60b5", "#4edec8", "#426dfa", "#f9425e", "#ffcc5e"];
+  const colors = ["#116eb9", "#5f88df", "#80baf4 ", " #2ba0e3", " #004c8c"];
   const data = {
     labels: [time1, time2, time3, time4],
     datasets: [
@@ -87,7 +95,6 @@ const NtwTPS = () => {
         // 네트워크1
         type: "bar",
         label: name[0],
-        // backgroundColor: "#5f88df",
         backgroundColor: colors[1],
         barPercentage: 1, // 막대사이 간격삭제
         data: [
@@ -101,7 +108,6 @@ const NtwTPS = () => {
         // 네트워크2
         type: "bar",
         label: name[1],
-        // backgroundColor: "#80baf4",
         backgroundColor: colors[2],
         barPercentage: 1,
         data: [
@@ -116,7 +122,6 @@ const NtwTPS = () => {
         // 네트워크3
         type: "bar",
         label: name[2],
-        // backgroundColor: "#2ba0e3",
         backgroundColor: colors[3],
         barPercentage: 1,
         data: [
@@ -130,7 +135,6 @@ const NtwTPS = () => {
         // 네트워크4
         type: "bar",
         label: name[3],
-        // backgroundColor: "#004c8c",
         backgroundColor: colors[4],
         barPercentage: 1,
         data: [
@@ -147,7 +151,13 @@ const NtwTPS = () => {
     scales: {
       x: {
         grid: {
-          lineWidth: false,
+          display: false,
+        },
+        ticks: {
+          color: darkmode ? "#fafbff" : "#3d3d3d",
+        },
+        border: {
+          color: "transparent",
         },
       },
       y: {
@@ -155,6 +165,14 @@ const NtwTPS = () => {
         max: 600,
         ticks: {
           stepSize: 100,
+          color: darkmode ? "#fafbff" : "#3d3d3d",
+        },
+        grid: {
+          color: darkmode ? "#888888" : "#ebedf3",
+          drawTicks: false,
+        },
+        border: {
+          color: "transparent",
         },
       },
     },
@@ -173,6 +191,11 @@ const NtwTPS = () => {
         titleColor: "#888888",
         bodyAlign: "center",
         bodyColor: "#555",
+        bodyFont: {
+          font: {
+            family: "'Noto Sans KR', sans-serif",
+          },
+        },
         caretPadding: 0,
         caretSize: 0,
         cornerRadius: 3,
@@ -181,36 +204,11 @@ const NtwTPS = () => {
         displayColors: true,
         borderWidth: 3,
       },
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-      //
-    },
-
-    layout: {
-      padding: 12,
     },
   };
 
   return (
-    <div className="NtwTPS">
+    <div className="NtwTPS Dashboard_chartBox">
       <Link to="/transaction">
         <div className="Dashboard_title">네트워크별 트랜잭션 처리속도</div>
         <div className="Dashboard_chart">

@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "./../../Context/ThemeContext";
 
 // recooil로 불러오기
 import { useRecoilValue } from "recoil";
 import { serviceSelector } from "../../../Recoil/Selector";
 
 const NtwActiveService = () => {
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
+
   const serviceData = useRecoilValue(serviceSelector);
   const [service, setService] = useState("");
 
@@ -14,10 +18,14 @@ const NtwActiveService = () => {
   useEffect(() => {
     async function getActive() {
       const data = await serviceData;
-      const dataFiltering = data.filter((item) => {
-        return item.status === "성공";
-      });
-      makeChartData(dataFiltering);
+      try {
+        const dataFiltering = data.filter((item) => {
+          return item.status === "성공";
+        });
+        makeChartData(dataFiltering);
+      } catch (err) {
+        console.log(err);
+      }
     }
     getActive();
   }, [serviceData]);
@@ -71,7 +79,7 @@ const NtwActiveService = () => {
   };
 
   return (
-    <div className="NtwActiveService">
+    <div className="NtwActiveService Dashboard_chartBox">
       <Link to="/service">
         <div className="Dashboard_title">서비스별 네트워크 활동비율</div>
         <div className="Dashboard_chart">
@@ -83,15 +91,19 @@ const NtwActiveService = () => {
               { id: "D서비스", value: service.serviceD },
               { id: "E서비스", value: service.serviceE },
             ]}
-            margin={{ top: 25, right: 0, bottom: 25, left: 0 }} //차트 margin
+            margin={{ top: 10, right: 0, bottom: 30, left: 0 }} //차트 margin
             innerRadius={0} //차트 중앙 빈공간 반지름
+            colors={["#8fdbf4", "#80baf4 ", " #2daaf1", " #197be4", "#008FFB"]}
+            arcLinkLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"} //막대선에 이어진 label색상
+            activeOuterRadiusOffset={10}
+            enableArcLinkLabels={true} //막대선 표출 여부
+            arcLinkLabelsDiagonalLength={4} // 막대선 길이1
+            arcLinkLabelsStraightLength={12} // 막대선 길이2
+            arcLinkLabelsThickness={1} //막대선 두께
             padAngle={0} //각 pad의 간격
             cornerRadius={0} //각 pad의 radius
-            colors={["#4edec8", "#426dfa", "#f9425e", "#ffcc5e", "#976df3"]} //차트색상
             borderWidth={0} //각 pad의 border
-            enableArcLinkLabels={true} //막대선 표출 여부
-            arcLinkLabelsTextColor="black" //막대선 label색상
-            arcLinkLabelsThickness={1} //막대선 두께
+            arcLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"} // pad 내부 색상
             arcLinkLabelsColor={{ from: "color" }} // 막대 색상, pad 색상에 따라감
             // pad에 표현되는 글씨
             tooltip={(data) => {

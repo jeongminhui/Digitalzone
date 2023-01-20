@@ -41,3 +41,15 @@ export const userInfoAtom = atom({
     default: '',
     effects_UNSTABLE: [persistAtom],
 });
+
+export const currentBlockAtom = atom({
+    key: 'currentBlockAtom',
+    default: '현재 블록',
+    effects_UNSTABLE: [persistAtom],
+});
+
+export const currentTxAtom = atom({
+    key: 'currentTxAtom',
+    default: '현재 트랜잭션 번호',
+    effects_UNSTABLE: [persistAtom],
+});
