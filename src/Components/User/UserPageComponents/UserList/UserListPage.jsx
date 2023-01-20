@@ -272,7 +272,9 @@ const UserListPage = () => {
                       rowSpan={2}
                       width="8%"
                       style={{
-                        color: darkmode ? "var(--bg-color)" : "#000000",
+                        color: darkmode
+                          ? "var(--bg-color)"
+                          : "var(--point-color)",
                       }}
                     >
                       이름
@@ -586,6 +588,17 @@ const UserListPage = () => {
                 </TableBody>
               </Table>
               <div className="pagenationDIV">
+                <div className="tablePagenation">
+                  <TablePagination
+                    rowsPerPageOptions={[10, 25, 100]}
+                    component="div"
+                    count={userlist.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                  />
+                </div>
                 <div className="pagenation">
                   <Stack spacing={2}>
                     <Pagination
@@ -601,17 +614,6 @@ const UserListPage = () => {
                       showLastButton
                     />
                   </Stack>
-                </div>
-                <div className="tablePagenation">
-                  <TablePagination
-                    rowsPerPageOptions={[10, 25, 100]}
-                    component="div"
-                    count={userlist.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                  />
                 </div>
               </div>
             </TableContainer>
