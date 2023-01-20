@@ -46,6 +46,7 @@ export const lightTheme = {
   refresh: "#888888",
 
   user_img: "rgba(0, 0, 0, 0.26)",
+  checkbox_color: "rgba(0, 0, 0, 0.25)",
 
   ///////////////////////// 대시보드 /////////////////////////
   bg_totalBlock: "#eef5ff",
@@ -100,6 +101,7 @@ export const darkTheme = {
   refresh: "var(--bg-color)",
 
   user_img: "var(--footer-color)",
+  checkbox_color: "var(--light-grey-color)",
 
   ///////////////////////// 대시보드 ////////////////////////////
   bg_totalBlock: "#229AEE",
