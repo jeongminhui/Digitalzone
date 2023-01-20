@@ -40,6 +40,3 @@
 .Transaction .TranMain .pagenationDIV .tableWrapper {
   font-family: "Noto Sans KR", sans-serif;
 }
-.Transaction .TranMain .txnum {
-  color: var(--point-color);
-}

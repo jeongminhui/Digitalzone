@@ -122,8 +122,6 @@ const NtwCreateBlock = () => {
     boxShadow: "var(--box-shadow-chart-tooltip)",
   };
 
-  const test = {};
-
   return (
     <div className="NtwCreateBlock Dashboard_chartBox">
       <Link to="/block">
@@ -134,7 +132,7 @@ const NtwCreateBlock = () => {
             data={data}
             colors={["#5f88df", "#80baf4 ", " #2ba0e3", " #004c8c"]}
             style={{ width: 200, height: 100 }}
-            margin={{ top: 20, right: 35, bottom: 50, left: 65 }}
+            margin={{ top: 20, right: 25, bottom: 60, left: 50 }}
             theme={{
               axis: {
                 ticks: {

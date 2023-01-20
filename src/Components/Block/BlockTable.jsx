@@ -26,13 +26,13 @@ const BlockTable = ({ rows, clickHandler }) => {
       id: "createdt",
       label: "타임스탬프",
       minWidth: 100,
-      align: "center"
+      align: "center",
     },
     {
       id: "blockhash",
       label: "블록해시",
       minWidth: 130,
-      align: "center"
+      align: "center",
     },
     {
       id: "blksize",
@@ -124,7 +124,7 @@ const BlockTable = ({ rows, clickHandler }) => {
                     align={column.align}
                     style={{ minWidth: column.minWidth }}
                     sx={{
-                      bgcolor: darkmode ? "#434c6c" : "#F0F4FB",
+                      bgcolor: darkmode ? "var(--dark-table-color)" : "#F0F4FB",
                       color: darkmode ? "#F0F4FB" : "#000000",
                       fontWeight: "bold",
                     }}

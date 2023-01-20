@@ -1,0 +1,30 @@
+.login_logo {
+  height: 80px;
+  margin-bottom: 30px;
+}
+
+.UserLogin_Page {
+  width: calc(100% - 160px);
+  min-height: 100vh;
+  position: relative;
+}
+
+.LoginPage {
+  display: flex;
+  height: 100vh;
+  text-align: center;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+.LoginPage .page {
+  top: -70px;
+  height: auto;
+  width: 400px;
+  padding: 50px;
+  margin: 50px;
+  border-radius: 10px;
+}
+.LoginPage .LoginForm input::placeholder {
+  color: var(--light-grey-color);
+}

@@ -1,21 +1,14 @@
-import { db } from "../../../../../firebase";
+import React, { useState, useEffect } from "react";
+import { db } from "../../../../firebase";
 import { collection, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useRecoilValue } from "recoil";
-import { userInfoSelector } from "../../../../../Recoil/Selector";
+import { userInfoSelector } from "../../../../Recoil/Selector";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { Form, Checkbox, Row, Col } from "antd";
-import React, { useState, useEffect } from "react";
-import "./UserUpdate.scss";
-import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { useContext } from "react";
-import { ThemeContext } from "../../../../Context/ThemeContext";
+import { ThemeContext } from "../../../Context/ThemeContext";
 
-const UserUpdate = ({ updateOk }) => {
-  // 다크모드
-  const theme = useContext(ThemeContext);
-  const darkmode = theme.isDarkMode;
-
+const UserUpdate = () => {
   const updateUser = useRecoilValue(userInfoSelector);
   const [user, setUser] = useState({});
   // 상세정보 접근 권한
@@ -47,6 +40,10 @@ const UserUpdate = ({ updateOk }) => {
 
   const navigate = useNavigate();
   const userCollection = collection(db, "users");
+
+  // 다크모드
+  const theme = useContext(ThemeContext);
+  const darkmode = theme.isDarkMode;
 
   // 로그인한 사용자 정보 가져오기
   useEffect(() => {
@@ -117,8 +114,7 @@ const UserUpdate = ({ updateOk }) => {
     });
     setServiceCnt(0);
     // /user/list를 /user로 경로 변경할 때 같이 경로 변경
-    navigate("/user");
-    updateOk();
+    navigate("/user/list");
   };
 
   // 정보 삭제
@@ -148,7 +144,6 @@ const UserUpdate = ({ updateOk }) => {
           color: darkmode ? "var(--bg-color)" : "#545454",
           background: darkmode ? "var(--darkmode-color)" : "#fff",
         });
-        updateOk();
       } else {
         Swal.fire({
           icon: "error",
@@ -160,181 +155,192 @@ const UserUpdate = ({ updateOk }) => {
         });
       }
     });
+    // /user/list를 /user로 경로 변경할 때 같이 경로 변경
+    navigate("/user/list");
   };
 
   return (
-    <div className="UserUpdate">
-      <div className="MyInfoPage_top">
-        <div className="MyInfoPage_top_left">
-          <AccountCircleRoundedIcon sx={{ fontSize: 80 }} color="disabled" />
-        </div>
-        <div className="MyInfoPage_top_right">
-          <h1>{user.username}</h1>
-          <h3>{user.userteam}</h3>
-        </div>
-      </div>
-      <Form
-        labelCol={{
-          span: 10,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
-        layout="horizontal"
-        initialValues={{}}
-      >
-        <Form.Item label="아이디(이메일)">{user.userid}</Form.Item>
-        <Form.Item label="상세정보 접근 권한">
-          <Row>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
-                defaultChecked
-                disabled
-              >
-                대시보드
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
-                defaultChecked
-                disabled
-              >
-                블록
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+    <div>
+      <div>{user.username}</div>
+      <div>{user.userteam}</div>
+      <div>아이디(이메일) {user.userid}</div>
+      <form>
+        <div>
+          상세정보 접근 권한
+          <label>
+            <input type="checkbox" checked disabled />
+            대시보드
+          </label>
+          <label>
+            <input type="checkbox" checked disabled />
+            블록
+          </label>
+          <label>
+            {tran ? (
+              <input
+                type="checkbox"
                 id="transaction"
-                checked={tran}
+                name="checkbox"
+                checked
                 onChange={adminChangeHandler}
-              >
-                트랜잭션
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="transaction"
+                name="checkbox"
+                onChange={adminChangeHandler}
+              />
+            )}
+            트랜잭션
+          </label>
+          <label>
+            {node ? (
+              <input
+                type="checkbox"
                 id="node"
-                checked={node}
+                name="checkbox"
+                checked
                 onChange={adminChangeHandler}
-              >
-                노드
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="node"
+                name="checkbox"
+                onChange={adminChangeHandler}
+              />
+            )}
+            노드
+          </label>
+          <label>
+            {serv ? (
+              <input
+                type="checkbox"
                 id="service"
-                checked={serv}
+                name="checkbox"
+                checked
                 onChange={adminChangeHandler}
-              >
-                서비스
-              </Checkbox>
-            </Col>
-          </Row>
-        </Form.Item>
-        <Form.Item label="이용중인 서비스">
-          <Row>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="service"
+                name="checkbox"
+                onChange={adminChangeHandler}
+              />
+            )}
+            서비스
+          </label>
+        </div>
+        <div>
+          이용중인 서비스:
+          <label>
+            {svcA ? (
+              <input
+                type="checkbox"
                 id="service_a"
-                checked={svcA}
+                name="checkbox"
+                checked
                 onChange={serviceChangeHandler}
-              >
-                A서비스
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="service_a"
+                name="checkbox"
+                onChange={serviceChangeHandler}
+              />
+            )}
+            A서비스
+          </label>
+          <label>
+            {svcB ? (
+              <input
+                type="checkbox"
                 id="service_b"
-                checked={svcB}
+                name="checkbox"
+                checked
                 onChange={serviceChangeHandler}
-              >
-                B서비스
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="service_b"
+                name="checkbox"
+                onChange={serviceChangeHandler}
+              />
+            )}
+            B서비스
+          </label>
+          <label>
+            {svcC ? (
+              <input
+                type="checkbox"
                 id="service_c"
-                checked={svcC}
+                name="checkbox"
+                checked
                 onChange={serviceChangeHandler}
-              >
-                C서비스
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="service_c"
+                name="checkbox"
+                onChange={serviceChangeHandler}
+              />
+            )}
+            C서비스
+          </label>
+          <label>
+            {svcD ? (
+              <input
+                type="checkbox"
                 id="service_d"
-                checked={svcD}
+                name="checkbox"
+                checked
                 onChange={serviceChangeHandler}
-              >
-                D서비스
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox
-                style={{
-                  lineHeight: "32px",
-                }}
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="service_d"
+                name="checkbox"
+                onChange={serviceChangeHandler}
+              />
+            )}
+            D서비스
+          </label>
+          <label>
+            {svcE ? (
+              <input
                 type="checkbox"
                 id="service_e"
-                checked={svcE}
+                name="checkbox"
+                checked
                 onChange={serviceChangeHandler}
-              >
-                E서비스
-              </Checkbox>
-            </Col>
-          </Row>
-        </Form.Item>
-        <Form.Item label="유형">{user.userclass}</Form.Item>
-        <Form.Item label="등록일자">{user.userdate}</Form.Item>
-        <Form.Item label="상태">{user.userstatus}</Form.Item>
-        <div className="UserAdd_footer">
-          <button
-            type="submit"
-            onClick={changeHandler}
-            style={{ cursor: "pointer" }}
-          >
-            정보 변경
-          </button>
-          <button
-            type="submit"
-            onClick={deleteHandler}
-            style={{
-              cursor: "pointer",
-              // background: "#E5361E"
-              background: "#88888",
-            }}
-          >
-            사용자 삭제
-          </button>
+              />
+            ) : (
+              <input
+                type="checkbox"
+                id="service_e"
+                name="checkbox"
+                onChange={serviceChangeHandler}
+              />
+            )}
+            E서비스
+          </label>
         </div>
-      </Form>
+      </form>
+      <div>유형 {user.userclass}</div>
+      <div>등록일자 {user.userdate}</div>
+      <div>상태 {user.userstatus}</div>
+      <button type="submit" onClick={changeHandler}>
+        정보 변경
+      </button>
+      <button type="submit" onClick={deleteHandler}>
+        사용자 삭제
+      </button>
     </div>
   );
 };

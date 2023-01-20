@@ -91,9 +91,9 @@ const NtwActiveService = () => {
               { id: "D서비스", value: service.serviceD },
               { id: "E서비스", value: service.serviceE },
             ]}
-            margin={{ top: 25, right: 0, bottom: 25, left: 0 }} //차트 margin
+            margin={{ top: 10, right: 0, bottom: 30, left: 0 }} //차트 margin
             innerRadius={0} //차트 중앙 빈공간 반지름
-            colors={["#8fdbf4", "#80baf4 ", " #2ba0e3", " #055ca2", "#008FFB"]}
+            colors={["#8fdbf4", "#80baf4 ", " #2daaf1", " #197be4", "#008FFB"]}
             arcLinkLabelsTextColor={darkmode ? "#fafbff" : "#3d3d3d"} //막대선에 이어진 label색상
             activeOuterRadiusOffset={10}
             enableArcLinkLabels={true} //막대선 표출 여부
