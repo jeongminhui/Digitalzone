@@ -213,7 +213,9 @@ const UserMyPage = () => {
         onValuesChange={onFormLayoutChange}
         size={componentSize}
       >
-        <Form.Item label="아이디(이메일)">{user.userid}</Form.Item>
+        <Form.Item label="아이디(이메일)" className="MyInfoPage_black_txt">
+          {user.userid}
+        </Form.Item>
         <Form.Item
           name="password"
           label="비밀번호"
@@ -236,10 +238,10 @@ const UserMyPage = () => {
             }),
           ]}
           hasFeedback
-          className="input_password_box"
+          className="input_password_box MyInfoPage_black_txt"
         >
           <Input.Password
-            className="input_password"
+            className="input_password MyInfoPage_inputBox"
             value={userpw}
             onChange={(e) => setUserpw(e.target.value)}
           />
@@ -261,15 +263,15 @@ const UserMyPage = () => {
               },
             }),
           ]}
-          className="input_password_box"
+          className="input_password_box MyInfoPage_black_txt"
         >
           <Input.Password
-            className="input_password"
+            className="input_password MyInfoPage_inputBox"
             value={pwcheck}
             onChange={(e) => setPwcheck(e.target.value)}
           />
         </Form.Item>
-        <Form.Item label="상세정보 접근 권한">
+        <Form.Item label="상세정보 접근 권한" className="MyInfoPage_black_txt">
           <Row>
             <Col span={8}>
               <Checkbox
@@ -331,7 +333,7 @@ const UserMyPage = () => {
             </Col>
           </Row>
         </Form.Item>
-        <Form.Item label="이용중인 서비스">
+        <Form.Item label="이용중인 서비스" className="MyInfoPage_black_txt">
           <Row>
             <Col span={8}>
               <Checkbox
@@ -396,13 +398,13 @@ const UserMyPage = () => {
             </Col>
           </Row>
         </Form.Item>
-        <Form.Item label="유형">
+        <Form.Item label="유형" className="MyInfoPage_black_txt">
           <label>{user.userclass}</label>
         </Form.Item>
-        <Form.Item label="등록일자">
+        <Form.Item label="등록일자" className="MyInfoPage_black_txt">
           <label>{user.userdate}</label>
         </Form.Item>
-        <Form.Item label="상태">
+        <Form.Item label="상태" className="MyInfoPage_black_txt">
           <label>{user.userstatus}</label>
         </Form.Item>
         <div className="UserAdd_footer">

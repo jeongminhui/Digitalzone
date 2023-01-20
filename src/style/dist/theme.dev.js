@@ -29,6 +29,7 @@ var lightTheme = {
   darkgrey_to_bg: "var(--dark-grey-color)",
   black_to_white: "var(--black-color)",
   black_to_bg: "#000",
+  black_to_footer: "#000",
   footer_to_darkgrey: "var(--footer-color)",
   footer_to_darkmode: "var(--footer-color)",
   transparent_to_dark: "transparent",
@@ -38,6 +39,7 @@ var lightTheme = {
   boxShadow_nodeTabs: "0 0 20px rgba(136, 136, 136, 0.1)",
   txdataWrap: "#f2f3f6",
   refresh: "#888888",
+  user_img: "rgba(0, 0, 0, 0.26)",
   ///////////////////////// 대시보드 /////////////////////////
   bg_totalBlock: "#eef5ff",
   bg_totalTransaction: "#fff6fb",
@@ -67,6 +69,7 @@ var darkTheme = {
   darkgrey_to_bg: "var(--bg-color)",
   black_to_white: "#fff",
   black_to_bg: "var(--bg-color)",
+  black_to_footer: "var(--footer-color)",
   footer_to_darkgrey: "var(--dark-grey-color)",
   footer_to_darkmode: "var(--darkmode-color)",
   transparent_to_dark: "var(--dark-color)",
@@ -76,6 +79,7 @@ var darkTheme = {
   boxShadow_nodeTabs: "none",
   txdataWrap: "var(--dark-color)",
   refresh: "var(--bg-color)",
+  user_img: "var(--footer-color)",
   ///////////////////////// 대시보드 ////////////////////////////
   bg_totalBlock: "#229AEE",
   bg_totalTransaction: "#FF316F",

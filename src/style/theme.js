@@ -29,6 +29,7 @@ export const lightTheme = {
 
   black_to_white: "var(--black-color)",
   black_to_bg: "#000",
+  black_to_footer: "#000",
 
   footer_to_darkgrey: "var(--footer-color)",
   footer_to_darkmode: "var(--footer-color)",
@@ -43,6 +44,8 @@ export const lightTheme = {
   txdataWrap: "#f2f3f6",
 
   refresh: "#888888",
+
+  user_img: "rgba(0, 0, 0, 0.26)",
 
   ///////////////////////// 대시보드 /////////////////////////
   bg_totalBlock: "#eef5ff",
@@ -80,6 +83,7 @@ export const darkTheme = {
 
   black_to_white: "#fff",
   black_to_bg: "var(--bg-color)",
+  black_to_footer: "var(--footer-color)",
 
   footer_to_darkgrey: "var(--dark-grey-color)",
   footer_to_darkmode: "var(--darkmode-color)",
@@ -94,6 +98,8 @@ export const darkTheme = {
   txdataWrap: "var(--dark-color)",
 
   refresh: "var(--bg-color)",
+
+  user_img: "var(--footer-color)",
 
   ///////////////////////// 대시보드 ////////////////////////////
   bg_totalBlock: "#229AEE",
