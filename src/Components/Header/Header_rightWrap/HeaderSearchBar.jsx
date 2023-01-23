@@ -32,7 +32,7 @@ const HeaderSearchBar = () => {
 
   useEffect(() => {
     setTranUser(loginUser?.useradmin.transaction);
-  }, []);
+  }, [TranUser]);
 
   function onSubmit(data) {
     // data : input창에 입력된 값을 객체형태로 가져옴 => { searchValue : 입력값}
